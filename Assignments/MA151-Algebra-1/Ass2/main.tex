@@ -1,0 +1,108 @@
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{amsmath, amssymb, amsgen}
+\usepackage{gensymb}
+
+\renewcommand{\thesubsection}{Q\thesection~(\alph{subsection})}
+
+\title{MA151 Algebra 1, Assignment 2}
+\author{Dyson Dyson}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+%%%%%%
+% Q1 %
+%%%%%%
+
+\section*{Question 1}
+
+Let $A = \begin{pmatrix} \frac1{\sqrt2} & -\frac1{\sqrt2}\\ \frac1{\sqrt2} & \frac1{\sqrt2} \end{pmatrix}$ and $B = \begin{pmatrix} 1 & 1\\ 0 & 1 \end{pmatrix}$.
+
+Then $\det A = \frac12 + \frac12 = 1$ and $\det B = 1 - 0 = 1$, so both $A$ and $B$ are non-singular $2 \times 2$ matrices with elements from $\mathbb R$, so they are both members of $\text{GL}_2(R)$.
+
+$A$ is the matrix representing a rotation of $45\degree$ anticlockwise, so it has order 8. This can be checked by doing $A^8$ longhand, but I'm not going to do that.
+
+$B$ however, has infinite order, since $B^n = \begin{pmatrix} 1 & n\\ 0 & 1 \end{pmatrix}$, which I shall now prove by induction.
+
+The base case of $n=1$ is true, since $B^1 = \begin{pmatrix} 1 & 1\\ 0 & 1 \end{pmatrix}$. Now assume that $B^k = \begin{pmatrix} 1 & k\\ 0 & 1 \end{pmatrix}$ for some $k$. Then $$B^{k+1} = \begin{pmatrix} 1 & k\\ 0 & 1 \end{pmatrix} \begin{pmatrix} 1 & 1\\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1+0 & 1+k\\ 0+0 & 0+1 \end{pmatrix} = \begin{pmatrix} 1 & k+1\\ 0 & 0 \end{pmatrix}$$
+
+Therefore $B^n = \begin{pmatrix} 1 & n\\ 0 & 1 \end{pmatrix}$ for all $n$. Therefore the only power of $B$ that will give the identity is $B^0$, so $B$ has infinite order.
+
+%%%%%%
+% Q2 %
+%%%%%%
+
+\section*{Question 2}
+
+Let $G$ be a group and let $g \in G$. If $g^{12} = 1$, then the order of $g$ could be any factor of 12. For instance, if $g^3 = 1$, then $g^{12} = \left(g^3\right)^4 = 1^4 = 1$. Therefore the order of $g$ could be any of $1, 2, 3, 4, 6, 12$.
+
+%%%%%%
+% Q3 %
+%%%%%%
+
+\section*{Question 3}
+\setcounter{section}{3}
+\setcounter{subsection}{0}
+
+\subsection{$G = \mathbb S = \{z \in \mathbb C : |z| = 1\},\ g = e^{2 \pi i / 7}$}
+
+$\langle g \rangle = \left\{ e^{2 \pi i / 7}, e^{4 \pi i / 7}, e^{6 \pi i / 7}, e^{8 \pi i / 7}, e^{10 \pi i / 7}, e^{12 \pi i / 7}, e^{12 \pi i / 7}, e^{12 \pi i / 7} \right\}$.
+
+\subsection{$G = \text{\normalfont GL}_2(\mathbb R),\ g = \begin{pmatrix} -1 & 0\\ 0 & -1 \end{pmatrix}$}
+
+$\langle g \rangle = \left\{ \begin{pmatrix}-1 & 0\\ 0 & -1\end{pmatrix}, \begin{pmatrix}1 & 0\\ 0 & 1\end{pmatrix} \right\}$.
+
+\subsection{$G = \text{\normalfont GL}_2(\mathbb R),\ g = \begin{pmatrix} 1 & 1\\ 0 & 1 \end{pmatrix}$}
+
+$\langle g \rangle = \left\{ \begin{pmatrix}1 & 1\\ 0 & 1\end{pmatrix}, \begin{pmatrix}1 & 2\\ 0 & 1\end{pmatrix}, \begin{pmatrix}1 & 3\\ 0 & 1\end{pmatrix}, \begin{pmatrix}1 & 4\\ 0 & 1\end{pmatrix}, \ldots \right\} = \left\{\begin{pmatrix}1 & n\\ 0 & 1\end{pmatrix} : N \in \mathbb N, n \ne 0\right\}$.
+
+\subsection{$G = D_8,\ g = \rho_3$}
+
+$\langle g \rangle = \left\{ \rho_3, \rho_2, \rho_1, \rho_0 \right\}$.
+
+%%%%%%
+% Q4 %
+%%%%%%
+
+\section*{Question 4}
+
+Let $\mathbb R^* = (\mathbb R \setminus \{0\}, \times)$ and $H = \{x \in \mathbb R^* : x^2 \in \mathbb Q\}$. We shall use the ABC test to show that $H$ is a subgroup of $\mathbb R^*$.
+
+The identity in $\mathbb R^*$ is the real number $1$, whose square is rational, so $1$ is also in $H$.
+
+Suppose we have $a, b \in H$. That means $a^2, b^2 \in \mathbb Q$. Multiplying these gives $ab$, and since $a^2$ and $b^2$ are both rational, $(ab)^2 = a^2 b^2$ is also rational, so $ab$ is in $H$ as well.
+
+If we have some element $a \in H$, then $a^2 \in \mathbb Q$. The inverse of $a$ in $\mathbb R^*$ is $\frac1a$, and $\left(\frac1a\right)^2 = \frac1{a^2}$ is also rational, therefore $a^{-1} \in H$.
+
+%%%%%%
+% Q5 %
+%%%%%%
+
+\section*{Question 5}
+
+Let $G$ be a group and let $g \in G$. Either $g$ has finite order or $g$ has infinite order.
+
+In the case that $g$ has finite order $n$, we know that $g^n = 1$. If we left-multiply both sides by $g^{-n}$, then we get $g^{-n} g^n = g^{-n} 1 \implies 1 = g^{-n} = \left(g^{-1}\right)^n$. Therefore the order of $g^{-1}$ must be a factor of $n$.
+
+If the order of $g^{-1}$ was some factor $k < n$, then $g^{-k} = 1$ and by the same logic, $g^k g^{-k} = g^k 1 \implies 1 = g^k$, which would imply that the order of $g$ is $k$, which is a contradiction. Therefore the order of $g^{-1}$ must be $n$.
+
+In the case that $g$ has infinite order, we know that every power of $g$ must be unique. And every power of $g$ must have an inverse. Since inverses are unique, every power of $g$ must have a unique inverse. Therefore $g \ne g^2 \ne g^3 \ne \cdots$ and $g^{-1} \ne g^{-2} \ne g^{-3} \ne \cdots$, therefore $g^{-1}$ has infinite order.
+
+%%%%%%
+% Q6 %
+%%%%%%
+
+\section*{Question 6}
+
+Let $G$ be a group and suppose $g \in G$ has infinite order. Every positive integer power of $g$ generates a unique cyclic subgroup of infinite order. For example, we have the groups $\langle g^2 \rangle = \{\ldots, g^{-6}, g^{-4}, g^{-2}, 1, g^2, g^4, g^6, \ldots\}$, $\langle g^3 \rangle = \{\ldots, g^{-9}, g^{-6}, g^{-3}, 1, g^3, g^6, g^9, \ldots\}$. Since $g$ has infinite order, there is no $n$ such that $g^n = 1$, so all of these subgroups have infinite order, and all of them are unique.
+
+The set of all such subgroups of $G$ can be written as $\Big\{ \left\{g^{kn} : k \in \mathbb Z\right\} : n \in \mathbb Z \Big\}$.
+
+\end{document}

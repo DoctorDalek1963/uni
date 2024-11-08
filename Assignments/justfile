@@ -1,0 +1,10 @@
+_default:
+	@just --list
+
+# build the assignment in the current directory (assuming main.tex)
+build:
+	cd {{invocation_directory()}} && lualatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -recorder --jobname="main" "main.tex"
+
+# remove all build artifacts
+clean:
+	fd -I -e log -e aux -e dvi -e lof -e lot -e bit -e idx -e glo -e bbl -e bcf -e ilg -e toc -e ind -e out -e blg -e fdb_latexmk -e fls -e run.xml -e synctex.gz -X rm -f

@@ -1,0 +1,153 @@
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{amsmath, amssymb, amsgen}
+
+\renewcommand{\thesubsection}{Q\thesection~(\roman{subsection})}
+
+\title{MA141 Analysis 1, Assignment 2}
+\author{Dyson Dyson}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+%%%%%%
+% Q7 %
+%%%%%%
+
+\section*{Question 7}
+
+Let $(a_n)$ be a sequence such that $a_n \in \mathbb Z$ for all $n$, and let $a_n \to L$ as $n \to \infty$ for some $L \in \mathbb R$.
+
+Since $a_n \to L$, $\forall \varepsilon > 0,\ \exists N \in \mathbb N$ such that $|a_n - L| < \varepsilon$. We can rewrite this as $L - \varepsilon < a_n < L + \varepsilon$. Since $\varepsilon$ can be arbitrarily small, we can conclude that $L$ must be an integer.
+
+To show that $a_n = L$ after a certain point, take $\varepsilon = \frac12$ in the definition of convergence. That means $\exists N \in \mathbb N$ such that $|a_n - L| < \frac12$ for all $n \ge N$. Therefore $L - \frac12 < a_n < L + \frac12$ for all $n \ge N$.
+
+Since $L$ is an integer and all $a_n$ are integers, we can conclude that $a_n = L$ for all $n \ge N$.
+
+%%%%%%
+% Q9 %
+%%%%%%
+
+\section*{Question 9}
+\setcounter{section}{9}
+\setcounter{subsection}{0}
+
+\renewcommand{\thesubsection}{Q\thesection~(\alph{subsection})}
+
+\subsection{$\dfrac{2n^2 + 3n}{n^3 + n^2}$}
+
+We can factor out an $n^3$ on the top and bottom to get $\dfrac{\frac{2}{n} + \frac{3}{n^2}}{1 + \frac{1}{n}}$. Then the numerator will converge to $0$ and the denominator will converge to $1$, so the whole fraction will converge to $0$ as $n \to \infty$.
+
+In more detail, we can say that $\frac2n + \frac3{n^2} \to \ell_1 + \ell_2$ where $\frac2n \to \ell_1$ and $\frac3{n^2} \to \ell_2$. It's fairly simple to see that $\ell_1 = \ell_2 = 0$, so the numerator converges to $0$.
+
+Likewise the denominator $1 + \frac1n$ will converge to $1 + \ell_3$ where $\frac1n \to \ell_3$ and again it is trivial that $\ell_3 = 0$, so the denominator converges to $1$.
+
+Therefore $\dfrac{2n^2 + 3n}{n^3 + n^2} \to \dfrac01 = 0$ as $n \to \infty$.
+
+\subsection{$\dfrac{3n^2 + n\cos n}{2n (n-3)}$}
+
+Expand the denominator and cancel the $n^2$.
+\begin{align*}
+	\frac{3n^2 + n\cos n}{2n (n-3)} &= \frac{3n^2 + n\cos n}{2n^2 - 6n}\\[1ex]
+									&= \frac{3 + \frac1n \cos n}{2 - \frac6n}
+\end{align*}
+
+The denominator will converge to $2 - \ell_1$, where $\frac6n \to \ell_1$. It should be fairly trivial that $\ell_1 = 0$, so the denominator converges to $2$.
+
+The numerator will converge to $3 + \ell_2$, where $\frac{\cos n}{n} \to \ell_2$. Note that we don't split this and take the limits of $\frac1n$ and $\cos n$ separately, since $\cos n$ doesn't converge. But $\frac{\cos n}{n} \to 0$ as $n \to \infty$, so the numerator will converge to $3$.
+
+Therefore $\dfrac{3n^2 + n\cos n}{2n (n-3)} \to \dfrac32$ as $n \to \infty$.
+
+\renewcommand{\thesubsection}{Q\thesection~(\roman{subsection})}
+
+%%%%%%%
+% Q12 %
+%%%%%%%
+
+\section*{Question 12}
+\setcounter{section}{12}
+\setcounter{subsection}{0}
+
+Define $(a_n)$ as $a_0 = 1$ and $a_{n+1} = \sqrt{a_n + 2}$.
+
+\subsection{~}
+
+\begin{align*}
+	a_1 &= \sqrt3\\[1ex]
+	a_2 &= \sqrt{2 + \sqrt3}\\[1ex]
+	a_2 &= \sqrt{2 + \sqrt{2 + \sqrt3}}
+\end{align*}
+
+\subsection{~}
+
+We will prove that $1 \le a_n \le 2$ for all $N \in \mathbb N$. For $n=0$, we get $a_0 = 1$, which fits the inequality, so the statement is true for $n=0$.
+
+Assume that $1 \le a_k \le 2$ for some $k$. Then we will prove that $1 \le \sqrt{2 + a_k} \le 2$. Since all three of these terms are positive, and $a \le b \iff a^2 \le b^2$ for positive $a$ and $b$, we can conclude that $1 \le \sqrt{2 + a_k} \le 2 \iff 1 \le 2 + a_k \le 4$. Since we know that $1 \le a_k \le 2$ from our assumption, we also know that $1 \le a_k \le 4$, and we can then follow the $\iff$ chain backwards and conclude that $1 \le \sqrt{2 + a_k} \le 2$ must also be true.
+
+Since $1 \le a_n \le 2$ is true for $n=0$ and it being true for $n=k$ implies that it's true for $n=k+1$, we can conclude that $1 \le a_n \le 2$ for all $n \in \mathbb N$.
+
+\subsection{~}
+
+Suppose $a_n \to l$ as $N \to \infty$.
+
+\subsection{~}
+
+We can manipulate the target equation to show something which we know to be true, and then follow all the steps in reverse to show that the target equation must be true.
+\begin{align*}
+	a_{n+1} - 2 &= \frac{a_n - 2}{2 + \sqrt{2 + a_n}}\\
+	\left( 2 + \sqrt{2 + a_n} \right) (a_{n+1} - 2) &= a_n - 2\\
+	\left( 2 + \sqrt{2 + a_n} \right) \left( \sqrt{2 + a_n} - 2 \right) &= a_n - 2\\
+	2 + a_n - 4 &= a_n - 2\\
+	a_n - 2 &= a_n - 2
+\end{align*}
+
+We only have to take care that $2 + \sqrt{2 + a_n} \ne 0$, but square roots are always $\ge 0$, so it's clear that $2 + \sqrt{2 + a_n} \ge 2$, so this chain of reasoning works fine both ways.
+
+%%%%%%%
+% Q14 %
+%%%%%%%
+
+\section*{Question 14}
+\setcounter{section}{14}
+\setcounter{subsection}{0}
+
+Suppose $a_n \to \infty$ and $b_n \to \infty$.
+
+\subsection{$a_n - b_n \to \infty$}
+
+$a_n = n^2$ and $b_n = n$. In this case, both $a_n \to \infty$ and $b_n \to \infty$ but $a_n - b_n = n^2 - n = n (n-1)$. It should be clear that both $n \to \infty$ and $n-1 \to \infty$, so by the product rule for limits, we know that $n^2 - n \to \infty$, therefore $a_n - b_n \to \infty$ as required.
+
+\subsection{$a_n - b_n \to 0$}
+
+Let $(a_n)$ be any sequence where $a_n \to \infty$, then let $b_n = a_n$. Then $b_n \to \infty$ and $a_n - b_n = 0$ for every term, so $a_n - b_n \to 0$.
+
+\subsection{$a_n - b_n \to l$\normalfont\ with $l \ne 0$}
+
+Let $(a_n)$ be any sequence where $a_n \to \infty$, then let $b_n = a_n - l$, where $l \in \mathbb R$ is some constant and $l \ne 0$. Then $b_n \to \infty$ and $a_n - b_n = l$ for every term, so $a_n - b_n \to l$.
+
+\subsection{$a_n - b_n \to -\infty$}
+
+$a_n = n$ and $b_n = n^2$. In this case, both $a_n \to \infty$ and $b_n \to \infty$ but $a_n - b_n = n - n^2 = -(n^2 - n)$. We know that $n^2 - n \to \infty$ from part \textbf{(i)}, so $-(n^2 - n) \to -\infty$. Therefore $a_n - b_n \to -\infty$.
+
+\subsection{$a_n - b_n$\normalfont\ does not converge}
+
+
+Let $(a_n)$ be any sequence where $a_n \to \infty$, then let $b_n = \begin{cases}
+	a_n + c &\text{when } n \text{ is even}\\[1ex]
+	a_n - c &\text{when } n \text{ is odd}
+\end{cases}$ where $c \in \mathbb R$ is some constant and $c \ne 0$.
+
+Then $a_n \to \infty$ and $b_n \to \infty$, and $a_n - b_n = \begin{cases}
+	c  &\text{when } n \text{ is even}\\[1ex]
+	-c &\text{when } n \text{ is odd}
+\end{cases}$
+
+Since $c \ne 0$, the sequence $a_n - b_n$ will oscillate between $c$ and $-c$ forever and never converge.
+
+\end{document}
