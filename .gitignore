@@ -2,9 +2,11 @@
 .direnv/
 
 # LaTeX stuff
-*.pdf
 *.aux
 *.dvi
 *.fdb_latexmk
 *.fls
 *.log
+
+*.pdf
+!Dyson_Dyson_*.pdf
