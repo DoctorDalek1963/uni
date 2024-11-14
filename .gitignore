@@ -10,3 +10,6 @@
 
 *.pdf
 !Dyson_Dyson_*.pdf
+
+# Jupyter stuff
+.ipynb_checkpoints/
