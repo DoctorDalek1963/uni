@@ -1,0 +1,61 @@
+%%%%% Make question numbers seamless
+
+\renewcommand{\thesection}{Question~\arabic{section}}
+\renewcommand{\thesubsection}{Q\arabic{section}~(\alph{subsection})}
+
+\newcommand{\question}[1]{%
+	\setcounter{section}{#1}
+	\addtocounter{section}{-1}
+	\section{}
+	\setcounter{subsection}{0}
+}
+
+%%%%% Shorthand and missing functions (taken mostly from my Obsidian notes)
+
+% Calculus stuff
+\renewcommand{\d}{\operatorname{d}\!}
+\newcommand{\diff}[1]{\frac{\d\,}{\d #1}}
+\newcommand{\dd}[2]{\frac{\d #1}{\d #2}}
+\newcommand{\ddd}[3]{\frac{\d^{#1} #2}{\d {#3}^{#1}}}
+\newcommand{\inte}[2]{\int #1 \,\d #2}
+\newcommand{\intlim}[4]{\int_{#1}^{#2} #3 \,\d #4}
+
+% Sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\H}{\mathbb{H}}
+
+% Misc shortened commands
+\renewcommand{\l}{\left}
+\renewcommand{\r}{\right}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\f}{\frac}
+\newcommand{\df}{\dfrac}
+\newcommand{\thf}{\therefore\ }
+\newcommand{\fa}{\forall\ }
+\newcommand{\qqt}[1]{\quad\quad\text{#1}}
+
+% Other letters
+\newcommand{\e}{\mathrm{e}}
+
+% Trig functions
+\def\cosec{\mathop{\rm cosec}\nolimits}
+\def\sech{\mathop{\rm sech}\nolimits}
+\def\cosech{\mathop{\rm cosech}\nolimits}
+\def\arcsin{\mathop{\rm arcsin}\nolimits}
+\def\arccos{\mathop{\rm arccos}\nolimits}
+\def\arctan{\mathop{\rm arctan}\nolimits}
+\def\arsinh{\mathop{\rm arsinh}\nolimits}
+\def\arcosh{\mathop{\rm arcosh}\nolimits}
+\def\artanh{\mathop{\rm artanh}\nolimits}
+
+% Complex functions
+\def\Re{\mathop{\rm Re}\nolimits}
+\def\Im{\mathop{\rm Im}\nolimits}
+
+% Other functions
+\def\lcm{\mathop{\rm lcm}\nolimits}
