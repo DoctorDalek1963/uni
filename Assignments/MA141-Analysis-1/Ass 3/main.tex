@@ -1,0 +1,80 @@
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{amsmath, amssymb, amsgen}
+\usepackage{preamble}
+
+\title{MA141 Analysis 1, Assignment 3}
+\author{Dyson Dyson}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+%%%%%%
+% Q3 %
+%%%%%%
+
+\question{3}
+
+$(a_n)$ is an increasing sequence and the subsequence $\l(a_{n_j}\r)$ converges to some $\ell \in \mathbb R$.
+
+Since $\l(a_{n_j}\r) \to \ell$, that means $\exists \varepsilon > 0, N \in \mathbb N$ such that $|a_{n_j} - \ell| < \varepsilon\ \forall\ n_j \ge N$.
+
+Since $n_{j+1} > n_j\ \forall\ j \in \mathbb N$ and $\ell - \varepsilon < a_{n_j} < \ell + \varepsilon\ \forall\ n_j \ge N$, $(a_n)$ is bounded above by $\ell + \varepsilon$.
+
+Therefore $|a_n - \ell| < \varepsilon\ \forall\ n \ge N$.
+
+%%%%%%%
+% Q10 %
+%%%%%%%
+
+\question{10}
+
+I had absolutely no idea what to do with this one, sorry.
+
+\subsection{$a_n = \dfrac{\sqrt{n + 1}}{\sqrt{n^3 + 2}}$}
+
+For large $n$, $a_n \approx \dfrac{\sqrt n}{\sqrt{n^3}} = \dfrac{1}{n^2}$, so we expect $\sum a_n < \infty$.
+
+\subsection{$a_n = \dfrac{n - 3}{n^3 + 2}$}
+
+For large $n$, $a_n \approx \dfrac{1}{n^2}$, so we expect $\sum a_n < \infty$.
+
+%%%%%%%
+% Q15 %
+%%%%%%%
+
+\question{15}
+
+We care about the convergence of $\ds\sum_{n=2}^\infty \frac1{n (\log n)^\alpha}$, so we will use the integral test.
+
+$$\int_1^n \frac1{x (\log x)^\alpha} \mathrm d x = \left[ \frac{(\log x)^{1 - \alpha}}{1 - \alpha} \right]_1^n =  \frac{(\log n)^{1 - \alpha}}{1 - \alpha} \qquad \text{where } \alpha \ne 1$$
+
+Since $(\log n)^\beta \to \infty$ exactly when $b > 0$, we know that the integral is bounded when $1 - \alpha > 0 \implies \alpha > 1$. And the integral is unbounded when $\alpha < 1$ and undefined when $\alpha = 1$.
+
+Therefore $\ds\sum_{n=2}^\infty \frac1{n (\log n)^\alpha}$ converges when $\alpha > 1$ and diverges when $\alpha \le 1$.
+
+%%%%%%%
+% Q16 %
+%%%%%%%
+
+\question{16}
+
+\subsection{$\ds\sum_{n=1}^\infty (-1)^{n+1} \frac1{2n+1}$}
+
+The absolute version of this sum is the sum of reciprocals of odd numbers. Much like the Harmonic series, this series diverges to $\infty$, so the series does not converge absolutely.
+
+It does however converge conditionally to $1 - \dfrac\pi4$ thanks to the alternating minus signs.
+
+\subsection{$\ds\sum_{n=1}^\infty (-1)^{n+1} \frac1{n^2}$}
+
+The absolute version of this sum is $$\sum_{n=1}^\infty \l| (-1)^{n+1} \frac1{n^2} \r| = \sum_{n=1}^\infty \frac1{n^2}$$
+
+This is the Basel problem, which famously equals $\dfrac{\pi^2}6$. Therefore this series is absolutely convergent, and therefore convergent.
+
+\end{document}
