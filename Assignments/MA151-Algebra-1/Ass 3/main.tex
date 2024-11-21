@@ -1,0 +1,153 @@
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{amsmath, amssymb, amsgen}
+\usepackage{preamble}
+
+\newcommand{\Ker}{\text{Ker}\;}
+
+\title{MA151 Algebra 1, Assignment 3}
+\author{Dyson Dyson}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\question{1}
+\renewcommand{\thesubsection}{Q\arabic{section}~\roman{subsection}.}
+
+$$\rho = \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 1 & 3 & 5 & 2 & 4\end{pmatrix}, \qquad \tau = \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 3 & 1 & 5 & 2 & 4\end{pmatrix}$$
+
+\subsection{}
+
+\begin{align*}
+	\rho^{-1} &= \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 1 & 4 & 2 & 5 & 3\end{pmatrix}\\[1ex]
+	\rho\tau  &= \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 5 & 1 & 4 & 3 & 2\end{pmatrix}\\[1ex]
+	\tau^2    &= \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 5 & 3 & 4 & 1 & 2\end{pmatrix}\\[1ex]
+\end{align*}
+
+\subsection{}
+
+$$\rho = (1) (2, 3, 5, 4) = (2, 3, 5, 4), \qquad \tau = (1, 3, 5, 4, 2)$$
+
+\subsection{}
+
+$\rho$ is an odd permutation (since $\rho = (2, 4) (2, 5) (2, 3)$) and $\tau$ is an even permutation (since $\tau = (1, 2) (1, 4) (1, 5) (1, 3)$).
+
+\question{2}
+
+\subsection{}
+
+$(1\ 2)$ has order 2, since it is a transposition.
+
+\subsection{}
+
+$(1\ 2\ 3)$ has order 3.
+
+\subsection{}
+
+$(1\ 2\ 3)(4\ 6)$ has order 6.
+
+\subsection{}
+
+$$(1\ 2\ 3)(1\ 2) = \begin{pmatrix}1 & 2 & 3\\ 3 & 2 & 1\end{pmatrix} = (1\ 3)$$
+So $(1\ 2\ 3)(1\ 2) = (1\ 3)$ and has order 2.
+
+\question{3}
+\renewcommand{\thesubsection}{Q\arabic{section}~(\alph{subsection})}
+
+\subsection{}
+
+Suppose $G$ and $H$ are groups and $G \cong H$. Suppose $g \in G$ has order $n$, so $g^n = 1_G$. Let $\phi$ be the isomorphic bijection between $G$ and $H$. We know that $\phi(1_G) = 1_H$ and $\phi\l(g^n\r) = \phi(\, \underbrace{g \cdot g \cdots g}_{n \text{ times}} \,) = \underbrace{\phi(g) \cdot \phi(g) \cdots \phi(g)}_{n \text{ times}} = \phi(g)^n$.
+
+Therefore $\phi\l( g^n \r) = \phi(1_G) \implies \phi(g)^n = 1_H$. Therefore the element $\phi(g) \in H$ has order $n$.
+
+\subsection{}
+
+$\Z / 6\Z \cong C_6$, so every non-identity element of $\Z / 6\Z$ has order 6. In $D_6$, the reflections have order 2, the non-identity rotations have order 3, and the identity has order 1, so no elements of $D_6$ have order 6. Therefore $\Z / 6\Z \ncong D_6$ by \textbf{(a)}.
+
+\question{4}
+
+Let $G$ and $H$ be groups and $\phi : G \to H$ be a homomorphism.
+
+\subsection{}
+
+We know that $1_G 1_G = 1_G$, so $\phi(1_G) = \phi(1_G 1_G) = \phi(1_G) \phi(1_G)$. But $\phi(1_G) \in H$, so it has an inverse in $H$. Thus, we can say \begin{align*}
+	\phi(1_G) \phi(1_G)^{-1} &= \phi(1_G) \phi(1_G) \phi(1_G)^{-1}\\[1ex]
+	1_H &= \phi(1_G) 1_H\\[1ex]
+		&= \phi(1_G)\\[1ex]
+	\therefore \phi(1_G) &= 1_H
+\end{align*}
+
+\subsection{}
+
+Recall that $\Ker \phi = \{g \in G : \phi(g) = 1_H\}$. First we will show that $\phi$ being injective implies that $\Ker \phi = \{1_G\}$.
+
+Suppose $\phi$ is injective, then $\phi(g_1) = \phi(g_2) \iff g_1 = g_2\ \fa g_1, g_2 \in G$. We already know that $\phi(1_G) = 1_H$ from before. Since $\phi$ is injective, if $\phi(g) = 1_H$, then $g = 1_G$. Therefore $\Ker \phi = \{g \in G : \phi(g) = 1_H\} = \{1_G\}$.
+
+For the converse, now suppose $\Ker \phi = \{1_G\}$. That means that $\phi(g) \ne 1_H\ \fa g \in G, g \ne 1_G$. Suppose $\phi(g_1) = \phi(g_2)$ for some $g_1 \ne g_2$. Then \begin{align*}
+	\phi(g_1) &= \phi(g_2)\\[1ex]
+	\phi(g_1)^{-1} \phi(g_1) &= \phi(g_1)^{-1} \phi(g_2)\\[1ex]
+	1_H &= \phi\l(g_1^{-1} g_2\r)\\[1ex]
+	\implies 1_G &= g_1^{-1} g_2\\[1ex]
+	\implies g_1 &= g_2
+\end{align*}
+But that's a contradiction, since we assumed $g_1 \ne g_2$. Therefore $\phi(g_1) \ne \phi(g_2)$, so $\phi$ is injective.
+
+\subsection{}
+
+If $\phi$ is surjective, then $\fa h \in H,\, \exists g \in G, \phi(g) = h$. If $G$ is Abelian, then $g_1 g_2 = g_2 g_1\ \fa g_1, g_2 \in G$.
+
+Then $\fa h_1, h_2 \in H$, \begin{align*}
+	h_1 h_2 &= \phi(g_1) \phi(g_2)\\[1ex]
+					 &= \phi(g_1 g_2)\\[1ex]
+					 &= \phi(g_2 g_1)\\[1ex]
+					 &= \phi(g_2) \phi(g_1)\\[1ex]
+					 &= h_2 h_1
+\end{align*}
+Therefore $H$ is also Abelian.
+
+\subsection{}
+
+If $\phi$ is injective, then $\phi(g_1) = \phi(g_2) \iff g_1 = g_2\ \fa g_1, g_2 \in G$. If $H$ is Abelian, then $h_1 h_2 = h_2 h_1\ \fa h_1, h_2 \in H$.
+
+Then $\fa g_1, g_2 \in G$, \begin{align*}
+	\phi(g_1) \phi(g_2) &= \phi(g_2) \phi(g_1)\\[1ex]
+	\phi(g_1 g_2) &= \phi(g_2 g_1)\\[1ex]
+	g_1 g_2 &= g_2 g_1
+\end{align*}
+Therefore $G$ is also Abelian.
+
+\question{5}
+
+Let $A, B, C \in M_{2 \times 2}(\Z)$. We want $AB = AC, A \ne \mathbf 0, B \ne C$. Take $$A = \begin{pmatrix}1 & 0\\ 0 & 0\end{pmatrix}, \qquad B = \begin{pmatrix}2 & -1\\ 10 & 2\end{pmatrix}, \qquad C = \begin{pmatrix}2 & -1\\ -3 & 4\end{pmatrix}$$
+
+Clearly $A \ne \mathbf 0$ and $B \ne C$ but $$AB = \begin{pmatrix}2 & -1\\ 0 & 0\end{pmatrix} \quad \text{and} \quad AC = \begin{pmatrix}2 & -1\\ 0 & 0\end{pmatrix}$$
+So $AB = AC$.
+
+\question{6}
+
+Suppose $R$ is a ring where $a \ne 0, b \ne 0 \implies ab \ne 0$ and $rs = rt$. Then either $s = 0$ or $s \ne 0$.
+
+In the case where $s = 0$, we have $r \times 0 = 0 = rt$, therefore $r=0$ or $t=0$, but we know $r \ne 0$, so $t = 0$. Therefore $s=t$.
+
+In the case where $s \ne 0$, we have, by distributivity, \begin{align*}
+	rs &= rt\\
+	\phantom{paddingpaddi} rs - rt &= 0\\
+	r (s - t) &= 0\\
+	s - t &= 0 \qqt{since } r \ne 0\\
+	\therefore s &= t
+\end{align*}
+
+\question{7}
+
+$M_{2 \times 2} \l( \Z / 5\Z \r)$ is a non-commutative ring. We know that $\Z / 5\Z$ is a ring, so $M_{2 \times 2}(\Z / 5 \Z)$ is also a ring. It has finite elements, since each matrix has 4 numbers, each of which has 5 choices, so there are $5^4 = 625$ elements.
+
+To demonstrate non-commutativity, consider $a = \begin{pmatrix}1 & 2\\ 3 & 4\end{pmatrix}, b = \begin{pmatrix}2 & 3\\ 1 & 0\end{pmatrix}$. Then $$ab = \begin{pmatrix}4 & 3\\ 0 & 4\end{pmatrix}, \qquad ba = \begin{pmatrix}1 & 1\\ 1 & 2\end{pmatrix}$$
+Therefore $ab \ne ba$, so $M_{2 \times 2} \l( \Z / 5\Z \r)$ is not commutative.
+
+\end{document}
