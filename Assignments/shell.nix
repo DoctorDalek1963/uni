@@ -2,5 +2,12 @@
   texlive = pkgs.texlive.withPackages (p: with p; [scheme-medium gensymb cancel]);
 in
   pkgs.mkShell {
-    buildInputs = [texlive] ++ (with pkgs; [just fd python3]);
+    buildInputs =
+      [texlive]
+      ++ (with pkgs; [
+        fd
+        inotify-tools
+        just
+        python3
+      ]);
   }

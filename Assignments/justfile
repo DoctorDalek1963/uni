@@ -15,6 +15,9 @@ clean:
 view: build
 	xdg-open "{{invocation_directory()}}/main.pdf"
 
+watch: view
+	cd "{{invocation_directory()}}" && while inotifywait -e modify main.tex; do just build; done
+
 # build and rename main.pdf to proper filename
 rename: build
 	#!/usr/bin/env python3
