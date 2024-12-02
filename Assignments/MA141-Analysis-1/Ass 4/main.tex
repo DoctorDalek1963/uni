@@ -1,0 +1,61 @@
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\title{MA141 Analysis 1, Assignment 4}
+\author{Dyson Dyson}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\question{5}
+
+Let $f : \R \to \R$ and $g : \R \to \R$ be functions where $f(x) = g(x)\ \fa x \in \Q$. We want to show that $f(x) = g(x)\ \fa x \in \R$.
+
+For every real number $x$, we can define a sequence $(a_n)$ as $a_n = \dfrac{\lfloor x \cdot 10^n \rfloor}{10^n}$, starting at $n=0$. This is a way to generate decimal truncations of $x$. For example if $x = \pi$, then $a_0 = 3,\ a_1 = 3.1,\ a_2 = 3.14,\ \ldots,\ a_{10} = 3.1415926535,\ \ldots$ It is clear that $a_n \to x$ as $n \to \infty$.
+
+We can use this process of generating a sequence for any real number to fill in the gaps of $f$ and $g$. Let $x \in \R$ and define $(a_n)$ as above to be the sequence converging to $x$. All terms of $a_n$ are rational, so $f(a_0) = g(a_0),\ f(a_1) = g(a_1),\ \ldots$ Since $f$ and $g$ are continuous, $f(a_n) \to f(x)$ and $g(a_n) \to g(x)$, and since $f(a_n) = g(a_n)\ \fa n$, we must conclude that $f(x) = g(x)\ \fa x \in \R$.
+
+\question{7}
+
+Let $f : (-\infty, 0] \to \R$ and $g : [0, \infty)$ both be continuous on their entire domain. Let $$h(x) = \begin{cases}
+	f(x) & x \le 0\\
+	g(x) & x > 0
+\end{cases}$$We want to show that $h$ is continuous at $x=0$ if and only if $f(0) = g(0)$.
+
+If $h$ is continuous at 0, then $\fa \varepsilon > 0, \exists\ \delta > 0$ such that $|x| < \delta \implies |h(x)| < \varepsilon$.
+
+I just don't know what to do with this question, sorry.
+
+\question{11}
+
+Let $f : [a, b] \to [a, b]$ be any continuous function. We will show that it has a fixed point.
+
+Let $g(x) = f(x) - x$. Then we have three cases, either $g(a) < g(b)$, $g(a) > g(b)$, or $g(a) = g(b)$. We only get the final case if $f(x) = x$, in which case every point is a fixed point.
+
+In the case of $g(a) < g(b)$, we know $g(a) < 0 < g(b)$
+% TODO: Why is this true?
+so by the Intermediate Value Theorem, $g(c) = 0$ for some $c \in (a, b)$. Therefore $f(c) = c$, so $c$ is a fixed point of $f$.
+
+Likewise for the case of $g(a) > g(b)$, we can show $g(a) > 0 > g(b)$ in the same way, so we can find a fixed point using the same logic.
+
+Now let $f : (a, b) \to (a, b)$. The example $f(x) = x^2$ would have fixed points at $x=0$ and $x=1$, but these are not in the domain, so $f(0)$ and $f(1)$ are not defined. Therefore $f$ has no fixed point and shows that we can avoid fixed points in this case.
+
+\question{19}
+
+Suppose $f : [0, \infty) \to \R$ is continuous and that $f(x) \to L$ as $x \to \infty$. We will show that $f$ is bounded above and below on $[0, \infty)$.
+
+We will now also show that $f$ doesn't need to attain both its upper and lower bound.
+
+We know that any convergent sequence is bounded above and below, so we can just define the sequence $(a_n)$ as $a_n = f(n)$. Then $a_n \to L$ as $n \to \infty$ and since $(a_n)$ is bounded above and below, $f$ must also be bounded above and below.
+% FIXME: This proof is definitely wrong
+
+The function $f(x) = 1 - \df{1}{1+x}$ is defined on $[0, \infty)$ and its lower bound is $0$, which is achieves at $f(0) = 0$, but its upper bound is $1$, which it never reaches. $f(x) \to 1$ as $x \to \infty$, but $f$ never actually attains its upper bound.
+
+\end{document}
