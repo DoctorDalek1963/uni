@@ -1,5 +1,11 @@
 {pkgs ? import <nixpkgs> {}}: let
-  texlive = pkgs.texlive.withPackages (p: with p; [scheme-medium gensymb cancel]);
+  texlive = pkgs.texlive.withPackages (p:
+    with p; [
+      scheme-medium
+      gensymb
+      cancel
+      csquotes
+    ]);
 in
   pkgs.mkShell {
     buildInputs =
