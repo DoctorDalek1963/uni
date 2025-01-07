@@ -1,0 +1,8 @@
+alias r := run
+
+_default:
+	@just --list
+
+# run Scratch.java
+run:
+	@java {{justfile_directory()}}/Scratch.java
