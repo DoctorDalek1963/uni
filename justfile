@@ -12,9 +12,11 @@ clean:
 	cd "{{invocation_directory()}}" && latexmk -c -C
 	texhash
 
+# open ./main.pdf to view
 view: build
 	xdg-open "{{invocation_directory()}}/main.pdf" &> /dev/null & disown
 
+# watch the directory and recompile whenever a file changes
 watch: view
 	cd "{{invocation_directory()}}" && while inotifywait -q -e modify main.tex; do just build; done
 
