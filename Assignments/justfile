@@ -13,7 +13,7 @@ clean:
 	texhash
 
 view: build
-	xdg-open "{{invocation_directory()}}/main.pdf"
+	xdg-open "{{invocation_directory()}}/main.pdf" &> /dev/null & disown
 
 watch: view
 	cd "{{invocation_directory()}}" && while inotifywait -q -e modify main.tex; do just build; done
