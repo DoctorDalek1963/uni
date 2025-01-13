@@ -1,0 +1,11 @@
+_default:
+	@just --list
+
+# connect the red-ferret server to the red-ferret/ folder with sshfs
+connect:
+	#!/usr/bin/env bash
+
+	mountpoint="$(mktemp -d)"
+	sshfs red-ferret:ma117/labs "$mountpoint"
+	rm -f "{{justfile_directory()}}/red-ferret"
+	ln -sf "$mountpoint" "{{justfile_directory()}}/red-ferret"
