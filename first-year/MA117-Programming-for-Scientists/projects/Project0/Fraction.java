@@ -80,7 +80,6 @@ public class Fraction {
 	 * @param num The numerator
 	 */
 	public Fraction(int num) {
-		// This method is complete.
 		this(num, 1);
 	}
 
@@ -91,7 +90,6 @@ public class Fraction {
 	 *            i.e. numerator = 0 and denominator = 1
 	 */
 	public Fraction() {
-		// This method is complete.
 		this(0, 1);
 	}
 
@@ -216,7 +214,7 @@ public class Fraction {
 	 * @return    The quotient of this fraction and f.
 	 */
 	public Fraction divide(Fraction f) {
-		return this.multiply(new Fraction(f.denominator, f.numerator));
+		return this.multiply(f.reciprocal());
 	}
 
 	/**
@@ -263,6 +261,10 @@ public class Fraction {
 			this.numerator *= -1;
 			this.denominator *= -1;
 		}
+	}
+
+	private Fraction reciprocal() {
+		return new Fraction(this.denominator, this.numerator);
 	}
 
 	// ======================================================================
