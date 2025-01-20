@@ -4,6 +4,6 @@ pkgs.mkShell {
     just
     mktemp
     sshfs
-    jdk
+    jdk17
   ];
 }
