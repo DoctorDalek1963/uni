@@ -3,6 +3,9 @@
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
+% NOTE: hyperref has to come before preamble
+\usepackage{hyperref}
+
 \usepackage{preamble}
 
 \usepackage{graphicx}
@@ -40,8 +43,11 @@ Therefore the arc length of the curve is $$s = \intlim ab {\sqrt{\l(\dd f\theta\
 
 Let $r = 1 + \cos\theta$. %Then $\ul r(\theta) = (\cos\theta + \cos^2\theta, \sin\theta + \sin\theta\cos\theta)$.
 
-% TODO: Sketch the curve
-% \includegraphics[scale=0.4]{Q1b}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.3]{Q1b}
+	\caption{A sketch of $r = 1 + \cos\theta$}
+\end{figure}
 
 $\ds\dd r\theta = -\sin\theta$ so the arc length is \begin{align*}
 s &= \intlim 0{2\pi} {\sqrt{\sin^2 \theta + (1 + \cos\theta)^2}} \theta\\[1ex]
@@ -52,22 +58,61 @@ I don't know how to do this integral but apparently it's $4\pi$.
 
 \subsection{~}
 
+% TODO: Justify this
 The curve given by $r = 1 + \cos k\theta$ is non-simple whenever $k$ is not an integer.
 % }}}
 
 % {{{ Q2
 \question{2}
 
+Consider the curve $\cal C$ with equation $$\quad 4y^2 - 9x^2 = 1, \quad y > 0$$
+
 \subsection{~}
+
+Since $\cosh^2 t - \sinh^2 t = 1$, we can let $y = \f12 \cosh t$ and $x = \f13 \sinh t$. Then we'll have the equation of $\cal C$. Therefore we can parametrise $\cal C$ as $\ul r(t) = \l( \f13 \sinh t, \f12 \cosh t \r)$.
+
+Since $\f12 \cosh t > 0$ for all $t \in (-\infty, \infty)$, the requirement of $y>0$ is satisfied by $t \in (-\infty, \infty)$, so that's the range of this parametrisation.
+
 \subsection{~}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.3]{Q2b}
+	\caption{A sketch of $\ul r(t) = \l( \f13 \sinh t, \f12 \cosh t \r)$}
+\end{figure}
+
+There is a turning point at $\l(0, \f12\r)$ and asymptotes are $y = \f32 x$ and $y = -\f32 x$.
+
 \subsection{~}
+
+% TODO: Reparametrise with $u$ such that $0 < u < 1$
 % }}}
 
 % {{{ Q3
 \question{3}
 
 \subsection{~}
+
+\begin{figure}[h]
+	\centering
+	\begin{tabular}{cc}
+		\includegraphics[scale=0.4]{Q3a-1} & \includegraphics[scale=0.4]{Q3a-2}\\
+		\includegraphics[scale=0.4]{Q3a-3} & \includegraphics[scale=0.4]{Q3a-4}
+	\end{tabular}
+	\caption{Plots of hypocycloids for various values of $r$}
+	\label{fig:hypocycloid-plots}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.3]{Q3a-code}
+	% TODO: Make this link point to the right file and right commit
+	\caption{The code used to generate the plots in Figure~\ref{fig:hypocycloid-plots}. The code can also be found \href{https://github.com/DoctorDalek1963/uni}{on GitHub}}
+\end{figure}
+
 \subsection{~}
+
+I conjecture that for any $r \in \R$, the curve will be closed if and only if $r \in \Q$.
 % }}}
 
 \end{document}
