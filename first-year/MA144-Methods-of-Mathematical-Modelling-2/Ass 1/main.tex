@@ -54,12 +54,13 @@ s &= \intlim 0{2\pi} {\sqrt{\sin^2 \theta + (1 + \cos\theta)^2}} \theta\\[1ex]
 &= \intlim 0{2\pi} {\sqrt{\sin^2 \theta + 1 + 2\cos\theta + \cos^2 \theta}} \theta\\[1ex]
 &= \intlim 0{2\pi} {\sqrt{2 + 2\cos\theta}} \theta
 \end{align*}
+% TODO: Do this integral by hand
 I don't know how to do this integral but apparently it's $4\pi$.
 
 \subsection{~}
 
 % TODO: Justify this
-The curve given by $r = 1 + \cos k\theta$ is non-simple whenever $k$ is not an integer.
+The curve given by $r = 1 + \cos k\theta$ is non-simple (self-intersecting) whenever $k$ is not an integer.
 % }}}
 
 % {{{ Q2
@@ -85,7 +86,13 @@ There is a turning point at $\l(0, \f12\r)$ and asymptotes are $y = \f32 x$ and 
 
 \subsection{~}
 
-% TODO: Reparametrise with $u$ such that $0 < u < 1$
+To reparametrise with $u$ such that the bounds on the parametrisation are $u \in (0, 1)$, we want to adjust $t$ in the old parametrisation. We want $u = \f12$ when $t = 0$, $u \to 1$ as $t \to \infty$, and $u \to 0$ as $t \to \infty$. We want an increasing, sigmoid-shaped curve with horizontal asymptotes at $y=0$ and $y=1$. $\tanh$ almost fits this shape, but needs minor adjustments.
+
+Let $u = \df{1 + \tanh t}2$. Then $u = \f12$ when $t = 0$, $u \to 1$ as $t \to \infty$, and $u \to 0$ as $t \to \infty$, as required. We rearrange to get $t = \artanh(2u - 1)$ and plug this into the old parametrisation.
+
+Therefore $\cal C$ can also be parametrised as $$\l( \f13 \sinh\l(\artanh(2u - 1)\r), \f12 \cosh\l(\artanh(2u - 1)\r) \r) \quad u \in (0, 1)$$
+
+We can also remove the hyperbolic functions and write it as $$\l( \f{2u-1}{6\sqrt{u - u^2}}, \f1{4\sqrt{u - u^2}} \r) \quad u \in (0, 1)$$
 % }}}
 
 % {{{ Q3
