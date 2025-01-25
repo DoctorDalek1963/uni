@@ -17,14 +17,21 @@
 }
 
 %%%%% Shorthand and missing functions (taken mostly from my Obsidian notes)
+% Environments
+\newenvironment{apmatrix}[2]
+	{\left(\begin{array}{ @{} *{#1}{c} | *{#2}{c} @{} }}
+	{\end{array}\right)}
 
 % Calculus stuff
 \renewcommand{\d}{\operatorname{d}\!}
 \newcommand{\diff}[1]{\frac{\d\,}{\d #1}}
 \newcommand{\dd}[2]{\frac{\d #1}{\d #2}}
 \newcommand{\ddd}[3]{\frac{\d^{#1} #2}{\d {#3}^{#1}}}
+\newcommand{\pdiff}[1]{\frac{\partial\,}{\partial #1}}
+\newcommand{\pdd}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\inte}[2]{\int #1 \,\d #2}
 \newcommand{\intlim}[4]{\int_{#1}^{#2} #3 \,\d #4}
+\newcommand{\llim}[1]{\lim\limits_{#1}}
 
 % Sets
 \newcommand{\N}{\mathbb{N}}
@@ -46,6 +53,7 @@
 \newcommand{\qqt}[1]{\quad\quad\text{#1}}
 \newcommand{\ul}{\underline}
 \newcommand{\smlm}{\sum\limits}
+\newcommand{\rref}{\text{RREF}}
 
 % Other letters
 \newcommand{\e}{\mathrm{e}}
@@ -61,9 +69,10 @@
 \def\arcosh{\mathop{\rm arcosh}\nolimits}
 \def\artanh{\mathop{\rm artanh}\nolimits}
 
-% Complex functions
+% Text functions
 \def\Re{\mathop{\rm Re}\nolimits}
 \def\Im{\mathop{\rm Im}\nolimits}
-
-% Other functions
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\Mat{\mathop{\rm Mat}}
 \def\lcm{\mathop{\rm lcm}\nolimits}
+\def\grad{\mathop{\rm grad}\nolimits}
