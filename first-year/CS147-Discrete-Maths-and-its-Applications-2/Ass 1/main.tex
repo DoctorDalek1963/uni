@@ -1,0 +1,84 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\usepackage{graphicx}
+\graphicspath{ {./imgs/} }
+
+\title{CS147 Discrete Maths and its Applications 2, Assignment 1}
+\author{Dyson Dyson (ID: 5503449)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\subsection{~}
+
+$8^n = \cal O(7^n)$ implies that $\exists\, c > 0, N > 0$ such that for all $n > N$, \begin{align*}
+8^n &\le c 7^n\\
+n \log 8 &\le \log c + n \log 7\\
+n (\log 8 - \log 7) &\le \log c\\
+n \log \f87 &\le \log c
+\end{align*}
+$\log \f87 > 1$, so whatever value of $c$ we choose, $n \log \f87$ will eventually be larger than $\log c$. Therefore $8^n$ is not $\cal O(7^n)$.
+
+\subsection{~}
+
+$n 2^{\f n2} = \Omega(n 2^n)$ implies that $\exists\, c > 0, N > 0$ such that for all $n > N$, \begin{align*}
+n 2^{\f n2} &\ge c n 2^n\\
+2^{\f n2} &\ge c 2^n\\
+\log 2^{\f n2} &\ge \log (c 2^n)\\
+\f n2 \log 2 &\ge \log c + n \log 2\\
+0 &\ge \log c + \f n2 \log 2
+\end{align*}
+Everything on the right hand side is $>0$ and therefore not $\le 0$. Therefore $n 2^{\f n2}$ is not $\Omega(n 2^n)$.
+
+\subsection{~}
+
+$\log (n!) = \cal O(n \log n)$ implies that $\exists\, c > 0, N > 0$ such that for all $n > N$, \begin{align*}
+\log (n!) &\le c n \log n\\
+\log (n!) &\le \log(n^{cn})\\
+0 &\le \log(n^{cn}) - \log(n!)\\
+0 &\le \log\l(\f{n^{cn}}{n!}\r)
+\end{align*}
+We know that $n^n > n!$ for large $n$, so we see that $\df{(n^n)^c}{n!} > 1$, therefore the logarithm is greater than $0$, so $\log(n!)$ is indeed $\cal O(n \log n)$.
+% }}}
+
+% {{{ Q2
+\question{2}
+
+\subsection{~}
+
+Let $T(n) = 4T\l(\f n2\r) + \Theta(\log n)$. We will not use the master theorem with $a=4$, $b=2$, and $d=?$.
+
+\subsection{~}
+
+Let $T(n) = 8T\l(\f n2\r) + \Theta(5^n)$. We will not use the master theorem with $a=8$, $b=2$, and $d=?$.
+% }}}
+
+% {{{ Q3
+\question{3}
+
+% }}}
+
+% {{{ Q4
+\question{4}
+
+% }}}
+
+% {{{ Q5
+\question{5}
+
+% }}}
+
+\end{document}
