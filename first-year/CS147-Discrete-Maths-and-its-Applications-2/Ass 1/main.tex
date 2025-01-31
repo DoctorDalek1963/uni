@@ -59,11 +59,19 @@ We know that $n^n > n!$ for large $n$, so we see that $\df{(n^n)^c}{n!} > 1$, th
 
 \subsection{~}
 
-Let $T(n) = 4T\l(\f n2\r) + \Theta(\log n)$. We will not use the master theorem with $a=4$, $b=2$, and $d=?$.
+Let $T(n) = 4T\l(\f n2\r) + \Theta(\log n)$. We know that $\log n = \Omega(1)$ and $\log n = \cal O(n)$. So let $T_1(n) = 4T_1\l(\f n2\r) + \Theta(1)$ and $T_2(n) = 4T_2\l(\f n2\r) + \Theta(n)$ and note that $T_1(n) \le T(n) \le T_2(n)$ for large enough $n$.
+
+We can apply the master theorem to $T_1$ with $a=4$, $b=2$, and $d=0$. Then $\df a{b^d} > 1$ so $T_1(n) = \Theta\!\l(n^{\log_2 4}\r) = \Theta(n^2)$.
+
+We can also apply the master theorem to $T_2$ with $a=4$, $b=2$, and $d=1$. Then $\df a{b^d} > 1$ so $T_2(n) = \Theta\!\l(n^{\log_2 4}\r) = \Theta(n^2)$.
+
+Therefore $\Theta(n^2) \le T(n) \le \Theta(n^2)$ so $T(n) = \Theta(n^2)$.
 
 \subsection{~}
 
-Let $T(n) = 8T\l(\f n2\r) + \Theta(5^n)$. We will not use the master theorem with $a=8$, $b=2$, and $d=?$.
+Let $T(n) = 8T\l(\f n2\r) + \Theta(5^n)$. We know that $5^n = \Omega(n^d)$ for all $d > 0$. We cannot place a polynomial upper bound on an exponential function. Let $T_1(n) = 8T_1\l(\f n2\r) + \Theta(n^d)$ for some large $d$. Then $T_1(n) \le T(n)$ for large enough $n$.
+
+We can apply the master theorem to $T_1$ with $a=8$, $b=2$, and large $d$. Then $\df a{b^d} < 1$ so $T_1(n) = \Theta(n^d)$. Therefore $T(n) \ge \Theta(n^d)$ for large $d$. Equivalently, $T(n) = \Omega(n^d)$ for large $d$.
 % }}}
 
 % {{{ Q3
