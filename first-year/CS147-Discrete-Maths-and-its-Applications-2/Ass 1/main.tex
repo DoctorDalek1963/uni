@@ -77,15 +77,24 @@ We can apply the master theorem to $T_1$ with $a=8$, $b=2$, and large $d$. Then 
 % {{{ Q3
 \question{3}
 
+\begin{align*}
+\bb P(A | B \cap C) &= \f{\bb P(A \cap (B \cap C))}{\bb P(B \cap C)}\\[1ex]
+&= \f{0.1}{0.4}\\[1ex]
+&= \f14\\[1ex]
+\end{align*}
 % }}}
 
 % {{{ Q4
 \question{4}
 
+Let $X$ and $Y$ be discrete random variables distributed uniformly over $\{1,\ \ldots,\ n\}$. Either $X = Y$, $X > Y$, or $X < Y$, and $\bb P(X > Y \lor X < Y) = 1 - \bb P(X = Y)$. These are symmetric so $\bb P(X < Y) = \bb P(X > Y) = \f12 - \f12 \bb P(X = Y)$.
+
+So $\bb P(X \le Y) = \bb P(X < Y) + \bb P(X = Y) = \f12  + \f12 \bb P(X = Y)$ and $\bb P(X = Y) = \f1n$. Therefore $$\bb P(X \le Y) = \f12 + \f1{2n} = \f{n + 1}{2n}$$
 % }}}
 
 % {{{ Q5
-\question{5}
+% \question{5}
+% TODO: How do I even approach this?
 
 % }}}
 
