@@ -88,16 +88,20 @@ Therefore $\df{\beta^2}{c^2} = 1$ so $\beta = \pm c$. We know $c > 0$ and we wan
 
 \subsubsection{~}
 
-% TODO: Chain rule???
-
 Let $u(x, t) = f(x+ct) + g(x-ct)$. Then by the chain rule, \begin{align*}
+\pddd 2ux &= \pdiff x \l( f'(x+ct) (1+ct) + g'(x-ct) (1-ct) \r)\\[1ex]
+&= f''(x+ct) (1+ct)^2 + g''(x-ct) (1-ct)^2\\[1ex]
+&= f''(x+ct) + 2ct f''(x+ct) + c^2 t^2 f''(x+ct)\\
+&\quad + g''(x-ct) - 2ct g''(x-ct) + c^2 t^2 g''(x-ct)\\[1ex]
 \end{align*}
-% and \begin{align*}
-% \pddd 2ut &= \pdiff t \l( \pdd ft \times \diff t (x+ct) + \pdd gt \times \diff t (x-ct) \r)\\[1ex]
-% &= \pdiff t \l( c \pdd ft - c \pdd gt \r)\\[1ex]
-% &= c \l( \pddd 2ft - \pddd 2gt \r)
-% \end{align*}
+and \begin{align*}
+\pddd 2ut &= \pdiff t \l( f'(x+ct) (x+c) + g'(x-ct) (x-c) \r)\\[1ex]
+&= f''(x+ct) (x+c)^2 + g''(x-ct) (x-c)^2\\[1ex]
+&= x^2 f''(x+ct) + 2cx f''(x+ct) + c^2 f''(x+ct)\\
+&\quad + x^2 g''(x-ct) - 2cx g''(x-ct) + c^2 g''(x-ct)\\[1ex]
+\end{align*}
 
+This doesn't seem to work, but I don't know what I've done wrong.
 % }}}
 
 % {{{ Q2
@@ -160,7 +164,7 @@ The direction of steepest descent at point $P$ is $\l. -\nabla f \r|_P = \begin{
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{Q2d-code}
+	\includegraphics[scale=0.3]{Q2d-code}
 	\caption{The code used to generate Figure~\ref{fig:3d-plot}. The code can also be found \href{https://github.com/DoctorDalek1963/uni/blob/1ee2e9f33bdd8e5d2054b4487684af46f686b5bd/first-year/MA144-Methods-of-Mathematical-Modelling-2/Ass 2/code/plot_surface.py}{on GitHub}.}
 \end{figure}
 
