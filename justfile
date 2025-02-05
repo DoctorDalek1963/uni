@@ -36,7 +36,7 @@ view: build
 # watch the directory and recompile whenever a file changes
 [no-cd]
 watch: view
-	while inotifywait -q -e modify main.tex; do just build; done
+	while inotifywait -q -e modify *; do just build; done
 
 # build and rename main.pdf to proper filename
 rename: build
