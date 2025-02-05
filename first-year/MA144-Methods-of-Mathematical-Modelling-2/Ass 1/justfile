@@ -1,0 +1,10 @@
+import "../../../justfile"
+
+set allow-duplicate-recipes # Needed for _default and _pre-build
+
+_default:
+	@just --list
+
+_pre-build:
+	cd "{{justfile_directory()}}/code" && nix-shell ./shell.nix --run ./generate_plots.py
+	@just _build

@@ -1,11 +1,26 @@
-export TEXMFHOME := justfile_directory() + "/texmf"
+# source_directory() will always use the directory of this justfile, even when
+# called via a justfile that imports this one
+export TEXMFHOME := source_directory() / "texmf"
 
 _default:
 	@just --list
 
-# build the assignment in the current directory (assuming main.tex)
-build:
+# This three-recipe build system allows certain assignments to override
+# _pre-build to do extra things, like running Python to generate images for
+# example, or if an assignment has intra-doc references and needs to be built
+# twice, _pre-build can depend on `_build` rather than `build` to prevent
+# dependency cycles.
+
+# do the actual build
+_build:
 	cd "{{invocation_directory()}}" && lualatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -recorder --jobname="main" "main.tex"
+
+# run commands before the build
+_pre-build:
+	@true
+
+# build the assignment in the current directory (assuming main.tex)
+build: _pre-build _build
 
 # remove all build artifacts and clean things up
 clean:
