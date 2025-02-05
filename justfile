@@ -12,8 +12,9 @@ _default:
 # dependency cycles.
 
 # do the actual build
+[no-cd]
 _build:
-	cd "{{invocation_directory()}}" && lualatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -recorder --jobname="main" "main.tex"
+	lualatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -recorder --jobname="main" "main.tex"
 
 # run commands before the build
 _pre-build:
@@ -23,8 +24,9 @@ _pre-build:
 build: _pre-build _build
 
 # remove all build artifacts and clean things up
+[no-cd]
 clean:
-	cd "{{invocation_directory()}}" && latexmk -c -C
+	latexmk -c -C
 	texhash
 
 # open ./main.pdf to view
@@ -32,8 +34,9 @@ view: build
 	xdg-open "{{invocation_directory()}}/main.pdf" &> /dev/null & disown
 
 # watch the directory and recompile whenever a file changes
+[no-cd]
 watch: view
-	cd "{{invocation_directory()}}" && while inotifywait -q -e modify main.tex; do just build; done
+	while inotifywait -q -e modify main.tex; do just build; done
 
 # build and rename main.pdf to proper filename
 rename: build
