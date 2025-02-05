@@ -54,7 +54,12 @@ Therefore $\alpha = 2$ for this solution.
 \subsubsection{~}
 
 $$u(x, 1) = \f1{\sqrt{2\pi}}\, \e^{-x^2 / 2}$$
-% TODO: Sketch this
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{Q1a-ii}
+	\caption{A plot of $y = u(x,1)$}
+\end{figure}
 
 \subsection{~}
 
@@ -133,11 +138,31 @@ For completeness, $f(0.01, 1.99)$ is actually around $2.900649$, so this approxi
 
 \subsection{~}
 
-% TODO: Sketch level curves
+The direction of steepest descent at point $P$ is $\l. -\nabla f \r|_P = \begin{pmatrix}1\\ -9\end{pmatrix}$.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{Q2c}
+	\caption{A contour plot of $z=f(x,y)$. Red is negative $z$, blue is small positive $z$, and green is large positive $z$. The red cross is the local minimum point, the blue cross is the saddle point, the black cross is $P$, and the black arrow is the direction of steepest descent from $P$.}
+\end{figure}
 
 \subsection{~}
 
-% TODO: Draw z=f(x,y) with Python
+\begin{figure}[h]
+	\centering
+	\begin{tabular}{cc}
+		\includegraphics[scale=0.6]{Q2d-1} &
+		\includegraphics[scale=0.6]{Q2d-2}
+	\end{tabular}
+	\caption{A 3D plot of $z=f(x,y)$ from two angles. $m$ is the local minimum point and $s$ is the saddle point.}
+	\label{fig:3d-plot}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{Q2d-code}
+	\caption{The code used to generate Figure~\ref{fig:3d-plot}. The code can also be found \href{https://github.com/DoctorDalek1963/uni}{on GitHub}.}
+\end{figure}
 
 % }}}
 
