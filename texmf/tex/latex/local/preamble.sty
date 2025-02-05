@@ -8,6 +8,7 @@
 
 \renewcommand{\thesection}{Question~\arabic{section}}
 \renewcommand{\thesubsection}{Q\arabic{section}~(\alph{subsection})}
+\renewcommand{\thesubsubsection}{Q\arabic{section}~(\alph{subsection}) \roman{subsubsection})}
 
 \newcommand{\question}[1]{%
 	\setcounter{section}{#1}
@@ -29,6 +30,7 @@
 \newcommand{\ddd}[3]{\frac{\d^{#1} #2}{\d {#3}^{#1}}}
 \newcommand{\pdiff}[1]{\frac{\partial\,}{\partial #1}}
 \newcommand{\pdd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pddd}[3]{\frac{\partial^{#1} #2}{\partial {#3}^{#1}}}
 \newcommand{\inte}[2]{\int #1 \,\d #2}
 \newcommand{\intlim}[4]{\int_{#1}^{#2} #3 \,\d #4}
 \newcommand{\llim}[1]{\lim\limits_{#1}}
