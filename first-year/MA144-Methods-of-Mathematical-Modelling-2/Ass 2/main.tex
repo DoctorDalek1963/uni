@@ -89,20 +89,18 @@ Therefore $\df{\beta^2}{c^2} = 1$ so $\beta = \pm c$. We know $c > 0$ and we wan
 \subsubsection{~}
 
 Let $u(x, t) = f(x+ct) + g(x-ct)$. Then by the chain rule, \begin{align*}
-\pddd 2ux &= \pdiff x \l( f'(x+ct) (1+ct) + g'(x-ct) (1-ct) \r)\\[1ex]
-&= f''(x+ct) (1+ct)^2 + g''(x-ct) (1-ct)^2\\[1ex]
-&= f''(x+ct) + 2ct f''(x+ct) + c^2 t^2 f''(x+ct)\\
-&\quad + g''(x-ct) - 2ct g''(x-ct) + c^2 t^2 g''(x-ct)\\[1ex]
+\pddd 2ux &= \pdiff x \l( f'(x+ct) + g'(x-ct) \r)\\[1ex]
+&= f''(x+ct) + g''(x-ct)
 \end{align*}
 and \begin{align*}
-\pddd 2ut &= \pdiff t \l( f'(x+ct) (x+c) + g'(x-ct) (x-c) \r)\\[1ex]
-&= f''(x+ct) (x+c)^2 + g''(x-ct) (x-c)^2\\[1ex]
-&= x^2 f''(x+ct) + 2cx f''(x+ct) + c^2 f''(x+ct)\\
-&\quad + x^2 g''(x-ct) - 2cx g''(x-ct) + c^2 g''(x-ct)\\[1ex]
+\pddd 2ut &= \pdiff t \l( c f'(x+ct) - c g'(x-ct) \r)\\[1ex]
+&= c^2 f''(x+ct) + c^2 g''(x-ct)
 \end{align*}
 
-This doesn't seem to work, but I don't know what I've done wrong.
+Therefore $\ds \pddd 2ux = \f1{c^2} \pddd 2ut$, so this $u$ satisfies the wave equation.
 % }}}
+
+\newpage
 
 % {{{ Q2
 \question{2}
