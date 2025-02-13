@@ -5,5 +5,7 @@ pkgs.mkShell {
     mktemp
     sshfs
     jdk17
+    fd
+    astyle
   ];
 }
