@@ -1,0 +1,12 @@
+import "../../justfile"
+
+_default:
+	@just --list
+
+# compile Project1 with all files
+compile-java:
+	javac Project1.java Circle.java Point.java ReadData.java -d out/
+
+# run Project1 to test Fraction
+run: compile-java
+	cd out && java -enableassertions Project1
