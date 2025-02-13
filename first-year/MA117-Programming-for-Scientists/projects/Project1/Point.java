@@ -1,5 +1,5 @@
 /*
- * 
+ *
  * PROJECT I: Project1.java
  *
  * This file contains a template for the class Point. Not all methods are
@@ -15,10 +15,10 @@
 
 public class Point {
     /**
-     * x and y co-ordinates of the point on the plane. 
+     * x and y co-ordinates of the point on the plane.
      */
     private double X, Y;
-    
+
     /**
      * GEOMTOL is described in the formulation. It describes the tolerance
      * that we are going to use throughout this project. Remember that you do
@@ -29,7 +29,7 @@ public class Point {
     // =========================
     // Constructors
     // =========================
-    
+
     /**
      * Default constructor - this initializes X and Y to the point (0,0).
      */
@@ -53,7 +53,7 @@ public class Point {
     // =========================
     // Setters and Getters
     // =========================
-    
+
     /**
      * Setter for instance variables - sets the coordinates of the point.
      *
@@ -67,27 +67,27 @@ public class Point {
     }
 
     /**
-     * Getter for x co-ordinate. 
+     * Getter for x co-ordinate.
      *
      * @param  none
      * @return The x co-ordinate of this point.
-     */   
+     */
     public double getX() {
     	// You need to fill in this method.
-        return 0.0;
+        return X;
     }
 
     /**
-     * Getter for y co-ordinate. 
+     * Getter for y co-ordinate.
      *
      * @param  none
      * @return The y co-ordinate of this point.
-     */   
+     */
     public double getY() {
 	    // You need to fill in this method.
-        return 0.0;
+        return Y;
     }
-    
+
     // =========================
     // Convertors
     // =========================
@@ -105,7 +105,7 @@ public class Point {
     // ==========================
     // Implementors
     // ==========================
-    
+
     /**
      * Compute the distance of this Point to the supplied Point x.
      *
@@ -113,14 +113,15 @@ public class Point {
      * @return   The distance between x and this instance of a Point
      */
     public double distance(Point x) {
-        // You need to fill in this method.
-        return 0.0;
+		double dx = this.X - x.X;
+		double dy = this.Y - x.Y;
+        return Math.sqrt(dx * dx + dy * dy);
     }
-    
+
     // ==========================
     // Service routines
     // ==========================
-    
+
     // -----------------------------------------------------------------------
     // Do not change the two methods below! They are essential for marking the
     // project, and you may lose marks if they are changed.
@@ -139,7 +140,7 @@ public class Point {
         // This method is complete.
         if (obj instanceof Point) {
             Point q = (Point)obj;
-            return (Math.abs(X - q.X) <= GEOMTOL && 
+            return (Math.abs(X - q.X) <= GEOMTOL &&
                     Math.abs(Y - q.Y) <= GEOMTOL);
         } else {
             return false;
@@ -154,7 +155,7 @@ public class Point {
      * @return   true if Point q is equal to this instance.
      */
     public boolean equals(Point q) {
-        return (Math.abs(X - q.X) <= GEOMTOL && 
+        return (Math.abs(X - q.X) <= GEOMTOL &&
             Math.abs(Y - q.Y) <= GEOMTOL);
     }
 
@@ -169,5 +170,5 @@ public class Point {
      */
     public static void main (String args[]) {
         // You can use this method for testing.
-    } 
+    }
 }

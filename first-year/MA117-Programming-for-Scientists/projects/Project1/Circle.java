@@ -1,4 +1,4 @@
-/* 
+/*
  * PROJECT I: Circle.java
  *
  * This file contains a template for the class Circle. Not all methods are
@@ -21,9 +21,8 @@ public class Circle {
      * and the centre should be of type Point.
      */
 
-     // r
-     // A
-    
+	private Point A;
+	private double r;
 
     // =========================
     // Constructors
@@ -34,7 +33,7 @@ public class Circle {
     public Circle() {
         // This method is complete.
     }
-    
+
     /**
      * Alternative constructor, which sets the circle up with x and y
      * co-ordinates representing the centre, and a radius. Remember you should
@@ -46,7 +45,8 @@ public class Circle {
      * @param rad  radius of the circle
      */
     public Circle(double xc, double yc, double rad) {
-        // You need to fill in this method.
+		this.A = new Point(xc, yc);
+		this.r = rad;
     }
 
     /**
@@ -56,9 +56,10 @@ public class Circle {
      * @param centre  Point representing the centre
      * @param rad     Radius of the circle
      */
-    
+
     public Circle(Point centre, double rad) {
-        // You need to fill in this method.
+		this.A = centre;
+		this.r = rad;
     }
 
     // =========================
@@ -70,47 +71,47 @@ public class Circle {
      *
      * @param xc  new x-coordinate of the centre
      * @param yc  new y-coordinate of the centre
-     */   
+     */
     public void setCentre(double xc, double yc) {
-        // You need to fill in this method.
+		this.A = new Point(xc, yc);
     }
 
     /**
      * Setter - sets the centre of the circle to a new Point.
      *
      * @param C  A Point representing the new centre of the circle.
-     */   
+     */
     public void setCentre(Point C) {
-        // You need to fill in this method.
+		this.A = C;
     }
-    
+
     /**
      * Setter - change the radius of this circle.
      *
      * @param rad  New radius for the circle.
-     */   
+     */
     public void setRadius(double rad) {
-        // You need to fill in this method.
+		this.r = rad;
     }
-    
+
     /**
      * Getter - returns the centre of this circle.
      *
      * @return The centre of this circle (a Point).
-     */   
+     */
     public Point getCentre(){
         // You need to fill in this method.
-        return new Point();
+        return new Point(this.A.getY(), this.A.getY());
     }
 
     /**
      * Getter - extract the radius of this circle.
      *
      * @return The radius of this circle.
-     */   
+     */
     public double getRadius(){
         // You need to fill in this method.
-        return 0.0;
+        return this.r;
     }
 
     // =========================
@@ -125,31 +126,29 @@ public class Circle {
      *         value of the radius.
      */
     public String toString() {
-        // You need to fill in this method.
-        return "";
+        return String.format("[%.9f,%.9f,%.9f]", this.A.getX(), this.A.getY(), this.r);
     }
-    
+
     // ==========================
     // Service routines
     // ==========================
-    
+
     /**
      * Similar to the equals() function in Point. Returns true if two Circles
      * are equal. By this we mean:
-     * 
+     *
      * - They have the same radius (up to the tolerance defined in Point).
      * - They have the same centre (up to the tolerance defined in Point).
-     * 
+     *
      * Remember that the second test is already done in the Point class!
-     * 
+     *
      * @param c The circle to compare this with.
      * @return true if the two circles are equal.
      */
     public boolean equals(Circle c) {
-        // You need to fill in this method.
-        return false;
+        return Math.abs(this.r - c.r) <= Point.GEOMTOL && this.A.equals(c.A);
     }
-    
+
     // -----------------------------------------------------------------------
     // Do not change the method below! It is essential for marking the
     // project, and you may lose marks if it is changed.
@@ -163,11 +162,11 @@ public class Circle {
      */
     public boolean equals(Object obj) {
         // This method is complete.
-        
+
         if (obj instanceof Circle) {
             boolean test = false;
             Circle C = (Circle)obj;
-            
+
             test = this.equals(C);
 
             return test;
@@ -179,21 +178,20 @@ public class Circle {
     // ======================================
     // Implementors
     // ======================================
-    
+
     /**
      * Computes and returns the area of the circle.
      *
      * @return  Area of the circle
      */
     public double area() {
-        // You need to fill in this method.
-        return 0.0;
+        return Math.PI * this.r * this.r;
     }
 
     // =======================================================
     // Tester - test methods defined in this class
     // =======================================================
-    
+
     public static void main(String args[]) {
         // You can use this method for testing.
     }
