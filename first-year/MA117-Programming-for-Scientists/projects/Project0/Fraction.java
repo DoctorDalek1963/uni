@@ -183,7 +183,7 @@ public class Fraction {
 	 * @return   The sum of this fraction and f.
 	 */
 	public Fraction add(Fraction f) {
-		int num   = numerator * f.denominator + f.numerator * denominator;
+		int num = numerator * f.denominator + f.numerator * denominator;
 		int denom = denominator * f.denominator;
 
 		return new Fraction(num, denom);
@@ -199,7 +199,7 @@ public class Fraction {
 	 *
 	 */
 	public Fraction subtract(Fraction f) {
-		int num   = numerator * f.denominator - f.numerator * denominator;
+		int num = numerator * f.denominator - f.numerator * denominator;
 		int denom = denominator * f.denominator;
 
 		return new Fraction(num, denom);
