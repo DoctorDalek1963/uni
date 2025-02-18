@@ -5,9 +5,6 @@
 
 \usepackage{preamble}
 
-\usepackage{graphicx}
-\graphicspath{ {./imgs/} }
-
 \title{MA150 Algebra 2, Assignment 3}
 \author{Dyson Dyson}
 \date{}
@@ -100,7 +97,6 @@ $\varphi$ is defined on the domain $V = \R[x]_{\le 3}$, which has dimension 4. A
 
 \subsection{~}
 
-% TODO: Is this right?
 $$L_\pi = \begin{pmatrix} 1 & a & a^2\\ 0 & 1 & 2a \\ 0 & 0 & 1 \end{pmatrix}$$
 
 % }}}
@@ -108,9 +104,24 @@ $$L_\pi = \begin{pmatrix} 1 & a & a^2\\ 0 & 1 & 2a \\ 0 & 0 & 1 \end{pmatrix}$$
 % {{{ Q9
 \question{9}
 
+$$V = \l\{ f : \R \to \R : f \text{ is differentiable} \r\}, \quad W = \l\langle \cos(x), \cos(2x) \r\rangle$$
+
 \subsection{~}
+
+$\cos(x)$ and $\cos(2x)$ are linearly independent and span $W$ by definition, so $\{\cos(x), \cos(2x)\}$ is a basis for $W$. Therefore $\dim W = 2$.
+
 \subsection{~}
+
+Let $\cal U = \{ f \in W : f(10) = 0 \}$. So we want functions of the form $\lambda \cos(x) + \mu \cos(2x)$ for some $\lambda, \mu \in \R$ where $\lambda \cos(10) + \mu \cos(20) = 0$. That means we need $\lambda = \df{-\mu \cos(20)}{\cos(10)}$. Informally, we have one degree of freedom with $\mu$, but $\lambda$ is determined entirely by $\mu$, so I expect $\dim \cal U = 1$, but we'll need a basis to be sure.
+
 \subsection{~}
+
+Let $\cal U_2 = \{ f \in W : f(10) = 1 \}$. So we want functions of the form $\lambda \cos(x) + \mu \cos(2x)$ for some $\lambda, \mu \in \R$ where $\lambda \cos(10) + \mu \cos(20) = 1$. Is $\cal U_2$ a subspace of $W$?
+% That means we need $\lambda = \df{1 - \mu \cos(20)}{\cos(10)}$. Informally, we have one degree of freedom with $\mu$, but $\lambda$ is determined entirely by $\mu$, so I expect $\dim \cal U = 1$, but we'll need a basis to be sure.
+
+To be a subspace of $W$, $\cal U_2$ must be a non-empty subset (this is trivially true), and must be closed under the operations of $W$. So if we have some $\alpha \cos(x) + \beta \cos(2x) \in \cal U_2$, then we want $\lambda \l( \alpha \cos(x) + \beta \cos(2x) \r) \in \cal U_2$ for any $\lambda \in \R$.
+
+But $\alpha \cos(10) + \beta \cos(20) = 1$ by definition of $\cal U_2$, and $\lambda \l( \alpha \cos(x) + \beta \cos(2x) \r) = \lambda \ne 1$. Therefore $\cal U_2$ is not closed under scalar multiplication and therefore is not a subspace of $W$.
 
 % }}}
 
@@ -125,9 +136,8 @@ Let $\varphi : V \to W$ be a linear map. Then $\dim \Im \varphi + \dim \Ker \var
 
 \subsection{~}
 
-% TODO: Do I need to justify these more?
-
-$a = b = c = d = 0$ gives $\dim \op{Colspan} A = 1$. Then $\dim \Im L_A = 1$ and $\dim \Ker L_A = 3$.
+$a = b = c = d = 0$ gives $\dim \op{Colspan} A = 1$. Then $$\dim \Im L_A = \dim \op{Colspan} A = 1$$
+and then by the Rank-Nullity Theorem, $\dim \Ker L_A = 4 - 1 = 3$.
 
 \subsection{~}
 
