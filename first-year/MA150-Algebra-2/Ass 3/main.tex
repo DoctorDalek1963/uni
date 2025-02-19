@@ -37,9 +37,10 @@ Therefore $\l\{ \begin{pmatrix}- 2\\ 1\\ 0\end{pmatrix}, \begin{pmatrix}3\\ 0\\ 
 
 Call the elements of this basis $\{ w_1, w_2 \}$ for convenience. Plugging $w_1$ into equation~(\ref{eqn:Q6-W}) gives $1(-2) + 2(1)  - 3(0) = 0$ as required, and plugging $w_2$ into equation~(\ref{eqn:Q6-W}) gives $1(3) + 2(0) - 3(1) = 0$ as required. Therefore $w_1, w_2 \in W$.
 
-% TODO: Prove lin indep
+For $w_1$ and $w_2$ to be independent, we need to show that $\lambda w_1 + \mu w_2 = 0_W$ if and only if $\lambda = \mu = 0$. That linear independence equation expands to $$\begin{pmatrix}3 \mu - 2 \lambda\\ \lambda\\ \mu\end{pmatrix} = \begin{pmatrix}0\\ 0\\ 0\end{pmatrix}$$
+The second components of the vectors imply $\lambda = 0$, and the third components imply $\mu = 0$. Therefore $w_1$ and $w_2$ are linearly independent.
 
-% TODO: Prove span
+$w_1$ and $w_2$ must span $W$ since any linear combination is of the form $\begin{pmatrix}3 \mu - 2 \lambda\\ \lambda\\ \mu\end{pmatrix}$ and we showed before that that is equivalent to equation~(\ref{eqn:Q6-W}), which is the definition of $W$.
 
 Since we have a basis of $W$ with 2 elements, we know that $\dim W = 2$.
 
@@ -91,9 +92,18 @@ $\varphi$ is defined on the domain $V = \R[x]_{\le 3}$, which has dimension 4. A
 % {{{ Q8
 \question{8}
 
+$$\pi(x^i) = (x+a)^i$$
+
 \subsection{~}
 
-% TODO: Prove isomorphism
+An isomorphism of vector spaces is just a bijective linear map. We shall first prove that $\pi$ is a linear map.
+
+We expect $\pi(\lambda x^i) = \lambda \pi(x^i)$. \begin{align*}
+\pi(\lambda x^i) &= \pi\l( \l( \lambda^{\f1i} x \r)^i \r)\\[1ex]
+&= \l( \lambda^{\f1i} x + a \r)^i\\[1ex]
+\end{align*}
+
+% TODO: This question sucks and I don't understand it so I'm giving up
 
 \subsection{~}
 
@@ -108,16 +118,19 @@ $$V = \l\{ f : \R \to \R : f \text{ is differentiable} \r\}, \quad W = \l\langle
 
 \subsection{~}
 
-$\cos(x)$ and $\cos(2x)$ are linearly independent and span $W$ by definition, so $\{\cos(x), \cos(2x)\}$ is a basis for $W$. Therefore $\dim W = 2$.
+$\cos(x)$ and $\cos(2x)$ are linearly independent and span $W$ by definition, so $\{\cos(x), \cos(2x)\}$ is a basis for $W$. The dimension of a vector space is equal to the number of vectors in a basis, so $\dim W = 2$.
 
 \subsection{~}
 
-Let $\cal U = \{ f \in W : f(10) = 0 \}$. So we want functions of the form $\lambda \cos(x) + \mu \cos(2x)$ for some $\lambda, \mu \in \R$ where $\lambda \cos(10) + \mu \cos(20) = 0$. That means we need $\lambda = \df{-\mu \cos(20)}{\cos(10)}$. Informally, we have one degree of freedom with $\mu$, but $\lambda$ is determined entirely by $\mu$, so I expect $\dim \cal U = 1$, but we'll need a basis to be sure.
+Let $\cal U = \{ f \in W : f(10) = 0 \}$. So we want functions of the form $$\lambda \cos(x) + \mu \cos(2x)$$
+for some $\lambda, \mu \in \R$ where $\lambda \cos(10) + \mu \cos(20) = 0$. That means we need $$\lambda = \f{-\mu \cos(20)}{\cos(10)}$$
+
+Therefore every element of $\cal U$ is of the form $$\mu \l(\f{-\cos(20)}{\cos(10)} \cos(x) + \cos(2x) \r)$$
+and therefore $\l\{ \df{-\cos(20)}{\cos(10)} \cos(x) + \cos(2x) \r\}$ is a basis of $\cal U$. Since this basis has 1 element, $\dim \cal U = 1$.
 
 \subsection{~}
 
 Let $\cal U_2 = \{ f \in W : f(10) = 1 \}$. So we want functions of the form $\lambda \cos(x) + \mu \cos(2x)$ for some $\lambda, \mu \in \R$ where $\lambda \cos(10) + \mu \cos(20) = 1$. Is $\cal U_2$ a subspace of $W$?
-% That means we need $\lambda = \df{1 - \mu \cos(20)}{\cos(10)}$. Informally, we have one degree of freedom with $\mu$, but $\lambda$ is determined entirely by $\mu$, so I expect $\dim \cal U = 1$, but we'll need a basis to be sure.
 
 To be a subspace of $W$, $\cal U_2$ must be a non-empty subset (this is trivially true), and must be closed under the operations of $W$. So if we have some $\alpha \cos(x) + \beta \cos(2x) \in \cal U_2$, then we want $\lambda \l( \alpha \cos(x) + \beta \cos(2x) \r) \in \cal U_2$ for any $\lambda \in \R$.
 
