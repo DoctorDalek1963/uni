@@ -9,4 +9,4 @@ compile-java:
 
 # run Project1 to test Fraction
 run: compile-java
-	cd out && java -enableassertions Project1
+	java -enableassertions -classpath out Project1
