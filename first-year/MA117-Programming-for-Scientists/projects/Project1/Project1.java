@@ -50,8 +50,37 @@ public class Project1 {
 	 *
 	 * @param fileName The name of the file containing the circle data.
 	 */
-	public void results(String fileName) {
-		// You need to fill in this method.
+	public void results(String fileName) throws FileNotFoundException {
+		ArrayList<Circle> circle_list = new ArrayList();
+
+		// This try block will make sure the scanner closes properly
+		try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(fileName)))) {
+			while (scanner.hasNext()) {
+				double x = scanner.nextDouble();
+				double y = scanner.nextDouble();
+				double radius = scanner.nextDouble();
+
+				// We want to ignore circles with sufficiently small radius
+				if (Math.abs(radius - 0.0) <= Point.GEOMTOL) {
+					continue;
+				} else {
+					circle_list.add(new Circle(x, y, radius));
+				}
+			}
+		}
+
+		this.circleCounter = circle_list.size();
+		// TODO: AABB
+
+		try {
+			this.Smax = circle_list.stream().map(c -> c.area()).max(Double::compare).get();
+			this.Smin = circle_list.stream().map(c -> c.area()).min(Double::compare).get();
+		} catch (NoSuchElementException e) {
+			System.err.println("We should always have maximum and minimum areas");
+		}
+
+		double totalArea = circle_list.stream().mapToDouble(c -> c.area()).sum() ;
+		this.areaAverage = totalArea / this.circleCounter;
 	}
 
 	/**
@@ -104,7 +133,11 @@ public class Project1 {
 	 * Your tester function should go here (see week 14 lecture notes if you're confused). It is not
 	 * tested by BOSS, but you should still implement it in a sensible fashion.
 	 */
-	public static void main(String args[]) {
-		// You can use this method for testing.
+	public static void main(String args[]) throws FileNotFoundException {
+		Project1 p = new Project1();
+		p.results("student.data");
+		System.out.println(p.Smin);
+		System.out.println(p.Smax);
+		System.out.println(p.areaAverage);
 	}
 }

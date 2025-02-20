@@ -5,8 +5,8 @@ _default:
 
 # compile Project1 with all files
 compile-java:
-	javac Project1.java Circle.java Point.java ReadData.java -d out/
+	javac Project1.java Circle.java Point.java -d out/
 
-# run Project1 to test Fraction
+# run Project1 to test everything
 run: compile-java
 	java -enableassertions -classpath out Project1
