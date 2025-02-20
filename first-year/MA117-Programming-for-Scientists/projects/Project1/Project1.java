@@ -51,7 +51,7 @@ public class Project1 {
 	 * @param fileName The name of the file containing the circle data.
 	 */
 	public void results(String fileName) throws FileNotFoundException {
-		ArrayList<Circle> circle_list = new ArrayList();
+		ArrayList<Circle> circleList = new ArrayList<Circle>();
 
 		// This try block will make sure the scanner closes properly
 		try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(fileName)))) {
@@ -64,23 +64,47 @@ public class Project1 {
 				if (Math.abs(radius - 0.0) <= Point.GEOMTOL) {
 					continue;
 				} else {
-					circle_list.add(new Circle(x, y, radius));
+					circleList.add(new Circle(x, y, radius));
 				}
 			}
 		}
 
-		this.circleCounter = circle_list.size();
-		// TODO: AABB
+		Circle[] circleArray = circleList.toArray(new Circle[circleList.size()]);
 
+		this.circleCounter = circleArray.length;
+		this.aabb = this.calculateAABB(circleArray);
+
+		// Min and max area
 		try {
-			this.Smax = circle_list.stream().map(c -> c.area()).max(Double::compare).get();
-			this.Smin = circle_list.stream().map(c -> c.area()).min(Double::compare).get();
+			this.Smax = circleList.stream()
+			                      .map(c -> c.area())
+			                      .max(Double::compare)
+			                      .get();
+
+			this.Smin = circleList.stream()
+			                      .map(c -> c.area())
+			                      .min(Double::compare)
+			                      .get();
 		} catch (NoSuchElementException e) {
 			System.err.println("We should always have maximum and minimum areas");
 		}
 
-		double totalArea = circle_list.stream().mapToDouble(c -> c.area()).sum() ;
-		this.areaAverage = totalArea / this.circleCounter;
+		this.areaAverage = this.averageCircleArea(circleArray);
+		this.areaSD = this.areaStandardDeviation(circleArray);
+
+		// Median
+		double[] sortedAreas = Arrays.stream(circleArray)
+		                             .mapToDouble(c -> c.area())
+		                             .sorted()
+		                             .toArray();
+
+		if (sortedAreas.length % 2 == 0) {
+			double a = sortedAreas[sortedAreas.length / 2 - 1];
+			double b = sortedAreas[sortedAreas.length / 2];
+			this.areaMedian = (a + b) / 2;
+		} else {
+			this.areaMedian = sortedAreas[sortedAreas.length / 2];
+		}
 	}
 
 	/**
@@ -90,8 +114,11 @@ public class Project1 {
 	 * @param circles An array of Circles
 	 */
 	public double averageCircleArea(Circle[] circles) {
-		// You need to fill in this method
-		return 0.0;
+		double totalArea = Arrays.stream(circles)
+		                         .mapToDouble(c -> c.area())
+		                         .sum();
+
+		return totalArea / circles.length;
 	}
 
 	/**
@@ -101,8 +128,13 @@ public class Project1 {
 	 * @param circles An array of Circles
 	 */
 	public double areaStandardDeviation(Circle[] circles) {
-		// You need to complete this method.
-		return 0.0;
+		double mu = this.averageCircleArea(circles);
+
+		double sumOfSquaredAreas = Arrays.stream(circles)
+		                                 .mapToDouble(c -> c.area() * c.area())
+		                                 .sum();
+
+		return Math.sqrt(sumOfSquaredAreas / circles.length - mu * mu);
 	}
 
 	/**
@@ -121,6 +153,7 @@ public class Project1 {
 	 *     (bottom left) at [X1,Y1] and opposite corner (top right) at [X2,Y2]
 	 */
 	public double[] calculateAABB(Circle[] circles) {
+		// TODO
 		// You need to fill in this method.
 		return new double[] {0., 0., 0., 0.};
 	}
@@ -136,8 +169,11 @@ public class Project1 {
 	public static void main(String args[]) throws FileNotFoundException {
 		Project1 p = new Project1();
 		p.results("student.data");
+		System.out.println(p.circleCounter);
 		System.out.println(p.Smin);
 		System.out.println(p.Smax);
 		System.out.println(p.areaAverage);
+		System.out.println(p.areaSD);
+		System.out.println(p.areaMedian);
 	}
 }
