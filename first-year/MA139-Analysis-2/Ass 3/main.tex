@@ -1,0 +1,75 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\usepackage{graphicx}
+\graphicspath{ {./imgs/} }
+
+\title{MA139 Analysis 2, Assignment 3}
+\author{Dyson Dyson}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+$$f(t) = \log\l( \f{1+t}{1-t} \r) - 2t = \log(1+t) - \log(1-t) - 2t$$
+
+Therefore \begin{align*}
+f'(t) &= \f1{1+t} - (-1)\f1{1-t} - 2\\[1ex]
+&= \f{1-t + 1+t}{1-t^2} - 2\\[1ex]
+&= \f{2 - 2(1-t^2)}{1-t^2}\\[1ex]
+&= \f{2t^2}{1-t^2}
+\end{align*}
+In the range $t \in (-1, 1)$, $t^2 \in (0, 1)$. Therefore $2t^2 > 0$ and $1 - t^2 > 0$, so $f'(t) > 0$. Therefore $f(t)$ is increasing for $t \in (-1, 1)$.
+
+$f(0) = \log(1) - 0 = 0$ and since $f(t)$ is increasing, $f(t) \ge 0$ for $t \in [0, 1)$. Therefore $\log\l( \f{1+t}{1-t} \r) - 2t \ge 0 \implies \log\l( \f{1+t}{1-t} \r) \ge 2t$ for $0 \le t < 1$ as required.
+
+Let $t = \df1{2x+1}$. Then \begin{align*}
+\f{1+t}{1-t} &= \f{1 + \f1{2x+1}}{1 - \f1{2x+1}}\\[1ex]
+&= \f{2x + 1 + 1}{2x + 1 - 1}\\[1ex]
+&= \f{2x + 2}{2x}\\[1ex]
+&= 1 + \f1x
+\end{align*}
+Therefore $$\log\l( \f{1+t}{1-t} \r) \ge 2t \implies \log\l( 1 + \f1x \r) \ge \f2{2x+1}$$
+for the condition \begin{align*}
+0 &\le t < 1\\[1ex]
+0 &\le \f1{2x+1} < 1\\[1ex]
+0 &\le 1 < 2x + 1\\[1ex]
+% 1 &< 2x + 1\\[1ex]
+0 &< 2x\\[1ex]
+0 &< x\\[1ex]
+\end{align*}
+
+% }}}
+
+% {{{ Q2
+\question{2}
+
+$$\phantom{\qquad x \in (0, \infty)} y = \f1{\sqrt x} - \f1x \qquad x \in (0, \infty)$$
+
+For $x \in (0,1)$, $\sqrt x > x$, so $y < 0$. And for $x > 1$, $x > \sqrt x$, so $y > 0$. Clearly the maximum will be when $y > 0$.
+
+The derivative is \begin{align*}
+\dd yx &= -\f12 x^{-\f32} + x^{-2}\\[1ex]
+&= - \f1{2\sqrt{x^3}} + \f1{x^2}
+\end{align*}
+This equals 0 when $x^2 = 2 \sqrt{x^3} \implies x^4 = 4x^3 \implies x = 4$. Therefore $x = 4$ is the maximum point of the function. The maximum value is $$\f1{\sqrt 4} - \f14 = \f14$$
+
+% }}}
+
+% {{{ Q3
+\question{3}
+
+% }}}
+
+\end{document}
