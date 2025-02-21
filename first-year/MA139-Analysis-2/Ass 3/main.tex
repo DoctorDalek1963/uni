@@ -50,6 +50,18 @@ for the condition \begin{align*}
 0 &< x\\[1ex]
 \end{align*}
 
+Then \begin{align*}
+\log\l( 1 + \f1x \r) &\ge \f2{2x+1}\\[1ex]
+(2x+1) \log\l( 1 + \f1x \r) &\ge 2\\[1ex]
+(x + \f12) \log\l( 1 + \f1x \r) &\ge 1\\[1ex]
+\log\l( \l( 1 + \f1x \r)^{x + \f12} \r) &\ge 1\\[1ex]
+\l( 1 + \f1x \r)^{x + \f12} &\ge \e\\[1ex]
+\end{align*}
+
+\begin{center}
+	\includegraphics[scale=0.3]{Q1-graph.png}
+\end{center}
+
 % }}}
 
 % {{{ Q2
@@ -69,6 +81,22 @@ This equals 0 when $x^2 = 2 \sqrt{x^3} \implies x^4 = 4x^3 \implies x = 4$. Ther
 
 % {{{ Q3
 \question{3}
+
+Let $$f(n) = \f nt \log\l( 1 + \f tn \r)$$
+Then \begin{align*}
+f'(n) &= \f1t \log\l( 1 + \f tn \r) + \f nt \f1{1 + \f tn} \l(-\f t{n^2}\r)\\[1ex]
+&= \f1t \log\l( 1 + \f tn \r) + \f{-nt}{t \l( 1 + \f tn \r) n^2}\\[1ex]
+&= \f1t \log\l( 1 + \f tn \r) - \f{nt}{tn^2 + t^2n}\\[1ex]
+&= \f1t \log\l( 1 + \f tn \r) - \f1{n + t}
+\end{align*}
+
+% TODO: Show that $f(n) < 1$
+% TODO: Show that $f'(n) > 0$
+
+Since for all $t$, $f(n) < 1$ and $f(n)$ is increasing, we must have $\llim{n \to \infty} f(n) = 1$, as required.
+
+From the previous result, we get $$\log\l( \l( 1 + \f tn \r)^n \r) \to t$$
+We want to \enquote*{apply $\exp$ to both sides} to get the desired result. We are allowed to do this because $\exp$ is a monotonic function, so it preserves limits.
 
 % }}}
 
