@@ -60,10 +60,8 @@ public class Project1 {
 				double y = scanner.nextDouble();
 				double radius = scanner.nextDouble();
 
-				// We want to ignore circles with sufficiently small radius
-				if (Math.abs(radius - 0.0) <= Point.GEOMTOL) {
-					continue;
-				} else {
+				Circle circle = new Circle(x, y, radius);
+				if (!circle.isSingular()) {
 					circleList.add(new Circle(x, y, radius));
 				}
 			}
@@ -72,7 +70,7 @@ public class Project1 {
 		Circle[] circleArray = circleList.toArray(new Circle[circleList.size()]);
 
 		this.circleCounter = circleArray.length;
-		this.aabb = this.calculateAABB(circleArray);
+		this.aabb = this.calculateAABB(new Circle[] {circleArray[9], circleArray[19]});
 
 		// Min and max area
 		try {
@@ -115,6 +113,7 @@ public class Project1 {
 	 */
 	public double averageCircleArea(Circle[] circles) {
 		double totalArea = Arrays.stream(circles)
+		                         .filter(c -> !c.isSingular())
 		                         .mapToDouble(c -> c.area())
 		                         .sum();
 
@@ -131,6 +130,7 @@ public class Project1 {
 		double mu = this.averageCircleArea(circles);
 
 		double sumOfSquaredAreas = Arrays.stream(circles)
+		                                 .filter(c -> !c.isSingular())
 		                                 .mapToDouble(c -> c.area() * c.area())
 		                                 .sum();
 
@@ -153,9 +153,34 @@ public class Project1 {
 	 *     (bottom left) at [X1,Y1] and opposite corner (top right) at [X2,Y2]
 	 */
 	public double[] calculateAABB(Circle[] circles) {
-		// TODO
-		// You need to fill in this method.
-		return new double[] {0., 0., 0., 0.};
+		try {
+			double x1 = Arrays.stream(circles)
+			                  .filter(c -> !c.isSingular())
+			                  .map(c -> c.getCentre().getX() - c.getRadius())
+			                  .min(Double::compare)
+			                  .get();
+			double y1 = Arrays.stream(circles)
+			                  .filter(c -> !c.isSingular())
+			                  .map(c -> c.getCentre().getY() - c.getRadius())
+			                  .min(Double::compare)
+			                  .get();
+
+			double x2 = Arrays.stream(circles)
+			                  .filter(c -> !c.isSingular())
+			                  .map(c -> c.getCentre().getX() + c.getRadius())
+			                  .max(Double::compare)
+			                  .get();
+			double y2 = Arrays.stream(circles)
+			                  .filter(c -> !c.isSingular())
+			                  .map(c -> c.getCentre().getY() + c.getRadius())
+			                  .max(Double::compare)
+			                  .get();
+
+			return new double[] {x1, y1, x2, y2};
+		} catch (NoSuchElementException e) {
+			// If we don't have maxima or minima, return the largest box
+			return new double[] {Double.MIN_VALUE, Double.MIN_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
+		}
 	}
 
 	// =======================================================
@@ -170,6 +195,7 @@ public class Project1 {
 		Project1 p = new Project1();
 		p.results("student.data");
 		System.out.println(p.circleCounter);
+		System.out.println(Arrays.toString(p.aabb));
 		System.out.println(p.Smin);
 		System.out.println(p.Smax);
 		System.out.println(p.areaAverage);

@@ -97,7 +97,7 @@ public class Circle {
 	 */
 	public Point getCentre() {
 		// You need to fill in this method.
-		return new Point(this.A.getY(), this.A.getY());
+		return new Point(this.A.getX(), this.A.getY());
 	}
 
 	/**
@@ -178,6 +178,15 @@ public class Circle {
 	 */
 	public double area() {
 		return Math.PI * this.r * this.r;
+	}
+
+	/**
+	 * Checks if this circle is singular (small enough to ignore).
+	 *
+	 * @return True if the circle is singular
+	 */
+	public boolean isSingular() {
+		return Math.abs(this.r) <= Point.GEOMTOL;
 	}
 
 	// =======================================================
