@@ -69,13 +69,36 @@ Then \begin{align*}
 
 $$\phantom{\qquad x \in (0, \infty)} y = \f1{\sqrt x} - \f1x \qquad x \in (0, \infty)$$
 
-For $x \in (0,1)$, $\sqrt x > x$, so $y < 0$. And for $x > 1$, $x > \sqrt x$, so $y > 0$. Clearly the maximum will be when $y > 0$.
+For $x \in (0,1)$, $\sqrt x > x$, so $y < 0$. And for $x > 1$, $x > \sqrt x$, so $y > 0$. Clearly the maximum will be when $y > 0$, so $x > 1$.
 
 The derivative is \begin{align*}
 \dd yx &= -\f12 x^{-\f32} + x^{-2}\\[1ex]
 &= - \f1{2\sqrt{x^3}} + \f1{x^2}
 \end{align*}
-This equals 0 when $x^2 = 2 \sqrt{x^3} \implies x^4 = 4x^3 \implies x = 4$. Therefore $x = 4$ is the maximum point of the function. The maximum value is $$\f1{\sqrt 4} - \f14 = \f14$$
+This equals 0 when $x^2 = 2 \sqrt{x^3} \implies x^4 = 4x^3 \implies x = 4$. Therefore $x = 4$ is the only extremum point of the function with $x > 1$. The value at this point is $$\f1{\sqrt 4} - \f14 = \f14$$
+
+We can evaluate the derivative at either side of $x=4$ to show that $y$ is increasing on the left and decreasing on the right, therefore $x=4$ is the maximum.
+\begin{align*}
+\l. \dd yx \r|_{x=3} &= -\f1{2 \sqrt{27}} + \f19\\[1ex]
+&= -\f1{6 \sqrt3} + \f19\\[1ex]
+&= \f{6 \sqrt3 - 9}{54 \sqrt3}\\[1ex]
+&= \f{2 \sqrt3 - 3}{18 \sqrt3}\\[1ex]
+&= \f{2 - \sqrt 3}{18}\\[1ex]
+3 < 4 &\implies \sqrt 3 < \sqrt 4 = 2\\[1ex]
+\thf \f{2 - \sqrt 3}{18} &> 0
+\end{align*}
+
+\begin{align*}
+\l. \dd yx \r|_{x=5} &= -\f1{2 \sqrt{125}} + \f1{25}\\[1ex]
+&= -\f1{10 \sqrt5} + \f1{25}\\[1ex]
+&= \f{10 \sqrt5 - 25}{250 \sqrt 5}\\[1ex]
+&= \f{2 \sqrt5 - 5}{50 \sqrt 5}\\[1ex]
+&= \f{2 - \sqrt5}{50}\\[1ex]
+5 > 4 &\implies \sqrt 5 > \sqrt 4 = 2\\[1ex]
+\thf \f{2 - \sqrt5}{50} &< 0
+\end{align*}
+
+Therefore $x = 4$, $y = \df14$ is the maximum of this function.
 
 % }}}
 
@@ -83,17 +106,26 @@ This equals 0 when $x^2 = 2 \sqrt{x^3} \implies x^4 = 4x^3 \implies x = 4$. Ther
 \question{3}
 
 Let $$f(n) = \f nt \log\l( 1 + \f tn \r)$$
-Then \begin{align*}
+And therefore \begin{align*}
 f'(n) &= \f1t \log\l( 1 + \f tn \r) + \f nt \f1{1 + \f tn} \l(-\f t{n^2}\r)\\[1ex]
 &= \f1t \log\l( 1 + \f tn \r) + \f{-nt}{t \l( 1 + \f tn \r) n^2}\\[1ex]
 &= \f1t \log\l( 1 + \f tn \r) - \f{nt}{tn^2 + t^2n}\\[1ex]
 &= \f1t \log\l( 1 + \f tn \r) - \f1{n + t}
 \end{align*}
 
+We will split $t$ into two cases, $t > 0$ and $t < 0$.
+
+When $t > 0$,
 % TODO: Show that $f(n) < 1$
 % TODO: Show that $f'(n) > 0$
 
-Since for all $t$, $f(n) < 1$ and $f(n)$ is increasing, we must have $\llim{n \to \infty} f(n) = 1$, as required.
+Since when $t > 0$, $f(n) < 1$ and $f(n)$ is increasing, we must have $\llim{n \to \infty} f(n) = 1$, as required.
+
+And when $t < 0$,
+% TODO: Show that $f(n) > 1$
+% TODO: Show that $f'(n) < 0$
+
+Since when $t < 0$, $f(n) > 1$ and $f(n)$ is decreasing, we must have $\llim{n \to \infty} f(n) = 1$, as required.
 
 From the previous result, we get $$\log\l( \l( 1 + \f tn \r)^n \r) \to t$$
 We want to \enquote*{apply $\exp$ to both sides} to get the desired result. We are allowed to do this because $\exp$ is a monotonic function, so it preserves limits.
