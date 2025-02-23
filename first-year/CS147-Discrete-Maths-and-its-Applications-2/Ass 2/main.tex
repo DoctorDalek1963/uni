@@ -1,0 +1,100 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+\usepackage{tikz}
+
+\title{CS147 Discrete Maths and its Applications 2, Assignment 2}
+\author{Dyson Dyson (ID: 5503449)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+Let $G = (V, E)$ be a graph, $M \subset E$ be a matching on $G$, and $Z \subset M$.
+
+A matching is just a set of edges in $G$ which do not share any common endpoint. For $Z$ to not be a matching, we would need to choose two edges from $M$ which share a node. Since $M$ is a matching, no such pair of edges exists by definition, so $Z$ must also be a matching.
+
+% }}}
+
+% {{{ Q2
+\question{2}
+
+Let $G = (V, E)$ be a graph with $n$ nodes, where each node $v \in V$ is incident on exactly 2 edges.
+%By Euler's handshaking lemma, there must be $n$ edges.
+The graph is isomorphic to an $n$-gon. For example, the case of $n=4$ could be drawn as a square.
+
+In the case of even $n$, there must exist two maximum matchings of size $\df n2$, which are complements of each other in $E$, so $M_2 = E \setminus M_1$.
+
+In the case of odd $n$, we still get two complementary matchings, but they are not large enough. Take the case of $n=5$ for example,
+
+\begin{center}
+\begin{tikzpicture}[
+	every path/.style={thick},
+]
+	\node (a) at (90:1) {$a$};
+	\node (b) at (162:1) {$b$};
+	\node (c) at (234:1) {$c$};
+	\node (d) at (306:1) {$d$};
+	\node (e) at (18:1) {$e$};
+
+	\draw [red] (a) -- (b);
+	\draw (b) -- (c);
+	\draw [red] (c) -- (d);
+	\draw (d) -- (e);
+	\draw (e) -- (a);
+
+	\node (a) at ([xshift=3cm]90:1) {$a$};
+	\node (b) at ([xshift=3cm]162:1) {$b$};
+	\node (c) at ([xshift=3cm]234:1) {$c$};
+	\node (d) at ([xshift=3cm]306:1) {$d$};
+	\node (e) at ([xshift=3cm]18:1) {$e$};
+                        
+	\draw (a) -- (b);   
+	\draw [red] (b) -- (c);
+	\draw (c) -- (d);
+	\draw (d) -- (e);
+	\draw [red] (e) -- (a);
+\end{tikzpicture}
+\end{center}
+
+Both of the subsets highlighted in red are matchings, but both are maximum and of size 2. It is clear that in the case of odd n, a maximum matching has size $\l\lfloor \df n2 \r\rfloor$.
+
+Therefore it is false that there must exist a matching $M \subset E$ with $|M| \ge \df n2$.
+
+% }}}
+
+% {{{ Q3
+\question{3}
+
+% TODO
+
+% }}}
+
+% {{{ Q4
+\question{4}
+
+Let $G = (L \cup R, E)$ be a bipartite graph where every edge connects one node in $L$ to one node in $R$, and let $N_G(X)$ denote the neighbours of some set $X$ of nodes in $G$. Also $G$ has the property that for all $A \subset L$, $|N_G(A)| \ge \f12 |A|$.
+
+We want to know if there exists a subset $H \subset E$ where $|H| = |L|$, every node in $L$ is incident upon exactly one edge in $H$, and every node in $R$ is incident upon at most two edges in $H$.
+
+To satisfy the first two properties, we require that $H$ is constructed by considering each node in $L$ and choosing one of the edges that connects to it.
+
+Is it possible that there exists a $v \in R$ which is incident on three edges in $H$? Suppose such a $v$ does exist. Then those three edges in $H$ would connect to three distinct nodes in $L$, call them $S = \{u_1, u_2, u_3\}$. But by the neighbour requirement of $G$, we have $|N_G(S)| \ge \f12 |S|$.
+
+By construction, all three nodes connect to the same $v \in R$ and no other nodes, so $N_G(S) = 1$. Therefore we have $1 \ge \f32$, which is a contradiction.
+
+Therefore we cannot have a $v \in R$ which is incident on three edges in $H$. Therefore every node in $R$ is incident on at most two edges in $H$, so the statement is true.
+
+% }}}
+
+\end{document}
