@@ -194,12 +194,12 @@ public class Project1 {
 	public static void main(String args[]) throws FileNotFoundException {
 		Project1 p = new Project1();
 		p.results("student.data");
-		System.out.println(p.circleCounter);
-		System.out.println(Arrays.toString(p.aabb));
-		System.out.println(p.Smin);
-		System.out.println(p.Smax);
-		System.out.println(p.areaAverage);
-		System.out.println(p.areaSD);
-		System.out.println(p.areaMedian);
+		System.out.println("Circle count: " + p.circleCounter);
+		System.out.println("Bounding box: " + Arrays.toString(p.aabb));
+		System.out.println("Minimum area: " + p.Smin);
+		System.out.println("Maximum area: " + p.Smax);
+		System.out.println("Average area: " + p.areaAverage);
+		System.out.println("Area std dev: " + p.areaSD);
+		System.out.println("Median area:  " + p.areaMedian);
 	}
 }
