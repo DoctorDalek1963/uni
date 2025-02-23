@@ -76,7 +76,13 @@ Therefore it is false that there must exist a matching $M \subset E$ with $|M| \
 % {{{ Q3
 \question{3}
 
-% TODO
+Let $G = (V, E)$ be a graph, and $M$ be a maximal matching on $G$, so every edge in $E \setminus M$ has at least one endpoint that is matched under $M$, meaning $M$ cannot be extended. Also let $M^*$ be a matching of maximum size on $G$.
+
+Is it true that $|M| \ge \f12 |M^*|$? Yes.
+
+Suppose we have a situation where $|M| < \f12 |M^*|$. Let $|M| = \ell$ and $|M^*| = k$ so that $M$ matches $2\ell$ nodes and $M^*$ matches $2k$ nodes. The inequality implies $\ell < \f12 k \iff 2\ell < k$.
+
+There are at most $2\ell$ edges in $M^*$ which are matched by $M$. But since $2\ell < k$, there is at least one edge in $M^*$ which is not matched by $M$. Therefore we can add this edge to $M$, meaning it is not maximal. That's a contradiction, therefore $|M| < \f12 |M^*|$.
 
 % }}}
 
