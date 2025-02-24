@@ -8,9 +8,8 @@
 \usepackage{graphicx}
 \graphicspath{ {./imgs/} }
 
+\fancyhead[L]{MA139 Assignment 2}
 \title{MA139 Analysis 2, Assignment 2}
-\author{Dyson Dyson}
-\date{}
 
 \begin{document}
 
@@ -43,7 +42,7 @@ Also $m \log m = 1 \log 1 = 0$. Therefore $\ds \f1n \smlm_{i=1}^n x_i \log x_i \
 % }}}
 
 % {{{ Q2
-\question{2}
+\newquestion{2}
 
 Let $f(u) = \df{u^m}{\e^u}$ for some positive integer $m$. Then $\ds \dd fu = \f{m u^{m-1} \e^u - u^m \e^u}{\e^{2u}} = \f{u^{m-1} (m - u)}{\e^u}$.
 
@@ -51,7 +50,7 @@ Consider $u > m > 0$. Then $f(u)$ is positive, since $u^m$ and $\e^u$ are both p
 % }}}
 
 % {{{ Q3
-\question{3}
+\newquestion{3}
 
 We want to prove that $\llim{x \to 0^+} \log x = -\infty$. That means for all $M > 0$, there exists $x$ such that $\log x < -M$. We can just choose any positive $x < \e^{-M}$. Since $\exp$ is a positive, strictly increasing function, $\e^{-M}$ will always be positive and will approach 0 as $M$ grows. So $x \to 0^+$ as $M \to \infty$. Therefore $\llim{x \to 0^+} \log x = -\infty$ as required.
 

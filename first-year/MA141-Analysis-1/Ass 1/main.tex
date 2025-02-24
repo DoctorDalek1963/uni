@@ -1,13 +1,12 @@
+% vim: set foldmethod=marker foldlevel=0:
+
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
-\usepackage{amsmath, amssymb, amsgen}
+\usepackage{preamble}
 
-\renewcommand{\thesubsection}{Q\thesection~(\roman{subsection})}
-
+\fancyhead[L]{MA141 Assignment 1}
 \title{MA141 Analysis 1, Assignment 1}
-\author{Dyson Dyson}
-\date{}
 
 \begin{document}
 
@@ -16,11 +15,8 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
-%%%%%%
-% Q1 %
-%%%%%%
-
-\section*{Question 1}
+% {{{ Q1
+\question{1}
 
 Bernoulli's inequality states: if $x > -1$ then for every $n \in \mathbb{N}$, $(1 + x)^n \ge 1 + nx$. We will prove this by induction.
 
@@ -34,12 +30,10 @@ Now assume that we know the inequality holds for some $n = k$, so $(1 + x)^k \ge
 				  &= 1 + (k+1)x + kx^2\\[1ex]
 				  &\ge 1 + (k+1)x \qquad\quad\text{since }kx^2 \ge 0
 \end{align*}
+% }}}
 
-%%%%%%
-% Q2 %
-%%%%%%
-
-% \section*{Question 2}
+% {{{ Q2
+% \newquestion{2}
 %
 % We know two rules:
 % \begin{enumerate}
@@ -48,13 +42,10 @@ Now assume that we know the inequality holds for some $n = k$, so $(1 + x)^k \ge
 % \end{enumerate}
 %
 % We start with the assumptions that $0 < a < b$ and $0 < c < d$. Then we can conclude that $0 < ac < bc$ and $0 < bc < bd$, both by rule 1. We can then focus these inequalities to get $ac < bc$ and $bc < bd$, and then we can use rule 2 to conclude that $ac < bd$, which is what we wanted.
+% }}}
 
-%%%%%%
-% Q5 %
-%%%%%%
-
-\section*{Question 5}
-\setcounter{section}{5}
+% {{{ Q5
+\newquestion{5}
 
 For each part, I shall use $S$ to refer to the set in question.
 
@@ -107,12 +98,10 @@ We can rewrite this set as something like $\left\{ q \in \mathbb Q : -2 < q < 0 
 The greatest lower bound is $-2$, which is not in the set. This is a lower bound because the condition $q^2 < 4$ is equivalent to $-2 < q < 2$, so we need $-2 < q\ \forall\ q \in S$. Suppose we have some lower bound $\ell > -2$. The Archimedean property of real numbers tells us that we can find a natural number $n$ such that $\frac1n < \ell + 2$, therefore $-2 < \ell - \frac1n$. Since $\ell$ and $\frac1n$ and both rational, their difference is rational. Therefore $\ell - \frac1n \in S$, but $\ell - \frac1n < \ell$, so $\ell$ cannot be a lower bound. Therefore $-2$ is the greatest lower bound.
 
 The least upper bound is $0$, which is not in the set. This is an upper bound because the definition of $S$ directly tells us that $q < 0\ \forall\ q \in S$. Suppose we have an upper bound $-2 < \ell < 0$. The Archimedean property of real numbers tells us that we can find a natural number $n$ such that $0 < \frac1n < -\ell$. Therefore $\ell < -\frac1n < 0$. Since $\ell > -2$, $-\frac1n > -2$, so $-\frac1n$ is in $S$, but it's bigger than $\ell$. Therefore $\ell$ cannot be an upper bound, so $0$ is the least upper bound.
+% }}}
 
-%%%%%%
-% Q7 %
-%%%%%%
-
-\section*{Question 7}
+% {{{ Q7
+\newquestion{7}
 
 $$\lfloor x \rfloor = \text{largest integer } n \in \mathbb Z \text{ such that } n \le x$$
 
@@ -127,14 +116,10 @@ Since $n \in S$, we also know that $n \le x$. Therefore $r - 1 < n \le x$. Call 
 This isn't quite equation $(1)$, but I'm not sure how to finish off the argument. It's intuitive to me that $r = \lfloor x \rfloor = \sup S$ and $x - 1 < \lfloor x \rfloor$, but I don't know how to formalise those ideas into a proper argument.
 
 We could set $t = x - 1$ and then prove that $x - 1 < r$, but that doesn't really help me prove anything, and the problem sheet suggests $t = r - 1$ anyway, so I'm not sure how to finish this argument.
+% }}}
 
-%%%%%%
-% Q9 %
-%%%%%%
-
-\section*{Question 9}
-\setcounter{section}{9}
-\setcounter{subsection}{0}
+% {{{ Q9
+\newquestion{9}
 
 Let $q \in \mathbb N, x \in \mathbb R, y > 1$.
 
@@ -182,5 +167,6 @@ I have no idea how to complete this argument, but I know it ends by showing that
 Since $\varepsilon > 0$, $r - \varepsilon < r$ but $r - \varepsilon \notin S$. Additionally, $r \notin S$ since $r^q > y$, but every $s \in S$ requires $s^q < y$. Thus, we have found a better upper bound for $S$. $r - \varepsilon$ is an upper bound for $S$ which is smaller that $r$, so $r$ cannot be the supremum of $S$. This is a contradiction, therefore $r^q > y$ must be false.
 
 Thus, since $r^q \not < y$ and $r^q \not > y$, we must conclude that $r^q = y$. \hfill $\square$
+% }}}
 
 \end{document}

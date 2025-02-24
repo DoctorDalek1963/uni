@@ -1,17 +1,17 @@
+% vim: set foldmethod=marker foldlevel=0:
+
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
-\usepackage{amsmath, amssymb, amsgen}
-\usepackage{gensymb}
+\usepackage{preamble}
 
 \usepackage{graphicx}
 \graphicspath{ {./imgs/} }
 
-\renewcommand{\thesubsection}{Q\thesection~(\alph{subsection})}
+% \renewcommand{\thesubsection}{Q\thesection~(\alph{subsection})}
 
+\fancyhead[L]{MA146 Assignment 3}
 \title{MA146 Methods of Mathematical Modelling 1, Assignment 3}
-\author{Dyson Dyson}
-\date{}
 
 \begin{document}
 
@@ -20,11 +20,8 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
-%%%%%%
-% Q1 %
-%%%%%%
-
-\section*{Question 1}
+% {{{ Q1
+\question{1}
 
 Let $a, b, c, d \in \mathbb Z$. Then $$[d] = \left[ r^a v^b \rho^c \mu^d \right] = L^a L^b T^{-2b} M^c L^{-3c} M^d L^{-d} T^{-d} = MLT^{-2}$$
 
@@ -58,14 +55,10 @@ $d=4$ gives \begin{align*}
 \end{align*}
 
 Therefore $[d] = \left[ r^{-3} v^{-1} \rho^{-3} \mu^4 \right]$.
+% }}}
 
-%%%%%%
-% Q2 %
-%%%%%%
-
-\section*{Question 2}
-\setcounter{section}{2}
-\setcounter{subsection}{0}
+% {{{ Q2
+\newquestion{2}
 
 \subsection{~}
 
@@ -116,14 +109,10 @@ We can solve this like before, \begin{align*}
 Let $t_0 = 0$. Then $x(t_0) = x(0) = \sqrt{0 + \frac{24 \alpha}{\pi} \sin 0 + C} = \sqrt{C} = x_0$, therefore $C = (x_0)^2$.
 
 Therefore, $$x(t) = \sqrt{2\alpha t + \frac{24\alpha}{\pi} \sin \left(\frac{\pi}{12} t\right) + (x_0)^2}$$
+% }}}
 
-%%%%%%
-% Q3 %
-%%%%%%
-
-\section*{Question 3}
-\setcounter{section}{3}
-\setcounter{subsection}{0}
+% {{{ Q3
+\newquestion{3}
 
 \subsection{~}
 
@@ -136,12 +125,10 @@ My solution is $n_\text{min} = 9$.
 \includegraphics[scale=0.45]{Q3-b}
 \includegraphics[scale=0.8]{n9}
 \includegraphics[scale=0.8]{n8}
+% }}}
 
-%%%%%%
-% Q4 %
-%%%%%%
-
-\section*{Question 4}
+% {{{ Q4
+\newquestion{4}
 
 $$\frac{\mathrm d^2}{\mathrm d t^2} y(t) + \eta \frac{\mathrm d}{\mathrm d t} y(t) + b y(t) = f \cos(\theta t)$$
 
@@ -168,5 +155,6 @@ And therefore $$B = \frac{\eta \theta f}{(b - \theta^2)^2 + \eta^2 \theta^2}$$
 Therefore the particular integral is $$\frac{f (b - \theta^2)}{(b - \theta^2)^2 + \eta^2 \theta^2} \cos(\theta t) + \frac{\eta \theta f}{(b - \theta^2)^2 + \eta^2 \theta^2} \sin (\theta t)$$
 
 Alternatively written as $$\frac{f}{(b - \theta^2)^2 + \eta^2 \theta^2} \left( (b - \theta^2) \cos(\theta t) + \eta \theta \sin(\theta t) \right)$$
+% }}}
 
 \end{document}
