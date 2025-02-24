@@ -5,6 +5,15 @@
 \usepackage{mathtools}
 \usepackage{csquotes}
 
+%%%%% Nice headers and title stuff
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[R]{Dyson Dyson 5503449}
+
+\author{Dyson Dyson}
+\date{}
+
 %%%%% Make question numbers seamless
 
 \renewcommand{\thesection}{Question~\arabic{section}}
@@ -16,6 +25,11 @@
 	\addtocounter{section}{-1}
 	\section{}
 	\setcounter{subsection}{0}
+}
+
+\newcommand{\newquestion}[1]{%
+	\newpage
+	\question{#1}
 }
 
 %%%%% Shorthand and missing functions (taken mostly from my Obsidian notes)

@@ -5,11 +5,9 @@
 
 \usepackage{preamble}
 \usepackage{tikz}
-\usepackage{fancyhdr}
 
+\fancyhead[L]{CS147 Assignment 2}
 \title{CS147 Discrete Maths and its Applications 2, Assignment 2}
-\author{Dyson Dyson (ID: 5503449)}
-\date{}
 
 \begin{document}
 
@@ -17,10 +15,6 @@
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
-
-\pagestyle{fancy}
-\fancyhead[L]{CS147 Assignment 2}
-\fancyhead[R]{Dyson Dyson 5503449}
 
 % {{{ Q1
 \question{1}
@@ -32,8 +26,7 @@ A matching is just a set of edges in $G$ which do not share any common endpoint.
 % }}}
 
 % {{{ Q2
-\newpage
-\question{2}
+\newquestion{2}
 
 Let $G = (V, E)$ be a graph with $n$ nodes, where each node $v \in V$ is incident on exactly 2 edges.
 %By Euler's handshaking lemma, there must be $n$ edges.
@@ -80,8 +73,7 @@ Therefore it is false that there must exist a matching $M \subset E$ with $|M| \
 % }}}
 
 % {{{ Q3
-\newpage
-\question{3}
+\newquestion{3}
 
 Let $G = (V, E)$ be a graph, and $M$ be a maximal matching on $G$, so every edge in $E \setminus M$ has at least one endpoint that is matched under $M$, meaning $M$ cannot be extended. Also let $M^*$ be a matching of maximum size on $G$.
 
@@ -94,8 +86,7 @@ There are at most $2\ell$ edges in $M^*$ which are matched by $M$. But since $2\
 % }}}
 
 % {{{ Q4
-\newpage
-\question{4}
+\newquestion{4}
 
 Let $G = (L \cup R, E)$ be a bipartite graph where every edge connects one node in $L$ to one node in $R$, and let $N_G(X)$ denote the neighbours of some set $X$ of nodes in $G$. Also $G$ has the property that for all $A \subset L$, $|N_G(A)| \ge \f12 |A|$.
 
