@@ -1,16 +1,16 @@
+% vim: set foldmethod=marker foldlevel=0:
+
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
-\usepackage{amsmath, amssymb, amsgen}
-\usepackage{gensymb}
+\usepackage{preamble}
 \usepackage{array}
 \usepackage{tikz}
 
-\renewcommand{\thesubsection}{Q\thesection~(\roman{subsection})}
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
 
+\fancyhead[L]{MA151 Assignment 1}
 \title{MA151 Algebra 1, Assignment 1}
-\author{Dyson Dyson}
-\date{}
 
 \begin{document}
 
@@ -19,13 +19,8 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
-%%%%%%
-% Q1 %
-%%%%%%
-
-\section*{Question 1}
-\setcounter{section}{1}
-\setcounter{subsection}{0}
+% {{{ Q1
+\question{1}
 
 \subsection{$x \star y = x^2 + y^2,\ S = \mathbb Z$}
 
@@ -38,12 +33,10 @@ This is a binary operation, since it takes two elements of $S$ and always return
 \subsection{$x \star y = \frac{x + y}{2},\ S = \mathbb Z$}
 
 This is \textit{not} a binary operation, since it takes two elements of $S$ and but doesn't always return another element of $S$. The mean of two integers is not always an integer. Consider $2 \star 3$, for example. $2 \star 3 = \frac{2 + 3}{2} = \frac52 \notin \mathbb Z$.
+% }}}
 
-%%%%%%
-% Q2 %
-%%%%%%
-
-\section*{Question 2}
+% {{{ Q2
+\newquestion{2}
 
 Associativity means that $(a \star b) \star c = a \star (b \star c)$. For the sake of explanation, I shall call the middle term the \textit{pivot term}. So in the case of the example just given, the pivot term was $b$. In the case of $(f \circ (g \circ h)) \circ t = f \circ ((g \circ h) \circ t)$, the pivot term is $(g \circ h)$.
 
@@ -53,12 +46,10 @@ Associativity means that $(a \star b) \star c = a \star (b \star c)$. For the sa
 											&= a \star ((b \star (c \star d)) \star e) &&\text{pivoting around } (c \star d) \\[1ex]
 											&= a \star (((b \star c) \star d) \star e) &&\text{pivoting around } c
 \end{align*}
+% }}}
 
-%%%%%%
-% Q3 %
-%%%%%%
-
-\section*{Question 3}
+% {{{ Q3
+\question{3}
 
 $$S = \{a, b, c, d\}$$
 
@@ -67,14 +58,10 @@ Call the binary operation $\oplus$. Since $\oplus$ is commutative over $S$, we k
 Thus, there are 10 operations to define. Each operation could output any of the 4 elements of $S$, so there are $4^{10} = 1,048,576$ distinct commutative binary operations over $S$.
 
 Most of these operations will not be associative. For example, if $a \oplus b = c$, $b \oplus c = d$, $c \oplus c = a$, and $a \oplus d = b$, then $(a \oplus b) \oplus c = a$ but $a \oplus (b \oplus c) = b$. But the question didn't mention associativity, so this is not something we have to worry about.
+% }}}
 
-%%%%%%
-% Q4 %
-%%%%%%
-
-\section*{Question 4}
-\setcounter{section}{4}
-\setcounter{subsection}{0}
+% {{{ Q4
+\newquestion{4}
 
 \subsection{$\left( \left\{ 3^n : n \in \mathbb Z \right\}, \times \right)$}
 
@@ -97,10 +84,10 @@ Therefore this is a group.
 \end{enumerate}
 
 Therefore this is a group.
+% }}}
 
-\section*{Question 5}
-\setcounter{section}{5}
-\setcounter{subsection}{0}
+% {{{ Q5
+\newquestion{5}
 
 \subsection{Isosceles triangle}
 
@@ -184,5 +171,6 @@ For the first case, let $a \in G$. Then $h^{-1} a$ is another element of $G$. Th
 For the second case, we know that groups are closed under their binary operation, so $hg$ could never generate a new $b \notin G$. Therefore all elements in $S$ must be in $G$.
 
 Since $G \subset S$ and $S \subset G$, we must conclude that $S = G$.
+% }}}
 
 \end{document}
