@@ -113,15 +113,15 @@ f'(n) &= \f1t \log\l( 1 + \f tn \r) + \f nt \f1{1 + \f tn} \l(-\f t{n^2}\r)\\[1e
 &= \f1t \log\l( 1 + \f tn \r) - \f1{n + t}
 \end{align*}
 
-We will split $t$ into two cases, $t > 0$ and $t < 0$.
+Since we only care about what happens as $n \to \infty$, we can choose to only consider $n > 0$. We will split $t$ into two cases, $t > 0$ and $t < 0$.
 
-When $t > 0$,
+% When $t > 0$,
 % TODO: Show that $f(n) < 1$
 % TODO: Show that $f'(n) > 0$
 
 Since when $t > 0$, $f(n) < 1$ and $f(n)$ is increasing, we must have $\llim{n \to \infty} f(n) = 1$, as required.
 
-And when $t < 0$,
+% And when $t < 0$,
 % TODO: Show that $f(n) > 1$
 % TODO: Show that $f'(n) < 0$
 
