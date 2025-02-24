@@ -1,15 +1,15 @@
+% vim: set foldmethod=marker foldlevel=0:
+
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
 \usepackage{preamble}
-\usepackage{cancel}
 
 \usepackage{graphicx}
 \graphicspath{ {./imgs/} }
 
+\fancyhead[L]{MA146 Assignment 4}
 \title{MA146 Methods of Mathematical Modelling 1, Assignment 4}
-\author{Dyson Dyson}
-\date{}
 
 \begin{document}
 
@@ -18,6 +18,7 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
+% {{{ Q2
 \question{2}
 
 $$\diff t v(t) = -v(t) + \varepsilon v(t)^2, \quad t > 0, \quad v(0) = 1$$
@@ -36,8 +37,10 @@ Consider $v(t) = v_0(t) + \varepsilon v_1(t)$. Then \begin{align*}
 \end{align*}
 
 And the initial condition becomes $v_0(0) + \varepsilon v_1(0) = 1$. Unfortunately, I have no idea where to go from here.
+% }}}
 
-\question{3}
+% {{{ Q3
+\newquestion{3}
 
 \subsection{~}
 
@@ -63,8 +66,10 @@ Let $s(t)$ be the concentration of nitrosyl chloride, $n(t)$ be the concentratio
 \subsection{~}
 
 $$S + I \xrightarrow{\ \beta\ } I \xrightarrow{\ \gamma\ } R$$
+% }}}
 
-\question{4}
+% {{{ Q4
+\newquestion{4}
 
 \subsection{~}
 
@@ -83,5 +88,6 @@ The system \begin{align*}
 \end{align*}
 
 The first line is just obviously always true, and the second line is equivalent to the differential equation given in assignment 1 question 2, just with $b$ and $c$ scaled to make $a=1$.
+% }}}
 
 \end{document}

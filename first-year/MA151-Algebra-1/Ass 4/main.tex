@@ -1,12 +1,13 @@
+% vim: set foldmethod=marker foldlevel=0:
+
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
 \usepackage{preamble}
 \usepackage{array}
 
+\fancyhead[L]{MA151 Assignment 4}
 \title{MA151 Algebra 1, Assignment 4}
-\author{Dyson Dyson}
-\date{}
 
 \begin{document}
 
@@ -15,6 +16,7 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
+% {{{ Q1
 \question{1}
 
 Let $R$ be a non-zero ring. Let $a \sim b$ be the relation \enquote*{$a$ is an associate of $b$}, meaning there exists a unit $v \in R$ such that $av = b$.
@@ -34,8 +36,10 @@ Therefore this is an equivalence relation.
 \subsection{~}
 
 Suppose $R = \Z$. The only units in $\Z$ are $\{1, -1\}$, so $a \sim b$ if and only if $a = b$ or $a = -b$. Therefore $0$ is equivalent to nothing, and every positive integer $x$ gets the equivalence class $[x]_\sim = \{x, -x\}$.
+% }}}
 
-\question{2}
+% {{{ Q2
+\newquestion{2}
 
 Let $R$ be a ring and let $a \in R$.
 
@@ -50,8 +54,10 @@ Now consider an arbitrary element $ar \in aR$ and an arbitrary element $x \in R$
 \subsection{~}
 
 Now if we allow $R$ to be non-commutative, we could choose $R = GL_2(\R)$ and $a = \begin{pmatrix}1 & 1\\ 1 & 0\end{pmatrix}$. Then right-multiplying an element of $aR$ by an element of $R$ would keep the result in $aR$, but left-multiplying wouldn't necessarily. Therefore $aR$ is not an ideal of $R$ in this case.
+% }}}
 
-\question{3}
+% {{{ Q3
+\newquestion{3}
 
 \subsection{~}
 
@@ -94,8 +100,10 @@ And then, $\l(\Z / 8\Z\r)^*$,
 \]
 
 Just from looking at these tables, we can deduce that $\l( \l(\Z / 7 \Z\r)^*, \times_7 \r) \cong C_6$ and $\l( \l(\Z / 8 \Z\r)^*, \times_8 \r) \cong K_4$. But $K_4$ is not cyclic, so $\l( \l(\Z / 8 \Z\r)^*, \times_8 \r)$ is not cyclic.
+% }}}
 
-\question{4}
+% {{{ Q4
+\newquestion{4}
 
 Let $R = M_{2 \times 2}(\Q)$. We will show that the only ideals of $R$ are $\{0\}$ and $R$.
 
@@ -113,8 +121,10 @@ To see this, we can imagine an arbitrary "target" matrix $t \in R$, then find th
 Since $x, y, z, w, a, b, c, d$ are all known, these equations can always be solved for $p, q, r, s$. Therefore $\forall\, t \in R$, $\exists\, m \in R$ such that $Xm = t$. Therefore $I$ must contain all elements of $R$, so $I = R$.
 
 Therefore the only ideals of $R$ are $\{ \bf 0 \}$ and $R$.
+% }}}
 
-\question{5}
+% {{{ Q5
+\newquestion{5}
 
 Let $R = \R[x]$ and let $I = \l\{ f(x) \in \R[x] : f(0) = 0 \r\}$.
 
@@ -137,8 +147,10 @@ Suppose $J$ is an ideal of $R$ with $I \subsetneq J$. Since $I$ definitionally i
 Since $r(x)$ could be any element from $\R[x]$, we will end up generating all of $\R[x]$. We know that $J$ already contains every combination of real coefficients for powers of $x$, but we only know that it contains constant term $a$. But we can obtain any constant term $b$ by multiplying by some particular $r(x)$ with $r(0) = \frac ba$, since $j(0) = a$ and $a \ne 0$. Then $r(0) j(0) = b$, so $J$ must contain polynomials that cover all real constant terms.
 
 Thus, $J$ must contain every polynomial from $\R[x]$, so $J = R$.
+% }}}
 
-\question{6}
+% {{{ Q6
+\newquestion{6}
 
 \subsection{~}
 
@@ -166,5 +178,6 @@ And then I get stuck.
 \subsection{~}
 
 Consider $f(x) = x^4 + 1$. The question says this is not irreducible over $\Z / 5 \Z$, but I don't know why. I can't find a root modulo 5, so it has no linear factors, but factoring into two quadratics doesn't seem to work either because I get two simultaneous equations mod 5 and nothing satisfies both.
+% }}}
 
 \end{document}
