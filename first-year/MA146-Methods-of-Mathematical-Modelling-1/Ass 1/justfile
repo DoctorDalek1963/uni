@@ -1,0 +1,12 @@
+import "../../../justfile"
+
+set allow-duplicate-recipes # Needed for _default
+
+_default:
+	@just --list
+
+build:
+	mkdir -p .tmp_pdfs
+	magick imgs/Q2-e.png .tmp_pdfs/Q2-e.pdf
+	magick imgs/Q2-f.png .tmp_pdfs/Q2-f.pdf
+	pdftk A="Original scan.pdf" B=.tmp_pdfs/Q2-e.pdf C=.tmp_pdfs/Q2-f.pdf cat A1-3 B C A4-6 output main.pdf

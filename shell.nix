@@ -15,5 +15,7 @@ in
         inotify-tools
         just
         python3
+        pdftk
+        imagemagick
       ]);
   }
