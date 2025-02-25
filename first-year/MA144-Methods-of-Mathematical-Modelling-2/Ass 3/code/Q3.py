@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 from math import pi
-from scipy.integrate import tplquad
 
+from scipy.integrate import tplquad
 
 print(
     "SciPy gives:",
@@ -14,7 +14,7 @@ print(
         1,
         lambda _t, r: r * r,
         lambda _t, r: 3 - 2 * r,
-    )
+    ),
 )
 
 print("Actual answer:", 7 * pi / 6)

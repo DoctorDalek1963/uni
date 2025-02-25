@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def generate_plot(r: float, title_text: str, file_number: int) -> None:
