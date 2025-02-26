@@ -4,7 +4,7 @@
 \usepackage[UKenglish]{babel}
 
 % NOTE: hyperref has to come before preamble
-% \usepackage{hyperref}
+\usepackage{hyperref}
 
 \usepackage{preamble}
 
@@ -45,16 +45,15 @@ S &= \intlim {-\f12}{\f12} {\intlim {-\sqrt{1 - 4y^2}}{\sqrt{1 - 4y^2}} {\intlim
 \begin{align*}
 &= \intlim {-\f12}{\f12} {\l( k - \f13 k (1 - 4y^2) - 4k y^2 - \l( -k + \f13 k (1 - 4y^2) + 4k y^2 \r) \r)} y\\
 &\quad \text{(where } k = \sqrt{1 - 4y^2}\, \text{)}\\[1ex]
-&= \intlim {-\f12}{\f12} {\sqrt{1 - 4y^2} \l( 1 - \f13 (1 - 4y^2) - 4 y^2 + 1 - \f13 (1 - 4y^2) - 4 y^2 \r)} y\\
-&= \intlim {-\f12}{\f12} {\sqrt{1 - 4y^2} \l( 2 - \f23 (1 - 4y^2) - 8 y^2 \r)} y\\
-&= \intlim {-\f12}{\f12} {\sqrt{1 - 4y^2} \l( \f43 + \f83 y^2 - \f{24}3 y^2 \r)} y\\
-&= \intlim {-\f12}{\f12} {\sqrt{1 - 4y^2} \l( \f43 - \f{16}3 y^2 \r)} y\\
-&= \f43 \intlim {-\f12}{\f12} {\sqrt{1 - 4y^2} \l(1 - 4y^2 \r)} y\\
-&= \f43 \intlim {-\f12}{\f12} {\l(1 - 4y^2 \r)^{\f32}} y\\
-&\ne \f43 \l[ \f25 \f1{8y} \l(1 - 4y^2\r)^\f52 \r]_{-\f12}^{\f12}\\[1ex]
+&= \intlim {-\f12}{\f12} {\sqrt{1 - 4y^2} \l( 1 - \f13 (1 - 4y^2) - 4 y^2 + 1 - \f13 (1 - 4y^2) - 4 y^2 \r)} y\\[1ex]
+&= \intlim {-\f12}{\f12} {\sqrt{1 - 4y^2} \l( 2 - \f23 (1 - 4y^2) - 8 y^2 \r)} y\\[1ex]
+&= \intlim {-\f12}{\f12} {\sqrt{1 - 4y^2} \l( \f43 + \f83 y^2 - \f{24}3 y^2 \r)} y\\[1ex]
+&= \intlim {-\f12}{\f12} {\sqrt{1 - 4y^2} \l( \f43 - \f{16}3 y^2 \r)} y\\[1ex]
+&= \f43 \intlim {-\f12}{\f12} {\sqrt{1 - 4y^2} \l(1 - 4y^2 \r)} y\\[1ex]
+&= \f43 \intlim {-\f12}{\f12} {\l(1 - 4y^2 \r)^{\f32}} y
 \end{align*}
-
-%}}}
+I don't know how to continue, but \href{https://www.sagemath.org/}{SageMath} says this integral is $\df\pi4$.
+% }}}
 
 % {{{ Q2
 \newquestion{2}
@@ -104,20 +103,18 @@ And \begin{align*}
 &= \f2{9\pi} \, \f{15\pi}4\\[1ex]
 &= \f56
 \end{align*}
-
-%}}}
+% }}}
 
 % {{{ Q3
 \newquestion{3}
 
 \subsection{~}
 
-% TODO: Sketch the solid
-% \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[scale=0.35]{Q3-sketch}
-% 	\caption{A sketch of the solid}
-% \end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{Q3-sketch}
+	\caption{A sketch of the solid}
+\end{figure}
 
 \begin{align*}
 V &= \intlim 0{2\pi} {\intlim 01 {\intlim {r^2}{3-2r} r z} r} \theta\\[1ex]
@@ -140,7 +137,6 @@ SciPy gives 3.6651914291880914 with an estimated error of approximately $4.07 \t
 	\includegraphics[scale=0.35]{Q3-code}
 	\caption{The Python code used to generate this answer}
 \end{figure}
-
-%}}}
+% }}}
 
 \end{document}
