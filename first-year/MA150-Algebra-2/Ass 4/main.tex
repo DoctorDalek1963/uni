@@ -20,8 +20,16 @@
 
 Let $V$ be a Euclidean space with inner product. Suppose $\enum w1n$ is an orthonormal basis of $V$. Of course $\fa v \in V$, $\exists\ \lambda_i \in \R$ such that $v = \sum \lambda_i w_i$.
 
-TODO: show that $\lambda_i = \langle v, w_i \rangle$
+We want to show that $\lambda_i = \angb{v, w_i}$. For any fixed $i \le n$ \begin{align*}
+v &= \smlm_{j=1}^n \lambda_j w_j\\[1ex]
+\angb{v, w_i} &= \angb{\smlm_{j=1}^n \lambda_j w_j, w_i}\\[1ex]
+&= \smlm_{j=1}^n \lambda_j \angb{w_j, w_i}\\[1ex]
+&= \lambda_1 \angb{w_1, w_i} + \cdots + \lambda_i \angb{w_i, w_i} + \cdots + \lambda_n \angb{w_n, w_i}\\[1ex]
+&= \lambda_i
+\end{align*}
+Since all $\enum w1n$ are orthonormal, so all but one of the inner products are zero.
 
+Therefore $\angb{v, w_i} = \lambda_i$ for all $i = 1,\ \ldots,\ n$, as required.
 % }}}
 
 % {{{ Q5
@@ -31,16 +39,36 @@ Let $V = \R^3$ and let $$v_1 = \begin{pmatrix}1\\ 1\\ 0\end{pmatrix}, \quad v_2 
 
 \subsection{~}
 
-TODO: Apply Gram-Schmidt to get basis $w_1, w_2, w_3$
+We will apply Gram-Schmidt to $v_1, v_2, v_3$ to get an orthonormal basis $w_1, w_2, w_3$.
+
+\begin{align*}
+w_1 &= \f{v_1}{\| v_1 \|} = \f1{\sqrt 2} \begin{pmatrix}1\\ 1\\ 0\end{pmatrix}\\[1ex]
+u_2 &= v_2 - (v_2 \cdot w_1) w_1\\[1ex]
+&= \begin{pmatrix}2\\ 0\\ 1\end{pmatrix} - \f2{\sqrt2} \f1{\sqrt2} \begin{pmatrix}1\\ 1\\ 0\end{pmatrix} = \begin{pmatrix}1\\ -1\\ 0\end{pmatrix}\\[1ex]
+w_2 &= \f{u_2}{\| u_2 \|} = \f1{\sqrt2} \begin{pmatrix}1\\ -1\\ 0\end{pmatrix}\\[1ex]
+u_3 &= v_3 - (v_3 \cdot w_1) w_1 - (v_3 \cdot w_2) w_2\\[1ex]
+&= \begin{pmatrix}1\\ 1\\ 2\end{pmatrix} - \f2{\sqrt2} \f1{\sqrt2} \begin{pmatrix}1\\ 1\\ 0\end{pmatrix} - 0 \begin{pmatrix}1\\ -1\\ 0\end{pmatrix} = \begin{pmatrix}0\\ 0\\ 2\end{pmatrix}\\[1ex]
+w_3 &= \f{u_3}{\| u_3 \|} = \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}
+\end{align*}
+
+Therefore our orthonormal basis $w_1, w_2, w_3$ is $\ds \f1{\sqrt2} \begin{pmatrix}1\\ 1\\ 0\end{pmatrix}, \f1{\sqrt2} \begin{pmatrix}1\\ -1\\ 1\end{pmatrix}, \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}$
 
 \subsection{~}
 
-Consider $v = \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}$. TODO: Write $v = \sum \lambda_i w_i$ (use dot product with $w_i$)
+Consider $v = \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}$. Clearly $v = w_3$ so if $v = \lambda_1 w_1 + \lambda_2 w_2 + \lambda_3 w_3$ then $\lambda_1 = \lambda_2 = 0$ and $\lambda_3 = 1$.
 
 % }}}
 
 % {{{ Q6
 \newquestion{6}
+
+Let $$A = \begin{pmatrix} a & \f b2 \\ \f b2 & c \end{pmatrix}$$
+And define \begin{align*}
+\varphi : \R^2 &\to \R\\[1ex]
+v = \begin{pmatrix} x \\ y \end{pmatrix} &\mapsto v^T A v = \begin{pmatrix} x & y \end{pmatrix} \begin{pmatrix} a & \f b2 \\ \f b2 & c \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}
+\end{align*}
+
+Note that $\varphi(\ul 0) = 0$ and $\varphi(\lambda v) = \lambda^2 \varphi(v)$ so we only need to consider $v \in \R^2$ of the form $$e_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad\text{and}\quad v_x = \begin{pmatrix} x \\ a \end{pmatrix}\ \fa x \in \R$$
 
 \subsection{~}
 \subsection{~}
