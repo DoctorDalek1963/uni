@@ -55,7 +55,7 @@ Therefore our orthonormal basis $w_1, w_2, w_3$ is $\ds \f1{\sqrt2} \begin{pmatr
 
 \subsection{~}
 
-Consider $v = \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}$. Clearly $v = w_3$ so if $v = \lambda_1 w_1 + \lambda_2 w_2 + \lambda_3 w_3$ then $\lambda_1 = \lambda_2 = 0$ and $\lambda_3 = 1$.
+Consider $v = \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}$. Clearly $v = w_3$ so if $v = \lambda_1 w_1 + \lambda_2 w_2 + \lambda_3 w_3$ then, since $w_1, w_2, w_3$ are linearly independent, $\lambda_1 = \lambda_2 = 0$ and $\lambda_3 = 1$.
 
 % }}}
 
@@ -68,21 +68,63 @@ And define \begin{align*}
 v = \begin{pmatrix} x \\ y \end{pmatrix} &\mapsto v^T A v = \begin{pmatrix} x & y \end{pmatrix} \begin{pmatrix} a & \f b2 \\ \f b2 & c \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}
 \end{align*}
 
-Note that $\varphi(\ul 0) = 0$ and $\varphi(\lambda v) = \lambda^2 \varphi(v)$ so we only need to consider $v \in \R^2$ of the form $$e_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad\text{and}\quad v_x = \begin{pmatrix} x \\ a \end{pmatrix}\ \fa x \in \R$$
+Note that $\varphi(\ul 0) = 0$ and $\varphi(\lambda v) = \lambda^2 \varphi(v)$ so we only need to consider $v \in \R^2$ of the form $$e_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad\text{and}\quad v_x = \begin{pmatrix} x \\ 1 \end{pmatrix}\ \fa x \in \R$$
 
 \subsection{~}
+
+$\varphi(e_1) = \begin{pmatrix}1 & 0\end{pmatrix} \begin{pmatrix}a \\ \f b2\end{pmatrix} = a$ so if $a \le 0$ then $\varphi(e_1) \le 0$.
+
 \subsection{~}
+
+\begin{align*}
+\varphi(v_x) &= \begin{pmatrix}x & 1\end{pmatrix} \begin{pmatrix}a & \f b2 \\ \f b2 & c\end{pmatrix} \begin{pmatrix}x \\ 1\end{pmatrix}\\[1ex]
+&= \begin{pmatrix}x & 1\end{pmatrix} \begin{pmatrix}ax + \f b2 \\ \f b2 x + c\end{pmatrix}\\[1ex]
+&= \l(ax + \f b2\r)x + \f b2 x + c\\[1ex]
+&= ax^2 + bx + c
+\end{align*}
+
 \subsection{~}
+
+Suppose $a > 0$. Now suppose $b^2 - 4ac < 0$. That means $ax^2 + bx + c = 0$ has no roots and since $a > 0$, $ax^2 + bx + c > 0$, so $\varphi(v_x) > 0\ \fa x \in \R$.
+
+Conversely, suppose $\varphi(v_x) > 0$. Therefore $ax^2 + bx + c > 0\ \fa x \in \R$, which means this quadratic has no roots and therefore has a negative discriminant, so $b^2 - 4ac < 0$.
 
 % }}}
 
 % {{{ Q7
 \newquestion{7}
 
+Let $\angb{v,w} = v^T A w$ for any $v, w \in \R^2$.
+
 \subsection{~}
+
+The transpose of a scalar is the same scalar, so \begin{align*}
+\quad\qquad\qquad \angb{v, w} &= \angb{v, w}^T\\
+&= \l( v^T A w \r)^T\\
+&= w^T A^T \l( v^T \r)^T\\
+&= w^T A^T v\\
+&= w^T A v \qqt{since }A^T = A\\
+&= \angb{w, v}
+\end{align*}
+
 \subsection{~}
+
+\begin{align*}
+\angb{\lambda_1 v_1 + \lambda_2 v_2, w} &= \l(\lambda_1 v_1 + \lambda_2 v_2\r)^T A w\\[1ex]
+&= \l(\lambda_1 v_1^T + \lambda_2 v_2^T\r) A w\\[1ex]
+&= \lambda_1 v_1^T A w + \lambda_2 v_2^T A w\\[1ex]
+&= \lambda_1 \angb{v_1, w} + \lambda_2 \angb{v_2, w}
+\end{align*}
+
 \subsection{~}
+
+Suppose $a > 0$ and $\det A > 0$, so $b^4 - 4ac < 0$. We know that $\angb{v, v} = v^T A v$ so $\angb{v, v}$ is equivalent to $\varphi(v)$ from Question~6, and we know that $\varphi(v) \ge 0\ \fa v \in \R^2$ when $a > 0$ and $\det A > 0$, with equality only when $v=0$.
+
+Essentially, the desired result follows immediately from Question~6 and the observation that $\angb{v, v} = \varphi(v)$.
+
 \subsection{~}
+
+For a matrix $A$ to determine an inner product as above, we need $a > 0$ and $\det A > 0$, so only $\begin{pmatrix}5 & -3\\ -3 & 2\end{pmatrix}$ and $\begin{pmatrix}2 & -1\\ -1 & 1\end{pmatrix}$ determine inner products
 
 % }}}
 
