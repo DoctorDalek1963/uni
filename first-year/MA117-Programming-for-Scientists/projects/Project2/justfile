@@ -8,5 +8,5 @@ compile-java:
 	javac Project2.java Complex.java Polynomial.java Secant.java -d out/
 
 # run Project2 to test everything
-run: compile-java
-	java -enableassertions -classpath out Project2
+run class="Project2": compile-java
+	java -enableassertions -classpath out {{class}}
