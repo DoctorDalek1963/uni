@@ -1,0 +1,12 @@
+import "../../justfile"
+
+_default:
+	@just --list
+
+# compile Project2 with all files
+compile-java:
+	javac Project2.java Complex.java Polynomial.java Secant.java -d out/
+
+# run Project2 to test everything
+run: compile-java
+	java -enableassertions -classpath out Project2
