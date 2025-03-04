@@ -28,6 +28,8 @@
  * DEPARTMENT: Mathematics
  */
 
+import java.util.Arrays;
+
 public class Polynomial {
 	/**
 	 * An array storing the complex co-efficients of the polynomial.
@@ -45,14 +47,18 @@ public class Polynomial {
 	 * @param coeff  The co-efficients to use for this polynomial.
 	 */
 	public Polynomial(Complex[] coeff) {
-		// You need to fill in this function.
+		int finalIndex = coeff.length - 1;
+		while (finalIndex >= 0 && coeff[finalIndex].equals(new Complex()))
+			finalIndex--;
+
+		this.coeff = Arrays.copyOf(coeff, finalIndex + 1);
 	}
 
 	/**
 	 * Default constructor: sets the Polynomial to the zero polynomial.
 	 */
 	public Polynomial() {
-		// You need to fill in this function.
+		this(new Complex[] {});
 	}
 
 	// ========================================================
@@ -65,8 +71,7 @@ public class Polynomial {
 	 * @return  The coefficients array.
 	 */
 	public Complex[] getCoeff() {
-		// You need to fill in this method with the correct code.
-		return new Complex[] {};
+		return this.coeff;
 	}
 
 	/**
@@ -78,7 +83,7 @@ public class Polynomial {
 	 * For example: (-5.000+5.000i) + (2.000-2.000i)z + (-1.000+0.000i)z^2
 	 */
 	public String toString() {
-		// You need to fill in this method with the correct code.
+		// TODO
 		return "(-5.000+5.000i) + (2.000-2.000i)z + (-1.000+0.000i)z^2";
 	}
 
@@ -86,8 +91,8 @@ public class Polynomial {
 	 * Returns the degree of this polynomial.
 	 */
 	public int degree() {
-		// You need to fill in this method with the correct code.
-		return 0;
+		// If coeff == [] then we want degree 0, not -1
+		return Math.max(0, this.coeff.length - 1);
 	}
 
 	/**
@@ -97,7 +102,7 @@ public class Polynomial {
 	 * @return   The complex number P(z).
 	 */
 	public Complex evaluate(Complex z) {
-		// You need to fill in this method with the correct code.
+		// TODO
 		return new Complex();
 	}
 
@@ -107,6 +112,19 @@ public class Polynomial {
 	// ========================================================
 
 	public static void main(String[] args) {
-		// You can fill in this function with your own testing code.
+		System.out.println("Empty array: " + Arrays.toString(new Polynomial(new Complex[] {}).getCoeff()));
+		System.out.println("No args: " + Arrays.toString(new Polynomial().getCoeff()));
+		System.out.println("x^3 - 1: " + Arrays.toString(new Polynomial(
+			new Complex[] {new Complex(-1.0), new Complex(), new Complex(), new Complex(1.0)}
+		).getCoeff()));
+		System.out.println("x^2 - (2+i) with extra zeroes: " + Arrays.toString(new Polynomial(
+			new Complex[] {new Complex(-2.0, -1.0), new Complex(), new Complex(1.0), new Complex(), new Complex()}
+		).getCoeff()));
+
+		System.out.println("Degree of 0: " + new Polynomial().degree());
+		System.out.println("Degree of 1-3i: " + new Polynomial(new Complex[] {new Complex(1.0, -3.0)}).degree());
+		System.out.println("Degree of x^2 + (-2+i) x + 1-3i: " + new Polynomial(
+			new Complex[] {new Complex(1.0, -3.0), new Complex(-2.0, 1.0), new Complex(1.0)}
+		).degree());
 	}
 }

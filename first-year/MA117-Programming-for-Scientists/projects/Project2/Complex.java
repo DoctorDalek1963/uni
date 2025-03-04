@@ -51,7 +51,8 @@ public class Complex {
 	 * @param y  The initial value of the imaginary component.
 	 */
 	public Complex(double x, double y) {
-		// You need to fill in this method.
+		this.x = x;
+		this.y = y;
 	}
 
 	/**
@@ -60,14 +61,14 @@ public class Complex {
 	 * @param x  The initial real number to initialise to.
 	 */
 	public Complex(double x) {
-		// You need to fill in this method.
+		this(x, 0.0);
 	}
 
 	/**
 	 * Default constructor; initialise x and y to zero.
 	 */
 	public Complex() {
-		// You need to fill in this method.
+		this(0.0);
 	}
 
 	// ========================================================
@@ -80,8 +81,7 @@ public class Complex {
 	 * @return The real part of the complex number.
 	 */
 	public double getReal() {
-		// You need to fill in this method with the correct code.
-		return 0.0;
+		return this.x;
 	}
 
 	/**
@@ -90,8 +90,7 @@ public class Complex {
 	 * @return The imaginary part of the complex number
 	 */
 	public double getImag() {
-		// You need to fill in this method with the correct code.
-		return 0.0;
+		return this.y;
 	}
 
 	/**
@@ -100,7 +99,7 @@ public class Complex {
 	 * @param x  The replacement real part of z.
 	 */
 	public void setReal(double x) {
-		// You need to fill in this method.
+		this.x = x;
 	}
 
 	/**
@@ -109,7 +108,7 @@ public class Complex {
 	 * @param y  The replacement imaginary part of z.
 	 */
 	public void setImag(double y) {
-		// You need to fill in this method.
+		this.y = y;
 	}
 
 	// ========================================================
@@ -123,7 +122,6 @@ public class Complex {
 	 * @return A string describing the complex number.
 	 */
 	public String toString() {
-		// This function is complete.
 		return String.format("%.3f%s%.3fi", x, (y < 0.0 ? "-" : "+"), Math.abs(y));
 	}
 
@@ -134,8 +132,7 @@ public class Complex {
 	 * @return The square of the absolute value of this complex number.
 	 */
 	public double abs2() {
-		// You need to fill in this method with the correct code.
-		return 0.0;
+		return this.x * this.x + this.y * this.y;
 	}
 
 	/**
@@ -144,8 +141,7 @@ public class Complex {
 	 * @return The absolute value of the complex number.
 	 */
 	public double abs() {
-		// You need to fill in this method with the correct code.
-		return 0.0;
+		return Math.sqrt(this.abs2());
 	}
 
 	/**
@@ -154,8 +150,7 @@ public class Complex {
 	 * @return A Complex containing the conjugate.
 	 */
 	public Complex conjugate() {
-		// You need to fill in this method with the correct code.
-		return new Complex();
+		return new Complex(this.x, -this.y);
 	}
 
 	/**
@@ -165,8 +160,7 @@ public class Complex {
 	 * @return   The sum of this complex number with b.
 	 */
 	public Complex add(Complex b) {
-		// You need to fill in this method with the correct code.
-		return new Complex();
+		return new Complex(this.getReal() + b.getReal(), this.getImag() + b.getImag());
 	}
 
 	/**
@@ -175,8 +169,7 @@ public class Complex {
 	 * @return The complex number -z = -x-iy
 	 */
 	public Complex negate() {
-		// You need to fill in this method with the correct code.
-		return new Complex();
+		return new Complex(-this.x, -this.y);
 	}
 
 	/**
@@ -186,8 +179,7 @@ public class Complex {
 	 * @return        The product of alpha with z.
 	 */
 	public Complex multiply(double alpha) {
-		// You need to fill in this method with the correct code.
-		return new Complex();
+		return new Complex(alpha * this.x, alpha * this.y);
 	}
 
 	/**
@@ -197,8 +189,12 @@ public class Complex {
 	 * @return    The product of b with z.
 	 */
 	public Complex multiply(Complex b) {
-		// You need to fill in this method with the correct code.
-		return new Complex();
+		double x1 = this.getReal();
+		double y1 = this.getImag();
+		double x2 = b.getReal();
+		double y2 = b.getImag();
+
+		return new Complex(x1 * x2 - y1 * y2, x2 * y1 + x1 * y2);
 	}
 
 	/**
@@ -208,8 +204,16 @@ public class Complex {
 	 * @return   The division z/a.
 	 */
 	public Complex divide(Complex b) {
-		// You need to fill in this method with the correct code.
-		return new Complex();
+		return this.multiply(b.conjugate()).multiply(1.0 / b.abs2());
+	}
+
+	public boolean equals(Object obj) {
+		if (obj instanceof Complex) {
+			Complex other = (Complex) obj;
+			return this.getReal() == other.getReal() && this.getImag() == other.getImag();
+		} else {
+			return false;
+		}
 	}
 
 	// ========================================================
