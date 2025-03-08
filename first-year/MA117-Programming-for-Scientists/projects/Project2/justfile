@@ -10,3 +10,9 @@ compile-java:
 # run Project2 to test everything
 run class="Project2": compile-java
 	java -enableassertions -classpath out {{class}}
+
+_pre-build: run
+
+# build and rename main.pdf to Fractal.pdf
+rename: build
+	mv main.pdf Fractal.pdf

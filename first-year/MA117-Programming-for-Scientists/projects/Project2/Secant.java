@@ -35,7 +35,7 @@ public class Secant {
 	 * Secant. Ensure this is *small* (e.g. at most 50) otherwise your
 	 * program may appear to freeze.
 	 */
-	public static final int MAXITER = 30;
+	public static final int MAXITER = 50;
 
 	/**
 	 * The tolerance that should be used throughout this project. Note that

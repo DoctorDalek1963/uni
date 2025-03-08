@@ -94,7 +94,7 @@ public class Project2 {
 	 * Defines the width (in pixels) of the BufferedImage and hence the
 	 * resulting image.
 	 */
-	public static final int NUMPIXELS = 1000;
+	public static final int NUMPIXELS = 2000;
 
 	// ========================================================
 	// Constructor function.
@@ -205,9 +205,9 @@ public class Project2 {
 		// Here is some example code which generates the two images seen in
 		// figure 1 of the formulation.
 		Polynomial p = new Polynomial(new Complex[] {
-			new Complex(-1.0, 0.0), new Complex(), new Complex(), new Complex(1.0, 0.0)
+			new Complex(-16.0), new Complex(-8.0), new Complex(-4.0), new Complex(2.0), new Complex(), new Complex(1.0)
 		});
-		Project2 project = new Project2(p, new Complex(-1.0, 1.0), 2.0);
+		Project2 project = new Project2(p, new Complex(-3.0, 3.0), 6.0);
 
 		project.createFractal(false);
 		project.saveFractal("fractal-light.png");
