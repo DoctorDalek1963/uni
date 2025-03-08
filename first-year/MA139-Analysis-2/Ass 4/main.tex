@@ -38,16 +38,27 @@ F^{(5)} &= F^{(4)}(x) + \f16 x \e^x + \f16 \e^x\\[1ex]
 F^{(n)}(x) &= F^{(n-1)}(x) + \f{n - 4 + x}6 \e^x
 \end{align*}
 
+We want to prove that $F^{(4)}(x) \ge 0$ for all $x \ge 0$. We have \begin{align*}
+F^{(4)}(x) &= F^{(3)} + \f16 x \e^x\\[1ex]
+&= F''(x) + \l( - \f16 + \f16 x \r) \e^x + \f16 x \e^x\\[1ex]
+&= F''(x) + \l( - \f16 + \f13 x \r) \e^x\\[1ex]
+&= F'(x) + \l( - \f13 + \f16 x - \f16 + \f13 x \r) \e^x\\[1ex]
+&= F'(x) + \l( - \f12 + \f12 x \r) \e^x\\[1ex]
+&= F(x) + \l( - \f12 + \f16 x - \f12 + \f12 x \r) \e^x\\[1ex]
+&= F(x) + \l( - 1 + \f23 x \r) \e^x\\[1ex]
+&= \l( 1 - \f12 x + \f1{12} x^2 - 1 + \f23 x \r) \e^x\\[1ex]
+&= \f1{12} \e^x \l( 2 x^2 + x \r)
+\end{align*}
+Clearly $\df1{12} \e^x > 0$ for all $x$ and $2 x^2 + x \ge 0$ for all $x \ge 0$, therefore $F^{(4)}(x) \ge 0$ for all $x \ge 0$.
+
 Now applying Taylor's theorem with Lagrange remainder around 0, we get \begin{align*}
 F(x) &= F(0) + F'(0) x + \f{F''(0) x^2}2 + \f{F^{(3)}(0) x^3}6 + \f{F^{(4)}(t) x^4}{24}\\[1ex]
 &= 1 + \f12 x + \f16 \f{x^2}2 + 0 x^3 + \f{F^{(4)}(t) x^4}{24}\\[1ex]
-&= 1 + \f12 x + \f1{12} x^2 + \f1{24} \l( F^{(3)}(t) + \f16 t \e^t \r)
+&= 1 + \f12 x + \f1{12} x^2 + \f1{24} x^4 F^{(4)}(t)
 \end{align*}
 for some $t$ between $0$ and $x$. Assuming $x \ge 0$, then $0 \le t \le x$.
 
-% TODO: Prove $F^{(n)}(t) \ge 0$ for by induction?
-
-Therefore $\ds F(x) \ge 1 + \f12 x + \f1{12} x^2$ for all $x \ge 0$.
+Since $F^{(4)}(t) \ge 0$ for all $t \ge 0$, we get $\ds F(x) \ge 1 + \f12 x + \f1{12} x^2$ for all $x \ge 0$, as required.
 
 \subsection{~}
 
@@ -57,7 +68,8 @@ Since the quadratic equation has no real roots, and the $x^2$ coefficient is pos
 
 \subsection{~}
 
-% TODO: Prove this
+In part \textbf{(a)}, we showed that for all $x \ge 0$, $$\e^x \l( 1 - \f12 x + \f1{12} x^2 \r) \ge 1 + \f12 x + \f1{12} x^2$$
+The quadratic in brackets on the LHS has discriminant $\f14 - \f13 < 0$, and positive coefficient of $x^2$, so that term in brackets is always strictly positive, so we can divide by it.
 
 Therefore, for $x \ge 0$, $$\e^x \ge \f{1 + \f12 x + \f1{12} x^2}{1 - \f12 x + \f1{12} x^2}$$
 
@@ -75,7 +87,12 @@ Therefore $\e \ge \df{19}7$ as required.
 
 Let $f, g : [a, b] \to \R$ be Riemann integrable functions which agree except at finitely many points in the interval, so $f(x) = g(x) \ \fa x \in \R \setminus \{\enum c1n\}$.
 
-% TODO: Show integrals are the same
+Since $f$ and $g$ are integrable, there exist partitions $P$ and $Q$ of $[a,b]$ such that for any $\varepsilon > 0$, \begin{align*}
+U(f, P) - L(f, P) &< \varepsilon\\[1ex]
+U(g, Q) - L(g, Q) &< \varepsilon
+\end{align*}
+
+% TODO: Show integrals are the same. Reverse integrability into closeness of upper and lower sums, then apply common refinement?
 
 % }}}
 
