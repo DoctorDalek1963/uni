@@ -94,7 +94,7 @@ public class Project2 {
 	 * Defines the width (in pixels) of the BufferedImage and hence the
 	 * resulting image.
 	 */
-	public static final int NUMPIXELS = 400;
+	public static final int NUMPIXELS = 1000;
 
 	// ========================================================
 	// Constructor function.
@@ -110,7 +110,11 @@ public class Project2 {
 	 * @param width   The width of the square to image.
 	 */
 	public Project2(Polynomial p, Complex origin, double width) {
-		// You need to fill in this function with the correct code.
+		this.iterator = new Secant(p);
+		this.origin = origin;
+		this.width = width;
+		this.roots = new ArrayList<Complex>();
+		this.setupFractal();
 	}
 
 	// ========================================================
@@ -122,7 +126,7 @@ public class Project2 {
 	 * roots ArrayList.
 	 */
 	public void printRoots() {
-		// You need to fill in this function.
+		System.out.println(this.roots.toString());
 	}
 
 	/**
@@ -130,7 +134,6 @@ public class Project2 {
 	 * @return an ArrayList of roots for the polynomial
 	 */
 	public ArrayList<Complex> getRoots() {
-		// This method is complete.
 		return roots;
 	}
 
@@ -141,7 +144,9 @@ public class Project2 {
 	 * @return The index of root within roots (-1 if the root is not found)
 	 */
 	public int index(Complex root) {
-		// You need to fill in this function.
+		for (int i = 0; i < this.roots.size(); i++) {
+			if (this.roots.get(i).sub(root).abs2() < Secant.TOL2) return i;
+		}
 		return -1;
 	}
 
@@ -154,8 +159,8 @@ public class Project2 {
 	 *
 	 */
 	public Complex pixelToComplex(int i, int j) {
-		// You need to fill in this function.
-		return new Complex();
+		double dz = this.width / (double)NUMPIXELS;
+		return this.origin.add(new Complex((double)i * dz, -(double)j * dz));
 	}
 
 	// ========================================================
@@ -167,7 +172,29 @@ public class Project2 {
 	 * to the image for this fractal.
 	 */
 	public void createFractal(boolean colourIterations) {
-		// You need to fill in this function.
+		this.colourIterations = colourIterations;
+
+		for (int j = 0; j < NUMPIXELS; j++) {
+			for (int k = 0; k < NUMPIXELS; k++) {
+				Complex z = this.pixelToComplex(j, k);
+				this.iterator.iterate(new Complex(), z);
+
+				if (this.iterator.getError().equals(Secant.Error.OK)) {
+					Complex root = this.iterator.getRoot();
+					int idx = this.index(root);
+
+					if (idx == -1) {
+						this.roots.add(root);
+						idx = this.roots.size() - 1;
+					}
+
+					this.colourPixel(j, k, idx, this.iterator.getNumIterations());
+				} else {
+					// We failed to find a root from this point, but the pixel will be coloured
+					// black by default, so it's okay
+				}
+			}
+		}
 	}
 
 	// ========================================================
@@ -177,12 +204,11 @@ public class Project2 {
 	public static void main(String[] args) {
 		// Here is some example code which generates the two images seen in
 		// figure 1 of the formulation.
-		Complex[] coeff = new Complex[] { new Complex(-1.0, 0.0), new Complex(), new Complex(), new Complex(1.0, 0.0) };
-		Polynomial p = new Polynomial(coeff);
+		Polynomial p = new Polynomial(new Complex[] {
+			new Complex(-1.0, 0.0), new Complex(), new Complex(), new Complex(1.0, 0.0)
+		});
 		Project2 project = new Project2(p, new Complex(-1.0, 1.0), 2.0);
 
-		// The following lines of code will raise Exceptions initially
-		// because the createFractal and the constructor are incomplete
 		project.createFractal(false);
 		project.saveFractal("fractal-light.png");
 		project.createFractal(true);

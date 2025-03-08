@@ -35,7 +35,7 @@ public class Secant {
 	 * Secant. Ensure this is *small* (e.g. at most 50) otherwise your
 	 * program may appear to freeze.
 	 */
-	public static final int MAXITER = 20;
+	public static final int MAXITER = 30;
 
 	/**
 	 * The tolerance that should be used throughout this project. Note that
@@ -48,7 +48,7 @@ public class Secant {
 	/**
 	 * The tolerance squared, used for more efficicent comparisons against `abs2()`.
 	 */
-	private static final double TOL2 = TOL * TOL;
+	public static final double TOL2 = TOL * TOL;
 
 	/**
 	 * The polynomial we wish to apply the Secant method to.
