@@ -46,10 +46,14 @@ public class Secant {
 	public static final double TOL = 1.0e-10;
 
 	/**
+	 * The tolerance squared, used for more efficicent comparisons against `abs2()`.
+	 */
+	private static final double TOL2 = TOL * TOL;
+
+	/**
 	 * The polynomial we wish to apply the Secant method to.
 	 */
 	private Polynomial f;
-
 
 	/**
 	 * A root of the polynomial f corresponding to the root found by the
@@ -85,7 +89,8 @@ public class Secant {
 	 * @param p  The polynomial used for Secant.
 	 */
 	public Secant(Polynomial p) {
-		// You need to fill in this method.
+		this.f = p;
+		this.numIterations = 0;
 	}
 
 	// ========================================================
@@ -96,32 +101,28 @@ public class Secant {
 	 * Returns the current value of the err instance variable.
 	 */
 	public Error getError() {
-		// You need to fill in this method with the correct code.
-		return Error.OK;
+		return this.err;
 	}
 
 	/**
 	 * Returns the current value of the numIterations instance variable.
 	 */
 	public int getNumIterations() {
-		// You need to fill in this method with the correct code.
-		return 0;
+		return this.numIterations;
 	}
 
 	/**
 	 * Returns the current value of the root instance variable.
 	 */
 	public Complex getRoot() {
-		// You need to fill in this method with the correct code.
-		return new Complex();
+		return this.root;
 	}
 
 	/**
 	 * Returns the polynomial associated with this object.
 	 */
 	public Polynomial getF() {
-		// You need to fill in this method with the correct code.
-		return new Polynomial();
+		return this.f;
 	}
 
 	// ========================================================
@@ -145,7 +146,30 @@ public class Secant {
 	 * @param z0,z1  The initial starting points for the algorithm.
 	 */
 	public void iterate(Complex z0, Complex z1) {
-		// You need to fill in this method.
+		for (int i = 0; i < MAXITER; i++) {
+			Complex fz0 = this.f.evaluate(z0);
+			Complex fz1 = this.f.evaluate(z1);
+
+			// If the roots have converged
+			if (z1.sub(z0).abs2() < TOL2 && fz1.abs2() < TOL2) {
+				this.root = z1;
+				this.numIterations = i;
+				this.err = Error.OK;
+				return;
+			}
+
+			// If the denominator is zero
+			Complex funcDiff = fz1.sub(fz0);
+			if (funcDiff.abs2() < TOL2) {
+				this.err = Error.ZERO;
+				return;
+			}
+
+			Complex z2 = z1.sub(fz1.multiply((z1.sub(z0)).divide(funcDiff)));
+			z0 = z1;
+			z1 = z2;
+		}
+		this.err = Error.DNF;
 	}
 
 	// ========================================================
@@ -159,7 +183,7 @@ public class Secant {
 		Secant s = new Secant(p);
 
 		s.iterate(new Complex(), new Complex(1.0, 1.0));
-		System.out.println(s.getNumIterations()); // 12
-		System.out.println(s.getError()); // OK
+		System.out.println(s.getNumIterations() + " (should be 12)");
+		System.out.println(s.getError() + " (should be OK)");
 	}
 }

@@ -173,6 +173,16 @@ public class Complex {
 	}
 
 	/**
+	 * Subtracts a complex number from this one.
+	 *
+	 * @param b  The complex number to subtract from this one.
+	 * @return   The difference of this complex number and b.
+	 */
+	public Complex sub(Complex b) {
+		return this.add(b.negate());
+	}
+
+	/**
 	 * Multiplies this complex number by a constant.
 	 *
 	 * @param alpha   The constant to multiply by.
@@ -253,6 +263,9 @@ public class Complex {
 		System.out.println("neg(B)   = " + B.negate());
 		System.out.println("A+B      = " + A.add(B));
 		System.out.println("A+C      = " + A.add(C));
+		System.out.println("A-B      = " + A.sub(B));
+		System.out.println("A-C      = " + A.sub(C));
+		System.out.println("B-C      = " + B.sub(C));
 		System.out.println("2*A      = " + A.multiply(2.0));
 		System.out.println("A*C      = " + A.multiply(C));
 		System.out.println("B*C      = " + B.multiply(C));
