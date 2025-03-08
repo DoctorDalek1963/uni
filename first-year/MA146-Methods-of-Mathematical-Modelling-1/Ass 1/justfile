@@ -6,6 +6,10 @@ _default:
 	@just --list
 
 build:
+	#!/usr/bin/env nix-shell
+	#! nix-shell -i bash -p imagemagick pdftk
+	set -x
+
 	mkdir -p .tmp_pdfs
 	magick imgs/Q2-e.png .tmp_pdfs/Q2-e.pdf
 	magick imgs/Q2-f.png .tmp_pdfs/Q2-f.pdf
