@@ -85,14 +85,36 @@ Therefore $\e \ge \df{19}7$ as required.
 % {{{ Q2
 \newquestion{2}
 
-Let $f, g : [a, b] \to \R$ be Riemann integrable functions which agree except at finitely many points in the interval, so $f(x) = g(x) \ \fa x \in \R \setminus \{\enum c1n\}$.
+Let $f, g : [a, b] \to \R$ be Riemann integrable functions which agree except at finitely many points in the interval, so $f(x) = g(x) \ \fa x \in [a,b] \setminus \{\enum c1n\}$.
+
+% TODO: Make this argument rigorous?
 
 Since $f$ and $g$ are integrable, there exist partitions $P$ and $Q$ of $[a,b]$ such that for any $\varepsilon > 0$, \begin{align*}
-U(f, P) - L(f, P) &< \varepsilon\\[1ex]
+U(f, P) - L(f, P) &< \varepsilon\\
 U(g, Q) - L(g, Q) &< \varepsilon
 \end{align*}
 
-% TODO: Show integrals are the same. Reverse integrability into closeness of upper and lower sums, then apply common refinement?
+Since $f$ and $g$ only disagree at finitely many points $\enum c1n$, for each $c_i$, either $f$ or $g$ (or both) must be discontinuous at $c_i$. Therefore either $P$ or $Q$ must \enquote*{cut out the bad bit} at $c_i$. Therefore we can take a common refinement $R$ of $P$ and $Q$, which will \enquote*{cut out the bad bits} at all $\enum c1n$.
+
+Say for each $c_i$ we choose $\delta_i$ such that $[c_i - \delta_i, c_i + \delta_i]$ is one of the intervals in $R$, evidently the one containing $c_i$. Then for any $\varepsilon$, we can choose all $\delta_i$ small enough such that the rectangles in the upper and lower sums will have arbitrarily small area.
+
+Let's say the sum of all the rectangles containing each $c_i$ for the upper sum of $f$ is $\Gamma_f$ and the sum of all the rectangles containing each $c_i$ for the lower sum of $f$ is $\gamma_f$. Let's also define $\Gamma_g$ and $\gamma_g$ similarly for $g$.
+
+Let $S$ be the partition $R$ but excluding each of the intervals containing $\enum c1n$. Then \begin{align*}
+U(f, R) &= U(f, S) + \Gamma_f\\
+U(g, R) &= U(g, S) + \Gamma_g\\
+L(f, R) &= L(f, S) + \gamma_f\\
+L(g, R) &= L(g, S) + \gamma_g
+\end{align*}
+
+Since $f$ and $g$ agree at all points in $S$, $U(f, S) = U(g, S)$.
+
+We can choose all the $\delta_i$ accordingly to make $\Gamma_f = \Gamma_g = \Gamma$ and $\gamma_f = \gamma_g = \gamma$ and make both arbitrarily small, so \begin{align*}
+U(f, R) &= U(f, S) + \Gamma = U(g, R)\\
+L(f, R) &= L(f, S) + \gamma = L(g, R)
+\end{align*}
+
+Since the upper sums and lower sums for $f$ and $g$ both agree on the partition $S$, we can conclude that $\ds \int_a^b f = \int_a^b g$.
 
 % }}}
 
@@ -100,7 +122,16 @@ U(g, Q) - L(g, Q) &< \varepsilon
 \newquestion{3}
 
 We want to find $\ds \llim{n \to \infty} \f1n \smlm_{k=1}^n \log \l( 1 + \f kn \r)$.
-% NOTE: hint is HW8 Q4
+
+This can be viewed as $\llim{n \to \infty} U(f, P_n)$ where $f(x) = \log(1 + x)$ and $P_n$ is the partition of $[0,1]$ into $n$ equal intervals, since the area of each rectangle is the width $\f1n$ times the height $f(x_i)$, and since $f$ is increasing and the sum always takes $f(x_i)$ on the right hand side of the interval, we get the upper sum.
+
+% TODO: Elaborate on HW8 Q4?
+
+Note that $f$ is continuous and so by Homework~8 Question~4, this upper sum converges to the integral \begin{align*}
+\intlim 01 {\log(1 + x)} x &= \big[ (1+x) \log (1+x) - x \big]_0^1\\[1ex]
+&= 2 \log 2 - 1 - \log 1 - 0\\[1ex]
+&= 2 \log 2 - 1 % Correct answer as per SageMath
+\end{align*}
 
 % }}}
 
