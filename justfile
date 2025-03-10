@@ -51,3 +51,6 @@ rename: build
 	ass_num = re.match(r".*?(\d+)$", ass_dir).group(1)
 
 	os.rename("main.pdf", f"Dyson_Dyson_5503449_{course_code}_Assignment_{ass_num}.pdf")
+
+# build a fresh PDF from scratch and rename it
+finish: clean rename
