@@ -29,14 +29,75 @@ x(\theta) &= (1-r) \cos \theta + r \cos \l( \f{1-r}{r} \theta \r) \\[1ex]
 y(\theta) &= (1-r) \sin \theta - r \sin \l( \f{1-r}{r} \theta \r)
 \end{align*}
 where $r = \df1k$ and $k \in \N$.
-% Therefore $C$ is also parametrised by \begin{align*}
-% x(\theta) &= \l( 1 - \f1k \r) \cos \theta + \f1k \cos \l( (k-1) \theta \r) \\[1ex]
-% y(\theta) &= \l( 1 - \f1k \r) \sin \theta - \f1k \sin \l( (k-1) \theta \r)
-% \end{align*}
+Therefore $C$ is also parametrised by \begin{align*}
+x(\theta) &= \l( 1 - \f1k \r) \cos \theta + \f1k \cos \l( (k-1) \theta \r) \\[1ex]
+y(\theta) &= \l( 1 - \f1k \r) \sin \theta - \f1k \sin \l( (k-1) \theta \r)
+\end{align*}
 
 Also let $D$ be the area enclosed by $C$. We want the area of $D$, which is $\ds \iint_D \d x \d y$. Green's Theorem states that $$\iint_D \l( \pdd Qx - \pdd Py \r) \d x \d y = \oint_C \l( P \d x + Q \d y \r)$$
 
-So if we just choose $P$ and $Q$ such that $\ds \pdd Qx - \pdd Py = 1$, then we can apply Green's Theorem to simplify the double integral to a single integral. We will choose $Q(x, y) = x$ and $P(x, y) = 0$. Therefore the area is $$\oint_C x \d y = \oint_C x(\theta) \dd y\theta \d \theta$$
+So if we just choose $P$ and $Q$ such that $\ds \pdd Qx - \pdd Py = 1$, then we can apply Green's Theorem to simplify the double integral to a single integral. We will choose $Q(x, y) = x$ and $P(x, y) = 0$.
+
+Therefore the area is \begin{align*}
+\oint_C x \d y &= \oint_C x(\theta) \dd y\theta \d \theta\\[1ex]
+&= \int_0^{2\pi} \l(
+	\f{k-1}k \cos \theta + \f1k \cos ((k-1) \theta) \r)
+	\\ &\qquad \times \l(
+		\f{k-1}k \cos \theta
+		- \f{k-1}k \cos ((k-1) \theta)
+	\r) \d \theta\\[1ex]
+%
+&= \int_0^{2\pi} \bigg(
+	\f{(k-1)^2}{k^2} \cos^2 \theta
+	- \f{(k-1)^2}{k^2} \cos \theta \cos ((k-1) \theta)
+	\\ &\qquad + \f{k-1}{k^2} \cos \theta \cos ((k-1) \theta)
+	- \f{k-1}{k^2} \cos^2 ((k-1) \theta)
+\bigg) \d \theta\\[1ex]
+%
+&= \f{k-1}{k^2} \int_0^{2\pi} \Big(
+	(k-1) \cos^2 \theta
+	+ (2-k) \cos \theta \cos ((k-1) \theta)
+	\\ &\qquad - \cos^2 ((k-1) \theta)
+\Big) \d \theta\\[1ex]
+%
+&= \f{k-1}{2k^2} \int_0^{2\pi} \Big(
+	(k-1) (\cos 2\theta + 1)
+	+ 2(2-k) \cos \theta \cos ((k-1) \theta)
+	\\ &\qquad - \cos (2(k-1) \theta + 1)
+\Big) \d \theta\\[1ex]
+%
+&= \f{k-1}{2k^2} \l[
+	\f{k-1}2 \sin 2\theta
+	- \f1{2k-2} \sin ((2k-2) \theta)
+	+ (k-2) \theta
+\r]_0^{2\pi}
+	\\ &\qquad + \f{k-1}{2k^2} \int_0^{2\pi}
+		2(2-k) \cos \theta \cos ((k-1) \theta)
+	\d \theta\\[1ex]
+%
+&= \f{k-1}{2k^2} (k-2) 2\pi
+	\\ &\qquad + \f{k-1}{2k^2} \int_0^{2\pi} \l(
+		\cos \l( (k-1) \theta + \theta \r) + \cos \l( (k-1) \theta - \theta \r)
+	\r) \d \theta\\[1ex]
+%
+&= \f{\pi (k-1) (k-2)}{k^2}
+	+ \f{k-1}{2k^2} \int_0^{2\pi} \l(
+		\cos k \theta + \cos \l( (k-2) \theta \r)
+	\r) \d \theta\\[1ex]
+%
+&= \f{\pi (k-1) (k-2)}{k^2}
+	+ \f{k-1}{2k^2} \l[ \f1k \sin k \theta + \f1{k-2} \sin ((k-2) \theta) \r]_0^{2\pi}\\[1ex]
+%
+&= \f{\pi (k-1) (k-2)}{k^2}
+\end{align*}
+
+% The correct answer as given by \href{https://www.sagemath.org/}{SageMath} is \begin{align*}
+% &\phantom{=}\ \ \pi - \f{3\pi}k + \f{2\pi}{k^2}\\[1ex] % From symbolic SageMath
+% &= \f{\pi (k^2 - 3k + 2)}{k^2}\\[1ex]
+% &= \f{\pi (k-1) (k-2)}{k^2} % From observation of specific results from SageMath
+% \end{align*}
+
+See also \href{https://www.desmos.com/calculator/lt9gbsamu1}{this Desmos graph} that I made while doing this question.
 
 % }}}
 
