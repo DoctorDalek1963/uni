@@ -16,3 +16,7 @@ _pre-build: run
 # build and rename main.pdf to Fractal.pdf
 rename: build
 	mv main.pdf Fractal.pdf
+
+# remove all build artifacts
+clean: _clean_latex
+	rm -rfv out/ fractal-*.png

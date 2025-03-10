@@ -23,11 +23,19 @@ _pre-build:
 # build the assignment in the current directory (assuming main.tex)
 build: _pre-build _build
 
-# remove all build artifacts and clean things up
+# Like with the build recipes, these clean recipes allow individual assignments
+# (like coding projects) to override `clean` while also defering to
+# _clean_latex when needed
+
+# just clean the LaTeX
 [no-cd]
-clean:
+_clean_latex:
 	latexmk -c -C
 	texhash
+
+# remove all build artifacts
+[no-cd]
+clean: _clean_latex
 
 # open ./main.pdf to view
 view: build

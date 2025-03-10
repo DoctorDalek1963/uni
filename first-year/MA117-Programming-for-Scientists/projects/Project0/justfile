@@ -10,3 +10,7 @@ compile-java:
 # run Project0 to test Fraction
 run: compile-java
 	java -enableassertions -classpath out Project0
+
+# remove all build artifacts
+clean:
+	rm -rfv out/

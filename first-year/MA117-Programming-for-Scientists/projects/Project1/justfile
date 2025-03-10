@@ -10,3 +10,7 @@ compile-java:
 # run Project1 to test everything
 run: compile-java
 	java -enableassertions -classpath out Project1
+
+# remove all build artifacts
+clean:
+	rm -rfv out/
