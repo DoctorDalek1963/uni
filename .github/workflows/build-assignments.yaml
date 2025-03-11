@@ -1,0 +1,14 @@
+name: Build every assignment
+
+on: push
+
+jobs:
+  build-assignments:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nixbuild/nix-quick-install-action@v30
+      - uses: DeterminateSystems/magic-nix-cache-action@v9
+
+      - name: Build every assignment
+        run: nix-shell --run "just ci-build-all"

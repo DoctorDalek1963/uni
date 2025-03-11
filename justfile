@@ -114,3 +114,34 @@ new-justfile:
 
 	with open("justfile", "w") as f:
 		f.write(text.replace("#REL_PATH_TO_ROOT#", str(rel_path)))
+
+# build every assignment for CI
+ci-build-all:
+	#!/usr/bin/env python3
+
+	import os
+	import subprocess
+
+	ass_dirs = [
+		dir
+		for (dir, _dirs, files) in os.walk("{{source_directory()}}")
+		if "main.tex" in files and "templates" not in dir
+	]
+
+	failed_dirs = []
+
+	for dir in ass_dirs:
+		print(f"\n\n===== Building {dir} =====\n\n")
+		child = subprocess.run(
+			["direnv exec . just build"], cwd=dir, shell=True
+		)
+
+		if child.returncode != 0:
+			failed_dirs.append(dir)
+
+	if len(failed_dirs) > 0:
+		print("\n\n===== FAILED DIRECTORIES: =====\n")
+		print(*failed_dirs, sep="\n")
+		exit(1)
+	else:
+		print("\n\n===== All builds successful! =====")
