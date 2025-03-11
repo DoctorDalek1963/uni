@@ -1,5 +1,7 @@
 import "../../justfile"
 
+set allow-duplicate-recipes
+
 _default:
 	@just --list
 
