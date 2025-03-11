@@ -11,7 +11,7 @@ in
     buildInputs =
       [texlive]
       ++ (with pkgs; [
-        direnv # Only here for CI
+        nix-direnv # Only here for CI
         fd
         inotify-tools
         just
