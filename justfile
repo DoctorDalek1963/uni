@@ -62,3 +62,27 @@ rename: build
 
 # build a fresh PDF from scratch and rename it
 finish: clean rename
+
+[no-cd]
+new-ass:
+	#!/usr/bin/env python3
+	import os
+	import re
+
+	os.chdir("{{invocation_directory()}}")
+	[course_dir, ass_dir] = os.getcwd().split("/")[-2:]
+
+	course_short, course_full = re.match(r"([A-Z0-9]{5})-(.*)", course_dir).group(1, 2)
+	ass_num = re.match(r".*?(\d+)$", ass_dir).group(1)
+
+	with open("{{source_directory()}}/templates/ass/main.tex", "r") as f:
+		text = f.read()
+
+	text = (
+		text.replace("#COURSE-SHORT#", course_short)
+		.replace("#COURSE-FULL#", f"{course_short} {course_full.replace("-", " ")}")
+		.replace("#NUMBER#", ass_num)
+	)
+
+	with open("{{invocation_directory()}}/main.tex", "w") as f:
+		f.write(text)
