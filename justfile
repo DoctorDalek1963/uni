@@ -120,6 +120,7 @@ ci-build-all:
 	#!/usr/bin/env python3
 
 	import os
+	import sys
 	import subprocess
 
 	ass_dirs = [
@@ -132,6 +133,8 @@ ci-build-all:
 
 	for dir in ass_dirs:
 		print(f"\n\n===== Building {dir} =====\n\n")
+		sys.stdout.flush()
+
 		child = subprocess.run(
 			["direnv allow && direnv exec . just build"], cwd=dir, shell=True
 		)
