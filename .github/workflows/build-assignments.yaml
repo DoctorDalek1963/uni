@@ -10,5 +10,10 @@ jobs:
       - uses: nixbuild/nix-quick-install-action@v30
       - uses: DeterminateSystems/flakehub-cache-action@v1
 
+      - name: Setup nixpkgs
+        run: |
+          nix-channel --add https://nixos.org/channels/nixos-24.11 nixos-24.11
+          nix-channel --update
+
       - name: Build every assignment
         run: nix-shell --run "just ci-build-all"
