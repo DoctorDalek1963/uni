@@ -9,6 +9,7 @@ alias c := clean
 alias r := rename
 alias f := finish
 alias na := new-ass
+alias nj := new-justfile
 
 _default:
 	@just --list
@@ -95,3 +96,21 @@ new-ass:
 
 	with open("main.tex", "w") as f:
 		f.write(text)
+
+
+# create a new justfile in the current directory for specific additions and overrides
+[no-cd]
+new-justfile:
+	#!/usr/bin/env python3
+
+	from pathlib import PurePath
+
+	with open("{{source_directory()}}/templates/justfile", "r") as f:
+		text = f.read()
+
+	rel_path = PurePath("{{source_directory()}}").relative_to(
+		PurePath("{{invocation_directory()}}"), walk_up=True
+	)
+
+	with open("justfile", "w") as f:
+		f.write(text.replace("#REL_PATH_TO_ROOT#", str(rel_path)))

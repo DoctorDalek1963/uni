@@ -1,0 +1,14 @@
+import "#REL_PATH_TO_ROOT#/justfile"
+
+set allow-duplicate-recipes
+
+_default:
+	@just --list
+
+_pre-build:
+	nix-shell code/shell.nix --run ./code/SCRIPT_NAME.py
+	@just _build
+
+# remove all build artifacts
+clean: _clean_latex
+	rm -rfv TEMP_DIRS

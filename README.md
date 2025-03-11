@@ -18,3 +18,6 @@ Run `just build` to build once, `just view` to build and view, or `just watch`
 to view and rebuild on any changes.
 
 Once the assignment is complete, run `just finish` to clean, build, and rename the PDF.
+
+If you need to override any recipe dependencies, run `just new-justfile` to
+create a new justfile with the necessary setup for overriding recipes.
