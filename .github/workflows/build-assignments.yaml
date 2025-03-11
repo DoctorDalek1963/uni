@@ -15,4 +15,4 @@ jobs:
       - uses: DeterminateSystems/flakehub-cache-action@v1
 
       - name: Build every assignment
-        run: nix-shell -p direnv -p ./. --run "just ci-build-all"
+        run: nix-shell --run "just ci-build-all"
