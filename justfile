@@ -138,7 +138,7 @@ ci-build-all:
 
 	failed_dirs = []
 
-	for dir in ass_dirs:
+	for dir in sorted(ass_dirs):
 		print(f"\n\n===== Building {dir} =====\n\n")
 		sys.stdout.flush()
 
