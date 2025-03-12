@@ -120,13 +120,20 @@ ci-build-all:
 	#!/usr/bin/env python3
 
 	import os
-	import sys
 	import subprocess
+	import sys
 
 	ass_dirs = [
 		dir
 		for (dir, _dirs, files) in os.walk("{{source_directory()}}")
 		if "main.tex" in files and "templates" not in dir
+	] + [
+		os.path.join("{{source_directory()}}", p)
+		for p in [
+			"first-year/MA146-Methods-of-Mathematical-Modelling-1/Ass 1",
+			"first-year/MA117-Programming-for-Scientists/projects/Project0",
+			"first-year/MA117-Programming-for-Scientists/projects/Project1",
+		]
 	]
 
 	failed_dirs = []

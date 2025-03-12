@@ -14,3 +14,6 @@ run: compile-java
 # remove all build artifacts
 clean:
 	rm -rfv out/
+
+# only here for CI to know what to check
+build: compile-java
