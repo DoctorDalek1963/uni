@@ -6,14 +6,18 @@
       cancel
       csquotes
     ]);
+
+  python = pkgs.python3.withPackages (p: [p.rich]);
 in
   pkgs.mkShell {
     buildInputs =
-      [texlive]
+      [
+        texlive
+        python
+      ]
       ++ (with pkgs; [
         fd
         inotify-tools
         just
-        python3
       ]);
   }
