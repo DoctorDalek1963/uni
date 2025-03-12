@@ -79,6 +79,7 @@ new-ass:
 	#!/usr/bin/env python3
 	import os
 	import re
+
 	from rich import print
 
 	with open("{{source_directory()}}/templates/ass/main.tex", "r") as f:
@@ -127,6 +128,8 @@ ci-build-all:
 	import subprocess
 	import sys
 
+	import rich
+
 	ass_dirs = [
 		dir
 		for (dir, _dirs, files) in os.walk("{{source_directory()}}")
@@ -143,7 +146,7 @@ ci-build-all:
 	failed_dirs = []
 
 	for dir in sorted(ass_dirs):
-		print(f"\n\n===== Building {dir} =====\n\n")
+		rich.print(f"\n\n[bold]===== [magenta]Building {dir}[/magenta] =====[/bold]\n\n")
 		sys.stdout.flush()
 
 		child = subprocess.run(
@@ -154,8 +157,8 @@ ci-build-all:
 			failed_dirs.append(dir)
 
 	if len(failed_dirs) > 0:
-		print("\n\n===== FAILED DIRECTORIES: =====\n")
+		rich.print("\n\n[bold]===== [red]FAILED DIRECTORIES[/red]: =====[/bold]\n")
 		print(*failed_dirs, sep="\n")
 		exit(1)
 	else:
-		print("\n\n===== All builds successful! =====")
+		rich.print("\n\n[bold]===== [green]All builds successful![/green] =====[/bold]")
