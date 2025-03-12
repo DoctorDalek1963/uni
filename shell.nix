@@ -13,7 +13,6 @@ in
       ++ (with pkgs; [
         # Only here for CI
         direnv
-        nix-direnv
 
         fd
         inotify-tools

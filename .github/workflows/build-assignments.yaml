@@ -19,5 +19,8 @@ jobs:
 
       - uses: DeterminateSystems/flakehub-cache-action@v1
 
+      - name: Remove nix-direnv
+        run: nix-shell -p fd -p sd --run "fd -H .envrc -X sd -F nix_direnv_manual_reload ''"
+
       - name: Build every assignment
         run: nix-shell --run "just ci-build-all"
