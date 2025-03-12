@@ -10,7 +10,7 @@
  */
 
 class MatrixException extends RuntimeException {
-    public MatrixException(String msg) {
-        super(msg);
-    }
+	public MatrixException(String msg) {
+		super(msg);
+	}
 }
