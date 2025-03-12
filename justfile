@@ -79,20 +79,24 @@ new-ass:
 	#!/usr/bin/env python3
 	import os
 	import re
-
-	[course_dir, ass_dir] = os.getcwd().split("/")[-2:]
-
-	course_short, course_full = re.match(r"([A-Z0-9]{5})-(.*)", course_dir).group(1, 2)
-	ass_num = re.match(r".*?(\d+)$", ass_dir).group(1)
+	from rich import print
 
 	with open("{{source_directory()}}/templates/ass/main.tex", "r") as f:
 		text = f.read()
 
-	text = (
-		text.replace("#COURSE-SHORT#", course_short)
-		.replace("#COURSE-FULL#", f"{course_short} {course_full.replace("-", " ")}")
-		.replace("#NUMBER#", ass_num)
-	)
+	try:
+		[course_dir, ass_dir] = os.getcwd().split("/")[-2:]
+
+		course_short, course_full = re.match(r"([A-Z0-9]{5})-(.*)", course_dir).group(1, 2)
+		ass_num = re.match(r".*?(\d+)$", ass_dir).group(1)
+
+		text = (
+			text.replace("#COURSE-SHORT#", course_short)
+			.replace("#COURSE-FULL#", f"{course_short} {course_full.replace("-", " ")}")
+			.replace("#NUMBER#", ass_num)
+		)
+	except (ValueError, AttributeError):
+		print("[bold yellow]WARNING[/bold yellow]: Directory not formatted like an assignment, so just using template main.tex")
 
 	with open("main.tex", "w") as f:
 		f.write(text)

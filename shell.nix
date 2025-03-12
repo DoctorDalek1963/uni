@@ -6,10 +6,15 @@
       cancel
       csquotes
     ]);
+
+  python = pkgs.python3.withPackages (p: [p.rich]);
 in
   pkgs.mkShell {
     buildInputs =
-      [texlive]
+      [
+        texlive
+        python
+      ]
       ++ (with pkgs; [
         # Only here for CI
         direnv
@@ -17,6 +22,5 @@ in
         fd
         inotify-tools
         just
-        python3
       ]);
   }
