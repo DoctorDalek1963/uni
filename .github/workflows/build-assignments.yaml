@@ -24,8 +24,7 @@ jobs:
 
       - name: Create TMPDIR
         run: |
-          mkdir -p /home/runner/work/tmp
-          echo "TMPDIR=/home/runner/work/tmp" >> $GITHUB_ENV
+          echo "TMPDIR=" >> $GITHUB_ENV
 
       - name: Remove nix-direnv
         run: nix-shell -p fd -p sd --run "fd -H .envrc -X sd -F nix_direnv_manual_reload ''"
