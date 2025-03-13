@@ -17,7 +17,10 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-24.11
 
-      - uses: DeterminateSystems/flakehub-cache-action@v1
+      - uses: cachix/cachix-action@v16
+        with:
+          name: doctordalek1963
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
       - name: Create TMPDIR
         run: |
