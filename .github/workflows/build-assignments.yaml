@@ -27,8 +27,10 @@ jobs:
           mkdir -p /home/runner/work/tmp
           echo "TMPDIR=/home/runner/work/tmp" >> $GITHUB_ENV
 
-      - name: Remove nix-direnv
-        run: nix-shell -p fd -p sd --run "fd -H .envrc -X sd -F nix_direnv_manual_reload ''"
+      - name: Install nix-direnv
+        run: |
+          mkdir -p "${XDG_CONFIG_HOME}/direnv/lib"
+          cp "$(nix-build --expr "(import <nixpkgs> {}).nix-direnv")"/share/nix-direnv/direnvrc "${XDG_CONFIG_HOME}/direnv/lib/nix-direnv.sh"
 
       - name: Build every assignment
         run: nix-shell --run "just ci-build-all"
