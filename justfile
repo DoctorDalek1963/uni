@@ -79,6 +79,7 @@ new-ass:
 	#!/usr/bin/env python3
 	import os
 	import re
+
 	from rich import print
 
 	with open("{{source_directory()}}/templates/ass/main.tex", "r") as f:
@@ -118,3 +119,46 @@ new-justfile:
 
 	with open("justfile", "w") as f:
 		f.write(text.replace("#REL_PATH_TO_ROOT#", str(rel_path)))
+
+# build every assignment for CI
+ci-build-all:
+	#!/usr/bin/env python3
+
+	import os
+	import subprocess
+	import sys
+
+	import rich
+
+	ass_dirs = [
+		dir
+		for (dir, _dirs, files) in os.walk("{{source_directory()}}")
+		if "main.tex" in files and "templates" not in dir
+	] + [
+		os.path.join("{{source_directory()}}", p)
+		for p in [
+			"first-year/MA146-Methods-of-Mathematical-Modelling-1/Ass 1",
+			"first-year/MA117-Programming-for-Scientists/projects/Project0",
+			"first-year/MA117-Programming-for-Scientists/projects/Project1",
+		]
+	]
+
+	failed_dirs = []
+
+	for dir in sorted(ass_dirs):
+		rich.print(f"\n\n[bold]===== [magenta]Building {dir}[/magenta] =====[/bold]\n\n")
+		sys.stdout.flush()
+
+		child = subprocess.run(
+			["direnv allow && direnv exec . just build"], cwd=dir, shell=True
+		)
+
+		if child.returncode != 0:
+			failed_dirs.append(dir)
+
+	if len(failed_dirs) > 0:
+		rich.print("\n\n[bold]===== [red]FAILED DIRECTORIES[/red]: =====[/bold]\n")
+		print(*failed_dirs, sep="\n")
+		exit(1)
+	else:
+		rich.print("\n\n[bold]===== [green]All builds successful![/green] =====[/bold]")

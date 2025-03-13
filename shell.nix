@@ -16,6 +16,9 @@ in
         python
       ]
       ++ (with pkgs; [
+        # Only here for CI
+        direnv
+
         fd
         inotify-tools
         just
