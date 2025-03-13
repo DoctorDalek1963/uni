@@ -62,7 +62,8 @@ public abstract class Matrix {
 	 * @return A String representation of the Matrix.
 	 */
 	public String toString() {
-		// You need to fill in this method.
+		// TODO
+		return "";
 	}
 
 	/**

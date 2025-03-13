@@ -36,7 +36,8 @@ public class Project3 {
 	 * @return            The variance of the distribution.
 	 */
 	public static double matVariance(Matrix matrix, int nSamp) {
-		// You need to fill in this method.
+		// TODO
+		return 0.0;
 	}
 
 	/**

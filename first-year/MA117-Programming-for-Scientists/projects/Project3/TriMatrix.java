@@ -46,7 +46,10 @@ public class TriMatrix extends Matrix {
 	 * @param dimension  The dimension of the array.
 	 */
 	public TriMatrix(int dimension) {
-		// You need to fill in this method.
+		super(dimension, dimension);
+		this.diagonal = new double[dimension];
+		this.upperDiagonal = new double[dimension - 1];
+		this.lowerDiagonal = new double[dimension - 1];
 	}
 
 	/**
@@ -57,7 +60,8 @@ public class TriMatrix extends Matrix {
 	 * @return   The (i,j)'th entry of the matrix.
 	 */
 	public double getIJ(int i, int j) {
-		// You need to fill in this method.
+		// TODO
+		return 0.0;
 	}
 
 	/**
@@ -68,7 +72,7 @@ public class TriMatrix extends Matrix {
 	 * @param value  The value to set the (i,j)'th entry to.
 	 */
 	public void setIJ(int i, int j, double value) {
-		// You need to fill in this method.
+		// TODO
 	}
 
 	/**
@@ -77,7 +81,8 @@ public class TriMatrix extends Matrix {
 	 * @return The determinant of the matrix.
 	 */
 	public double determinant() {
-		// You need to fill in this method.
+		// TODO
+		return 0.0;
 	}
 
 	/**
@@ -87,17 +92,19 @@ public class TriMatrix extends Matrix {
 	 * @return The LU decomposition of this matrix.
 	 */
 	public TriMatrix LUdecomp() {
-		// You need to fill in this method.
+		// TODO
+		return this;
 	}
 
 	/**
 	 * Add the matrix to another second matrix.
 	 *
-	 * @param second  The Matrix to add to this matrix.
-	 * @return        The sum of this matrix with the second matrix.
+	 * @param other  The Matrix to add to this matrix.
+	 * @return       The sum of this matrix with the second matrix.
 	 */
-	public Matrix add(Matrix second) {
-		// You need to fill in this method.
+	public Matrix add(Matrix other) {
+		// TODO
+		return this;
 	}
 
 	/**
@@ -108,7 +115,8 @@ public class TriMatrix extends Matrix {
 	 * @return   The product of this matrix with the matrix A.
 	 */
 	public Matrix multiply(Matrix A) {
-		// You need to fill in this method.
+		// TODO
+		return this;
 	}
 
 	/**
@@ -118,7 +126,8 @@ public class TriMatrix extends Matrix {
 	 * @return        The product of this matrix with the scalar.
 	 */
 	public Matrix multiply(double scalar) {
-		// You need to fill in this method.
+		// TODO
+		return this;
 	}
 
 	/**
@@ -126,7 +135,7 @@ public class TriMatrix extends Matrix {
 	 * distributed between 0 and 1.
 	 */
 	public void random() {
-		// You need to fill in this method.
+		// TODO
 	}
 
 	/*

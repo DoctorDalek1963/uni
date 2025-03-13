@@ -24,6 +24,7 @@
  */
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class GeneralMatrix extends Matrix {
 	/**
@@ -39,17 +40,22 @@ public class GeneralMatrix extends Matrix {
 	 * @param secondDim  The second dimension of the array.
 	 */
 	public GeneralMatrix(int firstDim, int secondDim) {
-		// You need to fill in this method.
+		super(firstDim, secondDim);
+		this.values = new double[firstDim][secondDim];
 	}
 
 	/**
 	 * Constructor function. This is a copy constructor; it should create a
 	 * copy of the second matrix.
 	 *
-	 * @param second  The matrix to create a copy of.
+	 * @param other  The matrix to create a copy of.
 	 */
-	public GeneralMatrix(GeneralMatrix second) {
-		// You need to fill in this method.
+	public GeneralMatrix(GeneralMatrix other) {
+		this(other.iDim, other.jDim);
+
+		for (int i = 0; i < other.iDim; i++)
+			for (int j = 0; j < other.jDim; j++)
+				this.setIJ(i, j, other.getIJ(i, j));
 	}
 
 	/**
@@ -59,8 +65,15 @@ public class GeneralMatrix extends Matrix {
 	 * @param j  The location in the second co-ordinate.
 	 * @return   The (i,j)'th entry of the matrix.
 	 */
-	public double getIJ(int i, int j) {
-		// You need to fill in this method.
+	public double getIJ(int i, int j) throws MatrixException {
+		if (i >= this.iDim || j >= this.jDim) {
+			throw new MatrixException(String.format(
+				"Index (%d, %d) out of bounds for %d x %d matrix",
+				i, j, this.iDim, this.jDim
+			));
+		}
+
+		return this.values[i][j];
 	}
 
 	/**
@@ -70,8 +83,15 @@ public class GeneralMatrix extends Matrix {
 	 * @param j      The location in the second co-ordinate.
 	 * @param value  The value to set the (i,j)'th entry to.
 	 */
-	public void setIJ(int i, int j, double value) {
-		// You need to fill in this method.
+	public void setIJ(int i, int j, double value) throws MatrixException {
+		if (i >= this.iDim || j >= this.jDim) {
+			throw new MatrixException(String.format(
+				"Index (%d, %d) out of bounds for %d x %d matrix",
+				i, j, this.iDim, this.jDim
+			));
+		}
+
+		this.values[i][j] = value;
 	}
 
 	/**
@@ -79,18 +99,43 @@ public class GeneralMatrix extends Matrix {
 	 *
 	 * @return The determinant of the matrix.
 	 */
-	public double determinant() {
-		// You need to fill in this method.
+	public double determinant() throws MatrixException {
+		if (this.iDim != this.jDim)
+			throw new MatrixException("Can only take determinants of square matrices");
+
+		// We want to decompose the matrix into L and U, lower and upper triangular
+		// matrices. Then the determinant of this matrix is the product of the
+		// determinants of L and U. The LUdecomp method provides gives a version of L
+		// with ones all down the leading diagonal, packed with U. So the $\det L = 1$
+		// and $\det U$ is the product of the elements on the leading diagonal of LUdecomp.
+		double[] sign = {1.0};
+		GeneralMatrix decomp = this.LUdecomp(sign);
+
+		double det = sign[0];
+
+		for (int i = 0; i < this.iDim; i++)
+			det *= decomp.getIJ(i, i);
+
+		return det;
 	}
 
 	/**
 	 * Add the matrix to another second matrix.
 	 *
-	 * @param second  The Matrix to add to this matrix.
-	 * @return   The sum of this matrix with the second matrix.
+	 * @param other  The Matrix to add to this matrix.
+	 * @return       The sum of this matrix with the second matrix.
 	 */
-	public Matrix add(Matrix second) {
-		// You need to fill in this method.
+	public Matrix add(Matrix other) throws MatrixException {
+		if (this.iDim != other.iDim || this.jDim != other.jDim)
+			throw new MatrixException("Can only add matrices of the same size");
+
+		GeneralMatrix m = new GeneralMatrix(this.iDim, this.jDim);
+
+		for (int i = 0; i < this.iDim; i++)
+			for (int j = 0; j < this.jDim; j++)
+				m.setIJ(i, j, this.getIJ(i, j) + other.getIJ(i, j));
+
+		return m;
 	}
 
 	/**
@@ -101,7 +146,8 @@ public class GeneralMatrix extends Matrix {
 	 * @return   The product of this matrix with the matrix A.
 	 */
 	public Matrix multiply(Matrix A) {
-		// You need to fill in this method.
+		// TODO
+		return this;
 	}
 
 	/**
@@ -111,7 +157,13 @@ public class GeneralMatrix extends Matrix {
 	 * @return        The product of this matrix with the scalar.
 	 */
 	public Matrix multiply(double scalar) {
-		// You need to fill in this method.
+		Matrix m = new GeneralMatrix(this.iDim, this.jDim);
+
+		for (int i = 0; i < this.iDim; i++)
+			for (int j = 0; j < this.jDim; j++)
+				m.setIJ(i, j, this.getIJ(i, j) * scalar);
+
+		return m;
 	}
 
 	/**
@@ -119,7 +171,11 @@ public class GeneralMatrix extends Matrix {
 	 * distributed between 0 and 1.
 	 */
 	public void random() {
-		// You need to fill in this method.
+		Random rand = new Random();
+
+		for (int i = 0; i < this.iDim; i++)
+			for (int j = 0; j < this.jDim; j++)
+				this.setIJ(i, j, rand.nextDouble());
 	}
 
 	/**
@@ -233,7 +289,5 @@ public class GeneralMatrix extends Matrix {
 	/*
 	 * Your tester function should go here.
 	 */
-	public static void main(String[] args) {
-		// Test your class implementation using this method.
-	}
+	public static void main(String[] args) {}
 }
