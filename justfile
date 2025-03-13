@@ -140,6 +140,7 @@ ci-build-all:
 			"first-year/MA146-Methods-of-Mathematical-Modelling-1/Ass 1",
 			"first-year/MA117-Programming-for-Scientists/projects/Project0",
 			"first-year/MA117-Programming-for-Scientists/projects/Project1",
+			# "first-year/MA117-Programming-for-Scientists/projects/Project3", # TODO: Uncomment when project is complete
 		]
 	]
 
