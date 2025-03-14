@@ -6,5 +6,5 @@ _default:
 	@just --list
 
 _pre-build:
-	nix-shell -vvvv code/shell.nix --run ./code/plot_torus.py
+	nix-shell code/shell.nix --run ./code/plot_torus.py
 	@just _build
