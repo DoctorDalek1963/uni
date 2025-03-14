@@ -158,8 +158,8 @@ ci-build-all:
 			failed_dirs.append(dir)
 
 	if len(failed_dirs) > 0:
-		rich.print("\n\n[bold]===== [red]FAILED DIRECTORIES[/red]: =====[/bold]\n")
+		rich.print(f"\n\n[bold]===== [red]FAILED {len(failed_dirs)}/{len(ass_dirs)} DIRECTORIES[/red]: =====[/bold]\n")
 		print(*failed_dirs, sep="\n")
 		exit(1)
 	else:
-		rich.print("\n\n[bold]===== [green]All builds successful![/green] =====[/bold]")
+		rich.print(f"\n\n[bold]===== [green]All {len(ass_dirs)} builds successful![/green] =====[/bold]")
