@@ -1,0 +1,10 @@
+import "../../../../justfile"
+
+set allow-duplicate-recipes
+
+_default:
+	@just --list
+
+# rename main.pdf
+rename: build
+	mv main.pdf Dyson_Dyson_5503449_MA124_Individual_Submission.pdf
