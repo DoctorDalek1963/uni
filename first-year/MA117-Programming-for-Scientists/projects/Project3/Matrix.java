@@ -62,8 +62,17 @@ public abstract class Matrix {
 	 * @return A String representation of the Matrix.
 	 */
 	public String toString() {
-		// TODO
-		return "";
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < this.iDim; i++) {
+			for (int j = 0; j < this.jDim; j++) {
+				sb.append(String.format("%.3f\t", this.getIJ(i, j)));
+			}
+
+			sb.append('\n');
+		}
+
+		return sb.toString();
 	}
 
 	/**

@@ -12,5 +12,5 @@ title("Variance of TriMatrix");
 xlabel("Dimension");
 ylabel("Variance");
 
-orient landscape;
+orient("landscape");
 saveas(1, "VarGraph.pdf");

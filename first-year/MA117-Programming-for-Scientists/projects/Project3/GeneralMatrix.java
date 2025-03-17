@@ -289,5 +289,9 @@ public class GeneralMatrix extends Matrix {
 	/*
 	 * Your tester function should go here.
 	 */
-	public static void main(String[] args) {}
+	public static void main(String[] args) {
+		GeneralMatrix m = new GeneralMatrix(20, 10);
+		m.random();
+		System.out.println(m.toString());
+	}
 }

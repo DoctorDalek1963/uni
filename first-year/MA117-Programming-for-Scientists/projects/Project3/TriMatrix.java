@@ -23,6 +23,8 @@
  * DEPARTMENT: Mathematics
  */
 
+import java.util.Random;
+
 public class TriMatrix extends Matrix {
 	/**
 	 * An array holding the diagonal elements of the matrix.
@@ -60,8 +62,15 @@ public class TriMatrix extends Matrix {
 	 * @return   The (i,j)'th entry of the matrix.
 	 */
 	public double getIJ(int i, int j) {
-		// TODO
-		return 0.0;
+		if (i == j) {
+			return this.diagonal[i];
+		} else if (i == j + 1) {
+			return this.lowerDiagonal[j];
+		} else if (j == i + 1) {
+			return this.upperDiagonal[i];
+		} else {
+			return 0.0;
+		}
 	}
 
 	/**
@@ -72,7 +81,13 @@ public class TriMatrix extends Matrix {
 	 * @param value  The value to set the (i,j)'th entry to.
 	 */
 	public void setIJ(int i, int j, double value) {
-		// TODO
+		if (i == j) {
+			this.diagonal[i] = value;
+		} else if (i == j + 1) {
+			this.lowerDiagonal[j] = value;
+		} else if (j == i + 1) {
+			this.upperDiagonal[i] = value;
+		}
 	}
 
 	/**
@@ -81,8 +96,14 @@ public class TriMatrix extends Matrix {
 	 * @return The determinant of the matrix.
 	 */
 	public double determinant() {
-		// TODO
-		return 0.0;
+		// See GeneralMatrix.determinant
+		TriMatrix decomp = this.LUdecomp();
+		double det = 1.0;
+
+		for (int i = 0; i < this.iDim; i++)
+			det *= decomp.getIJ(i, i);
+
+		return det;
 	}
 
 	/**
@@ -103,8 +124,16 @@ public class TriMatrix extends Matrix {
 	 * @return       The sum of this matrix with the second matrix.
 	 */
 	public Matrix add(Matrix other) {
-		// TODO
-		return this;
+		if (this.iDim != other.iDim || this.jDim != other.jDim)
+			throw new MatrixException("Can only add matrices of the same size");
+
+		GeneralMatrix m = new GeneralMatrix(this.iDim, this.jDim);
+
+		for (int i = 0; i < this.iDim; i++)
+			for (int j = 0; j < this.jDim; j++)
+				m.setIJ(i, j, this.getIJ(i, j) + other.getIJ(i, j));
+
+		return m;
 	}
 
 	/**
@@ -126,8 +155,17 @@ public class TriMatrix extends Matrix {
 	 * @return        The product of this matrix with the scalar.
 	 */
 	public Matrix multiply(double scalar) {
-		// TODO
-		return this;
+		Matrix m = new TriMatrix(this.iDim);
+
+		for (int i = 0; i < this.iDim - 1; i++) {
+			m.setIJ(i, i, this.getIJ(i, i) * scalar);
+			m.setIJ(i + 1, i, this.getIJ(i + 1, i) * scalar);
+			m.setIJ(i, i + 1, this.getIJ(i, i + 1) * scalar);
+		}
+
+		m.setIJ(this.iDim - 1, this.iDim - 1, this.getIJ(this.iDim, this.iDim) * scalar);
+
+		return m;
 	}
 
 	/**
@@ -135,13 +173,23 @@ public class TriMatrix extends Matrix {
 	 * distributed between 0 and 1.
 	 */
 	public void random() {
-		// TODO
+		Random rand = new Random();
+
+		for (int i = 0; i < this.iDim - 1; i++) {
+			this.setIJ(i, i, rand.nextDouble());
+			this.setIJ(i + 1, i, rand.nextDouble());
+			this.setIJ(i, i + 1, rand.nextDouble());
+		}
+
+		this.setIJ(this.iDim - 1, this.iDim - 1, rand.nextDouble());
 	}
 
 	/*
 	 * Your tester function should go here.
 	 */
 	public static void main(String[] args) {
-		// Test your class implementation using this method.
+		TriMatrix m = new TriMatrix(20);
+		m.random();
+		System.out.println(m.toString());
 	}
 }

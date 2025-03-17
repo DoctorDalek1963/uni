@@ -36,8 +36,19 @@ public class Project3 {
 	 * @return            The variance of the distribution.
 	 */
 	public static double matVariance(Matrix matrix, int nSamp) {
-		// TODO
-		return 0.0;
+		double sumDet = 0.0;
+		double sumDetSquared = 0.0;
+
+		for (int i = 0; i < nSamp; i++) {
+			matrix.random();
+			double det = matrix.determinant();
+			sumDet += det;
+			sumDetSquared += det * det;
+		}
+
+		double sumDetOverNSamp = sumDet / nSamp;
+
+		return (sumDetSquared / nSamp - (sumDetOverNSamp * sumDetOverNSamp));
 	}
 
 	/**
@@ -46,6 +57,11 @@ public class Project3 {
 	 * formulation for more detail.
 	 */
 	public static void main(String[] args) {
-		// You need to fill in this method.
+		for (int n = 2; n <= 50; n++) {
+			double varGen = matVariance(new GeneralMatrix(n, n), 20_000);
+			double varTri = matVariance(new TriMatrix(n), 200_000);
+
+			System.out.printf("%d %.15e %.15e\n", n, varGen, varTri);
+		}
 	}
 }
