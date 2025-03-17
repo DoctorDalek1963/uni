@@ -14,7 +14,7 @@ run class="Project3": compile-java
 # build VarGraph.pdf using the generated data
 build:
 	just run Project3 | tee variance.data
-	nix-shell -p octave -p ghostscript --run "octave --norc create_var_graph.m"
+	DISPLAY= nix-shell -p octave -p ghostscript -p gnuplot --run "octave --norc create_var_graph.m"
 
 # build and rename PDF
 rename: build
