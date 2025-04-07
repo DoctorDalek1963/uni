@@ -294,8 +294,88 @@ public class GeneralMatrix extends Matrix {
 	 * Your tester function should go here.
 	 */
 	public static void main(String[] args) {
-		GeneralMatrix m = new GeneralMatrix(20, 10);
-		m.random();
-		System.out.println(m.toString());
+		// Because of the way the algorithm works, we can't just take the LU decomp of
+		// random matrices like we do to test TriMatrix because they don't always
+		// multiply back properly. So instead, we just do one big matrix multiplication
+
+		GeneralMatrix m = new GeneralMatrix(6, 6);
+
+		m.setIJ(0, 0, 0.014);
+		m.setIJ(0, 1, 0.974);
+		m.setIJ(0, 2, 0.257);
+		m.setIJ(0, 3, 0.588);
+		m.setIJ(0, 4, 0.533);
+		m.setIJ(0, 5, 0.559);
+		m.setIJ(1, 0, 0.277);
+		m.setIJ(1, 1, 0.268);
+		m.setIJ(1, 2, 0.289);
+		m.setIJ(1, 3, 0.603);
+		m.setIJ(1, 4, 0.864);
+		m.setIJ(1, 5, 0.330);
+		m.setIJ(2, 0, 0.508);
+		m.setIJ(2, 1, 0.991);
+		m.setIJ(2, 2, 0.085);
+		m.setIJ(2, 3, 0.891);
+		m.setIJ(2, 4, 0.444);
+		m.setIJ(2, 5, 0.103);
+		m.setIJ(3, 0, 0.917);
+		m.setIJ(3, 1, 0.722);
+		m.setIJ(3, 2, 0.450);
+		m.setIJ(3, 3, 0.256);
+		m.setIJ(3, 4, 0.347);
+		m.setIJ(3, 5, 0.403);
+		m.setIJ(4, 0, 0.471);
+		m.setIJ(4, 1, 0.272);
+		m.setIJ(4, 2, 0.482);
+		m.setIJ(4, 3, 0.229);
+		m.setIJ(4, 4, 0.021);
+		m.setIJ(4, 5, 0.957);
+		m.setIJ(5, 0, 0.260);
+		m.setIJ(5, 1, 0.538);
+		m.setIJ(5, 2, 0.609);
+		m.setIJ(5, 3, 0.469);
+		m.setIJ(5, 4, 0.581);
+		m.setIJ(5, 5, 0.769);
+
+		GeneralMatrix m2 = new GeneralMatrix(6, 6);
+
+		m2.setIJ(0, 0, 1.3361);
+		m2.setIJ(0, 1, 1.3996);
+		m2.setIJ(0, 2, 1.1689);
+		m2.setIJ(0, 3, 1.3593);
+		m2.setIJ(0, 4, 1.5031);
+		m2.setIJ(0, 5, 1.5326);
+		m2.setIJ(1, 0, 1.2706);
+		m2.setIJ(1, 1, 1.4759);
+		m2.setIJ(1, 2, 1.0620);
+		m2.setIJ(1, 3, 1.0890);
+		m2.setIJ(1, 4, 0.9266);
+		m2.setIJ(1, 5, 1.5967);
+		m2.setIJ(2, 0, 1.3778);
+		m2.setIJ(2, 1, 1.6641);
+		m2.setIJ(2, 2, 1.1019);
+		m2.setIJ(2, 3, 1.3501);
+		m2.setIJ(2, 4, 1.5431);
+		m2.setIJ(2, 5, 1.4829);
+		m2.setIJ(3, 0, 0.9444);
+		m2.setIJ(3, 1, 2.0286);
+		m2.setIJ(3, 2, 1.0105);
+		m2.setIJ(3, 3, 1.7095);
+		m2.setIJ(3, 4, 1.6426);
+		m2.setIJ(3, 5, 1.5424);
+		m2.setIJ(4, 0, 0.7955);
+		m2.setIJ(4, 1, 1.6952);
+		m2.setIJ(4, 2, 0.9366);
+		m2.setIJ(4, 3, 1.3827);
+		m2.setIJ(4, 4, 1.3360);
+		m2.setIJ(4, 5, 1.2510);
+		m2.setIJ(5, 0, 1.3657);
+		m2.setIJ(5, 1, 1.9113);
+		m2.setIJ(5, 2, 1.2335);
+		m2.setIJ(5, 3, 1.6337);
+		m2.setIJ(5, 4, 1.4955);
+		m2.setIJ(5, 5, 1.7220);
+
+		assert m.multiply(m).approxEquals(m2);
 	}
 }

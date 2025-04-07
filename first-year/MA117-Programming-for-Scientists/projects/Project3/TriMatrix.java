@@ -209,8 +209,53 @@ public class TriMatrix extends Matrix {
 	 * Your tester function should go here.
 	 */
 	public static void main(String[] args) {
-		TriMatrix m = new TriMatrix(20);
-		m.random();
-		System.out.println(m.toString());
+		TriMatrix m = new TriMatrix(4);
+		m.setIJ(0, 0, 1.0);
+		m.setIJ(0, 1, 2.0);
+		m.setIJ(1, 0, 3.0);
+		m.setIJ(1, 1, -2.0);
+		m.setIJ(1, 2, 4.0);
+		m.setIJ(2, 1, 2.0);
+		m.setIJ(2, 2, 0.5);
+		m.setIJ(2, 3, -1.0);
+		m.setIJ(3, 2, 1.0);
+		m.setIJ(3, 3, 3.0);
+
+		GeneralMatrix m2 = new GeneralMatrix(4, 4);
+		m2.setIJ(0, 0, 7.0);
+		m2.setIJ(0, 1, -2.0);
+		m2.setIJ(0, 2, 8.0);
+		m2.setIJ(1, 0, -3.0);
+		m2.setIJ(1, 1, 18.0);
+		m2.setIJ(1, 2, -6.0);
+		m2.setIJ(1, 3, -4.0);
+		m2.setIJ(2, 0, 6.0);
+		m2.setIJ(2, 1, -3.0);
+		m2.setIJ(2, 2, 7.25);
+		m2.setIJ(2, 3, -3.5);
+		m2.setIJ(3, 1, 2.0);
+		m2.setIJ(3, 2, 3.5);
+		m2.setIJ(3, 3, 8.0);
+
+		assert m.multiply(m).approxEquals(m2);
+
+		for (int rLoops = 0; rLoops < 10; rLoops++) {
+			int n = 20;
+			TriMatrix r = new TriMatrix(n);
+			r.random();
+
+			TriMatrix rLU = r.LUdecomp();
+
+			TriMatrix rL = new TriMatrix(n);
+			rL.lowerDiagonal = rLU.lowerDiagonal.clone();
+			for (int i = 0; i < n; i++)
+				rL.diagonal[i] = 1;
+
+			TriMatrix rU = new TriMatrix(n);
+			rU.upperDiagonal = rLU.upperDiagonal.clone();
+			rU.diagonal = rLU.diagonal.clone();
+
+			assert rL.multiply(rU).approxEquals(r);
+		}
 	}
 }

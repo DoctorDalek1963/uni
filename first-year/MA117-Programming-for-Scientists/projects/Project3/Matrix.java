@@ -99,6 +99,21 @@ public abstract class Matrix {
 			));
 	}
 
+	public boolean approxEquals(Matrix other) {
+		if (this.iDim == other.iDim && this.jDim == other.jDim) {
+			for (int i = 0; i < this.iDim; i++) {
+				for (int j = 0; j < this.jDim; j++) {
+					if (Math.abs(this.getIJ(i, j) - other.getIJ(i, j)) > 1.0e-3)
+						return false;
+				}
+			}
+
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	/**
 	 * Getter function: return the (i,j)'th entry of the matrix.
 	 *
