@@ -50,7 +50,7 @@ public class GeneralMatrix extends Matrix {
 	 *
 	 * @param other  The matrix to create a copy of.
 	 */
-	public GeneralMatrix(GeneralMatrix other) {
+	public GeneralMatrix(Matrix other) {
 		this(other.iDim, other.jDim);
 
 		for (int i = 0; i < other.iDim; i++)
@@ -134,9 +134,24 @@ public class GeneralMatrix extends Matrix {
 	 * @return   The product of this matrix with the matrix A.
 	 */
 	public Matrix multiply(Matrix A) {
-		// TODO
 		this.validateMultiplyDimensions(A);
-		return this;
+
+		GeneralMatrix m = new GeneralMatrix(this.iDim, A.jDim);
+
+		double midLen = this.jDim;
+
+		for (int i = 0; i < m.iDim; i++) {
+			for (int j = 0; j < m.jDim; j++) {
+				double x = 0.0;
+
+				for (int k = 0; k < midLen; k++)
+					x += this.getIJ(i, k) * A.getIJ(k, j);
+
+				m.setIJ(i, j, x);
+			}
+		}
+
+		return m;
 	}
 
 	/**

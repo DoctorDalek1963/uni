@@ -164,9 +164,9 @@ public class TriMatrix extends Matrix {
 	 * @return   The product of this matrix with the matrix A.
 	 */
 	public Matrix multiply(Matrix A) {
-		// TODO
-		this.validateMultiplyDimensions(A);
-		return this;
+		// Multiplying two tri-diagonal matrices doesn't always result in
+		// a tri-diagonal matrix, so we have to be more general
+		return new GeneralMatrix(this).multiply(new GeneralMatrix(A));
 	}
 
 	/**
