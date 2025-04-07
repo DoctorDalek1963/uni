@@ -82,7 +82,7 @@ public class TriMatrix extends Matrix {
 	 * @param j      The location in the second co-ordinate.
 	 * @param value  The value to set the (i,j)'th entry to.
 	 */
-	public void setIJ(int i, int j, double value) {
+	public void setIJ(int i, int j, double value) throws MatrixException {
 		this.validateIndex(i, j);
 
 		if (i == j) {
@@ -91,6 +91,11 @@ public class TriMatrix extends Matrix {
 			this.lowerDiagonal[j] = value;
 		} else if (j == i + 1) {
 			this.upperDiagonal[i] = value;
+		} else {
+			throw new MatrixException(String.format(
+				"Cannot set index (%d, %d) in tri-diagonal matrix",
+				i, j
+			));
 		}
 	}
 
