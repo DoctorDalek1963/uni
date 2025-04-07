@@ -23,7 +23,6 @@
  * DEPARTMENT: Mathematics
  */
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class GeneralMatrix extends Matrix {
