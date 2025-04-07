@@ -113,8 +113,24 @@ public class TriMatrix extends Matrix {
 	 * @return The LU decomposition of this matrix.
 	 */
 	public TriMatrix LUdecomp() {
-		// TODO
-		return this;
+		TriMatrix m = new TriMatrix(this.iDim);
+
+		for (int i = 0; i < this.iDim - 1; i++)
+			// u_i' = u_i
+			m.upperDiagonal[i] = this.upperDiagonal[i];
+
+		m.diagonal[0] = this.diagonal[0];
+
+		for (int i = 1; i < this.iDim; i++) {
+			// l_i' = l_i / d_{i-1}' (remember lowerDiagonal is indexed with an offset of 1)
+			double liPrime = this.lowerDiagonal[i - 1] / m.diagonal[i - 1];
+			m.lowerDiagonal[i - 1] = liPrime;
+
+			// d_i' = d_i - u_{i-1} l_i'
+			m.diagonal[i] = this.diagonal[i] - this.upperDiagonal[i - 1] * liPrime;
+		}
+
+		return m;
 	}
 
 	/**
