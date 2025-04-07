@@ -24,6 +24,22 @@
  * DEPARTMENT: Mathematics
  */
 
+import java.util.stream.IntStream;
+
+class Pair {
+	public final double a;
+	public final double b;
+
+	Pair(double a, double b) {
+		this.a = a;
+		this.b = b;
+	}
+
+	public Pair add(Pair other) {
+		return new Pair(this.a + other.a, this.b + other.b);
+	}
+}
+
 public class Project3 {
 	/**
 	 * Calculates the variance of the distribution defined by the determinant
@@ -36,15 +52,19 @@ public class Project3 {
 	 * @return            The variance of the distribution.
 	 */
 	public static double matVariance(Matrix matrix, int nSamp) {
-		double sumDet = 0.0;
-		double sumDetSquared = 0.0;
+		Pair sumsPair = IntStream
+			.rangeClosed(1, nSamp)
+			.boxed()
+			.parallel()
+			.map(_i -> {
+				matrix.random();
+				double det = matrix.determinant();
+				return new Pair(det, det * det);
+			})
+			.reduce(new Pair(0.0, 0.0), Pair::add, Pair::add);
 
-		for (int i = 0; i < nSamp; i++) {
-			matrix.random();
-			double det = matrix.determinant();
-			sumDet += det;
-			sumDetSquared += det * det;
-		}
+		double sumDet = sumsPair.a;
+		double sumDetSquared = sumsPair.b;
 
 		double sumDetOverNSamp = sumDet / nSamp;
 
