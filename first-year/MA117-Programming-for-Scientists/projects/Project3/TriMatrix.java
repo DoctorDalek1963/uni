@@ -62,6 +62,8 @@ public class TriMatrix extends Matrix {
 	 * @return   The (i,j)'th entry of the matrix.
 	 */
 	public double getIJ(int i, int j) {
+		this.validateIndex(i, j);
+
 		if (i == j) {
 			return this.diagonal[i];
 		} else if (i == j + 1) {
@@ -81,6 +83,8 @@ public class TriMatrix extends Matrix {
 	 * @param value  The value to set the (i,j)'th entry to.
 	 */
 	public void setIJ(int i, int j, double value) {
+		this.validateIndex(i, j);
+
 		if (i == j) {
 			this.diagonal[i] = value;
 		} else if (i == j + 1) {
@@ -161,6 +165,7 @@ public class TriMatrix extends Matrix {
 	 */
 	public Matrix multiply(Matrix A) {
 		// TODO
+		this.validateMultiplyDimensions(A);
 		return this;
 	}
 

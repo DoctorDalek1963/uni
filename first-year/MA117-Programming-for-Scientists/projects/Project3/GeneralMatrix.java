@@ -66,13 +66,7 @@ public class GeneralMatrix extends Matrix {
 	 * @return   The (i,j)'th entry of the matrix.
 	 */
 	public double getIJ(int i, int j) throws MatrixException {
-		if (i >= this.iDim || j >= this.jDim) {
-			throw new MatrixException(String.format(
-				"Index (%d, %d) out of bounds for %d x %d matrix",
-				i, j, this.iDim, this.jDim
-			));
-		}
-
+		this.validateIndex(i, j);
 		return this.values[i][j];
 	}
 
@@ -84,13 +78,7 @@ public class GeneralMatrix extends Matrix {
 	 * @param value  The value to set the (i,j)'th entry to.
 	 */
 	public void setIJ(int i, int j, double value) throws MatrixException {
-		if (i >= this.iDim || j >= this.jDim) {
-			throw new MatrixException(String.format(
-				"Index (%d, %d) out of bounds for %d x %d matrix",
-				i, j, this.iDim, this.jDim
-			));
-		}
-
+		this.validateIndex(i, j);
 		this.values[i][j] = value;
 	}
 
@@ -147,6 +135,7 @@ public class GeneralMatrix extends Matrix {
 	 */
 	public Matrix multiply(Matrix A) {
 		// TODO
+		this.validateMultiplyDimensions(A);
 		return this;
 	}
 

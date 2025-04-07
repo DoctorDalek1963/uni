@@ -76,6 +76,30 @@ public abstract class Matrix {
 	}
 
 	/**
+	 * Validate the index and throw MatrixException if it's out of bounds.
+	 */
+	protected void validateIndex(int i, int j) throws MatrixException {
+		if (i >= this.iDim || j >= this.jDim)
+			throw new MatrixException(String.format(
+				"Index (%d, %d) out of bounds for %d x %d matrix",
+				i, j, this.iDim, this.jDim
+			));
+	}
+
+	/**
+	 * Throw MatrixException if the other matrix is not compatible with this one.
+	 *
+	 * This method checks compatibility for `this * other` in that order, not `other * this`.
+	 */
+	protected void validateMultiplyDimensions(Matrix other) throws MatrixException {
+		if (this.jDim != other.iDim)
+			throw new MatrixException(String.format(
+				"Cannot multiply %d x %d matrix with %d x %d",
+				this.iDim, this.jDim, other.iDim, other.jDim
+			));
+	}
+
+	/**
 	 * Getter function: return the (i,j)'th entry of the matrix.
 	 *
 	 * @param i  The location in the first co-ordinate.
