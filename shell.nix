@@ -7,8 +7,10 @@
       cancel
       csquotes
 
-      framed
-      nowidow
+      # For questionbody environment
+      mdframed
+      needspace
+      zref
     ]);
 
   python = pkgs.python3.withPackages (p: [p.rich]);
