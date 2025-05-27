@@ -7,6 +7,7 @@
 
 \fancyhead[L]{MA150 Assignment 4}
 \title{MA150 Algebra 2, Assignment 4}
+\colorlet{questionbodycolor}{magenta!50}
 
 \begin{document}
 
@@ -18,9 +19,11 @@
 % {{{ Q4
 \question{4}
 
-Let $V$ be a Euclidean space with inner product. Suppose $\enum w1n$ is an orthonormal basis of $V$. Of course $\fa v \in V$, $\exists\ \lambda_i \in \R$ such that $v = \sum \lambda_i w_i$.
+\begin{questionbody}
+Let $V$ be a Euclidean space with inner product $\angb{\cdot, \cdot}$. Suppose $\enum w1n$ is an orthonormal basis of $V$. Of course $\fa v \in V$, $\exists\ \lambda_i \in \R$ such that $v = \sum \lambda_i w_i$. Show that in fact $\lambda_i = \angb{v, w_i}$.
+\end{questionbody}
 
-We want to show that $\lambda_i = \angb{v, w_i}$. For any fixed $i \le n$ \begin{align*}
+For any fixed $i \le n$ \begin{align*}
 v &= \smlm_{j=1}^n \lambda_j w_j\\[1ex]
 \angb{v, w_i} &= \angb{\smlm_{j=1}^n \lambda_j w_j, w_i}\\[1ex]
 &= \smlm_{j=1}^n \lambda_j \angb{w_j, w_i}\\[1ex]
@@ -35,11 +38,15 @@ Therefore $\angb{v, w_i} = \lambda_i$ for all $i = 1,\ \ldots,\ n$, as required.
 % {{{ Q5
 \newquestion{5}
 
-Let $V = \R^3$ and let $$v_1 = \begin{pmatrix}1\\ 1\\ 0\end{pmatrix}, \quad v_2 = \begin{pmatrix}2\\ 0\\ 1\end{pmatrix}, \quad v_3 = \begin{pmatrix}1\\ 1\\ 2\end{pmatrix}$$
+\begin{questionbody}
+Let $V = \R^3$ equipped with the usual inner (dot) product. Let $$v_1 = \begin{pmatrix}1\\ 1\\ 0\end{pmatrix}, \quad v_2 = \begin{pmatrix}2\\ 0\\ 1\end{pmatrix}, \quad v_3 = \begin{pmatrix}1\\ 1\\ 2\end{pmatrix}$$
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 5.a
 
-We will apply Gram-Schmidt to $v_1, v_2, v_3$ to get an orthonormal basis $w_1, w_2, w_3$.
+\begin{questionbody}
+Apply the Gram-Schmidt orthogonalisation process to $v_1, v_2, v_3$ to construct an orthonormal basis $w_1, w_2, w_3$.
+\end{questionbody}
 
 \begin{align*}
 w_1 &= \f{v_1}{\| v_1 \|} = \f1{\sqrt 2} \begin{pmatrix}1\\ 1\\ 0\end{pmatrix}\\[1ex]
@@ -53,28 +60,44 @@ w_3 &= \f{u_3}{\| u_3 \|} = \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}
 
 Therefore our orthonormal basis $w_1, w_2, w_3$ is $\ds \f1{\sqrt2} \begin{pmatrix}1\\ 1\\ 0\end{pmatrix}, \f1{\sqrt2} \begin{pmatrix}1\\ -1\\ 1\end{pmatrix}, \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}$
 
-\subsection{~}
+\subsection{~} % 5.b
 
-Consider $v = \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}$. Clearly $v = w_3$ so if $v = \lambda_1 w_1 + \lambda_2 w_2 + \lambda_3 w_3$ then, since $w_1, w_2, w_3$ are linearly independent, $\lambda_1 = \lambda_2 = 0$ and $\lambda_3 = 1$.
+\begin{questionbody}
+Consider $v = \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}$. Find $\lambda_1, \lambda_2, \lambda_3$ such that $v = \lambda_1 w_1 + \lambda_2 w_2 + \lambda_3 w_3$.
+\end{questionbody}
+
+Clearly $v = w_3$ so if $v = \lambda_1 w_1 + \lambda_2 w_2 + \lambda_3 w_3$ then, since $w_1, w_2, w_3$ are linearly independent, $\lambda_1 = \lambda_2 = 0$ and $\lambda_3 = 1$.
 
 % }}}
 
 % {{{ Q6
 \newquestion{6}
 
-Let $$A = \begin{pmatrix} a & \f b2 \\ \f b2 & c \end{pmatrix}$$
-And define \begin{align*}
+\begin{questionbody}
+Consider the symmetric matrix $$A = \begin{pmatrix} a & \f b2 \\ \f b2 & c \end{pmatrix}$$
+and define a function \begin{align*}
 \varphi : \R^2 &\to \R\\[1ex]
 v = \begin{pmatrix} x \\ y \end{pmatrix} &\mapsto v^T A v = \begin{pmatrix} x & y \end{pmatrix} \begin{pmatrix} a & \f b2 \\ \f b2 & c \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}
 \end{align*}
 
-Note that $\varphi(\ul 0) = 0$ and $\varphi(\lambda v) = \lambda^2 \varphi(v)$ so we only need to consider $v \in \R^2$ of the form $$e_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad\text{and}\quad v_x = \begin{pmatrix} x \\ 1 \end{pmatrix}\ \fa x \in \R$$
+Notice that $\varphi(\ul 0) = 0$. This question determines precise conditions for which $\varphi(v) = 0$ for all $v \ne \ul 0$.
 
-\subsection{~}
+Notice that $\varphi(\lambda v) = \lambda^2 \varphi(v)$ so we only need to consider $v \in \R^2$ of the form $$e_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad\text{and}\quad v_x = \begin{pmatrix} x \\ 1 \end{pmatrix}\ \fa x \in \R$$
+\end{questionbody}
+
+\subsection{~} % 6.a
+
+\begin{questionbody}
+If $a \le 0$ find a vector $v \ne \ul 0$ with $\varphi(v) \le \ul 0$.
+\end{questionbody}
 
 $\varphi(e_1) = \begin{pmatrix}1 & 0\end{pmatrix} \begin{pmatrix}a \\ \f b2\end{pmatrix} = a$ so if $a \le 0$ then $\varphi(e_1) \le 0$.
 
-\subsection{~}
+\subsection{~} % 6.b
+
+\begin{questionbody}
+Express $\varphi(v_x)$ as a polynomial in $x$.
+\end{questionbody}
 
 \begin{align*}
 \varphi(v_x) &= \begin{pmatrix}x & 1\end{pmatrix} \begin{pmatrix}a & \f b2 \\ \f b2 & c\end{pmatrix} \begin{pmatrix}x \\ 1\end{pmatrix}\\[1ex]
@@ -83,9 +106,14 @@ $\varphi(e_1) = \begin{pmatrix}1 & 0\end{pmatrix} \begin{pmatrix}a \\ \f b2\end{
 &= ax^2 + bx + c
 \end{align*}
 
-\subsection{~}
+\clearpage
+\subsection{~} % 6.c
 
-Suppose $a > 0$. Now suppose $b^2 - 4ac < 0$. That means $ax^2 + bx + c = 0$ has no roots and since $a > 0$, $ax^2 + bx + c > 0$, so $\varphi(v_x) > 0\ \fa x \in \R$.
+\begin{questionbody}
+Suppose $a > 0$. Prove that $\varphi(v_x) > 0$ for all $x \in \R$ if and only if $b^4 - 4ac < 0$. Recall that $\det A = ac - \f{b^2}4$, so that this condition is exactly the same as $\det A > 0$.
+\end{questionbody}
+
+Suppose $a > 0$ and $b^2 - 4ac < 0$. That means $ax^2 + bx + c = 0$ has no roots and since $a > 0$, $ax^2 + bx + c > 0$, so $\varphi(v_x) > 0\ \fa x \in \R$.
 
 Conversely, suppose $\varphi(v_x) > 0$. Therefore $ax^2 + bx + c > 0\ \fa x \in \R$, which means this quadratic has no roots and therefore has a negative discriminant, so $b^2 - 4ac < 0$.
 
@@ -94,9 +122,15 @@ Conversely, suppose $\varphi(v_x) > 0$. Therefore $ax^2 + bx + c > 0\ \fa x \in 
 % {{{ Q7
 \newquestion{7}
 
-Let $\angb{v,w} = v^T A w$ for any $v, w \in \R^2$.
+\begin{questionbody}
+Continue with the notation and matrix $A$ from the previous question. For any vectors $v, w \in \R^2$ define $\angb{v,w} = v^T A w$.
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 7.a
+
+\begin{questionbody}
+Show that $\angb{v, w} = \angb{w, v}$ for any $v, w \in \R^2$.
+\end{questionbody}
 
 The transpose of a scalar is the same scalar, so \begin{align*}
 \quad\qquad\qquad \angb{v, w} &= \angb{v, w}^T\\
@@ -107,7 +141,12 @@ The transpose of a scalar is the same scalar, so \begin{align*}
 &= \angb{w, v}
 \end{align*}
 
-\subsection{~}
+\subsection{~} % 7.b
+
+\begin{questionbody}
+Show that for any $v_1, v_2, w \in \R^2$ and $\lambda_1, \lambda_2 \in \R$,
+$$\angb{\lambda_1 v_1 + \lambda_2 v_2, w} = \lambda_1 \angb{v_1, w} + \lambda_2 \angb{v_2, w}$$
+\end{questionbody}
 
 \begin{align*}
 \angb{\lambda_1 v_1 + \lambda_2 v_2, w} &= \l(\lambda_1 v_1 + \lambda_2 v_2\r)^T A w\\[1ex]
@@ -116,13 +155,28 @@ The transpose of a scalar is the same scalar, so \begin{align*}
 &= \lambda_1 \angb{v_1, w} + \lambda_2 \angb{v_2, w}
 \end{align*}
 
-\subsection{~}
+\subsection{~} % 7.c
 
-Suppose $a > 0$ and $\det A > 0$, so $b^4 - 4ac < 0$. We know that $\angb{v, v} = v^T A v$ so $\angb{v, v}$ is equivalent to $\varphi(v)$ from Question~6, and we know that $\varphi(v) \ge 0\ \fa v \in \R^2$ when $a > 0$ and $\det A > 0$, with equality only when $v=0$.
+\begin{questionbody}
+Suppose $a > 0$ and $\det A > 0$. Show that $\angb{v, v} \ge 0$ for any $v \in V$, and that $\angb{v, v} = 0$ if and only if $v = \ul 0$.
+\end{questionbody}
+
+Since $a > 0$ and $\det A > 0$, $b^4 - 4ac < 0$. We know that $\angb{v, v} = v^T A v$ so $\angb{v, v}$ is equivalent to $\varphi(v)$ from Question~6, and we know that $\varphi(v) \ge 0\ \fa v \in \R^2$ when $a > 0$ and $\det A > 0$, with equality only when $v=0$.
 
 Essentially, the desired result follows immediately from Question~6 and the observation that $\angb{v, v} = \varphi(v)$.
 
-\subsection{~}
+\subsection{~} % 7.d
+
+\begin{questionbody}
+Which of the following matrices $A$ determine an inner product on $V = \R^2$ by the formula $v^T A w$ above?
+$$
+\begin{pmatrix}-2 & 1\\ 1 & -2\end{pmatrix}\hspace{1em}
+\begin{pmatrix}5 & -3\\ -3 & 2\end{pmatrix}\hspace{1em}
+\begin{pmatrix}5 & 3\\ 3 & -2\end{pmatrix}\hspace{1em}
+\begin{pmatrix}2 & -1\\ -1 & 1\end{pmatrix}\hspace{1em}
+\begin{pmatrix}1 & -1\\ -1 & 1\end{pmatrix}
+$$
+\end{questionbody}
 
 For a matrix $A$ to determine an inner product as above, we need $a > 0$ and $\det A > 0$, so only $\begin{pmatrix}5 & -3\\ -3 & 2\end{pmatrix}$ and $\begin{pmatrix}2 & -1\\ -1 & 1\end{pmatrix}$ determine inner products
 

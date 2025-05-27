@@ -2,9 +2,13 @@
   texlive = pkgs.texlive.withPackages (p:
     with p; [
       scheme-medium
+
       gensymb
       cancel
       csquotes
+
+      framed
+      nowidow
     ]);
 
   python = pkgs.python3.withPackages (p: [p.rich]);

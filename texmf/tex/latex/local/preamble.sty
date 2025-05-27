@@ -34,6 +34,22 @@
 	\question{#1}
 }
 
+%%%%% Quote question bodies
+% Taken mostly from https://tex.stackexchange.com/a/336283
+
+\usepackage{framed}
+\usepackage[table, svgnames]{xcolor}
+\usepackage[defaultlines=2, all]{nowidow}
+
+% Bright to remind me to set color for each module
+% Should be overriden in every file
+\colorlet{questionbodycolor}{magenta}
+
+\newenvironment{questionbody}{%
+	\def\FrameCommand{{\color{questionbodycolor}\vrule width 3pt} \hspace{0.25em}}
+	\MakeFramed {\advance\hsize-\width \FrameRestore}\noindent\hspace{-\fontdimen2\font}}%
+{\endMakeFramed\vspace{-1ex}}
+
 %%%%% Shorthand and missing functions (taken mostly from my Obsidian notes)
 % Environments
 \newenvironment{apmatrix}[2]
