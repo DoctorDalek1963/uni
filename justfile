@@ -82,6 +82,10 @@ new-ass:
 
 	from rich import print
 
+	QUESTION_BODY_COLOR_MAP = {
+		"MA150": "magenta!50",
+	}
+
 	with open("{{source_directory()}}/templates/ass/main.tex", "r") as f:
 		text = f.read()
 
@@ -96,6 +100,12 @@ new-ass:
 			.replace("#COURSE-FULL#", f"{course_short} {course_full.replace("-", " ")}")
 			.replace("#NUMBER#", ass_num)
 		)
+
+		try:
+			question_body_color = QUESTION_BODY_COLOR_MAP[course_short]
+			text = text.replace("#QUESTION-BODY-COLOR#", question_body_color)
+		except KeyError:
+			print(f'[bold yellow]WARNING[/bold yellow]: Short course name "{course_short}" not defined in QUESTION_BODY_COLOR_MAP, so not using correct colour')
 	except (ValueError, AttributeError):
 		print("[bold yellow]WARNING[/bold yellow]: Directory not formatted like an assignment, so just using template main.tex")
 
