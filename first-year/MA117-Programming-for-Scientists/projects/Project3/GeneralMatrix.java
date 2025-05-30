@@ -35,8 +35,8 @@ public class GeneralMatrix extends Matrix {
 	 * Constructor function: should initialise iDim and jDim through the Matrix
 	 * constructor and set up the data array.
 	 *
-	 * @param firstDim   The first dimension of the array.
-	 * @param secondDim  The second dimension of the array.
+	 * @param firstDim  The first dimension of the array.
+	 * @param secondDim The second dimension of the array.
 	 */
 	public GeneralMatrix(int firstDim, int secondDim) {
 		super(firstDim, secondDim);
@@ -47,7 +47,7 @@ public class GeneralMatrix extends Matrix {
 	 * Constructor function. This is a copy constructor; it should create a
 	 * copy of the second matrix.
 	 *
-	 * @param other  The matrix to create a copy of.
+	 * @param other The matrix to create a copy of.
 	 */
 	public GeneralMatrix(Matrix other) {
 		this(other.iDim, other.jDim);
@@ -60,9 +60,9 @@ public class GeneralMatrix extends Matrix {
 	/**
 	 * Getter function: return the (i,j)'th entry of the matrix.
 	 *
-	 * @param i  The location in the first co-ordinate.
-	 * @param j  The location in the second co-ordinate.
-	 * @return   The (i,j)'th entry of the matrix.
+	 * @param i The location in the first co-ordinate.
+	 * @param j The location in the second co-ordinate.
+	 * @return The (i,j)'th entry of the matrix.
 	 */
 	public double getIJ(int i, int j) throws MatrixException {
 		this.validateIndex(i, j);
@@ -72,9 +72,9 @@ public class GeneralMatrix extends Matrix {
 	/**
 	 * Setter function: set the (i,j)'th entry of the values array.
 	 *
-	 * @param i      The location in the first co-ordinate.
-	 * @param j      The location in the second co-ordinate.
-	 * @param value  The value to set the (i,j)'th entry to.
+	 * @param i     The location in the first co-ordinate.
+	 * @param j     The location in the second co-ordinate.
+	 * @param value The value to set the (i,j)'th entry to.
 	 */
 	public void setIJ(int i, int j, double value) throws MatrixException {
 		this.validateIndex(i, j);
@@ -94,8 +94,9 @@ public class GeneralMatrix extends Matrix {
 		// matrices. Then the determinant of this matrix is the product of the
 		// determinants of L and U. The LUdecomp method provides gives a version of L
 		// with ones all down the leading diagonal, packed with U. So the $\det L = 1$
-		// and $\det U$ is the product of the elements on the leading diagonal of LUdecomp.
-		double[] sign = {1.0};
+		// and $\det U$ is the product of the elements on the leading diagonal of
+		// LUdecomp.
+		double[] sign = { 1.0 };
 		GeneralMatrix decomp = this.LUdecomp(sign);
 
 		double det = sign[0];
@@ -109,8 +110,8 @@ public class GeneralMatrix extends Matrix {
 	/**
 	 * Add the matrix to another second matrix.
 	 *
-	 * @param other  The Matrix to add to this matrix.
-	 * @return       The sum of this matrix with the second matrix.
+	 * @param other The Matrix to add to this matrix.
+	 * @return The sum of this matrix with the second matrix.
 	 */
 	public Matrix add(Matrix other) throws MatrixException {
 		if (this.iDim != other.iDim || this.jDim != other.jDim)
@@ -129,8 +130,8 @@ public class GeneralMatrix extends Matrix {
 	 * Multiply the matrix by another matrix A. This is a _left_ product,
 	 * i.e. if this matrix is called B then it calculates the product BA.
 	 *
-	 * @param A  The Matrix to multiply by.
-	 * @return   The product of this matrix with the matrix A.
+	 * @param A The Matrix to multiply by.
+	 * @return The product of this matrix with the matrix A.
 	 */
 	public Matrix multiply(Matrix A) {
 		this.validateMultiplyDimensions(A);
@@ -156,8 +157,8 @@ public class GeneralMatrix extends Matrix {
 	/**
 	 * Multiply the matrix by a scalar.
 	 *
-	 * @param scalar  The scalar to multiply the matrix by.
-	 * @return        The product of this matrix with the scalar.
+	 * @param scalar The scalar to multiply the matrix by.
+	 * @return The product of this matrix with the scalar.
 	 */
 	public Matrix multiply(double scalar) {
 		Matrix m = new GeneralMatrix(this.iDim, this.jDim);
@@ -204,10 +205,10 @@ public class GeneralMatrix extends Matrix {
 	 * This method is an adaptation of the one found in the book "Numerical
 	 * Recipies in C" (see online for more details).
 	 *
-	 * @param sign  An array of length 1. On exit, the value contained in here
-	 *              will either be 1 or -1, which you can use to calculate the
-	 *              correct sign on the determinant.
-	 * @return      The LU decomposition of the matrix.
+	 * @param sign An array of length 1. On exit, the value contained in here
+	 *             will either be 1 or -1, which you can use to calculate the
+	 *             correct sign on the determinant.
+	 * @return The LU decomposition of the matrix.
 	 */
 	public GeneralMatrix LUdecomp(double[] sign) {
 		// This method is complete. You should not even attempt to change it!!
@@ -229,36 +230,36 @@ public class GeneralMatrix extends Matrix {
 			big = 0.0;
 
 			for (j = 1; j <= jDim; j++)
-				if ((temp = Math.abs(a.values[i-1][j-1])) > big)
+				if ((temp = Math.abs(a.values[i - 1][j - 1])) > big)
 					big = temp;
 
 			if (big == 0.0)
 				throw new MatrixException("Matrix is singular");
 
-			vv[i-1] = 1.0/big;
+			vv[i - 1] = 1.0 / big;
 		}
 
 		for (j = 1; j <= jDim; j++) {
 			for (i = 1; i < j; i++) {
-				sum = a.values[i-1][j-1];
+				sum = a.values[i - 1][j - 1];
 
 				for (k = 1; k < i; k++)
-					sum -= a.values[i-1][k-1]*a.values[k-1][j-1];
+					sum -= a.values[i - 1][k - 1] * a.values[k - 1][j - 1];
 
-				a.values[i-1][j-1] = sum;
+				a.values[i - 1][j - 1] = sum;
 			}
 
 			big = 0.0;
 
 			for (i = j; i <= jDim; i++) {
-				sum = a.values[i-1][j-1];
+				sum = a.values[i - 1][j - 1];
 
 				for (k = 1; k < j; k++)
-					sum -= a.values[i-1][k-1]*a.values[k-1][j-1];
+					sum -= a.values[i - 1][k - 1] * a.values[k - 1][j - 1];
 
-				a.values[i-1][j-1] = sum;
+				a.values[i - 1][j - 1] = sum;
 
-				if ((dum = vv[i-1]*Math.abs(sum)) >= big) {
+				if ((dum = vv[i - 1] * Math.abs(sum)) >= big) {
 					big = dum;
 					imax = i;
 				}
@@ -266,23 +267,23 @@ public class GeneralMatrix extends Matrix {
 
 			if (j != imax) {
 				for (k = 1; k <= jDim; k++) {
-					dum = a.values[imax-1][k-1];
-					a.values[imax-1][k-1] = a.values[j-1][k-1];
-					a.values[j-1][k-1] = dum;
+					dum = a.values[imax - 1][k - 1];
+					a.values[imax - 1][k - 1] = a.values[j - 1][k - 1];
+					a.values[j - 1][k - 1] = dum;
 				}
 
 				sign[0] = -sign[0];
-				vv[imax-1] = vv[j-1];
+				vv[imax - 1] = vv[j - 1];
 			}
 
-			if (a.values[j-1][j-1] == 0.0)
-				a.values[j-1][j-1] = 1.0e-20;
+			if (a.values[j - 1][j - 1] == 0.0)
+				a.values[j - 1][j - 1] = 1.0e-20;
 
 			if (j != jDim) {
-				dum = 1.0/a.values[j-1][j-1];
+				dum = 1.0 / a.values[j - 1][j - 1];
 
-				for (i = j+1; i <= jDim; i++)
-					a.values[i-1][j-1] *= dum;
+				for (i = j + 1; i <= jDim; i++)
+					a.values[i - 1][j - 1] *= dum;
 			}
 		}
 

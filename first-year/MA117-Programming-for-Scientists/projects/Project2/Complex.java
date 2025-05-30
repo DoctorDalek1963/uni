@@ -47,8 +47,8 @@ public class Complex {
 	/**
 	 * Constructor: Initializes x, y.
 	 *
-	 * @param x  The initial value of the real component.
-	 * @param y  The initial value of the imaginary component.
+	 * @param x The initial value of the real component.
+	 * @param y The initial value of the imaginary component.
 	 */
 	public Complex(double x, double y) {
 		this.x = x;
@@ -58,7 +58,7 @@ public class Complex {
 	/**
 	 * Real constructor - initialises with a real number.
 	 *
-	 * @param x  The initial real number to initialise to.
+	 * @param x The initial real number to initialise to.
 	 */
 	public Complex(double x) {
 		this(x, 0.0);
@@ -96,7 +96,7 @@ public class Complex {
 	/**
 	 * Mutator method: set the real part of the complex number.
 	 *
-	 * @param x  The replacement real part of z.
+	 * @param x The replacement real part of z.
 	 */
 	public void setReal(double x) {
 		this.x = x;
@@ -105,7 +105,7 @@ public class Complex {
 	/**
 	 * Mutator method: set the imaginary part of the complex number.
 	 *
-	 * @param y  The replacement imaginary part of z.
+	 * @param y The replacement imaginary part of z.
 	 */
 	public void setImag(double y) {
 		this.y = y;
@@ -156,8 +156,8 @@ public class Complex {
 	/**
 	 * Adds a complex number to this one.
 	 *
-	 * @param b  The complex number to add to this one.
-	 * @return   The sum of this complex number with b.
+	 * @param b The complex number to add to this one.
+	 * @return The sum of this complex number with b.
 	 */
 	public Complex add(Complex b) {
 		return new Complex(this.getReal() + b.getReal(), this.getImag() + b.getImag());
@@ -175,8 +175,8 @@ public class Complex {
 	/**
 	 * Subtracts a complex number from this one.
 	 *
-	 * @param b  The complex number to subtract from this one.
-	 * @return   The difference of this complex number and b.
+	 * @param b The complex number to subtract from this one.
+	 * @return The difference of this complex number and b.
 	 */
 	public Complex sub(Complex b) {
 		return this.add(b.negate());
@@ -185,8 +185,8 @@ public class Complex {
 	/**
 	 * Multiplies this complex number by a constant.
 	 *
-	 * @param alpha   The constant to multiply by.
-	 * @return        The product of alpha with z.
+	 * @param alpha The constant to multiply by.
+	 * @return The product of alpha with z.
 	 */
 	public Complex multiply(double alpha) {
 		return new Complex(alpha * this.x, alpha * this.y);
@@ -195,8 +195,8 @@ public class Complex {
 	/**
 	 * Multiplies this complex number by another complex number.
 	 *
-	 * @param b   The complex number to multiply by.
-	 * @return    The product of b with z.
+	 * @param b The complex number to multiply by.
+	 * @return The product of b with z.
 	 */
 	public Complex multiply(Complex b) {
 		double x1 = this.getReal();
@@ -210,8 +210,8 @@ public class Complex {
 	/**
 	 * Divide this complex number by another.
 	 *
-	 * @param b  The complex number to divide by.
-	 * @return   The division z/a.
+	 * @param b The complex number to divide by.
+	 * @return The division z/a.
 	 */
 	public Complex divide(Complex b) {
 		return this.multiply(b.conjugate()).multiply(1.0 / b.abs2());

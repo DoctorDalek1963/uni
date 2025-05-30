@@ -17,3 +17,6 @@
 
 # Evince? I think
 .fuse_hidden*
+
+# Java LSP
+/.jdtls/

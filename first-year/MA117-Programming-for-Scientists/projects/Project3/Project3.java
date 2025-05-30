@@ -45,23 +45,23 @@ public class Project3 {
 	 * Calculates the variance of the distribution defined by the determinant
 	 * of a random matrix. See the formulation for a detailed description.
 	 *
-	 * @param matrix      The matrix object that will be filled with random
-	 *                    samples.
-	 * @param nSamp       The number of samples to generate when calculating
-	 *                    the variance.
-	 * @return            The variance of the distribution.
+	 * @param matrix The matrix object that will be filled with random
+	 *               samples.
+	 * @param nSamp  The number of samples to generate when calculating
+	 *               the variance.
+	 * @return The variance of the distribution.
 	 */
 	public static double matVariance(Matrix matrix, int nSamp) {
 		Pair sumsPair = IntStream
-			.rangeClosed(1, nSamp)
-			.boxed()
-			.parallel()
-			.map(_i -> {
-				matrix.random();
-				double det = matrix.determinant();
-				return new Pair(det, det * det);
-			})
-			.reduce(new Pair(0.0, 0.0), Pair::add, Pair::add);
+				.rangeClosed(1, nSamp)
+				.boxed()
+				.parallel()
+				.map(_i -> {
+					matrix.random();
+					double det = matrix.determinant();
+					return new Pair(det, det * det);
+				})
+				.reduce(new Pair(0.0, 0.0), Pair::add, Pair::add);
 
 		double sumDet = sumsPair.a;
 		double sumDetSquared = sumsPair.b;

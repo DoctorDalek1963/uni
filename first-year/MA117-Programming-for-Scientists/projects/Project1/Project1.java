@@ -44,9 +44,9 @@ public class Project1 {
 	}
 
 	/**
-	 * Results function. It should open the file called fileName (using Scanner), and from it generate
-	 * the statistics outlined in the project formulation. These are then placed in the instance
-	 * variables above.
+	 * Results function. It should open the file called fileName (using Scanner),
+	 * and from it generate the statistics outlined in the project formulation.
+	 * These are then placed in the instance variables above.
 	 *
 	 * @param fileName The name of the file containing the circle data.
 	 */
@@ -70,19 +70,19 @@ public class Project1 {
 		Circle[] circleArray = circleList.toArray(new Circle[circleList.size()]);
 
 		this.circleCounter = circleArray.length;
-		this.aabb = this.calculateAABB(new Circle[] {circleArray[9], circleArray[19]});
+		this.aabb = this.calculateAABB(new Circle[] { circleArray[9], circleArray[19] });
 
 		// Min and max area
 		try {
 			this.Smax = circleList.stream()
-			                      .map(c -> c.area())
-			                      .max(Double::compare)
-			                      .get();
+					.map(c -> c.area())
+					.max(Double::compare)
+					.get();
 
 			this.Smin = circleList.stream()
-			                      .map(c -> c.area())
-			                      .min(Double::compare)
-			                      .get();
+					.map(c -> c.area())
+					.min(Double::compare)
+					.get();
 		} catch (NoSuchElementException e) {
 			System.err.println("We should always have maximum and minimum areas");
 		}
@@ -92,9 +92,9 @@ public class Project1 {
 
 		// Median
 		double[] sortedAreas = Arrays.stream(circleArray)
-		                             .mapToDouble(c -> c.area())
-		                             .sorted()
-		                             .toArray();
+				.mapToDouble(c -> c.area())
+				.sorted()
+				.toArray();
 
 		if (sortedAreas.length % 2 == 0) {
 			double a = sortedAreas[sortedAreas.length / 2 - 1];
@@ -106,23 +106,23 @@ public class Project1 {
 	}
 
 	/**
-	 * A function to calculate the avarage area of circles in the array provided. This array may
-	 * contain 0 or more circles.
+	 * A function to calculate the avarage area of circles in the array provided.
+	 * This array may contain 0 or more circles.
 	 *
 	 * @param circles An array of Circles
 	 */
 	public double averageCircleArea(Circle[] circles) {
 		double totalArea = Arrays.stream(circles)
-		                         .filter(c -> !c.isSingular())
-		                         .mapToDouble(c -> c.area())
-		                         .sum();
+				.filter(c -> !c.isSingular())
+				.mapToDouble(c -> c.area())
+				.sum();
 
 		return totalArea / circles.length;
 	}
 
 	/**
-	 * A function to calculate the standard deviation of areas in the circles in the array provided.
-	 * This array may contain 0 or more circles.
+	 * A function to calculate the standard deviation of areas in the circles in the
+	 * array provided. This array may contain 0 or more circles.
 	 *
 	 * @param circles An array of Circles
 	 */
@@ -130,56 +130,59 @@ public class Project1 {
 		double mu = this.averageCircleArea(circles);
 
 		double sumOfSquaredAreas = Arrays.stream(circles)
-		                                 .filter(c -> !c.isSingular())
-		                                 .mapToDouble(c -> c.area() * c.area())
-		                                 .sum();
+				.filter(c -> !c.isSingular())
+				.mapToDouble(c -> c.area() * c.area())
+				.sum();
 
 		return Math.sqrt(sumOfSquaredAreas / circles.length - mu * mu);
 	}
 
 	/**
-	 * Returns 4 values in an array [X1,Y1,X2,Y2] that define the rectangle that surrounds the array
-	 * of circles given, as set out in the project formulation.
-	 * ****************************************************** IMPORTANT REMARK
-	 * ******************************************************* This method can take any number of
-	 * circles, and not just 2 circles. As indicated below, it must return an array of doubles that
-	 * define the bottom left and top right of a rectangle that surrounds ALL the given circles. In
-	 * case no circle is provided to calculateAABB() or in case all the circles are singular, then the
-	 * (default) bouding rectangle should be the largest possible we can define using Double.MAX_VALUE
-	 * and Double.MIN_VALUE
+	 * Returns 4 values in an array [X1,Y1,X2,Y2] that define the rectangle that
+	 * surrounds the array of circles given, as set out in the project formulation.
+	 * ****************
+	 * IMPORTANT REMARK
+	 * ****************
+	 * This method can take any number of circles, and not just 2 circles. As
+	 * indicated below, it must return an array of doubles that define the bottom
+	 * left and top right of a rectangle that surrounds ALL the given circles. In
+	 * case no circle is provided to calculateAABB() or in case all the circles are
+	 * singular, then the (default) bouding rectangle should be the largest possible
+	 * we can define using Double.MAX_VALUE and Double.MIN_VALUE
 	 *
 	 * @param circles An array of Circles
-	 * @return An array of doubles [X1,Y1,X2,Y2] that define the bounding rectangle with the origin
-	 *     (bottom left) at [X1,Y1] and opposite corner (top right) at [X2,Y2]
+	 * @return An array of doubles [X1,Y1,X2,Y2] that define the bounding rectangle
+	 *         with the origin (bottom left) at [X1,Y1] and opposite corner (top
+	 *         right) at [X2,Y2]
 	 */
 	public double[] calculateAABB(Circle[] circles) {
 		try {
 			double x1 = Arrays.stream(circles)
-			                  .filter(c -> !c.isSingular())
-			                  .map(c -> c.getCentre().getX() - c.getRadius())
-			                  .min(Double::compare)
-			                  .get();
+					.filter(c -> !c.isSingular())
+					.map(c -> c.getCentre().getX() - c.getRadius())
+					.min(Double::compare)
+					.get();
 			double y1 = Arrays.stream(circles)
-			                  .filter(c -> !c.isSingular())
-			                  .map(c -> c.getCentre().getY() - c.getRadius())
-			                  .min(Double::compare)
-			                  .get();
+					.filter(c -> !c.isSingular())
+					.map(c -> c.getCentre().getY() - c.getRadius())
+					.min(Double::compare)
+					.get();
 
 			double x2 = Arrays.stream(circles)
-			                  .filter(c -> !c.isSingular())
-			                  .map(c -> c.getCentre().getX() + c.getRadius())
-			                  .max(Double::compare)
-			                  .get();
+					.filter(c -> !c.isSingular())
+					.map(c -> c.getCentre().getX() + c.getRadius())
+					.max(Double::compare)
+					.get();
 			double y2 = Arrays.stream(circles)
-			                  .filter(c -> !c.isSingular())
-			                  .map(c -> c.getCentre().getY() + c.getRadius())
-			                  .max(Double::compare)
-			                  .get();
+					.filter(c -> !c.isSingular())
+					.map(c -> c.getCentre().getY() + c.getRadius())
+					.max(Double::compare)
+					.get();
 
-			return new double[] {x1, y1, x2, y2};
+			return new double[] { x1, y1, x2, y2 };
 		} catch (NoSuchElementException e) {
 			// If we don't have maxima or minima, return the largest box
-			return new double[] {Double.MIN_VALUE, Double.MIN_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
+			return new double[] { Double.MIN_VALUE, Double.MIN_VALUE, Double.MAX_VALUE, Double.MAX_VALUE };
 		}
 	}
 
@@ -188,8 +191,9 @@ public class Project1 {
 	// =======================================================
 
 	/**
-	 * Your tester function should go here (see week 14 lecture notes if you're confused). It is not
-	 * tested by BOSS, but you should still implement it in a sensible fashion.
+	 * Your tester function should go here (see week 14 lecture notes if you're
+	 * confused). It is not tested by BOSS, but you should still implement it in a
+	 * sensible fashion.
 	 */
 	public static void main(String args[]) throws FileNotFoundException {
 		Project1 p = new Project1();

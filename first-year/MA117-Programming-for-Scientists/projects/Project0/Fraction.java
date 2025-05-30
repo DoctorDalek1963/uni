@@ -30,10 +30,10 @@
 /**
  * Classname: Fraction
  * Description: This class implements a new type for fractions
- *              and corresponding arithmetic.
+ * and corresponding arithmetic.
  *
  * @author : Original: K.N. King, modified by D. Moxey and P. Plechac
- *           for use in the course MA117
+ *         for use in the course MA117
  * @version: history: v1.1
  */
 
@@ -59,8 +59,8 @@ public class Fraction {
 	 * Constructor which takes coefficients explicity.
 	 *
 	 * Behaviour: Constructs a fraction with the specified numerator and
-	 *            denominator. Remember that your fraction should *always* be
-	 *            stored in irreducible form.
+	 * denominator. Remember that your fraction should *always* be stored in
+	 * irreducible form.
 	 *
 	 * @param num   The numerator
 	 * @param denom The denominator
@@ -75,7 +75,7 @@ public class Fraction {
 	 * Constructor which takes coefficients explicity.
 	 *
 	 * Behaviour: Constructs a fraction which represents an integer: set the
-	 *            specified numerator and set denominator to 1.
+	 * specified numerator and set denominator to 1.
 	 *
 	 * @param num The numerator
 	 */
@@ -86,13 +86,12 @@ public class Fraction {
 	/**
 	 * Default constructor.
 	 *
-	 * Behaviour: Constructs a fraction and set the default value to 0;
-	 *            i.e. numerator = 0 and denominator = 1
+	 * Behaviour: Constructs a fraction and set the default value to 0; i.e.
+	 * numerator = 0 and denominator = 1
 	 */
 	public Fraction() {
 		this(0, 1);
 	}
-
 
 	// ==============================================================
 	// Convertors
@@ -106,22 +105,21 @@ public class Fraction {
 	 *
 	 * Behaviour: Converts this fraction into a double.
 	 *
-	 * @return    A double value obtained by dividing the fraction's numerator
-	 *            by its denominator.
+	 * @return A double value obtained by dividing the fraction's numerator by its
+	 *         denominator.
 	 */
 	public double toDouble() {
 		return (double) numerator / (double) denominator;
 	}
 
-
 	/**
-	 * Convert the fraction to the floating point representation using the
-	 * single precision.
+	 * Convert the fraction to the floating point representation using the single
+	 * precision.
 	 *
 	 * Behaviour: Converts this fraction into a float value.
 	 *
-	 * @return    A float value obtained by dividing the fraction's numerator by
-	 *            its denominator
+	 * @return A float value obtained by dividing the fraction's numerator by its
+	 *         denominator
 	 */
 	public float toFloat() {
 		return (float) numerator / (float) denominator;
@@ -132,8 +130,8 @@ public class Fraction {
 	 *
 	 * Behaviour: Converts this fraction into a string
 	 *
-	 * @return    A string of the form "num/denom". If the denominator is 1,
-	 *            returns a string containing *only* the numerator.
+	 * @return A string of the form "num/denom". If the denominator is 1,
+	 *         returns a string containing *only* the numerator.
 	 */
 	public String toString() {
 		if (denominator == 1) {
@@ -142,7 +140,6 @@ public class Fraction {
 			return String.format("%d/%d", numerator, denominator);
 		}
 	}
-
 
 	// ============================================================
 	// Accessors and mutator methods (getters and setters)
@@ -153,7 +150,7 @@ public class Fraction {
 	 *
 	 * Behaviour: Returns the denominator of this fraction.
 	 *
-	 * @return    The denominator of this fraction.
+	 * @return The denominator of this fraction.
 	 */
 	public int getDenominator() {
 		return denominator;
@@ -164,23 +161,23 @@ public class Fraction {
 	 *
 	 * Behaviour: Returns the numerator of this fraction.
 	 *
-	 * @return    The numerator of this fraction.
+	 * @return The numerator of this fraction.
 	 */
 	public int getNumerator() {
 		return numerator;
 	}
 
-	//============================================================
+	// ============================================================
 	// Operations with fractions - Core methods
-	//============================================================
+	// ============================================================
 
 	/**
 	 * Addition operation.
 	 *
 	 * Behaviour: Adds this fraction to a supplied fraction.
 	 *
-	 * @param f  The fraction to be added.
-	 * @return   The sum of this fraction and f.
+	 * @param f The fraction to be added.
+	 * @return The sum of this fraction and f.
 	 */
 	public Fraction add(Fraction f) {
 		int num = numerator * f.denominator + f.numerator * denominator;
@@ -194,8 +191,8 @@ public class Fraction {
 	 *
 	 * Behaviour: Subtracts a fraction from this fraction.
 	 *
-	 * @param f   The fraction to be subtracted.
-	 * @return    The difference between this fraction and f.
+	 * @param f The fraction to be subtracted.
+	 * @return The difference between this fraction and f.
 	 *
 	 */
 	public Fraction subtract(Fraction f) {
@@ -210,8 +207,8 @@ public class Fraction {
 	 *
 	 * Behaviour: Divides this fraction by another fraction.
 	 *
-	 * @param f   The fraction to be used as a divisor.
-	 * @return    The quotient of this fraction and f.
+	 * @param f The fraction to be used as a divisor.
+	 * @return The quotient of this fraction and f.
 	 */
 	public Fraction divide(Fraction f) {
 		return this.multiply(f.reciprocal());
@@ -222,8 +219,8 @@ public class Fraction {
 	 *
 	 * Behaviour: Multiplies this fraction and another fraction.
 	 *
-	 * @param f   The fraction to be multiplied.
-	 * @return    The product of this fraction and f.
+	 * @param f The fraction to be multiplied.
+	 * @return The product of this fraction and f.
 	 */
 	public Fraction multiply(Fraction f) {
 		return new Fraction(numerator * f.numerator, denominator * f.denominator);
@@ -277,12 +274,11 @@ public class Fraction {
 	/**
 	 * Compare two fractions.
 	 *
-	 * @param  q  The fraction to compare with.
-	 * @return    true if q is Fraction equal to this fraction .
+	 * @param q The fraction to compare with.
+	 * @return true if q is Fraction equal to this fraction .
 	 */
 	public boolean sameAs(Fraction q) {
-		return (numerator   == q.getNumerator() &&
+		return (numerator == q.getNumerator() &&
 				denominator == q.getDenominator());
 	}
 }
-

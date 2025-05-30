@@ -40,7 +40,7 @@ public abstract class Matrix {
 	 * constructors to set iDim and jDim.
 	 *
 	 * @param firstDim  The first dimension of the matrix.
-	 * @param secondDim  The second dimension of the matrix.
+	 * @param secondDim The second dimension of the matrix.
 	 */
 	protected Matrix(int firstDim, int secondDim) {
 		iDim = firstDim;
@@ -55,9 +55,9 @@ public abstract class Matrix {
 	 * newline character.
 	 *
 	 * e.g.
-	 *  -2.00   0.00   0.00
-	 *   1.00  -1.00   0.12
-	 *   0.00   0.00   1.00
+	 * -2.00 0.00 0.00
+	 * 1.00 -1.00 0.12
+	 * 0.00 0.00 1.00
 	 *
 	 * @return A String representation of the Matrix.
 	 */
@@ -81,22 +81,22 @@ public abstract class Matrix {
 	protected void validateIndex(int i, int j) throws MatrixException {
 		if (i >= this.iDim || j >= this.jDim)
 			throw new MatrixException(String.format(
-				"Index (%d, %d) out of bounds for %d x %d matrix",
-				i, j, this.iDim, this.jDim
-			));
+					"Index (%d, %d) out of bounds for %d x %d matrix",
+					i, j, this.iDim, this.jDim));
 	}
 
 	/**
 	 * Throw MatrixException if the other matrix is not compatible with this one.
 	 *
-	 * This method checks compatibility for `this * other` in that order, not `other * this`.
+	 * This method checks compatibility for `this * other` in that order, not `other
+	 * * this`.
 	 */
 	protected void validateMultiplyDimensions(Matrix other) throws MatrixException {
 		if (this.jDim != other.iDim)
 			throw new MatrixException(String.format(
-				"Cannot multiply %d x %d matrix with %d x %d",
-				this.iDim, this.jDim, other.iDim, other.jDim
-			));
+					"Cannot multiply %d x %d matrix with %d x %d",
+					this.iDim, this.jDim,
+					other.iDim, other.jDim));
 	}
 
 	public boolean approxEquals(Matrix other) {
@@ -117,18 +117,18 @@ public abstract class Matrix {
 	/**
 	 * Getter function: return the (i,j)'th entry of the matrix.
 	 *
-	 * @param i  The location in the first co-ordinate.
-	 * @param j  The location in the second co-ordinate.
-	 * @return   The (i,j)'th entry of the matrix.
+	 * @param i The location in the first co-ordinate.
+	 * @param j The location in the second co-ordinate.
+	 * @return The (i,j)'th entry of the matrix.
 	 */
 	public abstract double getIJ(int i, int j);
 
 	/**
 	 * Setter function: set the (i,j)'th entry of the data array.
 	 *
-	 * @param i    The location in the first co-ordinate.
-	 * @param j    The location in the second co-ordinate.
-	 * @param val  The value to set the (i,j)'th entry to.
+	 * @param i   The location in the first co-ordinate.
+	 * @param j   The location in the second co-ordinate.
+	 * @param val The value to set the (i,j)'th entry to.
 	 */
 	public abstract void setIJ(int i, int j, double val);
 
@@ -142,8 +142,8 @@ public abstract class Matrix {
 	/**
 	 * Add the matrix to another second matrix.
 	 *
-	 * @param second  The Matrix to add to this matrix.
-	 * @return        The sum of this matrix with the second matrix.
+	 * @param second The Matrix to add to this matrix.
+	 * @return The sum of this matrix with the second matrix.
 	 */
 	public abstract Matrix add(Matrix second);
 
@@ -151,16 +151,16 @@ public abstract class Matrix {
 	 * Multiply the matrix by another matrix A. This is a _left_ product,
 	 * i.e. if this matrix is called B then it calculates the product BA.
 	 *
-	 * @param A  The Matrix to multiply by.
-	 * @return   The product of this matrix with the matrix A.
+	 * @param A The Matrix to multiply by.
+	 * @return The product of this matrix with the matrix A.
 	 */
 	public abstract Matrix multiply(Matrix A);
 
 	/**
 	 * Multiply the matrix by a scalar.
 	 *
-	 * @param scalar  The scalar to multiply the matrix by.
-	 * @return        The product of this matrix with the scalar.
+	 * @param scalar The scalar to multiply the matrix by.
+	 * @return The product of this matrix with the scalar.
 	 */
 	public abstract Matrix multiply(double scalar);
 

@@ -18,8 +18,9 @@ public class Point {
 	private double X, Y;
 
 	/**
-	 * GEOMTOL is described in the formulation. It describes the tolerance that we are going to use
-	 * throughout this project. Remember that you do NOT need to redefine this in other classes.
+	 * GEOMTOL is described in the formulation. It describes the tolerance that we
+	 * are going to use throughout this project. Remember that you do NOT need to
+	 * redefine this in other classes.
 	 */
 	public static final double GEOMTOL = 1.0e-6;
 
@@ -34,8 +35,8 @@ public class Point {
 	}
 
 	/**
-	 * Two-parameter version of the constructor. Initialiases (X,Y) to the point (a,b) which is
-	 * supplied to the function.
+	 * Two-parameter version of the constructor. Initialiases (X,Y) to the point
+	 * (a,b) which is supplied to the function.
 	 *
 	 * @param a - x-coordinate of the point
 	 * @param b - y-coordinate of the point
@@ -125,8 +126,8 @@ public class Point {
 	// -----------------------------------------------------------------------
 
 	/**
-	 * Compare this with some Object. Two points are equal if their are in a box given by the constant
-	 * GEOMTOL.
+	 * Compare this with some Object. Two points are equal if their are in a box
+	 * given by the constant GEOMTOL.
 	 *
 	 * @param obj The object to compare with.
 	 * @return If obj is a Quaternion with the same coefficients.
@@ -142,7 +143,8 @@ public class Point {
 	}
 
 	/**
-	 * Compare two points. Two points are equal if their are in a box given by the constant GEOMTOL.
+	 * Compare two points. Two points are equal if their are in a box given by the
+	 * constant GEOMTOL.
 	 *
 	 * @param q A Point to be compared to this instance
 	 * @return true if Point q is equal to this instance.
@@ -156,8 +158,9 @@ public class Point {
 	// =======================================================
 
 	/**
-	 * Your tester function should go here (see week 14 lecture notes if you're confused). It is not
-	 * tested by BOSS, but you should still implement it in a sensible fashion.
+	 * Your tester function should go here (see week 14 lecture notes if you're
+	 * confused). It is not tested by BOSS, but you should still implement it in a
+	 * sensible fashion.
 	 */
 	public static void main(String args[]) {
 		// You can use this method for testing.

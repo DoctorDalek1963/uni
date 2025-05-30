@@ -71,13 +71,15 @@ public class Secant {
 	 * process.
 	 *
 	 * Possible values are:
-	 *   OK: Nothing went wrong.
-	 *   ZERO: Difference went to zero during the algorithm.
-	 *   DNF: Reached MAXITER iterations (did not finish)
+	 * OK: Nothing went wrong.
+	 * ZERO: Difference went to zero during the algorithm.
+	 * DNF: Reached MAXITER iterations (did not finish)
 	 */
-	enum Error { OK, ZERO, DNF };
-	private Error err = Error.OK;
+	enum Error {
+		OK, ZERO, DNF
+	};
 
+	private Error err = Error.OK;
 
 	// ========================================================
 	// Constructor functions.
@@ -86,7 +88,7 @@ public class Secant {
 	/**
 	 * Basic constructor.
 	 *
-	 * @param p  The polynomial used for Secant.
+	 * @param p The polynomial used for Secant.
 	 */
 	public Secant(Polynomial p) {
 		this.f = p;
@@ -135,15 +137,16 @@ public class Secant {
 	 *
 	 * One of three things may occur:
 	 *
-	 *   - The root is found, in which case, set root to the end result of the
-	 *     algorithm, numIterations to the number of iterations required to
-	 *     reach it and err to OK.
-	 *   - At some point the absolute difference between f(zn) and f(zn-1) becomes zero.
-	 *     In this case, set err to ZERO and return.
-	 *   - After MAXITER iterations the algorithm has not converged. In this
-	 *     case set err to DNF and return.
+	 * - The root is found, in which case, set root to the end result of the
+	 * algorithm, numIterations to the number of iterations required to
+	 * reach it and err to OK.
+	 * - At some point the absolute difference between f(zn) and f(zn-1) becomes
+	 * zero.
+	 * In this case, set err to ZERO and return.
+	 * - After MAXITER iterations the algorithm has not converged. In this
+	 * case set err to DNF and return.
 	 *
-	 * @param z0,z1  The initial starting points for the algorithm.
+	 * @param z0,z1 The initial starting points for the algorithm.
 	 */
 	public void iterate(Complex z0, Complex z1) {
 		for (int i = 0; i < MAXITER; i++) {

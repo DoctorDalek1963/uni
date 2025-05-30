@@ -105,9 +105,9 @@ public class Project2 {
 	 * above. IMPORTANT: Remember to call setupFractal at the end of this
 	 * function!!
 	 *
-	 * @param p       The polynomial to generate the fractal of.
-	 * @param origin  The top-left corner of the square to image.
-	 * @param width   The width of the square to image.
+	 * @param p      The polynomial to generate the fractal of.
+	 * @param origin The top-left corner of the square to image.
+	 * @param width  The width of the square to image.
 	 */
 	public Project2(Polynomial p, Complex origin, double width) {
 		this.iterator = new Secant(p);
@@ -140,12 +140,13 @@ public class Project2 {
 	/**
 	 * Check to see if root is in the roots ArrayList (up to tolerance).
 	 *
-	 * @param root  Root to find in this.roots.
+	 * @param root Root to find in this.roots.
 	 * @return The index of root within roots (-1 if the root is not found)
 	 */
 	public int index(Complex root) {
 		for (int i = 0; i < this.roots.size(); i++) {
-			if (this.roots.get(i).sub(root).abs2() < Secant.TOL2) return i;
+			if (this.roots.get(i).sub(root).abs2() < Secant.TOL2)
+				return i;
 		}
 		return -1;
 	}
@@ -154,13 +155,13 @@ public class Project2 {
 	 * Convert from pixel indices (i,j) to the complex number (origin.real +
 	 * i*dz, origin.imag - j*dz).
 	 *
-	 * @param i  x-axis co-ordinate of the pixel located at (i,j)
-	 * @param j  y-axis co-ordinate of the pixel located at (i,j)
+	 * @param i x-axis co-ordinate of the pixel located at (i,j)
+	 * @param j y-axis co-ordinate of the pixel located at (i,j)
 	 *
 	 */
 	public Complex pixelToComplex(int i, int j) {
-		double dz = this.width / (double)NUMPIXELS;
-		return this.origin.add(new Complex((double)i * dz, -(double)j * dz));
+		double dz = this.width / (double) NUMPIXELS;
+		return this.origin.add(new Complex((double) i * dz, -(double) j * dz));
 	}
 
 	// ========================================================
@@ -168,7 +169,7 @@ public class Project2 {
 	// ========================================================
 
 	/**
-	 * Generate the fractal image.  Use colourPixel() to add coloured pixels
+	 * Generate the fractal image. Use colourPixel() to add coloured pixels
 	 * to the image for this fractal.
 	 */
 	public void createFractal(boolean colourIterations) {
@@ -205,7 +206,8 @@ public class Project2 {
 		// Here is some example code which generates the two images seen in
 		// figure 1 of the formulation.
 		Polynomial p = new Polynomial(new Complex[] {
-			new Complex(-16.0), new Complex(-8.0), new Complex(-4.0), new Complex(2.0), new Complex(), new Complex(1.0)
+				new Complex(-16.0), new Complex(-8.0), new Complex(-4.0), new Complex(2.0), new Complex(),
+				new Complex(1.0)
 		});
 		Project2 project = new Project2(p, new Complex(-3.0, 3.0), 6.0);
 
@@ -254,10 +256,9 @@ public class Project2 {
 				float[] tmp = colours[i][j - 1].getRGBComponents(null);
 
 				colours[i][j] = new Color(
-					tmp[0] - delta[0],
-					tmp[1] - delta[1],
-					tmp[2]-delta[2]
-				);
+						tmp[0] - delta[0],
+						tmp[1] - delta[1],
+						tmp[2] - delta[2]);
 			}
 		}
 
@@ -270,7 +271,7 @@ public class Project2 {
 	 *
 	 * @param i          x-axis co-ordinate of the pixel located at (i,j)
 	 * @param j          y-axis co-ordinate of the pixel located at (i,j)
-	 * @param rootColour  An integer between 0 and 4 inclusive indicating the
+	 * @param rootColour An integer between 0 and 4 inclusive indicating the
 	 *                   root number.
 	 * @param numIter    Number of iterations at this root.
 	 */
@@ -287,7 +288,7 @@ public class Project2 {
 	/**
 	 * Saves the fractal image to a file.
 	 *
-	 * @param fileName  The filename to save the image as. Should end in .png.
+	 * @param fileName The filename to save the image as. Should end in .png.
 	 */
 	public void saveFractal(String fileName) {
 		// This function is complete!

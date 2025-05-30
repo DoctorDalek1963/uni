@@ -45,7 +45,7 @@ public class TriMatrix extends Matrix {
 	 * Constructor function: should initialise iDim and jDim through the Matrix
 	 * constructor and set up the values array.
 	 *
-	 * @param dimension  The dimension of the array.
+	 * @param dimension The dimension of the array.
 	 */
 	public TriMatrix(int dimension) {
 		super(dimension, dimension);
@@ -57,9 +57,9 @@ public class TriMatrix extends Matrix {
 	/**
 	 * Getter function: return the (i,j)'th entry of the matrix.
 	 *
-	 * @param i  The location in the first co-ordinate.
-	 * @param j  The location in the second co-ordinate.
-	 * @return   The (i,j)'th entry of the matrix.
+	 * @param i The location in the first co-ordinate.
+	 * @param j The location in the second co-ordinate.
+	 * @return The (i,j)'th entry of the matrix.
 	 */
 	public double getIJ(int i, int j) {
 		this.validateIndex(i, j);
@@ -78,9 +78,9 @@ public class TriMatrix extends Matrix {
 	/**
 	 * Setter function: set the (i,j)'th entry of the data array.
 	 *
-	 * @param i      The location in the first co-ordinate.
-	 * @param j      The location in the second co-ordinate.
-	 * @param value  The value to set the (i,j)'th entry to.
+	 * @param i     The location in the first co-ordinate.
+	 * @param j     The location in the second co-ordinate.
+	 * @param value The value to set the (i,j)'th entry to.
 	 */
 	public void setIJ(int i, int j, double value) throws MatrixException {
 		this.validateIndex(i, j);
@@ -93,9 +93,8 @@ public class TriMatrix extends Matrix {
 			this.upperDiagonal[i] = value;
 		} else {
 			throw new MatrixException(String.format(
-				"Cannot set index (%d, %d) in tri-diagonal matrix",
-				i, j
-			));
+					"Cannot set index (%d, %d) in tri-diagonal matrix",
+					i, j));
 		}
 	}
 
@@ -145,8 +144,8 @@ public class TriMatrix extends Matrix {
 	/**
 	 * Add the matrix to another second matrix.
 	 *
-	 * @param other  The Matrix to add to this matrix.
-	 * @return       The sum of this matrix with the second matrix.
+	 * @param other The Matrix to add to this matrix.
+	 * @return The sum of this matrix with the second matrix.
 	 */
 	public Matrix add(Matrix other) {
 		if (this.iDim != other.iDim || this.jDim != other.jDim)
@@ -165,8 +164,8 @@ public class TriMatrix extends Matrix {
 	 * Multiply the matrix by another matrix A. This is a _left_ product,
 	 * i.e. if this matrix is called B then it calculates the product BA.
 	 *
-	 * @param A  The Matrix to multiply by.
-	 * @return   The product of this matrix with the matrix A.
+	 * @param A The Matrix to multiply by.
+	 * @return The product of this matrix with the matrix A.
 	 */
 	public Matrix multiply(Matrix A) {
 		// Multiplying two tri-diagonal matrices doesn't always result in
@@ -177,8 +176,8 @@ public class TriMatrix extends Matrix {
 	/**
 	 * Multiply the matrix by a scalar.
 	 *
-	 * @param scalar  The scalar to multiply the matrix by.
-	 * @return        The product of this matrix with the scalar.
+	 * @param scalar The scalar to multiply the matrix by.
+	 * @return The product of this matrix with the scalar.
 	 */
 	public Matrix multiply(double scalar) {
 		Matrix m = new TriMatrix(this.iDim);

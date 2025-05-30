@@ -33,12 +33,13 @@ public class Circle {
 	}
 
 	/**
-	 * Alternative constructor, which sets the circle up with x and y co-ordinates representing the
-	 * centre, and a radius. Remember you should not store these x and y co-ordinates explicitly, but
-	 * instead create a Point to hold them for you.
+	 * Alternative constructor, which sets the circle up with x and y co-ordinates
+	 * representing the centre, and a radius. Remember you should not store these x
+	 * and y co-ordinates explicitly, but instead create a Point to hold them for
+	 * you.
 	 *
-	 * @param xc x-coordinate of the centre of the circle
-	 * @param yc y-coordinate of the centre of the circle
+	 * @param xc  x-coordinate of the centre of the circle
+	 * @param yc  y-coordinate of the centre of the circle
 	 * @param rad radius of the circle
 	 */
 	public Circle(double xc, double yc, double rad) {
@@ -47,11 +48,11 @@ public class Circle {
 	}
 
 	/**
-	 * Alternative constructor, which sets the circle up with a Point representing the centre, and a
-	 * radius.
+	 * Alternative constructor, which sets the circle up with a Point representing
+	 * the centre, and a radius.
 	 *
 	 * @param centre Point representing the centre
-	 * @param rad Radius of the circle
+	 * @param rad    Radius of the circle
 	 */
 	public Circle(Point centre, double rad) {
 		this.A = centre;
@@ -117,8 +118,9 @@ public class Circle {
 	/**
 	 * Calculates a String representation of the Circle.
 	 *
-	 * @return A String of the form: "[Ax,Ay,Radius]" where Ax and Ay are numerical values of the
-	 *     coordinates, and Radius is a numerical value of the radius.
+	 * @return A String of the form: "[Ax,Ay,Radius]" where Ax and Ay are numerical
+	 *         values of the coordinates, and Radius is a numerical value of the
+	 *         radius.
 	 */
 	public String toString() {
 		return String.format("[%.9f,%.9f,%.9f]", this.A.getX(), this.A.getY(), this.r);
@@ -129,13 +131,13 @@ public class Circle {
 	// ==========================
 
 	/**
-	 * Similar to the equals() function in Point. Returns true if two Circles are equal. By this we
-	 * mean:
+	 * Similar to the equals() function in Point. Returns true if two Circles are
+	 * equal. By this we mean:
 	 *
-	 * <p>- They have the same radius (up to the tolerance defined in Point). - They have the same
-	 * centre (up to the tolerance defined in Point).
+	 * - They have the same radius (up to the tolerance defined in Point). - They
+	 * have the same centre (up to the tolerance defined in Point).
 	 *
-	 * <p>Remember that the second test is already done in the Point class!
+	 * Remember that the second test is already done in the Point class!
 	 *
 	 * @param c The circle to compare this with.
 	 * @return true if the two circles are equal.
