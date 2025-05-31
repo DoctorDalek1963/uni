@@ -5,6 +5,7 @@ set allow-duplicate-recipes # Needed for _default and _pre-build
 _default:
 	@just --list
 
+[group("pdf")]
 _pre-build:
 	nix-shell code/shell.nix --run ./code/plot_surface.py
 	@just _build

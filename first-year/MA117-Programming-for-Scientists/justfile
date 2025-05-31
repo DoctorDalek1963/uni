@@ -5,12 +5,14 @@ set allow-duplicate-recipes # Needed for _default
 _default:
 	@just --list
 
-# format all Java files in currenyt directory
+# format all Java files in current directory
+[group("java")]
 [no-cd]
 format:
 	fd -e java -X astyle --mode=java --style=java --indent=tab --delete-empty-lines --squeeze-ws
 
 # connect the red-ferret server to the red-ferret/ folder with sshfs
+[group("ssh")]
 connect:
 	#!/usr/bin/env bash
 

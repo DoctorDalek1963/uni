@@ -6,6 +6,7 @@ _default:
 	@just --list
 
 # assemble the scans and screenshots into a PDF
+[group("pdf")]
 build:
 	#!/usr/bin/env nix-shell
 	#! nix-shell -i bash -p imagemagick pdftk
@@ -17,5 +18,6 @@ build:
 	pdftk A="Original scan.pdf" B=.tmp_pdfs/Q2-e.pdf C=.tmp_pdfs/Q2-f.pdf cat A1-3 B C A4-6 output main.pdf
 
 # remove all build artifacts
+[group("pdf")]
 clean:
 	rm -rfv .tmp_pdfs/

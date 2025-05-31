@@ -21,15 +21,18 @@ _default:
 # dependency cycles.
 
 # do the actual build
+[group("pdf")]
 [no-cd]
 _build:
 	lualatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -recorder --jobname="main" "main.tex"
 
 # run commands before the build
+[group("pdf")]
 _pre-build:
 	@true
 
 # build the assignment in the current directory
+[group("pdf")]
 build: _pre-build _build
 
 # Like with the build recipes, these clean recipes allow individual assignments
@@ -37,26 +40,31 @@ build: _pre-build _build
 # _clean_latex when needed
 
 # just clean the LaTeX
+[group("pdf")]
 [no-cd]
 _clean_latex:
 	latexmk -c -C
 	texhash
 
 # remove all build artifacts
+[group("pdf")]
 [no-cd]
 clean: _clean_latex
 
 # open main.pdf to view
+[group("pdf")]
 [no-cd]
 view: build
 	xdg-open main.pdf &> /dev/null & disown
 
 # watch the directory and recompile whenever a file changes
+[group("pdf")]
 [no-cd]
 watch: view
 	while inotifywait -q -e modify *; do just build; done
 
 # build and rename main.pdf to proper filename
+[group("pdf")]
 [no-cd]
 rename: build
 	#!/usr/bin/env python3
@@ -71,9 +79,11 @@ rename: build
 	os.rename("main.pdf", f"Dyson_Dyson_5503449_{course_code}_Assignment_{ass_num}.pdf")
 
 # build a fresh PDF from scratch and rename it
+[group("pdf")]
 finish: clean rename
 
 # create a new main.tex for an assignment in the current directory
+[group("create")]
 [no-cd]
 new-ass:
 	#!/usr/bin/env python3
@@ -114,6 +124,7 @@ new-ass:
 
 
 # create a new justfile in the current directory for specific additions and overrides
+[group("create")]
 [no-cd]
 new-justfile:
 	#!/usr/bin/env python3
@@ -131,6 +142,7 @@ new-justfile:
 		f.write(text.replace("#REL_PATH_TO_ROOT#", str(rel_path)))
 
 # build every assignment for CI
+[group("ci")]
 ci-build-all:
 	#!/usr/bin/env python3
 

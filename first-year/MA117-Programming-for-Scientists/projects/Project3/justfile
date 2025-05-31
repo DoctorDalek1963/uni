@@ -4,21 +4,26 @@ _default:
 	@just --list
 
 # compile Project3 with all files
+[group("java")]
 compile-java:
 	javac Project3.java Matrix.java MatrixException.java GeneralMatrix.java TriMatrix.java -d out/
 
 # run Project3
+[group("java")]
 run class="Project3": compile-java
 	java -enableassertions -classpath out {{class}}
 
 # build VarGraph.pdf using the generated data
+[group("pdf")]
 build:
 	just run Project3 | tee variance.data
 	DISPLAY= nix-shell -p octave -p ghostscript -p gnuplot --run "octave --norc create_var_graph.m"
 
 # build and rename PDF
+[group("pdf")]
 rename: build
 
 # remove all build artifacts
+[group("java")]
 clean:
 	rm -rfv out/ variance.data

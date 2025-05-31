@@ -4,16 +4,20 @@ _default:
 	@just --list
 
 # compile Project1 with all files
+[group("java")]
 compile-java:
 	javac Project1.java Circle.java Point.java -d out/
 
 # run Project1 to test everything
+[group("java")]
 run: compile-java
 	java -enableassertions -classpath out Project1
 
 # remove all build artifacts
+[group("java")]
 clean:
 	rm -rfv out/
 
 # only here for CI to know what to check
+[group("ci")]
 build: compile-java

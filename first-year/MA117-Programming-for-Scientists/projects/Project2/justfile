@@ -4,19 +4,25 @@ _default:
 	@just --list
 
 # compile Project2 with all files
+[group("java")]
 compile-java:
 	javac Project2.java Complex.java Polynomial.java Secant.java -d out/
 
 # run Project2 to test everything
+[group("java")]
 run class="Project2": compile-java
 	java -enableassertions -classpath out {{class}}
 
+[group("pdf")]
 _pre-build: run
 
 # build and rename main.pdf to Fractal.pdf
+[group("pdf")]
 rename: build
 	mv main.pdf Fractal.pdf
 
 # remove all build artifacts
+[group("pdf")]
+[group("java")]
 clean: _clean_latex
 	rm -rfv out/ fractal-*.png
