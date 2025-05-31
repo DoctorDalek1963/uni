@@ -1,11 +1,11 @@
 import "../../../justfile"
 
-set allow-duplicate-recipes # Needed for _default and _pre-build
+set allow-duplicate-recipes := true
 
 _default:
-	@just --list
+    @just --list
 
 [group("pdf")]
 _pre-build:
-	nix-shell code/shell.nix --run ./code/generate_plots.py
-	@just _build
+    nix-shell code/shell.nix --run ./code/generate_plots.py
+    @just _build

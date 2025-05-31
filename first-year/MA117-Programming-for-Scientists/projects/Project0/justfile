@@ -1,22 +1,22 @@
 import "../../justfile"
 
 _default:
-	@just --list
+    @just --list
 
 # compile Project0 with all files
 [group("java")]
 compile-java:
-	javac Project0.java Fraction.java -d out/
+    javac Project0.java Fraction.java -d out/
 
 # run Project0 to test Fraction
 [group("java")]
 run: compile-java
-	java -enableassertions -classpath out Project0
+    java -enableassertions -classpath out Project0
 
 # remove all build artifacts
 [group("java")]
 clean:
-	rm -rfv out/
+    rm -rfv out/
 
 # only here for CI to know what to check
 [group("ci")]

@@ -1,16 +1,16 @@
 import "#REL_PATH_TO_ROOT#/justfile"
 
-set allow-duplicate-recipes
+set allow-duplicate-recipes := true
 
 _default:
-	@just --list
+    @just --list
 
 [group("pdf")]
 _pre-build:
-	nix-shell code/shell.nix --run ./code/SCRIPT_NAME.py
-	@just _build
+    nix-shell code/shell.nix --run ./code/SCRIPT_NAME.py
+    @just _build
 
 # remove all build artifacts
 [group("pdf")]
 clean: _clean_latex
-	rm -rfv TEMP_DIRS
+    rm -rfv TEMP_DIRS

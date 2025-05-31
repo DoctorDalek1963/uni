@@ -1,9 +1,9 @@
 alias r := run
 
 _default:
-	@just --list
+    @just --list
 
 # run Scratch.java
 [group("java")]
 run:
-	@java {{justfile_directory()}}/Scratch.java
+    @java {{ justfile_directory() }}/Scratch.java

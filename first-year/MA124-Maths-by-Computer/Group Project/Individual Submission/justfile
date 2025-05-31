@@ -1,11 +1,11 @@
 import "../../../../justfile"
 
-set allow-duplicate-recipes
+set allow-duplicate-recipes := true
 
 _default:
-	@just --list
+    @just --list
 
 # rename main.pdf
 [group("pdf")]
 rename: build
-	mv main.pdf Dyson_Dyson_5503449_MA124_Individual_Submission.pdf
+    mv main.pdf Dyson_Dyson_5503449_MA124_Individual_Submission.pdf

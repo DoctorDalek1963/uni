@@ -1,22 +1,22 @@
 import "../../justfile"
 
-set allow-duplicate-recipes # Needed for _default
+set allow-duplicate-recipes := true
 
 _default:
-	@just --list
+    @just --list
 
 # format all Java files in current directory
 [group("java")]
 [no-cd]
 format:
-	fd -e java -X astyle --mode=java --style=java --indent=tab --delete-empty-lines --squeeze-ws
+    fd -e java -X astyle --mode=java --style=java --indent=tab --delete-empty-lines --squeeze-ws
 
 # connect the red-ferret server to the red-ferret/ folder with sshfs
 [group("ssh")]
 connect:
-	#!/usr/bin/env bash
+    #!/usr/bin/env bash
 
-	mountpoint="$(mktemp -d)"
-	sshfs red-ferret:ma117/labs "$mountpoint"
-	rm -f "{{justfile_directory()}}/red-ferret"
-	ln -sf "$mountpoint" "{{justfile_directory()}}/red-ferret"
+    mountpoint="$(mktemp -d)"
+    sshfs red-ferret:ma117/labs "$mountpoint"
+    rm -f "{{ justfile_directory() }}/red-ferret"
+    ln -sf "$mountpoint" "{{ justfile_directory() }}/red-ferret"
