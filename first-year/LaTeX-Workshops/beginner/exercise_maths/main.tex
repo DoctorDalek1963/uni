@@ -1,0 +1,67 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{Exercise: Mathematical Symbols in \LaTeX}
+\author{Stu Dent}
+\date{June 6, 2019}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{mathrsfs}
+\usepackage{xfrac} % used for \sfrac
+\usepackage{array}
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage[text]{esdiff} % used to make derivatives in Leibniz notation, the "text" option here makes the derivatives look better when used in-line.
+
+\def\sgn{\mathop{\rm sgn}\nolimits}
+\def\d{\mathrm{d}}
+
+\begin{document}
+
+\maketitle
+
+\section{Linear Algebra: determinants\label{sec:linear-algebra-determinants}}
+
+Suppose that we have an $n \times n$ matrix $A = (a_{i,j})$, so
+\[
+A = \begin{pmatrix}
+a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n,1} & a_{n,2} & \cdots & a_{n,n}
+\end{pmatrix}
+\]
+
+Then we recall the definition of determinant of $A$ to be
+\[
+\det(A) = \sum_{\sigma \in S_n} \sgn(\sigma) \prod_{i=1}^n a_{i, \sigma(i)}.
+\]
+
+But in practice, we often use row \& column expansion methods in combination with elementary row \& column operations to compute them.
+
+\section{Vector Analysis: Change of Variables\label{sec:vector-analysis-change-of-variables}}
+
+One use of the determinant is its ability to determine how area and volume elements change under a transformation of coordinates.
+
+Suppose that we wish to compute the integral $\iint_\Omega f(x, y) \d A$ using the transformation given by:
+\[
+\begin{cases}
+x = g(u, v), \\
+y = h(u, v).
+\end{cases}
+\]
+
+Assume also that under this transformation, the region $\Omega$ is taken to the region $S = \left\{ (u, v) \in \mathbb{R}^2 \, \middle| \, a \le u \le b, c \le v \le d \right\}$, then
+\[
+\iint_\Omega f(x, y) \d A = \int_a^b \int_c^d f\Big( g(u,v), h(u,v) \Big) \left| \frac{\partial (x,y)}{\partial (u,v)} \right| \d u \d v
+\]
+where
+\[
+\frac{\partial (x,y)}{\partial (u,v)} = \det \begin{pmatrix}
+\diffp gu & \diffp gv \\[1ex]
+\diffp hu & \diffp hv
+\end{pmatrix}
+\]
+
+Similar methods allow easy computation of integrals such as $\oint\limits_{\partial \Xi} \nabla v \cdot \d \underline{\xi}$.
+
+\end{document}

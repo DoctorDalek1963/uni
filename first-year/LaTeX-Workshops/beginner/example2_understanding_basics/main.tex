@@ -1,0 +1,79 @@
+\documentclass[a4paper,11pt]{article}
+
+% this first part of the code is called the "pre-amble"
+% it won't appear in the final document,
+% the pre-amble is all the code before the line "\begin{document}"
+% the pre-amble is what you set up the document including:
+%     		information about the document (such as author, title, creation date)
+% 			the look of the finished document
+% 			what "packages" of LaTeX code can be used
+
+\title{\S2 Understanding the basics of \LaTeX}
+\author{Andrew Brendon-Penn}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\begin{document}   % now comes the content - what will appear in the document itself
+
+\maketitle  % this makes a title using the information you provided in the pre-amble
+
+
+\section{My first section}
+
+This is some text!
+
+% this is just a comment, it won't appear in the document because of the % sign
+
+This is me talking about percentages like 20\%.
+
+\subsection{My first subsection}
+Here's more text.
+
+Notice      how        \LaTeX \        ignores         excess         spaces.
+Do
+you
+notice
+how
+\LaTeX \
+ignores
+single
+carriage
+returns?
+If I want to start a new paragraph, then I need to leave an empty line.
+
+Or, I can leave lots of empty lines by pressing the enter key several times as I shall soon.
+
+
+
+
+The effect is the same. Note that the first paragraph in a (sub)section is not indented, but all others are.
+
+
+
+New paragraphs have an indented first line. But if I want to start a new line  without starting   a new paragraph, then I can use  the double  backslash to end the previous line.\\ This starts a new line without starting a new paragraph.
+
+
+
+
+\section*{My first section without a number}
+
+The star stopped \LaTeX \ from numbering the section.
+
+\section{My first bit of maths in \LaTeX}
+
+Here's some in-line maths
+$\sum_{k=1}^{\infty} \frac{\beta_k x^k}{k!}$
+which all fits on the same line.
+
+And here's the same thing, but as displayed maths
+\[
+\sum_{k=1}^{\infty} \frac{\beta_k x^k}{k!}.
+\]
+The displayed maths is easier to read and is more prominent on the page.
+
+
+\end{document}
+
+\LaTeX will ignore this because the document has already ended.

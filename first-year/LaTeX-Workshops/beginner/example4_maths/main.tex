@@ -1,0 +1,805 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{\S4 Mathematical Symbols in \LaTeX}
+\author{Andrew Brendon-Penn}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+\usepackage{centernot} 	% used for \centernot command which negates a symbol
+\usepackage{xfrac} 		% used for \sfrac
+\usepackage{array} 		% used to give more options when constructing arrays
+\usepackage{siunitx} 	% used for SI units
+\usepackage[text]{esdiff} % used to make derivatives in Leibniz notation, the "text" option here makes the derivatives look better when used in-line.
+\usepackage{bm}			% used for \bm{...} commands to make bold mathematical symbols
+\usepackage{gensymb}	% used for \degree command
+\usepackage{eurosym} 	% used for euro symbol
+\usepackage{stmaryrd} 	% used for \lightning symbol
+\usepackage{tikz}		% used for drawings (I used it to make contradiction symbol)
+
+\begin{document}   % now comes the content - what will appear in the document itself
+
+\maketitle  % this makes a title using the information you provided in the pre-amble
+
+\begin{abstract}
+This document is designed to be read in both its .tex and .pdf forms at the same time. Compare both documents to see examples of \LaTeX \, code that you can adapt for your uses.
+\end{abstract}
+% you DON'T need an abstract for your 2nd year essay, but probably will for 4th year project.
+
+\tableofcontents % just to show you how easy it is to add a table of contents.
+\pagebreak
+
+\section{The Basics}
+
+\subsection{Numbers}
+
+Technically speaking, there are two types of numbers likely to appear in your text. There are text-style numbers which are used as they would be in an essay in English or History, such as 24\textsuperscript{th} November, 1975, Chapter 3, 101 ways to skin a cat.
+
+Then, there are maths-style numbers, which are part of the mathematics such as saying that the only factors of $5$ are $1$ and $5$ itself or that product of $3$ and $5$ is $15$. Maths-style numbers technically should always be inside a maths environment. However, assuming you've not played around with the fonts too much, this probably won't make a difference, so unless you're planning to publish one day, then you can probably get away just typing.
+
+There is one particular example when the difference is apparent, that is in the case of a minus sign which only ever appears as mathematics. Notice how much different -1,-2,-3, \ldots appear from the properly typeset $-1,-2,-3, \ldots$.
+
+Contrastingly, letters which represent numbers, sets, functions, or any other mathematical object must always be inside a maths environment. For example: 
+
+For every  x$>$0, there is some y$>$0 such that $x^2=y$. (WRONG)
+
+For every $x>0$, there is some $y>0$ such that $x^2=y$. (CORRECT)
+
+
+\subsubsection{SI units}
+
+By adding the siunitx package to the preamble, it is easier to get pleasant results for expressions involving SI units such as temperatures such as \SI{37}{\degreeCelsius}, or angles such as \ang{45}, or other SI units such as \SI{10}{kg.m.s^{-2}} and \SI{26}{\milli\metre\per\kilogram\squared}.
+
+The package also allows some other nice formatting for numbers. For example correctly spacing large numbers such as \num{1000000000}, or dealing with standard index notation such as \num{1.23d-10} or \num{3.45e25}.
+
+
+\subsubsection{Currency}
+
+\LaTeX \, includes currency such as 
+\pounds 3000, 
+\$30000, 
+\yen 2000, 
+\euro 20.32, % requires eurosym package
+\textwon 30K.
+
+
+\subsection{Algebraic Operations}
+
+Most algebraic operations are straightforward: 
+$a+b$, $a-b$, 
+$c\pm d$, 		% plus or minus
+$e\mp f$, 		% minus or plus
+$gh$,
+$i\cdot j$, 		%  multiplication
+$k\times \ell$, 	% multiplication, cross product cartesian product
+$m \div n$, 	% division sign - rarely used at degree level
+$p^q$,  		% a to the power b
+$\sqrt{r}$, 	% square root
+$\sqrt[3]{st}$, $\sqrt[n]{tuv}$,  % nth roots  - 
+% the optional argument in the square brackets specifies the value of n
+$w \circ x$,	% composition
+$y^{-1} $.		% inverse
+$f\big|_A$		% restriction
+
+
+\subsection{Equations and Inequalities}
+
+The symbols for equals and strict inequalities are straight off your keyboard: $a=b<c$, $c>a$.
+
+Non-strict inequalities aren't too much harder: 
+$a\leq b$, 		% less than or equal to
+$c \geq d$ 		% greater than or equal to
+(or if you really prefer 
+$e\leqslant f$, % less than or equal to
+$g\geqslant h$).% greater than or equal to
+
+There are all of your favourite options, and many that you may never have met yet. Here are but a few: 
+$a \neq b$, 		% not equal to
+$c \ngeq d$, 		% not greater than or equal to (i.e. <)
+$e \mid f$, 		% divides (is a factor of) 
+$g \nmid h$, 		% does not divide
+$i \prec j \succ k$, % used for partial orders
+$m \ll n \gg p$, 	% much much less/greater than
+$q \lneqq r \gneqq s$, % less/greater than but not equal to
+$t \lhd u \rhd v \unlhd w \unrhd x $,  % used for ideals / normal subgroups
+$y \approx z$,  	% approximately equal to
+$a \perp b \parallel c$, % perpendicular/parallel to
+$d \equiv e$, 		% equivalent/identical to (three lines) 
+$f \sim g $,  		% tilde used for equivalence relations 
+$h \simeq i$, 		% is isomorphic to
+$j \propto k $. 	% proportional to
+
+In particular, if you want to use modulo arithmetic, you might use $a \equiv b \pmod c$, or $m \equiv n \mod p$.
+
+\subsection{Arrows}
+
+The most useful arrows are those in 
+$(a_n) \to b$, 		% convergence  (same as \rightarrow)
+$f:A \to B$, 		% function's domain and target
+$f: x \mapsto x^2$, % where a function maps an individual element
+$P \implies Q$, 	% implication (same as \Longrightarrow)
+$P \iff Q$, 		% if and only if (same as \Longleftrightarrow)
+$Q \impliedby  P$. 	% is implied by (same as \Longleftarrow)
+
+
+But there are other useful arrows, and many arrows that you'll never use:
+$f:A \twoheadrightarrow B$, % used for surjections
+$f:A \hookrightarrow B$, 	% used for injections and embeddings
+$(a_n) \not \to b$, 		% does not tend to 
+$b \gets (a_n)$, 			% tends to (reversed)  
+$(a_n) \nrightarrow b$, 	% does not tend to (but better looking?)
+$ x \nearrow c$,			% approaching from below (ne is for North East)
+$ x \uparrow c$, 			% approaching from below alternative
+$ \circlearrowleft$, 		% often used for commutative diagrams
+$ a \looparrowright b $. 	% I have no idea why you'd use this. 
+
+
+\subsection{Subscripts \& embellishments}
+
+To create superscripts, use the circumflex for example to write $x^2$ or $x^{22}$. Similarly, it is easy create subscripts by using the underscore such as $x_n$ or $a_{2n}$. Just as with powers, use braces to group items together as $a_2n$ yields a very different result. 
+
+Many other embellishments can able be made: $\hat{a}, \bar{b}, \tilde{c},  \underline{d}, \dot{e}, \ddot{f}, g',  \overrightarrow{A}$.
+
+If you want to put one embellishment over a longer string, then you might need a different command: $\widehat{abc},  \overline{def}, \widetilde{klm}, \underline{nop},  \overrightarrow{QRS}$. In my opinion, some of these look better on just one letter too (e.g. compare $\hat{a}$ to $\widehat{a}$, and compare $\bar{c}$ to $\overline{c}$).
+
+There are some special conventions when labelling certain letters, for example it is considered bad style to leave the dots on an i or j before embellishing it with a hat (e.g. $\hat{i}, \hat{j}$) and so we use the undotted versions ($\imath, \jmath$) and embellish them instead ($\hat{\imath}, \hat{\jmath}$.)
+
+It is even possible to embellish items such as arrows. 
+\[ 
+f(x) \xrightarrow{x \to -\infty} 2
+\]
+
+\subsection{Powers and superscripts}
+
+As above, writing a power is easy using the circumflex $x^2$, Just note that if you want more than one character to appear in the superscript, then you should use braces to group them together. 
+Compare the following: $x^23$ and $x^{23}$.
+
+If you want a power taken to a power, again use the braces or you'll get an error message about ``double superscripts" but bracketing will also aid clarity. e.g. compare ${a^b}^c = {(a^b)}^c$ and $a^{b^c}=a^{(b^c)}$.
+ 
+The caret/circumflex can be used to make superscripts behind letters too, such as $^b a$. Sometimes though the spacing isn't great such as $^*f \in ^*R$ 
+% one of the reasons the spacing here looks bad is that the superscript * on R is technically being added to the preceding symbol (\in)
+but this can be fixed using some negative space and braces ${}^*\!f \in {}^*\!R$.
+% the command \! creates a negative space
+
+And, the caret it is used for the upper limits in things like sums, integrals etc. such as $\sum^5 a_i$.
+
+
+\subsection{Standard functions}
+
+Most standard functions have very obvious code, such as $\sin$, usually the name of the function after a backslash. These standard ``maths operators" always appear in upright maths Roman font.
+
+Here are a few examples:
+$\sin(x)$, $\cos(x)$,  $\arccos(x) $, $\cot(x)$, 	% trigonometry
+$\tanh(x)$, $\cosh(x)$, 							% hyperbolic trigonometry 
+$\exp(x)$, $\log(x)$, $\ln(x)$, $\log_{10}(x)$ ,  	% exponential and logarithms
+$\det A$, $\dim U$, $\ker T$, $\deg p $ 			% linear algebra
+$\max A$, $\min_{i \in I} a_i$,	 					% max / min
+$\sup A$, $\sup \left \{x \in \mathbb{R} \middle | x^2 <2\right \}$, 
+$\inf B$, $\inf_{x \in X} f(x)$,   					% supremum and infimimum
+$\lim_{x \to c} f(x)=\ell$,  $\liminf_{n \to \infty} a_n$, % limits and liminf
+$\gcd (a,b)$. % greatest common divisor, interestingly \lcm is missing,  but you can create it yourself - see how in the intermediate classes
+
+It can be tempting to be lazy and just use $sin(x)$ instead of $\sin(x)$, but this isn't good style. In mathematics, the convention is that functions whose name has more than one letter (such as $\sin$) should he upright, whereas functions whose name is a single letter (such as $f$) should be italic. Misuse can also cause some issues with spacing, especially when limits are applied in display maths. e.g. compare:
+\[ 
+lim_{x \to c} f(x) \text { to } \lim_{x \to c} f(x),
+\]
+and 
+\[
+sup_{x \in X} g(x) \text{ to } \sup_{x \in X} g(x),
+\]
+and 
+\[
+limsup_{n \to \infty} a_n \text{ to } \limsup_{n \to \infty} a_n.
+\]
+
+
+
+\subsection{Integrals, sums, products, unions, intersections}
+
+Rather then use the Greek letters $\Pi$ or $\Sigma$ for sums and products, better results come from using $\prod$ and $\sum$ which are designed to scale appropriately and handle limits.
+
+Integrals, sums etc. can be left without limits, such as $\int x^2 dx$ and $\sum a_n$. Or you can add limits in the same way that you would have added superscripts (\^{}) and subscripts (\_). 
+
+Integrals such as $\int_a^b { x^2 dx}$, % integral with limits
+sums such as $\sum_{n=0}^\infty a_n$, 	% sum with limits
+products such as $\prod_{i \in I} X_i$, % product with limits
+unions such as $\bigcup_{n\in \mathbb{N}} U_n = U_1 \cup U_2\cup U_3 \cup \cdots$
+% \cup is the union symbol used between two sets
+% whereas \bigcup is used for many sets 
+% in the same way that + is used between just two numbers and \sum is summing many numbers
+and intersections such as $\bigcap_{n=1}^{100} V_n = V_1 \cap V_2\cap V_3 \cap \cdots \cap V_{100}$ 
+look different depending on whether in-line (such as in this sentence) 
+or as displayed maths as below:
+\[ 
+\int_a^b { x^2 dx}                         \qquad  	% integral with limits
+\iint_{\partial \Omega} { x^2 y^3 dxdy}    \qquad	% double integral over region
+\sum_{n=0}^\infty a_n                      \qquad	% sum with limits
+\prod_{i \in I} X_i                        \qquad	% unions
+\bigcup_{n\in \mathbb{N}} U_n              \qquad	% intersections
+\bigcap_{n=1}^{100} V_n 
+\]
+
+Integrals in particular can look better in display settings by setting the limits using the limits command, see below:
+\[
+\int\limits_a^b { x^2 dx} \qquad \iint\limits_{\partial \Omega} { x^2 y^3 dxdy}
+\]
+
+Sometimes it's helpful to use more than one line in limits such as
+\[
+\sum_{\substack{1\leq i\leq n \\ i\neq j}}a_n.
+\]
+ 
+\subsection{Logic}
+
+All of your favourite logical symbols are available in \LaTeX \, such as:
+
+$\exists, \forall, 	% there exists / for all symbols
+\nexists,  			% does not exist
+\neg, 				% negation symbol
+\land, \lor,  		% logical and / or
+\implies, \iff, \impliedby, % implication symbols, 
+\centernot \implies % does not imply (needs centernot package)
+\because, \therefore$ 
+
+It is worth noting though that it is bad style to use these symbols as shorthand in a formal piece of writing unless it is specifically referring to symbolic logic.
+ 
+
+\subsubsection{Contradiction symbols}
+
+There are many (informal) symbols used by mathematicians to denote contradiction. It is bad style to use these in formal writing, and probably inadvisable to use them even in informal settings except for your own use because there are so many symbols and no consensus. 
+
+$ \lightning $,	% lightning bolt symbol - needs stmaryrd package
+$ \Rightarrow\!\Leftarrow $, 	% clashing implications
+$ \rightarrow\!\leftarrow $, 	% clashing arrows
+$ \nleftrightarrow $,  			% struck out arrows 
+\textreferencemark,  			% cross with dots
+$\bot$, 						% up tack (often used in symbolic logic)
+\begin{tikzpicture}[rotate=45,x=0.5ex,y=0.5ex]
+\draw[line width=.2ex] (0,2) -- (3,2) (0,1) -- (3,1) (1,3) -- (1,0) (2,3) -- (2,0);
+\end{tikzpicture},  			% double cross symbol 
+% here I've used tikz to draw my own symbol (advanced code) needs tikz package
+\begin{tikzpicture}[rotate=45,x=0.5ex,y=0.5ex]
+\draw[line width=.2ex] (0,2) -- (4,2) (2,0) -- (2,4); \draw (2,2) circle (.6ex); 		% circle over cross symbol 
+% here I've used tikz to draw my own symbol (advanced code) needs tikz package
+\end{tikzpicture} 
+
+\subsection{Sets}
+
+Similarly, all of your favourite set theory symbols  are here too:
+$ \varnothing $, 			% empty set symbol (note that \emptyset is old fashioned)
+$ a \in A \subset B $, 		% is an element / subset of 
+$ A \cup B $, 				% union of two sets
+$ \bigcup A_i $, $ \bigcup_{i \in I} B_i $ % union of lots of sets
+$ A \cap B $, 				% intersection of two sets 
+$ \bigcap A_i$, $ \bigcap_{i \in I} B_i$ % intersection of lots of sets
+$ b \notin B \nsubseteq A \subsetneqq C, B \ni b $, 
+$ A \setminus B $, 			% set minus
+$ A^\mathsf{c} $, 			% set complement, better looking than A^\complement
+$ A \bigtriangleup B $, 	% symmetric difference  (better spacing than \triangle or \Delta)
+$ A \sqcup B $.				% disjoint union
+
+\subsection{Geometry}
+
+Note that there are many different conventions used in geometry to denote a vector, some of the most popular are
+$ \vec{a} $,					% arrow above symbol
+$ \overrightarrow{AB} $,		% arrow above symbol
+$ \underline{c} $,				% underline symbol
+$ \underleftarrow{AB} $,		% arrow under symbol (reversed)
+$ \mathbf{u} $, 				% bold symbol
+$ \bm{\alpha} $. 				% bold symbol (needs bm package}
+
+All of other your favourite geometrical symbols are here too:
+$ \vec{a} \parallel \vec{b} $, 				% is parallel to 
+$ \vec{c} \nparallel \vec{d} $, 			% is not parallel to
+$ \vec{d} \perp \vec{e} $, 					% is perpendicular to
+$ \overline{AB} $, 							% line segment
+$ \overleftrightarrow{AB} $, 				% extended line segment
+$ \angle ABC  = \measuredangle DEF = 90\degree $,	% angles - \degree symbol needs gensymb package
+$ \triangle ABC $, 							% triangle
+$ \triangle ABC \cong \triangle DEF $,		% congruent to
+$ \triangle GHI \sim \triangle JKL $,		% similar to
+$ \square ABCD $.  							% square
+
+\pagebreak
+
+
+
+
+
+
+
+
+\section{Dots (Ellipsis)}
+
+A sequence (of usually three) dots is called an ellipsis and is used in maths to indicate missing information, usually with a  repeated assumed pattern. It is bad style just to type the dots using the full stop from your keyboard. Instead, there are several commands to do the job for you, depending on what the dots are going between.
+
+\subsection{Ellipsis in text}
+Within text, you should use dots  like this \dots rather than like this ... 
+
+\subsection{Ellipsis in maths}
+
+There are more options available in maths environments.
+
+For dots with commas, such as $a_1,a_2,a_3,\dotsc,a_n$, we use dotsc.
+
+For dots with a binary operation, such as $a_1 + a_2 + a_3 + \dotsb + a_n$, we use dotsb (this is for things like $+, -, \div, \times, >, <, =, \leq$, \dots etc.)
+
+For dots used during multiplication, such as $a_1 a_2 a_3 \dotsm a_n$, we use dotsm.
+
+For dots in integrals $\int \int \dotsi \int f(v_1, v_2, \dotsc v_n) dV_1 dV_2 \dotsm dV_n$, 
+we use dotsi.
+
+For all other dots in maths we should use $\dotso$ dotso (for ``o"ther dots).
+
+\subsection{Ellipsis in different directions}
+
+You can have vertical dots in text or maths by using vdots, such as:
+\begin{enumerate}
+	\item number one
+	\item number two
+	\item number three\\
+	\vdots                   % makes vertical dots
+	\setcounter{enumi}{99}
+	\item number one hundred
+\end{enumerate}
+
+Or, within maths environments you can have dots centred using cdots or diagonal dots using ddots. 
+\begin{tabular}{|c|c|c|c|}
+	\hline 
+	1 		& 2 		& $\cdots$ & 10 	\\ % dots centred vertically
+	\hline 
+	2 		& 4 		& $\cdots$ & 20 	\\ 
+	\hline 
+	\vdots 	& \vdots 	& $\ddots$ & \vdots \\    
+	% \ddots makes diagonal dots but should be used in math mode
+	\hline 
+	10 		& 20 		& $\cdots$ & 100 	\\ 
+	\hline 
+\end{tabular} 
+
+\pagebreak
+
+
+
+\section{Alphabets}
+
+The Greek alphabet is fairly easy in \LaTeX \, if you know their names,  $\alpha, \beta, \gamma, \dots$ just use a backslash before the name of the Greek letter. 
+
+Watch out for variations which are more frequently used such as $\varepsilon$ versus $\epsilon$;  $\phi$ versus $\varphi$; and $\theta$ versus $\vartheta$.
+
+Capital Greek is just as easy $\Gamma, \Phi, \Xi, \dots$ just start the name with a capital letter.
+
+Common letters from other alphabets are used by mathematicians (e.g. $\aleph$, $\partial, \nabla$) can usually be found as special characters.
+
+The blackboard bold alphabet $\mathbb{A},\mathbb{B}, \mathbb{C}, \mathbb{D},\dots$
+%note that there are no lower case letters
+is produced using the mathbb command. In mathematics is it reserved 
+for our favourite number systems
+$\mathbb{N}, 	% the set of natural numbers
+\mathbb{Z},		% the set of integer numbers
+\mathbb{Q},		% the set of rational numbers
+\mathbb{R}, 	% the set of real numbers
+\mathbb{C},		% the set of complex numbers
+\mathbb{H},		% the set of Hamiltonian numbers
+\mathbb{A},		% the set of algebraic numbers
+\mathbb{P},		% probability, or the the set of prime numbers
+\mathbb{B},		% often used for balls
+\dots$\\
+
+Similarly, there are various script and Gothic alphabets. The most commonly used are perhaps:
+
+The script alphabet, produced using mathscr: 
+$\mathscr{A},\mathscr{B}, \mathscr{C}, \mathscr{D},\dots$
+%note that there are no lower case letters
+
+The calligraphic alphabet, produced using mathcal: 
+ $\mathcal{A},\mathcal{B}, \mathcal{C}, \mathcal{D},\dots$
+%note that there are no lower case letters
+
+Note that it is bad style to use both the script and calligraphic alphabets in the same document, Typically, they are used for sets of sets. 
+
+The Fraktur (Gothic) alphabet, produced using mathfrak: 
+ $\mathfrak{A},\mathfrak{a}, \mathfrak{B},\mathfrak{b}, \mathfrak{C}, \mathfrak{c}, \mathfrak{D},\mathfrak{d}\dots$
+The Gothic alphabet is used particularly for Lie theory and for prime ideals in algebraic number theory.
+
+The bold maths alphabet, produced using mathbf: 
+$\mathbf{A},\mathbf{a}, \mathbf{B},\mathbf{b}, \mathbf{C},\mathbf{c}. \mathbf{D},\mathbf{d}\dots$
+The bold maths alphabet is used particularly for vectors, or operators.
+
+The maths Roman alphabet, produced using mathrm: 
+$\mathrm{A},\mathrm{a}, \mathrm{B},\mathrm{b},  \mathrm{C},\mathrm{c},  
+\mathrm{D},\mathrm{d}\dots$
+which you'll notice differs from the usual maths alphabet 
+ ($A, a,B,b,C,c,D,d,\dots$).
+This is particularly used for things like the d in derivatives and integrals if you're feeling fussy
+\[ 
+\frac{\mathrm{d}}{\mathrm{d} t} \int_a^t f(\tau) \mathrm{d} \tau = f(t).
+\]
+ 
+Computer code is often done using typewriter text (tt) font using a tt environment:
+\begin{tt}
+	[T,X] = ode45(@pendfn, [0:0.05:200], [2 0 0]); 
+\end{tt}
+We'll see in the advanced classes better ways to include computer code, and even how to input it straight from the source.  
+
+\pagebreak
+
+
+
+\section{Fractions}
+
+The frac command  uses two inputs, the former being the numerator, the second being the denominator. This makes it easy to make simple fractions such as $\frac{a}{b}$ and because \LaTeX \, automatically resizes everything within fractions for you, it is just as easy to make more complicated expressions like
+\[ 
+\frac{x^2}{\exp{\frac{x}{y}}}.
+\]
+
+\subsection{Resizing fractions}
+
+You'll notice that fractions in in-line maths such as $\frac{1}{2}$ are significantly smaller than those in display maths such as \[\frac{1}{2}.\] If for some good reason, you want to change this, you can.
+
+For example $\frac{3x}{2}$ can be set to display style $ \dfrac{3x}{2} $ even within in-line maths. 
+ 
+This is also true the other way around
+ 
+\[
+f(x)=\frac{P(x)}{Q(x)} \ \  \text{can be made in-line style } \ \ f(x)=\tfrac{P(x)}{Q(x)} .
+\]
+
+For very simple fractions, such as $ \frac{1}{2}$ you might want it to look like $1/2$, or $^1/_2$. If you use the xfrac package in the preamble, it allows you to use the sfrac command to deal with small fractions giving a mush nicer result $\sfrac{1}{2}$.
+
+
+\subsection{Continued fractions}
+
+For continued fractions you often don't want this, so there are special commands which you can use within an equation environment to produce expressions of the form 
+\[
+   x = a_0 + \cfrac{1}{a_1
+           + \cfrac{1}{a_2
+           + \cfrac{1}{a_3 
+           + \cfrac{1}{a_4} } } }.
+\]
+
+
+\subsection{Binomial coefficients}
+
+There is of course, code to create binomial coefficients $^n C_k = \binom{n}{k}= {n \choose k} $. % see what happens if you forget the braces
+
+
+\pagebreak
+
+
+
+\section{Brackets and Parentheses}
+
+Here's a list of some types of bracket you may want to use:
+\[ 
+( a ), 				% (round) parentheses,
+[ b ],  			% (square) brackets
+| c |,   			% mod signs
+					% \lvert c \rvert is slightly better practice    
+\{ d \}, 			% braces
+\| e \|, 			% norm (don't just use || ||)
+ 					% \lVert e \rVert is slightly better practice 
+\langle f \rangle, 	% angled brackets (don't just use <, > on the keyboard)
+\lfloor g \rfloor,	% floor term (integer part, rounding down)
+\lceil h \rceil.	% ceiling term (round up to an integer)
+\]
+Note that some of these are what you would expect, but some a little different. 
+
+In particular, \LaTeX \, uses braces (curly brackets) to specify arguments in commands and to group together parts of code into one. For example writing $a^bc$ yields a different result to $a^{bc}$. 
+So if you want braces to appear, you should use a command (which just involves putting a backslash first)
+\[ 
+\{1,2,3,4\}.
+\]
+
+Also, it will sometimes cause errors when compiling if there are mismatched brackets (e.g. a bracket opens but never closes.) 
+
+Because of this, you should pay special attention to brackets or parentheses which you want to appear. Doing so will also give you nicer looking results.
+
+A common question is how to write a set with conditions, or a group presentation. If the entries are small in height, then a good option is to use the mid command for the vertical line. e.g.
+\[ 
+\{ x \in X \mid x^2 \notin Y\} 
+\quad \text{and} \quad 
+D_6 = \langle a, b \mid a^2=b^3=1, ba=ab^{-1} \rangle.
+\]
+However, if the expressions inside are tall, then the results aren't as pleasing:
+\[ 
+ \{\frac{a}{b} \mid  a,b \in A\}.
+\]
+We'll see how to get round this problem in the next subsection by resizing the brackets.
+
+
+
+
+
+
+\subsection{Resizing brackets}
+
+Rather than using the brackets as they are, it is usually best to use the left/right commands before the choice of bracketing. These tell \LaTeX \, to treat the brackets as a pair and will re-size them to the same height, big enough to contain whatever is inside. Compare the following:
+\[ 
+ (\frac{( \frac{a}{b}+ c )+ x}{(\frac{e}{f}+ g )+y}),\\
+ \left(\frac{\left(\frac{a}{b}+ c \right)+ x}{\left(\frac{e}{f}+ g \right)+y}\right).
+\]
+
+Note that the type of bracket doesn't need to match: 
+\[ 
+\left(  \frac{-1}{2}, \frac{1}{2} \right].
+\]
+Indeed, you can even miss one of the brackets all together by using a dot: $\left. x^2 \right|_{x=0}$ like this.
+
+There is also a middle command  which is particularly useful for conditional sets and group presentations:
+\[ 
+ \left\{\frac{a}{b} \middle|  a,b \in A\right\}.
+\]
+
+If you prefer, you can choose yourself which brackets ought to be bigger by using $ \big( \Big( \bigg( \Bigg($. This works with all brackets  $ \big\{, \Big\{, \bigg\{,\Bigg\{$.
+
+This can be useful for readability sometimes. For example, compare $\frac{\mathrm{d}}{\mathrm{d}x}(a(x)c(x))$ to $\frac{\mathrm{d}}{\mathrm{d}x}\Big(a(x)c(x)\Big)$ and 
+$|H| | |G|$ to $|H| \Big| |G|$.
+
+
+
+
+\subsection{Taking cases}
+
+If you want to take cases when defining a function or sequence,  rather than using a brace manually, you can do this using the begin/end cases commands instead. Note that the ampersand (and symbol, \&) is used to tell \LaTeX \, what should line up with what and the double backslash starts the new line for the next case.
+
+Let $f\colon \mathbb{R} \to \mathbb{R}$ be defined by 
+\[ 
+f(x)= 
+\begin{cases}
+ x^2  & \text{if } x \geq0, \\ 
+ x-1  & \text{if } x <0 .
+\end{cases} 
+\]
+ 
+Let $(a_n)$ be the sequence defined by
+\[ 
+a_n= 
+\begin{cases}
+ 0     & \text{if } n \text { is odd,}  \\ 
+ n^2   & \text{if } 4 | n, \\
+ -n^2  & \text{if } 4 | n-2. 
+\end{cases} 
+\]
+
+
+\pagebreak
+
+
+
+
+\section{Derivatives}
+
+There are many ways to typeset derivatives, depending on the notation you wish to use.
+
+
+\subsection{Lagrange's (prime) notation}
+
+Lagrange's notation is one of the simplest, $f'(x)$ is the derivative of $f$ at the point $x$, and the second, third and fourth derivatives are given by $f''$, $f'''$, $f^{(4)}$ \dots etc.
+
+
+\subsection{Newton's (dot) notation}
+
+Newton's notation is simple enough for small order derivatives, and is usually used when the independent variable is assumed to be time $t$, so $\dot{x}$ is the derivative of $x$ with respect to $t$. Similarly, $\ddot{x}$, $\dddot{x}$, $\ddddot{x}$ are the second, third and fourth derivatives of $x$ with respect to $t$. For higher derivatives the code gets more complicated, but also the notation is ugly and cumbersome, so hopefully you won't try to use it.
+
+
+
+
+\subsection{Leibniz's (d) notation}
+
+Leibniz notation can be created using a fraction such as $\frac{d f} {dx}$, but many argue that this is sloppy and incorrect (e.g., that the numerator here is the product of $d$ and $f$), and so really to be precise we should use the upright Roman $\mathrm{d}$ instead to produce  $\frac{\mathrm{d}f} {\mathrm{d}x}$.
+
+But, this is cumbersome code, so if you have a lot of derivatives to type, then use the esdiff package  this then allows a much simpler set of commands to deal with derivatives, $\diff{f}{x}$, which are of course defined by 
+\[
+\diff{f}{x}(c) = \lim_{x\to c} \frac{f(x)-f(c)}{x-c}
+\] 
+and even higher order derivatives such as $\diff[2]{f}{x}$ and $\diff[3]{f}{x}$.
+
+This package also makes it easier to deal with partial derivatives such as $\diffp{f}{x}$ or $\diffp[2]{f}{x}$ and even mixed partial derivatives such as $\diffp{f}{{x}{y}}$ or $\diffp{f}{{x}{y^2}}$.
+
+
+
+\subsection{Other derivatives}
+
+There are of course, too many notations to go into here, but some common useful derivatives include 
+$\partial_x f$, 
+$\mathrm{grad} f = \nabla f = (\partial_x f, \partial_y f, \partial_z f)$, 
+$\mathrm{curl} v = \nabla \times v$, $\mathrm{div} v = \nabla \cdot v$, 
+$\Delta f = \nabla \cdot \nabla f = \nabla^2 f$.
+
+\pagebreak
+
+
+
+
+
+
+\section{Matrices}
+
+The begin/end matrix commands create a matrix environment. Use the ampersand symbol (\&) to line up the columns and double backslashes  to separate the rows. 
+\[
+\begin{matrix}
+	a_{11} & a_{12} \\ % ampersand & starts new column, and \\ starts new row
+ 	a_{21} & a_{22}
+\end{matrix}.
+\]
+It isn't necessary to add spaces yourself, or to even press enter between the rows, but it does make it much easier to read your own tex code. Compare the following code:
+\[\begin{matrix}a&b&c\\d&e&f\\a^2-1&b^2-2b+c&a+b+2c\end{matrix}\] 	% hard to read
+to 
+\[
+\begin{matrix}
+	a      & b         & c        \\ 
+ 	d      & e         & f        \\
+ 	a^2-1  & b^2-2b+c  & a+b+2c 
+\end{matrix}.								% easier to read
+\]
+
+
+\subsection{Brackets on matrices}
+
+Replacing the word matrix with pmatrix will use parentheses (rounded brackets):
+\[ 
+\begin{pmatrix}
+ 	a & b & c \\ 
+ 	d & e & f
+\end{pmatrix},
+\]
+bmatrix will use (square) brackets: 
+\[ 
+\begin{bmatrix}
+ 	x & y\\ 
+ 	w & z \\
+ 	e & f
+\end{bmatrix},
+\]
+vmatrix uses vertical lines (e.g. for determinants), 
+\[
+\begin{vmatrix}
+ 	a_{11} & a_{12} \\ 
+ 	a_{21} & a_{22}
+\end{vmatrix},
+\]
+Bmatrix will use braces (curly brackets) 
+\[
+\begin{Bmatrix}
+ 	ax+b & ey+f\\ 
+ 	cx+d & cx+by
+\end{Bmatrix},
+\]
+and Vmatrix will use a double-vertical line
+\[
+\begin{Vmatrix}
+ 	a & b & c \\ 
+ 	d & e & f
+\end{Vmatrix}.
+\]
+
+\subsection{Matrix operations}
+
+Unfortunately, there are few commands to deal with some of your favourite matrix operations. An exception is for determinant: $\det A$. 
+
+However, for other popular operations like adjugate, trace, cofactor, transpose \dots etc, you will need to cobble something together such as $\mathrm{adj}(A)$, $\mathrm{Tr}(B)$, $\mathrm{coff}(C)$,  $D^\top$. $E^T$, $F^\mathsf{T}$ (choose your favourite, and be consistent). Or better still, make your own commands.
+ 
+\subsection{In-line matrices}
+
+If you want to include matrices such as 
+$\begin{psmallmatrix}  % needs mathtools package
+ 	a & b \\ 
+ 	c & d
+\end{psmallmatrix}$
+as in-line maths as part of a running sentence like this. Then to avoid making the lining over spaced, use the begin/end psmallmatrix environment instead. 
+
+\subsection{Alignment in matrices}
+
+The default for matrices is to centre the entries of each column. 
+
+If you want to control the alignment of the column entries, then add the mathtools package to the preamble, this will allow you to use a new set of matrix environments (same names, but with asterisks at the end) which have an option to choose the alignment yourself.
+  
+For example, aligning to the right:
+\[ 
+\begin{matrix*}[r] 			% the r says to align all the columns to the right
+ 	aaa & bbb   & ccc \\ 
+ 	dd  & ee    & ffffff \\
+ 	g   & hhhhh & ii \\
+\end{matrix*}.
+\]
+
+Aligning to the left:
+\[ 
+\begin{bmatrix*}[l] 		% the l says to align all the columns to the left
+ 	aaa & bbb   & ccc \\ 
+ 	dd  & ee    & ffffff \\
+ 	g   & hhhhh & ii \\
+ \end{bmatrix*}.
+\]
+
+The advantages are mainly for scenarios where you have either small integers with some minus signs (align right) or numbers given to a set number of decimal points (align right) or when there are a set number of characters before a decimal place (align left).
+
+Compare
+\[ 
+\begin{pmatrix} 
+ 	1   & -2   & 3 \\ 
+ 	-4  & 5    & -6 \\
+ 	7   & -8   & 9 \\
+\end{pmatrix}
+\begin{pmatrix*}[r] 	% the r says to align all the columns to the right
+ 	1   & -2   & 3 \\ 
+ 	-4  & 5    & -6 \\
+	 7   & -8   & 9 \\
+\end{pmatrix*}
+\]
+and
+\[ 
+\begin{pmatrix} 
+ 	1.234    & -2.567    & 3.890 \\ 
+ 	-44.246  & 55.791    & -66.824 \\
+ 	777.654  & -888.765  & 999.876 \\
+\end{pmatrix}
+\begin{pmatrix*}[r] 	% the r says to align all the columns to the right
+ 	1.234    & -2.567    & 3.890 \\ 
+ 	-44.246  & 55.791    & -66.824 \\
+ 	777.654  & -888.765  & 999.876 \\
+\end{pmatrix*}
+\]
+and 
+\[ 
+\begin{pmatrix} 
+ 	123.456  & 126.7       & 389.0 \\ 
+ 	444.654  & 555.787     & 666.82468 \\
+ 	777.65   & 888.76543   & 999 \\
+\end{pmatrix}
+\begin{pmatrix*}[l] 	% the l says to align all the columns to the left
+ 	123.456  & 126.7       & 389.0 \\ 
+ 	444.654  & 555.787     & 666.82468 \\
+ 	777.65   & 888.76543   & 999 \\
+\end{pmatrix*}.
+\]
+ 
+\subsection{Arrays}
+
+For more control over alignment of a matrix, you can instead use an array. As with matrices, the ampersand symbol is used to separate the columns, and double backslash separates the rows, but you can specify the alignment of each column individually.
+\[
+\begin{array}{l c r} % the l c r say to justify the three columns to the left/centre/right respectively
+ 1   & 2   & 3\\  
+ 44  & 55  & 66\\
+ 777 & 888 & 999  
+\end{array}.
+\]
+
+If you want bracketing, then you can add this in manually
+\[ 
+\left(
+\begin{array}{l c r}
+ 1   & 2   & 3\\  
+ 44  & 55  & 66\\
+ 777 & 888 & 999  
+\end{array}
+\right).
+\]
+
+Arrays also allow you to insert horizontal lines (using hline) or vertical lines (using the pipe symbol) 
+\[
+\begin{array}{l c | r} % the pipe | says to include a vertical line between columns 2 and 3
+ 1   & 2   & 3\\  
+ \hline            % adds a horizontal line
+ 44  & 55  & 66\\
+ 777 & 888 & 999  
+\end{array}
+\]
+
+
+\subsection{Augmented matrix}
+
+Because arrays allow you to insert lines, they are great for creating augmented matrices such as:
+\[
+\left(\begin{array}{@{}cc|c@{}}  % the @{} here makes the spacing better 
+ 2 & 0 & 1\\  
+ 0 & 1 & 1  
+\end{array}\right).
+\]
+
+
+\end{document}

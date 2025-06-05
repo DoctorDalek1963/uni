@@ -9,6 +9,7 @@
 *.log
 *.out
 *.synctex.gz
+*.toc
 
 *.pdf
 !Dyson_Dyson_*.pdf

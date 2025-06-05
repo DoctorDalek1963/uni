@@ -1,0 +1,51 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{amssymb}
+
+\title{Exercise: Formatting in \LaTeX}
+\author{Stu Dent}
+\date{35th January 2040}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+See if you can recreate this 2 page document by using the examples as a guide.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Continuity\label{sec:continuity}}
+
+Continuity is an important property in mathematical analysis. So far, we have met continuity in the reals, but soon we will abstract the idea to normed vector spaces, metric spaces and even topological spaces\footnote{topological spaces have no notion of distance but instead just a notion of ``nearbyness'' created by listing which sets will be considered as ``open''.}.
+
+\subsection{Continuity in the reals\label{sec:continuity:in-the-reals}}
+
+For a subset $E \subset \mathbb{R}$, a function $f: E \to \mathbb{R}$ is called \textit{continuous} at $c \in E$ if for every $\varepsilon > 0$ there exists some $\delta > 0$ such that $|f(x) - f(c)| < \varepsilon$ whenever $x \in E$ satisfies $|x - c| < \delta$.
+
+We then say that $f$ is \textit{continuous} if the above is satisfied for each $c \in E$.
+
+A function $f$ is \textit{sequentially continuous} at $c \in E$ whenever a sequence $x_1, x_2, x_3, \dots$ of points in $E$ converge to $c$, then the sequence $f(x_1), f(x_2),$ $f(x_3), \dots$ converges to $f(c)$.
+
+Here are some useful properties of continuous functions $f : [a,b] \to \mathbb{R}$:
+\begin{itemize}
+\item the function $f$ is bounded and attains its bounds.
+\item the function $f$ has the intermediate value property, meaning that whenever $v \in (f(a), f(b))$, then there exists $c \in (a,b)$ such that $f(c) = v$. 
+\item the two properties above give that the image of $f$ is a closed bounded interval.
+\end{itemize}
+
+\subsection{Continuity in a topological space\label{sec:continuity:in-a-topological-space}}
+
+\begin{quote}
+\quad\ ``The art of doing mathematics is finding that special case that contains all the germs of generality.''
+\hfill David Hilbert
+\end{quote}
+
+We can generalise the notion of continuity we saw in subsection \ref{sec:continuity:in-the-reals} into the following more abstract form.
+
+If $(X, \mathcal{T}_X)$ and $(Y, \mathcal{T}_Y)$ are two topological spaces, then we say that a map $f : X \to Y$ is \textit{continuous} if $f^{-1}(U) \in \mathcal{T}_X$ whenever $U \in \mathcal{T}_Y$.
+
+\end{document}

@@ -1,0 +1,532 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{\S3 Formatting in \LaTeX }
+\author{Andrew Brendon-Penn}
+\date{} % leaving the braces empty surpresses the date.  You could instead manually input a date or use \date{\today}
+
+% Now I specify packages fo code I will need that aren't standard.
+
+% the first three packages are the used extensively in maths.
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+
+\usepackage{framed} % to create boxes around text using \begin{framed}....\end{framed}
+\usepackage{pifont} % to allow windings, such as \ding{125} which created the oversized quotation mark
+\usepackage{enumerate} % to allow customisable numbered lists
+\usepackage{wasysym} % to make the arrow symbol \pointer used here as a bullet
+\usepackage[super]{nth} % to use \nth commands for superscripts on ordinals
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document is designed to be read in both its .tex and .pdf forms at the same time. Compare both documents to see examples of \LaTeX \, code that you can adapt for your uses.
+\end{abstract}
+% abstracts are used to summarise the document to help the reader see if it's worth reading. You don't need one in a second year essay
+\pagebreak
+
+\tableofcontents % for this to work properly you should compile twice
+
+\pagebreak
+
+
+\section{Spacing}
+\subsection{Vertical Spaces}
+
+\subsubsection{Starting a new paragraph}
+
+Notice that the first paragraph of a (sub) section is not indented by default.
+
+But that the first line of all other paragraphs are indented like this one is. If you would like to start a new paragraph, then just leave an empty line in the tex code, i.e. press enter twice.
+
+This will start a new paragraph. But notice that it will not leave an empty line in your finished document.
+
+
+\subsubsection{Starting a new line without starting a new paragraph}
+
+To start a new line without starting new paragraph, then you can create a line break by using a double backslash \\ This is especially handy when writing a mathematical argument with displayed maths, as you often want to continue the same sentence but on different lines. For example:
+
+Consider the power series given by \[\sum_{n=0}^\infty \frac{1}{3^n} x^n\]\\
+which has radius of convergence $R=3$.
+
+Alternatively, you could use \linebreak to start a new line. But notice that this will justify the text on both sides, which can look a bit odd.
+
+Another, less elegant method is to instead just suppress the indentation. For example:
+
+\noindent can  be used  to remove the indentation, which would make a new paragraph look like it was just a new line.
+
+\subsubsection{Ignored vertical spacing}
+
+Notice
+that
+single
+line
+breaks
+created
+by
+pressing
+enter
+once
+will
+be
+ignored
+as
+it
+is
+here.
+
+Whereas if there is an empty line, this starts a new paragraph.
+
+
+Notice that multiple empty lines (created by pressing enter many times) are also ignored and treated the same as just leaving a single empty line.
+
+
+
+
+
+
+
+
+
+
+So even ten empty lines just starts a new paragraph.
+
+
+
+\subsubsection{Creating vertical spacing}
+
+There are again several ways to add  vertical spacing, depending on the amount of space you wish to create. The easiest way to leave a single empty line is to end the previous paragraph with double backslash. \\
+
+And then leave an empty line if you want to start the next paragraph.\\
+Or don't leave an empty line if you just wanted to start a new line (i.e. you didn't want indentation.)
+
+If you want to, then you can specify how much extra space is left between the paragraphs by inserting a length in square brackets like so:\\[4cm]
+This has left a 4 centimetre space between the paragraphs. You could specify the amount in centimetres (cm), inches (in) or points (pt).
+
+If you want to, you can force the remainder of the content to be at the bottom of the page by adding in enough vertical space to fill the gap. To do this, use vfill like so: \vfill
+
+You can also include page breaks to start the next part on a new page, as I do here:
+\pagebreak
+
+
+\subsection{Horizontal Spaces}
+
+\subsubsection{Ignored horizontal spacing}
+
+Notice      that       multiple         spaces          created     by        pressing        the     space     bar        many          times           will            be        ignored    as    it     is    here.
+
+
+\subsubsection{Creating horizontal spacing}
+
+There are many ways to create additional horizontal spacing.
+
+If you want to add a small amount of extra horizontal spacing then you can try use a variety of commands depending on the size of space you want. These will work in text:
+
+a b c d e (normal spacing, made using space bar)
+
+a \, b \, c \, d \, e (thin space)
+
+a \quad b \quad c \quad d \quad e (quad space)
+
+a \qquad b \qquad c \qquad d \qquad e (qquad space)\\
+And there are even more options for maths environments:
+
+$a b c d e$ (normal spacing, made using space bar)
+
+$a \, b \, c \, d \, e$ (thin space)
+
+$a \: b \: c \: d \: e$ (medium space)
+
+$a \; b \; c \; d \; e$ (thick space)
+
+$a \quad b \quad c \quad d \quad e$ (quad space)
+
+$a \qquad b \qquad c \qquad d \qquad e$ (qquad space)\\
+It is even possible to create negative amounts of extra spacing (i.e. make the symbols even closer to one another):
+
+$a b c d e$ (normal spacing)
+
+$a \! b \! c \! d \! e$ (negative space)
+
+If you want to be more specific about the exact amount of space you want to leave, then you can use hspace, for example \hspace{2in} creates a space which is 2 inches wide. You can use inches (in), centimetres (cm) such as \hspace{3cm} or point size (pt) such as \hspace{10pt} here.
+
+You can also ask to fill up as much space as is necessary to leave the last part of a line right justified by using the hfill command  \hfill like this.
+
+
+\pagebreak
+
+\section{Text}
+
+Typing text in \LaTeX\ is pretty straightforward, just type as usual and all should be fine if you are using the standard alphabet and punctuation.
+
+However, there are some characters which require you to use some \LaTeX\ code to produce.
+
+For example, the ampersand \& the percentage sign \%, the dollar symbol \$ and braces \{,\}.
+
+
+\subsection{Emphasising text}
+
+\subsubsection{Font size}
+The main font sizes for the document are controlled in the pre-amble and usually there is no reason to ever meddle with fonts sizes within the text.
+
+If however, you want to for some reason, then there are options such as \tiny tiny,
+\small small,
+\normalsize normal,
+\large large,
+\Large Large,
+\huge huge,
+\Huge Huge.
+
+Note that these commands reset all of the proceeding text until a new size is specified
+
+\normalsize % resets the font sizes to the defaults specified in the preamble
+Phewf, that's better!
+
+\subsubsection{Superscripts }
+If you want superscripts in text then use textsuperscript rather than the caret. % the caret is ^
+For example, in a date such as the 23\textsuperscript{rd} of April or the $n$\textsuperscript{th} term of the sequence.
+
+If you use a lot of superscripts in your work, hen you may want to use the ``nth'' package. This then allows you to easily make superscripts on ordinals such as \nth{1}, \nth{2}, \nth{3}, \nth{4}, \nth{5}, \nth{22}, \nth{453}, \nth{513}.
+
+
+\subsubsection{Font styles: bold, italic, etc. }
+
+You can make text
+\textbf{bold like this},
+\textit{italic like this},
+\underline{underlined like this},
+\textsc{capitalised like this} or
+\texttt{in typewriter font like this}.\\
+
+One very useful way to emphasise text is to instead make it \emph{emphasised like this}. One big advantage of this, is that if \textbf{you \emph{emphasise} text that is already bold} or \textit{choose to \emph{emphasise} text that is already italic } etc. then it always chooses a good (and consistent) option for you.\\
+
+These were all created using ``font styles''. Some other options are to have text \textsl{slanted like this} or \textsf{sans-serif like this}.\\
+
+It is worth noting that for mathematics, there are conventions such as that text within  definitions is  upright except for the word being defined, and that for theorems, lemmas, propositions etc, text is in italic. To keep a consistent style for such things, and to aid numbering it is much better to use a ``theorem environment'' rather than to make the italicisation manually. We shall cover these ``theorem environments'' in the intermediate classes.
+
+It is also worth noting that underlining text to emphasis it is considered old-fashioned and thus not good style (because modern typesetting uses underlining to represent hyperlinks).
+
+Furthermore, it is good style to emphasise (usually in italics) any new phrases, the first time they appear, or any words written in another language, especially Latin.
+
+\subsubsection{Boxes}
+
+Another way to emphasise text is to put it in a box, you can use the begin/end framed commands to create a framed environment.
+\begin{framed}
+This is now in a  box.
+\end{framed}
+Note that this needs the framed package to be installed in the preamble.
+
+
+
+
+\subsubsection{Quotes}
+
+Sometimes in an essay, you will may want to quote a source word-for-word. when you do this is it particularly important that you make the reader aware that this is what you are doing. The usual way of doing this is to make the text look like a quote, and of course be explicit in your citation.
+
+A short quotation can be useful to get exact phrasing of someone else's work. As Isaac Newton famously said, ``If I have seen further, it is by standing on the shoulders of giants.''
+
+A common issue of typesetting is that of quotation marks and apostrophes. To create the proper ``66 and 99'' style (as opposed to  "99 and 99") for (single or double) quotation marks, when opening use the apostrophe key usually found on the left hand side of your keyboard (often on the same key as $\neg$) and to close them again, use the standard apostrophe on the right hand side of the keyboard (often on the same key as @.)\\
+
+In \LaTeX \, longer quotations can be made even clearer by using the begin/end quote commands to create a quote environment.
+
+
+\begin{quote}
+``Mathematics has beauty and romance. It's not a boring place to be, the mathematical world. It's an extraordinary place; it's worth spending time there.''
+\hfill Marcus Du Sautoy
+\end{quote}
+
+Another way to make a quotation stand out is to use a dingbat for the quotation marks. this requires the pifont package to be added to the preamble.
+
+\begin{quote}
+\ding{125} If people do not believe that mathematics is simple, it is only because they do not realize how complicated life is. \ding{126}
+\begin{flushright} John Louis von Neumann \end{flushright}
+\end{quote}
+
+
+
+
+\subsection{Accents}
+
+TeXmaker allows you to use accents using you usual keyboard short-cuts such as áéïõûç§.  % note that these have disappeared in the pdf
+However, as we see here, they do not always compile properly in the final document
+
+If you only have a few accents in your document, then you can look up individually online how to add them in. In TeXmaker, you can find most by using the toolbar ribbon; look under `latex' and then `international accents'.
+
+The most common accents are fairly easy, anything can go inside the braces:
+
+\`{a}  grave accent
+
+\'{b}  acute accent
+
+\c{c}  cedilla
+
+\^{d}  circumflex
+
+\"{e}  umlaut
+
+\~{f}  tilde
+
+\={g}  macron
+
+\.{h}  dot
+
+\u{o}  breve
+
+\ss    \,eszett
+
+
+\pagebreak
+
+
+
+
+
+
+\subsection{Grammatical Dashes}
+
+Hyphens (-) are used to connect words that function together as a single concept. For example, two-thirds, eye-opener, state-of-the-art.\\
+
+\noindent En dash (--) is used either
+\begin{itemize}
+\item for a range (e.g. pages 34--65, July--August),
+\item as a hyphen when one of the objects being linked is a proper open compound  (e.g. pre--World War II, because ``World War II" is a proper open compound  acting as one object; Booker Award--winning novelist, because ``Booker Award"  is an open compound acting as one object),
+\item to demonstrate a conflict, connection or direction  (e.g. the north--south divide, the London--Manchester train, the  liberal--conservative coalition).
+\end{itemize}
+
+
+Em dash (---) is used to make an aside in a similar way to commas, parentheses or colons  (e.g. Pythagoras---who famously liked triangles---was the founder of a school of numerologists).
+
+
+
+
+
+
+\subsection{Grammatical dots (Ellipsis)}
+
+An ellipsis is a series of (usually three) dots (\dots) that is used to indicate that some text is missing, and often also implies a repeating pattern.
+
+When typesetting, the spacing is incorrect (and hence it can look a bit ``off") if you just use three full stops from your keyboard. Instead, there is a special command to do the job for you.\\
+For example,
+
+The alphabet is a,b,c,\dots, z. (Correct)
+
+The alphabet is a,b,c,..., z. (Incorrect)\\
+
+There are even commands to do the job in different orientations such as vertically:\\
+a\\
+b\\
+c\\
+\vdots\\
+z\\
+
+When using the ellipsis in mathematics, there are even more options.
+
+\pagebreak
+
+
+
+\section{Lists and Bullets}
+
+It is quite easy to make lists  by using begin/end itemize (for bullet-style lists) or begin/end enumerate (for numbered lists). You need to separate each item in the list.
+
+\subsection{Bullet point lists}
+
+Here's an example of a bullet point list:
+
+\begin{itemize}
+\item This is the first item in my bullet list,
+\item and the second,
+\item and so on.
+\end{itemize}
+
+
+
+\subsubsection{Customising bullets}
+
+It is possible to change the symbol used for the bullet:
+\begin{itemize}
+\item[\checkmark] This is the first item in my bullet list,
+\item[$\diamond$] and the second,
+\item[$\square$] and the third,
+\item[$\bigstar$] and the fourth,
+\item[\pointer] and the fifth.
+\end{itemize}
+
+
+\subsubsection{Nested bullet lists}
+
+It is possible to have nested bullet lists:
+\begin{itemize}
+\item This is the first item in my bullet list,
+	\begin{itemize}
+	\item This is the first item in my first sub-list,
+		\begin{itemize}
+		\item This is the first item in my first sub-sub-list,
+		\item and the second in the sub-sub-list,
+		\end{itemize}
+	\item and the second in the sub-list,
+	\item and so on,
+	\end{itemize}
+\item and the second item in my list.
+	\begin{itemize}
+	\item This is the first item in my second sub-list,
+	\item and the second in this sub-list,
+	\item and so on.
+	\end{itemize}
+\item and so on until you've had enough
+\end{itemize}
+
+
+\subsection{Numbered lists}
+Numbered lists are created in the same way, but this time using begin/end enumerate. Here's an example of a numbered list:
+
+\begin{enumerate}
+\item This is the first item in my numbered list,
+\item and the second,
+\item and so on.
+\end{enumerate}
+
+\subsubsection{Customising numbered lists}
+If you include the enumerate package in the pre-amble, then you can change the numbering system used for enumerated lists manually by using an optional argument in the square brackets.
+
+The index is chosen in the optional argument (i.e. inside the square brackets) by using one of  A or a (for upper case / lower case letters,  I or i (for upper case / lower case Roman numerals, or 1 (for ordinary numerals).
+
+\begin{enumerate}[I] % I is for capital Roman numerals: I, II, III, ...
+\item This is the first item in my numbered list,
+\item and the second,
+\item and the third,
+\item and so on.
+\end{enumerate}
+
+You can add in other text or grammatical symbols, here I add in parentheses too:
+\begin{enumerate}[(a)] % (a) will produce lower case letters in parentheses (a), (b), (c),...)
+\item This is the first item in my numbered list,
+\item and the second,
+\item and so on.
+\end{enumerate}
+
+You can add in other text and grammatical symbols too.such as here:
+\begin{enumerate}[Step 1:] % 1 will produce Arabic numerals 1,2,3,...
+\item This is the first item in my numbered list,
+\item and the second,
+\item and so on.
+\end{enumerate}
+
+\subsubsection{Nested numbered lists}
+
+It is possible to have nested numbered lists, and also to mix-and-match bullets/numbering (though this isn't necessarily good style).
+\begin{enumerate}
+\item This is the first item in my bullet list.
+	\begin{enumerate}
+	\item This is the first item in my first sub-list.
+		\begin{enumerate}
+		\item This is the first item in my first sub-sub-list,
+		\item and the second in the sub-sub-list,
+		\end{enumerate}
+	\item and the second in the sub-list,
+	\end{enumerate}
+\item and the second item in my list.
+	\begin{itemize}
+	\item This is the first item in my second sub-list,
+	\item and the second in this sub-list,
+	\end{itemize}
+\item and so on until you've had enough.
+\end{enumerate}
+
+
+\subsection{Description lists}
+Another type of list is a descriptive list such as:
+
+\begin{description}
+\item[cat] a furry pet  that likes to eat fish, drink milk and sit on my newspaper while licking itself with a rough tongue
+\item[doggy] a faithful friends who slobbers all over you when you get home and likes to dig up the flowerbeds
+\item[bearded iguana] a lizard that lazes around  in the sunshine and scares the cat by flicking is long tongue and rolling its beady eyes.
+\end{description}
+
+
+\pagebreak
+
+\section{Footnotes \& Margin Notes}
+
+\subsection{Footnotes}
+
+Footnotes are a useful device for adding in supplementary material. Some examples of appropriate footnote uses are:
+\begin{itemize}
+\item information about citations e.g. ``Throughout this section, we closely follow  Brown [1,pp34--56]",
+\item a brief clarification of a point.
+\end{itemize}
+
+Note that when you use a footnote, you are indicating that it isn't really to be considered as part of the text. Footnotes can also interrupt flow (as the reader's eyes have to jump to a new location) and thus should be used sparingly.
+
+Creating footnotes are very easy. Put the command where you want the marker of the footnote to appear, such as here\footnote{this is a footnote}. Inside the braces place the text which you want to appear in the footnote itself at the bottom of the page.
+
+Do be careful where you put a footnote. It is very bad style to put a footnote marker on some mathematics such as $e=mc^2$\footnote{isn't this confusing?} where the footnote marker could get confused with a power.
+
+If you find it hard to read your own code because of a footnote, than it is also possible to spilt up the process and put a footnote marker on one place\footnotemark, and then finish what you were writing, and then come back to the footnote text later.
+
+\footnotetext{like this, which is now out of the way}
+
+
+
+\subsection{Margin Notes}
+
+It's even possible to create margin notes  \marginpar{Proof of my last theorem goes here} useful if you're Fermat.
+
+In practice, margin notes are useful for writing notes to co-authors, editors (or perhaps your tutor or project supervisor) when making a draft. They aren't generally appropriate for the finished piece of formal written work.
+
+One other use for them is if you are making yourself revision notes. Putting the word or symbol that is being defined in a margin note can help you to look it up quickly later.
+
+
+\pagebreak
+
+
+\section{Labelling and Referencing}\label{sec:thissection}
+
+You might have noticed how \LaTeX\, numbers things like sections and subsections for you. If you re-order the sections, \LaTeX\, renumbers everything automatically. Using the label and ref commands it can also refer back to these numbers elsewhere in your document.
+
+For example, I added a label to the section title, so now I can refer back to this section, knowing that it is section \ref{sec:thissection}.
+
+As you type the ref command in TeXmaker, it will show you a list of the labels you have, you can use this to save time and avoid spelling errors and typos. If you make a mistake in the reference then it won't work. So, for example, I can't here use \ref{sec:thisection}. % there's an "s" missing
+
+\textbf{It is important when using any kind of internal referencing that you compile twice} otherwise you might find that the references don't quite match up to your document, or you may get references with just question marks.
+
+
+\subsection{Referring to sections and subsections}\label{subsec:thisSUBsection}
+
+Not only can you refer to sections such as \S\ref{sec:thissection} but to subsections such as  \S\ref{subsec:thisSUBsection} and subsubsections too in the same way.
+
+Note that the ref command only returns the numeric value, so if you want other text or symbols to appear (such as the word ``section" or the section symbol \S), then you have to add this in.
+
+\subsection{Other referencing}
+
+In fact, labels can be put on any numbered objects including equations,  figures, theorems, \dots etc. in much the same way. If you have lots of labels, it's useful to have a system, (e.g. all theorems have a label that starts thm:, all figures have labels that start fig:, and all tables have labels that start tab:)
+
+\begin{table}[hbtp]
+\centering
+\begin{tabular}{c|c}
+$n$ & $n^2$ \\
+\hline
+1 & 1 \\
+2 & 4 \\
+3 & 9 \\
+4 & 16 \\
+\end{tabular}
+\caption{Squaring Numbers}
+\label{tab:squaringnumbers}
+\end{table}
+
+For example, I can refer to table \ref{tab:squaringnumbers} now that I have labelled its caption. (Since the caption was what was given the number). Similarly, in the enumerated list below, I can refer to my favourite item which is number  \ref{list:this one}.
+\begin{enumerate}
+\item first item
+\item\label{list:this one} second item (my favourite)
+\item third item
+\end{enumerate}
+
+Referencing from a bibliography however is best done differently using BibTeX. We shall cover this separately.
+
+\end{document}
