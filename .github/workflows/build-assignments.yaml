@@ -32,5 +32,8 @@ jobs:
           mkdir -p "${XDG_CONFIG_HOME}/direnv/lib"
           cp "$(nix-build --expr "(import <nixpkgs> {}).nix-direnv")"/share/nix-direnv/direnvrc "${XDG_CONFIG_HOME}/direnv/lib/nix-direnv.sh"
 
+      - name: Patch .envrc files
+        run: nix-shell -p fd -p sd --run "fd - .envrc -X sd nix_direnv_manual_reload ''"
+
       - name: Build every assignment
         run: nix-shell --run "just ci-build-all"
