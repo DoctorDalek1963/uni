@@ -10,6 +10,7 @@
 
 \fancyhead[L]{MA150 Assignment 2}
 \title{MA150 Algebra 2, Assignment 2}
+\colorlet{questionbodycolor}{magenta!50}
 
 \begin{document}
 
@@ -20,7 +21,15 @@
 
 % {{{ Q5
 \question{5}
-Let $P = \begin{pmatrix}1\\ 2\\ 3\end{pmatrix}$ and $Q = \begin{pmatrix}-2\\ 1\\ 5\end{pmatrix}$ and let $L$ be the line between $P$ and $Q$ we can parametrise $L$ as $\overrightarrow{P\,} + \lambda \overrightarrow{PQ\,}$. $\overrightarrow{PQ\,} = \begin{pmatrix}-3\\ -1\\ 2\end{pmatrix}$ so $L$ can be parametrised as $$L = \l\{ \begin{pmatrix}1\\ 2\\ 3\end{pmatrix} + \lambda \begin{pmatrix}-3\\ -1\\ 2\end{pmatrix} : \lambda \in \R \r\}$$
+
+\begin{questionbody}
+Let $P = \begin{pmatrix}1\\ 2\\ 3\end{pmatrix}$ and $Q = \begin{pmatrix}-2\\ 1\\ 5\end{pmatrix} \in \R^3$ and let $L$ be the (unique, infinite) line that passes through them both.
+
+Describe $L$ in two ways: first, parametrically as $$L = \l\{ \ul v + \lambda \ul w : \lambda \in \R \r\}$$
+where $\ul v$ is a point of $L$ and $\ul w$ is a vector parallel to $L$, and second implicitly by two equations of the form $ax + by + cz = d$ (for suitable values $a, b, c, d \in \R$).
+\end{questionbody}
+
+We can parametrise $L$ as $\overrightarrow{P\,} + \lambda \overrightarrow{PQ\,}$ and $\overrightarrow{PQ\,} = \overrightarrow{Q\,} - \overrightarrow{P\,} = \begin{pmatrix}-3\\ -1\\ 2\end{pmatrix}$ so $L$ can be parametrised as $$L = \l\{ \begin{pmatrix}1\\ 2\\ 3\end{pmatrix} + \lambda \begin{pmatrix}-3\\ -1\\ 2\end{pmatrix} : \lambda \in \R \r\}$$
 
 To describe $L$ in terms of two implicit equations, we need two planes. We will start with the plane $\Pi_1$ through $P$, $Q$, and the origin. The vectors $\overrightarrow{P\,}$ and $\overrightarrow{Q\,}$ will both be in $\Pi_1$ so a normal vector is $$\ul n = \begin{pmatrix}1\\ 2\\ 3\end{pmatrix} \times \begin{pmatrix}-2\\ 1\\ 5\end{pmatrix} = \begin{pmatrix}7\\ -11\\ 5\end{pmatrix}$$
 
@@ -45,12 +54,15 @@ We can check and indeed, $P$ and $Q$ both satisfy both of these equations.
 % {{{ Q6
 \question{6}
 
+\begin{questionbody}
+Compute the RREF of $$A = \begin{pmatrix}
+1 & -3 & 0 & 1\\
+0 & 0 & 1 & 2\\
+-2 & 6 & 1 & 0
+\end{pmatrix}$$
+\end{questionbody}
+
 \begin{align*}
-A = &\begin{pmatrix}
-	1 & -3 & 0 & 1\\
-	0 & 0 & 1 & 2\\
-	-2 & 6 & 1 & 0
-\end{pmatrix}\\[1ex]
 A_{13}(2) \implies &\begin{pmatrix}
 	1 & -3 & 0 & 1\\
 	0 & 0 & 1 & 2\\
@@ -67,11 +79,23 @@ A_{23}(-1) \implies &\begin{pmatrix}
 % {{{ Q7
 \newquestion{7}
 
-\subsection{~}
+\begin{questionbody}
+For each of the following matrices $A$, determine whether $A$ in invertible, and if it is, compute $A^{-1}$.
+\end{questionbody}
 
-Let $\ds A = \begin{pmatrix}1 & 2 & 3\\ 4 & 5 & 6\end{pmatrix}$. Only square matrices can be invertible, so $A$ is not invertible.
+\subsection{~} % 7.a
 
-\subsection{~}
+\begin{questionbody}
+$$A = \begin{pmatrix}1 & 2 & 3\\ 4 & 5 & 6\end{pmatrix}$$
+\end{questionbody}
+
+Only square matrices can be invertible, so $A$ is not invertible.
+
+\subsection{~} % 7.b
+
+\begin{questionbody}
+$$A = \begin{pmatrix}2 & 4\\ 6 & 8\end{pmatrix}$$
+\end{questionbody}
 
 \begin{align*}
 (A\,|\,I) = &\begin{apmatrix}{2}{2}
@@ -97,7 +121,15 @@ A_{21} \l(-2\r) \implies &\begin{apmatrix}{2}{2}
 \end{align*}
 Therefore $A^{-1} = A_{21}(-2)\, M_2\l(-\f14\r)\, A_{12}(-6)\, M_1\l(\f12\r) = \begin{pmatrix}-1 & \f12\\[0.8ex] \f34 & -\f14\end{pmatrix}$.
 
-\subsection{~}
+\subsection{~} % 7.c
+
+\begin{questionbody}
+$$A = \begin{pmatrix}
+1 & -2 & 0\\
+2 & -3 & 0\\
+0 & 0 & 1
+\end{pmatrix}$$
+\end{questionbody}
 
 \begin{align*}
 (A\,|\,I) = &\begin{apmatrix}{3}{3}
@@ -122,9 +154,23 @@ Therefore $A^{-1} = A_{21}(2)\, A_{12}(-2) = \begin{pmatrix}-3 & 2 & 0\\ -2 & 1 
 % {{{ Q8
 \question{8}
 
-\subsection{~}
+\begin{questionbody}
+Consider the system of equations \[
+\arraycolsep=2pt
+\begin{array}{rcrcrcrcrcrcr}
+      & & 6x_2 &+& 2x_3 & &      &-& x_5  & &     &=& 1\\
+      & &      & & 4x_3 & &      &+& x_5  & &     &=& -1\\
+-2x_1 &+& x_2  & &      &+& 4x_4 &+& x_5  &-& x_6 &=& 0\\
+-3x_1 & &      &+& x_3  &+& 6x_4 &+& 2x_5 & &     &=& 4
+\end{array}\]
+\end{questionbody}
 
-The system produces this augmented matrix:
+\subsection{~} % 8.a
+
+\begin{questionbody}
+Write down the augmented matrix for this system.
+\end{questionbody}
+
 $$\begin{apmatrix}{6}{1}
 0 & 6 & 2 & 0 & -1 & 0 & 1\\
 0 & 0 & 4 & 0 & 1 & 0 & -1\\
@@ -132,10 +178,14 @@ $$\begin{apmatrix}{6}{1}
 -3 & 0 & 1 & 6 & 2 & 0 & 4
 \end{apmatrix}$$
 
+% {{{ 8.b, RREF
+\newpage
 \subsection{~}
 
-% {{{ Q8 b, RREF
-The row reduction process for this system goes as follows:
+\begin{questionbody}
+Compute the RREF of the augmented matrix.
+\end{questionbody}
+
 % NOTE: Be careful with formatting here. An align* environment won't break across pages, so we need to break manually in a way that looks good.
 \begin{align*}
 &\begin{apmatrix}{6}{1}
@@ -162,8 +212,6 @@ A_{14}(3) \implies &\begin{apmatrix}{6}{1}
 	0 & 6 & 2 & 0 & -1 & 0 & 1\\[0.8ex]
 	0 & -\f32 & 1 & 0 & \f12 & \f32 & 4
 \end{apmatrix}\\[1ex]
-\end{align*}
-\begin{align*}
 S_{24} \implies &\begin{apmatrix}{6}{1}
 	1 & -\f12 & 0 & -2 & -\f12 & \f12 & 0\\[0.8ex]
 	0 & -\f32 & 1 & 0 & \f12 & \f32 & 4\\[0.8ex]
@@ -187,7 +235,9 @@ A_{23}\l(-6\r) \implies &\begin{apmatrix}{6}{1}
 	0 & 1 & -\f23 & 0 & -\f13 & -1 & -\f83\\[0.8ex]
 	0 & 0 & 6 & 0 & 1 & 6 & 17\\[0.8ex]
 	0 & 0 & 4 & 0 & 1 & 0 & -1
-\end{apmatrix}\\[1ex]
+\end{apmatrix}
+\end{align*}
+\begin{align*}
 M_3\l(\f16\r) \implies &\begin{apmatrix}{6}{1}
 	1 & 0 & -\f13 & -2 & -\f23 & 0 & -\f43\\[0.8ex]
 	0 & 1 & -\f23 & 0 & -\f13 & -1 & -\f83\\[0.8ex]
@@ -218,8 +268,6 @@ M_4(3) \implies &\begin{apmatrix}{6}{1}
 	0 & 0 & 1 & 0 & \f16 & 1 & \f{17}6\\[0.8ex]
 	0 & 0 & 0 & 0 & 1 & -12 & -37
 \end{apmatrix}\\[1ex]
-\end{align*}
-\begin{align*}
 A_{43}\l(-\f16\r) \implies &\begin{apmatrix}{6}{1}
 	1 & 0 & 0 & -2 & -\f{11}{18} & \f13 & -\f7{18}\\[0.8ex]
 	0 & 1 & 0 & 0 & -\f29 & -\f13 & -\f79\\[0.8ex]
@@ -241,11 +289,21 @@ A_{41}\l(\f{11}{18}\r) \implies &\begin{apmatrix}{6}{1}
 \end{align*}
 % }}}
 
-\subsection{~}
+\newpage
+\subsection{~} % 8.c
+
+\begin{questionbody}
+In terms of this RREF (without actually identifying a solution) explain why the
+system is consistent.
+\end{questionbody}
 
 The system is consistent because the row reduced echelon form has no zero rows.
 
-\subsection{~}
+\subsection{~} % 8.d
+
+\begin{questionbody}
+Give the general solution of this system of equations.
+\end{questionbody}
 
 Choose parameters $\lambda, \mu \in \R$. Then \begin{align*}
 x_1 &= -23 + 2\lambda + 7\mu\\

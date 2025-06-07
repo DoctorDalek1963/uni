@@ -7,6 +7,7 @@
 
 \fancyhead[L]{MA150 Assignment 3}
 \title{MA150 Algebra 2, Assignment 3}
+\colorlet{questionbodycolor}{magenta!50}
 
 \begin{document}
 
@@ -18,18 +19,28 @@
 % {{{ Q6
 \question{6}
 
+\begin{questionbody}
 \begin{equation}
 W = (x + 2y - 3z = 0) \subset \R^3
 \label{eqn:Q6-W}
 \end{equation}
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 6.a
+
+\begin{questionbody}
+Show that $W \ne \R^3$, and explain why that implies that $\dim W < 3$.
+\end{questionbody}
 
 The vector $\begin{pmatrix}1\\ 1\\ -1\end{pmatrix}$ is not in $W$ since it doesn't satisfy the equation. In particular, $1(1) + 2(1) - 3(-1) = 6 \ne 0$. Therefore $W \ne \R^3$.
 
 We know from lectures that the dimension of a subspace is less than or equal to the dimension of the parent space, and they have the same dimension if and only if they are equal. Since $W \subset \R^3$, $\dim W \le \dim \R^3$. The dimension of $\R^3$ is 3 (since the standard basis of $\R^3$ has 3 elements). Therefore $\dim W \le 3$. But $W \ne \R^3$, so $\dim W < 3$.
 
-\subsection{~}
+\subsection{~} % 6.b
+
+\begin{questionbody}
+Find a basis of $W$ and find $\dim W$.
+\end{questionbody}
 
 We can rearrange equation~(\ref{eqn:Q6-W}) to get $x = 3z - 2y$. Then we can introduce parameters $\lambda$ and $\mu$ and conclude that any point in $W$ can be written as $$\begin{pmatrix}3 \mu - 2 \lambda\\ \lambda\\ \mu\end{pmatrix} = \lambda \begin{pmatrix}-2\\ 1\\ 0\end{pmatrix} + \mu \begin{pmatrix}3\\ 0\\ 1\end{pmatrix}$$
 Therefore $\l\{ \begin{pmatrix}- 2\\ 1\\ 0\end{pmatrix}, \begin{pmatrix}3\\ 0\\ 1\end{pmatrix} \r\}$ is a basis of $W$.
@@ -48,9 +59,16 @@ Since we have a basis of $W$ with 2 elements, we know that $\dim W = 2$.
 % {{{ Q7
 \newquestion{7}
 
+\begin{questionbody}
+Let $V = \R[x]_{\le 3}$ be the vector space of polynomials in $x$ of degree at most $3$, and let $W = \R^2$. Consider the linear map $\varphi : V \to W$ determined on the basis $1, x, x^2, x^3$ by
 $$\varphi(1) = \begin{pmatrix}1\\ 0\end{pmatrix}, \quad \varphi(x) = \begin{pmatrix}-1\\ 1\end{pmatrix}, \quad \varphi(x^2) = \begin{pmatrix}1\\ -2\end{pmatrix}, \quad \varphi(x^3) = \begin{pmatrix}-1\\ 3\end{pmatrix}$$
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 7.a
+
+\begin{questionbody}
+Compute $\varphi(2x^3 - 3x + 2)$.
+\end{questionbody}
 
 \begin{align*}
 \varphi(2x^3 - 3x + 2) &= \varphi(2x^3) + \varphi(-3x) + \varphi(2)\\[1ex]
@@ -60,9 +78,12 @@ $$\varphi(1) = \begin{pmatrix}1\\ 0\end{pmatrix}, \quad \varphi(x) = \begin{pmat
 &= \begin{pmatrix}3\\ 3\end{pmatrix}
 \end{align*}
 
-\subsection{~}
+\subsection{~} % 7.b
 
-$$\psi(f) = \begin{pmatrix} f(-1) \\[1ex] \ds \dd fx (-1) \end{pmatrix}$$
+\begin{questionbody}
+Consider the linear map $\psi : V \to W$ where $$\psi = \begin{pmatrix} f(-1) \\[1ex] \ds \dd fx (-1) \end{pmatrix}$$
+Show that $\psi = \varphi$.
+\end{questionbody}
 
 By proposition 5.17, two linear maps are equal if their domains and codomains are equal and they agree on the elements of a basis of the domain. $\varphi$ and $\psi$ are both defined on $\varphi, \psi : \R[x]_{\le 3} \to \R^2$. Then we just have to check that $\varphi$ and $\psi$ agree on some basis of the domain, and it makes sense to use $\{ 1, x, x^2, x^3 \}$.
 
@@ -75,14 +96,22 @@ By proposition 5.17, two linear maps are equal if their domains and codomains ar
 
 Since $\psi$ and $\varphi$ agree on a basis, $\psi = \varphi$.
 
-\subsection{~}
+\subsection{~} % 7.c
+
+\begin{questionbody}
+Compute $\Im \varphi$.
+\end{questionbody}
 
 To find the image of a linear transformation, we can write it as a matrix and take the column span of its row reduced echelon form. $\varphi$ is $L_M$ where $$M = \begin{pmatrix} 1 & -1 & 1 & -1\\ 0 & 1 & -2 & 3 \end{pmatrix}$$
 
 Finding $\rref(M)$ only takes one step, $A_{21}(1)$. $$\rref(M) = \begin{pmatrix} 1 & 0 & -1 & 2\\ 0 & 1 & -2 & 3 \end{pmatrix}$$
 Then $\op{Colspan}(\rref(M)) = \l\{ \begin{pmatrix}1\\ 0\end{pmatrix}, \begin{pmatrix}0\\ 1\end{pmatrix} \r\}$, so $\Im \varphi = \R^2$.
 
-\subsection{~}
+\subsection{~} % 7.d
+
+\begin{questionbody}
+Compute $\dim \ker \varphi$.
+\end{questionbody}
 
 $\varphi$ is defined on the domain $V = \R[x]_{\le 3}$, which has dimension 4. Also $\Im \varphi = \R^2$, so $\dim \Im \varphi = 2$. Therefore by the Rank-Nullity Theorem, $$\dim \ker \varphi = \dim V - \dim \Im \varphi = 4 - 2 = 2$$
 
@@ -91,9 +120,15 @@ $\varphi$ is defined on the domain $V = \R[x]_{\le 3}$, which has dimension 4. A
 % {{{ Q8
 \newquestion{8}
 
-$$\pi(x^i) = (x+a)^i$$
+\begin{questionbody}
+Let $V = \R[x]_{\le 2}$ be the vector space of polynomials in $x$ of degree at most $2$.
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 8.a
+
+\begin{questionbody}
+For any fixed $a \in \R$, prove that $x \mapsto x+a$ is an isomorphism $\pi : V \to V$. That is, $\pi$ is the linear map defined by $\pi(x^i) = (x+a)^i$ on the basis $1, x, x^2$ of $V$.
+\end{questionbody}
 
 An isomorphism of vector spaces is just a bijective linear map. We shall first prove that $\pi$ is a linear map.
 
@@ -104,7 +139,11 @@ We expect $\pi(\lambda x^i) = \lambda \pi(x^i)$. \begin{align*}
 
 % TODO: This question sucks and I don't understand it so I'm giving up
 
-\subsection{~}
+\subsection{~} % 8.b
+
+\begin{questionbody}
+Write the matrix of $\pi$ with respect to the basis $1, x, x^2$ of $V$.
+\end{questionbody}
 
 $$L_\pi = \begin{pmatrix} 1 & a & a^2\\ 0 & 1 & 2a \\ 0 & 0 & 1 \end{pmatrix}$$
 
@@ -113,23 +152,36 @@ $$L_\pi = \begin{pmatrix} 1 & a & a^2\\ 0 & 1 & 2a \\ 0 & 0 & 1 \end{pmatrix}$$
 % {{{ Q9
 \newquestion{9}
 
-$$V = \l\{ f : \R \to \R : f \text{ is differentiable} \r\}, \quad W = \l\langle \cos(x), \cos(2x) \r\rangle$$
+\begin{questionbody}
+Consider $V = \l\{ f : \R \to \R : f \text{ is differentiable} \r\}$ which is a (very large) vector space under the usual operations $\lambda f + \mu g$.
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 9.a
+
+\begin{questionbody}
+Let $W = \l\langle \cos(x), \cos(2x) \r\rangle$ which is a subspace of $V$. What is $\dim W$?
+\end{questionbody}
 
 $\cos(x)$ and $\cos(2x)$ are linearly independent and span $W$ by definition, so $\{\cos(x), \cos(2x)\}$ is a basis for $W$. The dimension of a vector space is equal to the number of vectors in a basis, so $\dim W = 2$.
 
-\subsection{~}
+\subsection{~} % 9.b
 
-Let $\cal U = \{ f \in W : f(10) = 0 \}$. So we want functions of the form $$\lambda \cos(x) + \mu \cos(2x)$$
-for some $\lambda, \mu \in \R$ where $\lambda \cos(10) + \mu \cos(20) = 0$. That means we need $$\lambda = \f{-\mu \cos(20)}{\cos(10)}$$
+\begin{questionbody}
+Let $\cal U = \{ f \in W : f(10) = 0 \}$, which is a subspace of $W$. What is $\dim \cal U$?
+\end{questionbody}
+
+We want functions of the form $\lambda \cos(x) + \mu \cos(2x)$ for some $\lambda, \mu \in \R$ where $\lambda \cos(10) + \mu \cos(20) = 0$. That means we need $$\lambda = \f{-\mu \cos(20)}{\cos(10)}$$
 
 Therefore every element of $\cal U$ is of the form $$\mu \l(\f{-\cos(20)}{\cos(10)} \cos(x) + \cos(2x) \r)$$
 and therefore $\l\{ \df{-\cos(20)}{\cos(10)} \cos(x) + \cos(2x) \r\}$ is a basis of $\cal U$. Since this basis has 1 element, $\dim \cal U = 1$.
 
-\subsection{~}
+\subsection{~} % 9.c
 
-Let $\cal U_2 = \{ f \in W : f(10) = 1 \}$. So we want functions of the form $\lambda \cos(x) + \mu \cos(2x)$ for some $\lambda, \mu \in \R$ where $\lambda \cos(10) + \mu \cos(20) = 1$. Is $\cal U_2$ a subspace of $W$?
+\begin{questionbody}
+Let $\cal U_2 = \{ f \in W : f(10) = 1 \}$. Is $\cal U_2$ a subspace of $W$?
+\end{questionbody}
+
+We want functions of the form $\lambda \cos(x) + \mu \cos(2x)$ for some $\lambda, \mu \in \R$ where $\lambda \cos(10) + \mu \cos(20) = 1$.
 
 To be a subspace of $W$, $\cal U_2$ must be a non-empty subset (this is trivially true), and must be closed under the operations of $W$. So if we have some $\alpha \cos(x) + \beta \cos(2x) \in \cal U_2$, then we want $\lambda \l( \alpha \cos(x) + \beta \cos(2x) \r) \in \cal U_2$ for any $\lambda \in \R$.
 
@@ -140,22 +192,41 @@ But $\alpha \cos(10) + \beta \cos(20) = 1$ by definition of $\cal U_2$, and $\la
 % {{{ Q10
 \newquestion{10}
 
-$$L_A : \R^4 \to \R^3, \quad A = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix}$$
+\begin{questionbody}
+Consider $L_A : \R^4 \to \R^3$ (i.e. $\ul v \mapsto A \ul v$) for the matrix $$A = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix}$$
+where the values for $a, b, c, d \in \R$ are not known.
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 10.a
+
+\begin{questionbody}
+State the Rank--Nullity Theorem.
+\end{questionbody}
 
 Let $\varphi : V \to W$ be a linear map. Then $\dim \Im \varphi + \dim \ker \varphi = \dim V$.
 
-\subsection{~}
+\subsection{~} % 10.b
+
+\begin{questionbody}
+Provide values for $a, b, c, d$ so that $\dim \op{Colspan} A = 1$. What are $\dim \Im L_A$ and $\dim \ker L_A$ in your example?
+\end{questionbody}
 
 $a = b = c = d = 0$ gives $\dim \op{Colspan} A = 1$. Then $$\dim \Im L_A = \dim \op{Colspan} A = 1$$
 and then by the Rank-Nullity Theorem, $\dim \ker L_A = 4 - 1 = 3$.
 
-\subsection{~}
+\subsection{~} % 10.c
+
+\begin{questionbody}
+Provide values for $a, b, c, d$ so that $\dim \op{Colspan} A = 2$. What are $\dim \Im L_A$ and $\dim \ker L_A$ in your example?
+\end{questionbody}
 
 $a = 1$, $b = c = d = 0$ gives $\dim \op{Colspan} A = 2$. Then $\dim \Im L_A = 2$ and $\dim \ker L_A = 2$.
 
-\subsection{~}
+\subsection{~} % 10.d
+
+\begin{questionbody}
+Provide values for $a, b, c, d$ so that $\dim \op{Colspan} A = 3$. What are $\dim \Im L_A$ and $\dim \ker L_A$ in your example?
+\end{questionbody}
 
 $a = 1$, $d = 1$, $b = c = 0$ gives $\dim \op{Colspan} A = 3$. Then $\dim \Im L_A = 3$ and $\dim \ker L_A = 1$.
 
