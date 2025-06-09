@@ -173,7 +173,10 @@ ci-build-all:
         sys.stdout.flush()
 
         child = subprocess.run(
-            ["direnv allow && direnv exec . just build"], cwd=dir, shell=True
+            ["direnv allow && direnv exec . just build"],
+            cwd=dir,
+            shell=True,
+            env=(os.environ | {"_nix_direnv_force_reload": "1"}),
         )
 
         if child.returncode != 0:
