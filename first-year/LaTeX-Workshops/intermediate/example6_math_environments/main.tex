@@ -1,0 +1,414 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{\S6 Maths environments in \LaTeX }
+\author{Andrew Brendon-Penn}
+
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+\usepackage{array}
+% \numberwithin{equation}{section} % If this line of code is activated, then your equation numbering will be per section. i.e. in section 1, the equatiosn will be 1.1, 1.2 etc. similarly, you can change it to  use subsection numbering instead.
+
+\begin{document}   % now comes the content - what will appear in the document itself
+\maketitle  % this makes a title using the information you provided in the pre-amble
+
+\begin{abstract}
+This document is designed to be read in both its .tex and .pdf forms at the same time. Compare both documents to see examples of \LaTeX \, code that you can adapt for your uses.
+\end{abstract}
+
+\tableofcontents 
+
+\pagebreak
+
+\section{In-line Mathematics}
+
+In-line maths environments are created by wrapping your code with the dollar symbol. In TeXmaker, this makes the code turn green. The formatting of the mathematics will attempt to keep the expression within the line spacing of your text to help the text to flow. For example, an expression like $f(x) = \sum_{n=0}^{\infty} a_n x^n$ will have the limits to the side rather than directly above or below. 
+
+In-line maths environments should be used for all mathematics in your text that you do not want to ``display". A common error is to forget this, or to forget what is maths and what isn't. For example, comparing the two sentences below, the first uses different fonts for the function $g$ and the two different fonts for the point $a$, whereas the second is consistent. Notice that the spacing of the minus sign is also better in the second sentence. 
+
+(BAD): The function g is continuous at a=-1, so given $\varepsilon >$0 there is some $\delta>$0 such that $|g(x)-g(a)|$ $<\varepsilon$ whenever $|$x-a$|<\delta$.
+
+(GOOD): The function $g$ is continuous at $a=-1$, so given $\varepsilon >0$ there is some $\delta>0$ such that $|g(x)-g(a)|<\varepsilon$ whenever $|x-a|<\delta$.
+
+\section{Simple display maths}
+
+We've already seen that to create a simple displayed equation we wrap it around with backslash open square bracket, and backslash closed square bracket as so:
+\[
+f(x) = \sum_{n=0}^{\infty} a_n x^n.
+\]
+
+Displayed maths creates mathematics in the same way as in-line maths, but will space it out more (especially vertically) to make it clearer. Usually displayed maths is also automatically centred on the page. 
+
+Display equations should be used either to highlight important equations (they stand out more in displayed maths) or when it is clearer than using in-line maths.
+
+In the following sections we'll see several other types of display maths environment. So although the code for the symbols is the same, it is worth thinking about which display maths environment is most suitable for the desired outcome.
+
+\subsection{Text within display maths}
+
+Often display maths environments are used for showing steps in a proof or calculation, and it is very bad style just to list equations without any intermediary text to turn it into a flowing argument, e.g., explaining how each step follows from the last.
+
+Text can be inserted by using the text command:
+\[
+f(x) = \sum_{n=0}^{\infty} a_n x^n \text{ so long as } |x|<R.
+\]
+(Note that here the spaces need to be included inside the braces too).
+
+Without the text command, we get a mess:
+\[
+f(x) = \sum_{n=0}^{\infty} a_n x^n  so long as  |x|<R.
+\]
+
+\section{Numbered Equations}
+
+Often it is useful to number displayed equations so that we can refer back to them later.
+
+The simplest way to do this is to use an equation environment:
+\begin{equation}
+x=y^2.
+\end{equation}
+
+It's considered bad style to number an equation that you do not refer to in your text. So, you can turn off the number later if you change your mind by using an asterisk as in
+\begin{equation*}
+x=y^2.
+\end{equation*}
+
+\subsection{Referring to numbered Equations}
+
+The equation environment creates numbered display maths and \LaTeX \, will keep track of the numbering for you. You can also use the numbering later by using the label and ref commands.
+
+For example, here are some equations which I may want to refer to later:
+\begin{equation}\label{eq:einstein}
+e=mc^2,
+\end{equation}
+
+\begin{equation}\label{eq:pythagoras}
+a^2+b^2=c^2.
+\end{equation}
+
+Equation \ref{eq:pythagoras} is about triangles whereas \eqref{eq:einstein} % \eqref needs amsmath package 
+is about energy. Note what happens if you switch the order two equations, the reference will automatically adjust itself in the compiled text (NB: you may need to recompile twice to see the affect.) 
+
+\section{Aligning Equations}
+
+You can align equations using the begin/end align* commands to create an align environment. Everything inside is automatically treated as maths (not text.) Just like when using matrices, use \& to align the columns and double backslashes to start new lines. 
+
+Note that (a) you need to include the amsmath package and (b) you mustn't leave any empty lines when using this environment or you'll get lots of errors.
+
+Suppose we have a simple calculation such as 
+\begin{align*} 
+f(x) & = x^2 \\
+     & > y^2 \\
+     & = g(y).
+\end{align*}
+
+You can use multiple columns if you have a couple of such to do at once, such as
+\begin{align*} 
+f(x) & = x^2     & g(x) & = x^4 +7 \\
+     & > y^2     &      & > y^4    \\
+     & = f(y),   &      & = f(y)^2. \\
+\end{align*}
+
+The formatting means that columns will alternate between being justified to the right, then left, then right \dots etc.
+
+\subsection{Text within align maths environment}
+
+As before, you can use the text command to add commentary. For example we might write 
+\begin{align*} 
+|f(x)-f(c)| & =    |x^2-c^2| \\
+            & =    |x-c||x+c|                        & \text{difference of two squares}\\
+            & \leq \delta |x+c|                      & \text{since } | x-c | < \delta \\
+            & =    \delta |x-c+2c| \\
+            & \leq \delta \left( |x-c|+|2c| \right)  & \text{ by the triangle inequality}\\
+            & <    \delta \left( 1+2|c|\right )      & \text{since } | x-c | < \delta \leq 1 \\
+            & \leq \varepsilon                       & \text{since } \delta\leq\frac{\varepsilon}{1+2|c|}.
+\end{align*}
+
+An alternative, if you want to write longer explanations/expressions is to use the intertext command: It allows you to put intermediate text without disrupting the alignment of the columns. Within the intertext environment, you can even include mathematics, by using the dollar symbols again. 
+
+Note that the function $f$ is given by a power series, and hence
+\begin{align*}
+f(x) - a 		& = \sum_{n=0}^{\infty} a_n x^n \\
+           	& = g_0(x)
+\intertext{and so can be differentiated term-by-term within the radius of convergence to give}
+f'(x) 			& = \sum_{n=1}^{\infty} n a_n x^{n-1} \\
+           	& = g_1(x)
+\intertext{and hence, so long as $|x|<R$, we can repeat this process many times, yielding}
+f^{(k)}(x) 	& = \sum_{n=k}^{\infty} \binom{n}{k}k! a_n x^{n-k} \\
+           	& = g_k(x).
+\end{align*}
+ 
+\subsection{Numbering aligned equations}
+
+Note that as when you use begin/end equation, the asterisk is used to suppress any numbering. If you remove the asterisk, each line will become numbered.
+\begin{align} 
+|f(x)-f(c)| & =    |x^2-c^2| \\
+            & =    |x-c||x+c|       \label{eq:diffsquares} \\
+            & \leq \delta |x+c|    \\                  
+            & =    \delta |x-c+2c| \\
+            & \leq \delta \left( |x-c|+|2c| \right)  \\
+            & <    \delta \left( 1+2|c|\right )      \\
+            & \leq \varepsilon.                     
+\end{align}
+
+You can of course then add labels so that you can use the ref command, for example to say that line \ref{eq:diffsquares} uses the difference of two squares formula.
+ 
+You can remove numbers from any given line by ending it with the nonumber command before the double backslash ending the line.
+\begin{align} 
+|f(x)-f(c)| & =    |x^2-c^2|     \nonumber \\
+            & =    |x-c||x+c|      \nonumber  \\
+            & \leq \delta |x+c|    \\                  
+            & =    \delta |x-c+2c| \\
+            & \leq \delta \left( |x-c|+|2c| \right)   \nonumber \\
+            & <    \delta \left( 1+2|c|\right )      \\
+            & \leq \varepsilon.                       
+\end{align}
+
+Conversely, you can do it the other way around, using the tag command to label one line at a time:
+\begin{align*} 
+|f(x)-f(c)| & =    |x^2-c^2| \\                
+            & =    |x-c||x+c|     \\           
+            & \leq \delta |x+c|    \\                  
+            & =    \delta |x-c+2c| \\
+            & \leq \delta \left( |x-c|+|2c| \right)   \tag{\ddag}\label{eq:triangleineq}  \\
+            & <    \delta \left( 1+2|c|\right )      \\
+            & \leq \varepsilon                       
+\end{align*}
+Which again you can label and refer back to, for example, to say that  \eqref{eq:triangleineq} uses the triangle inequality. 
+
+\section{Arrays}
+
+Arrays can be used to line up mathematics with even more control, you can specify the alignment of each column individually. Note that technically, arrays are not themselves a mathematical environment, you must put an array inside a maths environment.
+\[
+\begin{array}{l r r r r l}
+	\dot{x} & = f(x,y,z) =  & 23x	& + 2y	& -3z 	& = 0,\\
+	\dot{y} & = g(x,y,z) =  &  5x 	& -34y  & +14z 	& = 12.
+\end{array}
+\]
+
+\pagebreak
+
+%
+% you can stop reading
+% most of you will never use the next section
+%
+
+\section{Other Mathematical Environments}
+
+The environments listed so far are likely to be the most useful. But here I include a few more, less useful ones. This list is not exhaustive and some I am deliberately omitting because they are no longer recommended for use (such as the eqnaray environment which is an old relic, and has been replaced by the far superior array environment.)
+ 
+\subsection{Gather}
+
+The gather environment works very much like the equation environment. It is used when you have several one-line equations in succession. Each one is cantered on its line. Separate each line using a double backslash. 
+\begin{gather}
+a= b\\
+c=d+e\\
+f+g=h+i+j+k
+\end{gather}
+
+Note that it saves a little bit of vertical space between each equation (and a bit of code) compared to just repeatedly using the equation environment lots of times. 
+\begin{equation}
+a= b
+\end{equation}
+\begin{equation}
+c=d+e
+\end{equation}
+\begin{equation}
+f+g=h+i+j+k
+\end{equation}
+
+Stylistically though, it isn't good to just list equations without any intermittent text (e.g. if they follow from each other, then this should be indicated through logical connectors like ``so" or ``since") so this environment is useful only when you want to make a \emph{list} of expressions. For example, to say that for $z\in \mathbb{C}$ by writing $a=\Re(z)$ and $b=\Im(z)$ the equation $z^2=\bar{z}$ results in two equations when we equate its real and imaginary parts; 
+\begin{gather}
+a^2-b^2 = a, \\
+2ab=b.
+\end{gather}
+
+You can turn numbering off for individual lines by using the nonumber command; 
+\begin{gather}
+a= b\\
+c=d+e \nonumber \\
+f+g=h+i+j+k
+\end{gather}
+
+Or you can turn numbering off altogether by using the asterisk
+\begin{gather*}
+a= b\\
+c=d+e\\
+f+g=h+i+j+k
+\end{gather*}
+
+\pagebreak
+
+\subsection{Multline}
+
+The multline\footnote{note there is only one ``i" (it isn't mult\underline{i}line)}  environment is used when you wish to split a (very) long expression over several lines. The environment (almost) left-justifies the firs line, and (almost) right justifies the last line and centres any intermediate lines. 
+\begin{multline}\label{eq:multlineequation}
+(x_1 + x_2 + x_3 + x_4 + x_5 + x_6)^2 \\ 
++ (x_1 + x_2 + x_3 + x_4)^2 + ( x_1 + x_2 + x_3 + x_5)^2  \\
++ (x_1 + x_2 + x_3)^2 + ( x_1 + x_3 + x_5)^2 + (x_2 + x_4 +  x_6)^2 \\
++  x_1 + x_2 + x_3 + x_4 + x_5 + x_6.
+\end{multline}
+
+Personally, I think that multline expressions are a bit messy, so I prefer to use split. Compare  to \eqref{eq:splitequation} which uses split to \eqref{eq:multlineequation} above which used multline
+
+You can turn numbering off by using the asterisk 
+\begin{multline*}
+(y_1 + y_2 + y_3 + y_4 + y_5 + y_6)^2 \\ 
++ (y_1 + y_2 + y_3)^2 + ( y_1 + y_3 + y_5)^2 + (y_2 + y_4 +  y_6)^2.
+\end{multline*}
+
+And you can override the justification of individual intermediate lines using the shoveleft and shoveright commands. 
+\begin{multline*}
+(a_1 + a_2 + a_3 + a_4 + a_5 + a_6)^2 \\ 
+\shoveleft{ + (a_1 + a_2 + a_3)^2 + ( a_1 + a_3 + a_5)^2 + (a_2 + a_4 +  a_6)^2}\\
++ (a_1 + a_2 + a_3)^2 + ( a_1 + a_3 + a_5)^2 + (a_2 + a_4 +  a_6)^2 \\
++ (a_1 + a_2 + a_3)^2 + ( a_1 + a_3 + a_5)^2 + (a_2 + a_4 +  a_6)^2 \\
+\shoveright{ + (a_1 + a_2)^2 + ( a_3 + a_5)^2 + (a_2 + a_4)^2} \\
++  a_1 + a_2 + a_3 + a_4 + a_5 + a_6.
+\end{multline*}
+
+\subsection{Alignat}
+The alignat environment is a variant of the  align environment and works in much the same way. The difference is that alignat doesn't put any spaces in between columns, so the user can specify the spacing themselves.
+
+It is important to note the syntax; alignat has a mandatory input which is the number of columns. 
+\begin{alignat}{4}
+	a 	& =b,  		& \quad C 			& =d,\\
+	a^2 & =b+b,  	& \quad \sqrt{c} 	& = d-d/d.
+\end{alignat}
+
+Again, you can turn numbering off for individual lines using nonumber or entirely by using the asterisk
+\begin{alignat*}{4}
+	a 	& =b,  		& \qquad C 			& =d,\\
+	a^2 & =b+b,  	& \qquad \sqrt{c} 	& = d-d/d.
+\end{alignat*}
+
+Some people particularly  prefer this environment when using three columns for a long calculation with explanations (usually separated from the maths by a quad space) such as
+\begin{alignat*}{4}
+|f(x)-f(c)| & =    |x^2-c^2| \\
+            & =    |x-c||x+c|                        & &\quad \text{as the difference of two squares}\\
+            & \leq \delta |x+c|                      & &\quad \text{since } | x-c | < \delta \\
+            & =    \delta |x-c+2c| \\
+            & \leq \delta \left( |x-c|+|2c| \right)  & &\quad \text{by the triangle inequality}\\
+            & <    \delta \left( 1+2|c|\right )      & &\quad \text{since } | x-c | < \delta \leq 1 \\
+            & \leq \varepsilon                       & &\quad \text{since } \delta\leq\frac{\varepsilon}{1+2|c|}.
+\end{alignat*}
+
+\subsection{Flush Align}
+
+The flalign environment is a further variant of the align environment and again works in much the same way. The difference this time is that when using flalign the first pair of columns is flush left and the last pair of columns is flush right.
+
+It is important to note the syntax; alignat has a mandatory input which is the number of columns. 
+\begin{flalign}
+	a 	& =b,  		& \quad C 			& =d,\\
+	a^2 & =b+b,  	& \quad \sqrt{c} 	& = d-d/d.
+\end{flalign}
+
+Again, you can turn numbering off for individual lines using nonumber or entirely by using the asterisk
+\begin{flalign*}
+	a 	& =b,  		& \qquad C 			& =d,\\
+	a^2 & =b+b,  	& \qquad \sqrt{c} 	& = d-d/d.
+\end{flalign*}
+
+\section{Subsidiary Mathematical Environments}
+
+Subsidiary environments are not mathematical environments themselves but can be used inside mathematical environments to help with specific alignment or numbering needs. 
+
+We've already seen  examples of these such as the cases and array environments, as well as the various matrix environments. 
+
+In this section we discuss a few more options, these all need the amsmath package. These subsidiary environments create and expression which is then treated like a single large symbol.  
+
+\subsection{Aligned, gathered \& alignedat}
+
+Be careful not to confuse the align and gather environments with these  align\textbf{ed} and gather\textbf{ed} subsidiary environments, but they do work in a similar way.
+\[
+	\begin{aligned}
+		w &= 1 + a+b \\
+		x &= 2 + c\\
+		y &= 3 + efg \\
+		z &= 4 + hhhhh
+	\end{aligned}
+\text{\qquad is similar to \qquad}
+	\begin{gathered}
+		\alpha 	= 5 + a+b \\
+		\beta 	= 6 + c\\
+		\gamma 	= 7 + efg \\
+		\delta 	= 8 + hhhhh
+	\end{gathered} 
+\]
+
+These can be used inside most other mathematical environments. One use could be for numbering. For example, if you  wanted to number the whole calculation, as I have in \eqref{eq:wholecalc}, you can put an aligned  subsidiary environment inside a (numbered) equation environment and label that instead. The equation number is then centred on the entire expression. 
+\begin{equation}\label{eq:wholecalc}
+\begin{aligned} 
+|f(x)-f(c)| & =    |x^2-c^2| \\                
+            & =    |x-c||x+c|     \\           
+            & \leq \delta |x+c|    \\                  
+            & =    \delta |x-c+2c| \\
+            & \leq \delta \left( |x-c|+|2c|\right)  \\  
+            & <    \delta \left( 1+2|c|\right ) \leq \varepsilon.                      
+\end{aligned}
+\end{equation} 
+
+The aligned and gathered subsidiary environmental also allow an option t/b/c to change the vertical alignment to the top, bottom or centre respectively. 
+Aligning at the top:
+\[
+	\begin{aligned}[t]
+		w &= 1 + a+b \\
+		x &= 2 + c\\
+		y &= 3 + efg \\
+		z &= 4 + hhhhh
+	\end{aligned}
+\text{\qquad is similar to \qquad}
+	\begin{gathered}[t]
+		\alpha 	= 5 + a+b \\
+		\beta 	= 6 + c\\
+		\gamma 	= 7 + efg \\
+		\delta 	= 8 + hhhhh
+	\end{gathered} 
+\]
+compared with aligning at the bottom:
+\[
+	\begin{aligned}[b]
+		w &= 1 + a+b \\
+		x &= 2 + c\\
+		y &= 3 + efg \\
+		z &= 4 + hhhhh
+	\end{aligned}
+\text{\qquad is similar to \qquad}
+	\begin{gathered}[b]
+		\alpha 	= 5 + a+b \\
+		\beta 	= 6 + c\\
+		\gamma 	= 7 + efg \\
+		\delta 	= 8 + hhhhh
+	\end{gathered} 
+\]
+
+Similarly, there is an align\textbf{ed}at subsidiary environment:
+\[
+\left.
+	\begin{alignedat}{4}
+	\dot{x} & = f(x,y) & \quad \text{where } f(x,y) & = x^2+ yx,\\
+	\dot{y} & = g(x,y) & \quad \text{where } g(x,y) & = 3xy- 5y^2.
+	\end{alignedat}
+\right\}
+\text{defining equations.}
+\]
+
+\subsection{Split} 
+
+The split subsidiary math environment is used to split a (very long) formula into aligned parts, giving perhaps a neater output than that produced using multline.
+
+Compare \eqref{eq:multlineequation} which used multline to \eqref{eq:splitequation} below which uses split.
+\begin{equation}\label{eq:splitequation}
+\begin{split}
+& (x_1 + x_2 + x_3 + x_4 + x_5 + x_6)^2 \\ 
+& + (x_1 + x_2 + x_3 + x_4)^2 + ( x_1 + x_2 + x_3 + x_5)^2  \\
+& + (x_1 + x_2 + x_3)^2 + ( x_1 + x_3 + x_5)^2 + (x_2  + x_4 +  x_6)^2 \\
+& +  x_1 + x_2 + x_3 + x_4 + x_5 + x_6.
+\end{split}
+% Note that here the first column (right aligned) is empty so that the contents appear in the second column (left aaligned)
+\end{equation}
+
+\end{document}

@@ -1,0 +1,66 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{Exercise: Maths environments in \LaTeX }
+\author{Stu Dent}
+\date{May 25, 2020}
+
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+\usepackage{array}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+See if you can recreate this document. Pay particular attention to which type of maths environment you think is being used.
+\end{abstract}
+
+\section{Cosets}
+
+Recall, that if $H$ is a subgroup of a group $G$ that we say that $H$ is a \emph{normal subgroup}, denoted by $H \trianglelefteq G$, if \begin{equation}\label{eqn:normal}
+gH=Hg \qquad \text{for each } g \in G.
+\end{equation}
+
+A handy result is that equation~\ref{eqn:normal} is equivalent to saying that \begin{equation*}
+ghg^{-1} \in H \text{for each $g \in G$ and each $h \in H$}.
+\end{equation*}
+
+When working with cosets, one problems we often encounter is that the same coset might have two different names, but luckily there are some useful results which can deal with this scenario. In particular, note that \begin{align*}
+gH=kH &\iff g \in kH \\
+&\iff k \in gH \\
+&\iff g^{-1}k \in H \tag{\dag}\label{eqn:coset}\\
+&\iff k^{-1}g \in H.
+\end{align*}
+Note that \eqref{eqn:coset} is not the same as $kg^{-1} \in H$, unless of course there is some commutativity.
+
+\newpage
+
+\section{Sets}
+
+DeMorgan's laws and the fact that $A\setminus B = A \cap B^\complement$ helps us to quickly manipulate set-theoretic expression such as \begin{align*}
+A \setminus (B\setminus C) &= A\cap (B\cap C^\complement)^\complement \\
+&= A\cap (B^\complement \cup (C^\complement)^\complement) & \text{by DeMorgan} \\
+&= A\cap (B^\complement \cup C) & \text{since complement is self-inverting} \\
+&= (A\cap B^\complement) \cup (A\cap C) & \text{by distributivity} \\
+&= (A\setminus B) \cup(A \cap C).
+\end{align*}
+
+\section{PDEs}
+
+Physical laws can give insight into ways of tackling mathematical problems. For example, consider the wave equation in the initial value problem \begin{align*}
+\partial_{tt} u(x,t) &= c^2 \partial_{xx} u(x,t), & & (x,t) \in (0, \infty) \times \mathbb{R}, \\
+w(x,0)               &= 0,                        & & x \in \mathbb{R}, \\
+\partial_tw(x,0)     &= 0,                        & & x \in \mathbb{R}.
+\end{align*}
+By considering energy-like functions \begin{align*}
+&\text{kinetic energy}   & E_k(t) &= \int_\mathbb{R} \tfrac{1}{2}     (\partial_t u)^2 (x,t) \mathrm{d}x, \\
+&\text{potential energy} & E_p(t) &= \int_\mathbb{R} \tfrac{1}{2} c^2 (\partial_x u)^2 (x,t) \mathrm{d}x
+\end{align*}
+then we can use the concept of conservation of energy to expect that total energy, the sum of these functions, is constant. This turns out to be true and gives tools to prove uniqueness of solutions to the system.
+
+\end{document}

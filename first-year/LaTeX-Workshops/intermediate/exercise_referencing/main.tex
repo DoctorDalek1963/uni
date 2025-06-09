@@ -1,0 +1,25 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{Exercise: \hologo{BibTeX} for \LaTeX\, referencing}
+\author{Stu Dent}
+\date{June 11, 2018}
+\usepackage{hologo} % only used to make the BibTeX logo in the title
+
+% packages needed for the bibliography to work nicely:
+\usepackage[numbers]{natbib}
+\bibliographystyle{plainnat}
+\usepackage{cite}
+
+\usepackage{url} % allows use of the \url{...} command to typeset a url properly
+
+\begin{document}
+
+\maketitle
+
+\section{Mathematical Writing Style}
+
+\citeauthor{knuth-1989-mathematical-writing} \citep[p.~1]{knuth-1989-mathematical-writing} remind us that it is poor style to start a sentence with a mathematical symbol whereas \citeauthor{higham-1998-handbook} \citep[pp.~17--18]{higham-1998-handbook} gives some useful ideas about how we might guide a reader through our proofs. Other handy guides to writing give examples of phrasing one might use to introduce or state a theorem \citep[\S~2]{trzeciak-1995-writing}.
+
+\bibliography{main}
+
+\end{document}

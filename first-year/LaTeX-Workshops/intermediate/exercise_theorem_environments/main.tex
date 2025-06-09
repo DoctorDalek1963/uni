@@ -1,0 +1,193 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{\S7. Theorem Environments in \LaTeX}
+\author{Andrew Brendon-Penn }
+
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{cite}
+\usepackage{mathrsfs}
+\usepackage{array}
+
+\usepackage{amsthm} %  package used to make the theorem environments work.
+
+%
+% code below sets up new theorem environments
+%
+
+\theoremstyle{plain} % this sets the style for all new environments created using \newtheorem to have the "theorem" style, which as a bold title, italic text and vertical space above and below it.
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}{Conjecture}[subsection]
+\newtheorem*{cor}{Corollary}
+\newtheorem*{claim}{Claim}
+\newtheorem*{lagrange}{Lagrange's Theorem} % the star makes an unnumbered theorem
+
+\theoremstyle{definition} % this sets the style for all new environments created using \newtheorem to have the "definition" style, which as a bold title, upright text and vertical space above and below it.
+\newtheorem{defn}{Definition}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{asmp}[defn]{Assumption}
+
+\theoremstyle{remark} % this sets the style for all new environments created using \newtheorem to have the "remark" style, which as an italic non-bold title, upright text and no extra vertical space above and below it.
+\newtheorem*{rem}{Remark}
+\newtheorem{case}{Case}
+\newtheorem*{note}{Note}
+
+% note that there is already an in-built "proof" environment which we do not need to create
+
+\begin{document}
+\maketitle
+\section{Group Theory}
+
+I might start my section with a bit of introductory text highlighting the motivation, or signposting towards the end goal of this section. For example, I might want to point out the very important theorem we are going to prove.
+
+\begin{lagrange}
+	Here I state the theorem which I've \emph{chosen} to name rather than number.
+\end{lagrange}
+
+With this under my belt, I will probably want to make some definitions.
+
+\begin{defn}
+	Here I might define a \emph{subgroup}.
+\end{defn}
+
+I might like to mention that the definition is often axiom-heavy when it comes to double-checking, so I might provide a useful result.
+
+\begin{prop}[The One Step Test]\label{prop:1steptest}
+	Here I might give a minimal set of axioms which can be used to guarantee that a subset is in fact a subgroup.
+\end{prop}
+
+\begin{proof}
+	I might prove the lemma here. Suppose that it splits into cases.
+	\begin{case}
+		First case proven
+	\end{case}
+	\begin{case}
+		Second case proven
+	\end{case}
+	\begin{case}
+		third case proven
+	\end{case}
+	And since all cases have been proven we are done.
+\end{proof}
+
+To demonstrate that Proposition~\ref{prop:1steptest} % note that the tilde creates a non-breaking space
+really is useful, I might provide the following examples.
+\begin{eg}
+	Here I might show that $\mathbb{Z}[i]$ is a subgroup of $\mathbb{C}$.
+\end{eg}
+
+Some more intermediate text might lead me to the following definition.
+\begin{defn}
+	Here I would define a \emph{coset} $gH$.
+\end{defn}
+\begin{rem}
+	Here I might point out some subtlety that the reader might have missed.
+\end{rem}
+
+I might add text which isn't part of the definition or lemma. This could be quite lengthy in fact because I have attendance to waffle on and on, so it's a good job this will get edited down at a later date. Do we have milk in or should I buy some on the way home? Such questions are almost certainly not answered by the following result.:
+
+\begin{lem}\label{lem:LeftCosetsDisjoint}
+	I might add a lemma about disjoint cosets.
+\end{lem}
+
+\begin{proof}
+	Let's pretend I have proven my lemma.
+	If the proof ends with displayed maths you might find that the tombstone is in the wrong place, you can change this using ``qedhere'' as I have here:
+	\begin{equation}
+		g^2H= g(gH)= gH.  \qedhere
+	\end{equation}
+\end{proof}
+
+\begin{lem}\label{lem:SizeOfLeftCoset}
+	We all know a good lemma about cosets being of equal size.
+\end{lem}
+
+\begin{proof}
+	This is left as an exercise for the reader. (Never do this in your work!)
+\end{proof}
+
+\begin{thm}[Lagrange's Theorem] % the optional argument gives a secondary name to the theorem in parentheses
+\label{thm:Lagrange}
+	A very important theorem in group theory linking the cardinalities of the subgroup, index and group.
+\end{thm}
+
+\begin{proof}
+	Proof involving cosets, and probably referring to Lemma~\ref{lem:LeftCosetsDisjoint} and Lemma~\ref{lem:SizeOfLeftCoset}.
+	If my proof is very complicated, then I might want to introduce a claim.
+	\begin{claim}
+		Here is a claim that will help me with my proof.
+	\end{claim}
+	\begin{proof}[Proof of Claim] % the optional argument changes the title of the proof
+		Here is where I might prove my claim.
+	\end{proof}
+	And now that the claim is established, I can finish my big proof.
+\end{proof}
+
+\section{More Group Theory}
+
+\begin{defn}
+	Now I might define a \emph{normal subgroup}.
+\end{defn}
+
+I might add text which isn't part of the definition or lemma.
+\begin{defn}
+	Now I might define the operation on cosets of a normal subgroup and call the result a \emph{quotient group}.
+\end{defn}
+
+\begin{lem}\label{lem:quotientgroup}
+	I might add a lemma about the quotient group being a group.
+\end{lem}
+
+\begin{proof}
+	Let's pretend I have proven my lemma. I might refer to Theorem~\ref{thm:Lagrange}.
+\end{proof}
+
+Some intermediate text might lead me to create the following.
+
+\begin{defn}
+	Now I might define the terms  \emph{homomorphism} and \emph{isomorphism}.
+\end{defn}
+
+\begin{thm}[The First Isomorphism Theorem for Groups] \label{thm:1stIsomorphismThm}
+	Another very important theorem in group theory.
+\end{thm}
+
+\begin{proof}
+	Proof involving cosets, and probably referring to Lemma~\ref{lem:quotientgroup} and Lemma~\ref{lem:SizeOfLeftCoset}.
+	It probably doesn't but what if the proof  split into cases again.
+	\setcounter{case}{0} % re-sets the numbering for the cases environment. Using \setcounter{case}{n} means the next "case" will be numbered n+1
+	\begin{case}
+		First case.
+	\end{case}
+	\begin{case}
+		Second case.
+	\end{case}
+	\begin{case}
+		third case.
+	\end{case}
+\end{proof}
+
+\subsection{Testing environments}
+
+\begin{asmp}
+Suppose henceforth that $G$ is an abelian group.
+\end{asmp}
+
+\begin{note}
+There are of course non-abelian groups.
+\end{note}
+
+\begin{conj}
+The centre $Z(G)$ of $G$ is the whole of $G$.
+\end{conj}
+
+\begin{proof}
+Suppose that $g \in G$, then given any $h \in G$, we have $gh = hg$ since $G$ is abelian, and since this holds for any $h \in G$, we see that $g \in Z(G)$.
+\end{proof}
+
+\end{document}

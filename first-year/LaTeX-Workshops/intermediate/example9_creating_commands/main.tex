@@ -1,0 +1,100 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{\S 9. Creating your own \LaTeX \, commands}
+\author{Andrew Brendon-Penn}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage{amsopn} % used for the \DeclareMathOperator command
+
+\usepackage[dvipsnames]{xcolor} % used for the \textcolor{...} command
+\usepackage{accents} % used for \accentset
+\usepackage{bclogo} % used for \bclampe
+
+% here is me defining some commmands myself
+\newcommand{\R}{\mathbb{R}}
+% creates a command \R which now makes the symbol for the set of real numbers
+
+\newcommand{\brightidea}{\marginpar{\bclampe}}
+% creates a command \brightidea which puts a lightbulb in teh margin
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+% creates a command \abs which will put absolute value brackets around the input
+
+\newcommand{\keyword}[1]{\textcolor{red}{#1}}
+% creates a command \defn which will change the colour of its input to red
+
+\newcommand{\myvec}[1]{\accentset{\rightharpoonup}{#1}}% creates a command \myvec{...}{...} which puts a harpoon arrow over its input
+
+\newcommand{\longvec}[2]{(#1_1, #1_2, \dotsc, #1_{#2})}
+% creates a command \longvec{...}{...} which writes a vector with the first argument as its name and the second  as its length
+
+\newcommand{\chooseq}[2]{\binom{#1}{#2}=\frac{#1!}{#2!\left(#1-#2\right)!}}
+% creates a command \choooseq{...}{...} which gives an equation for the binomial coefficients.
+
+\newcommand{\dettwobytwo}[4]{\det \begin{pmatrix}
+ #1 & #2 \\
+ #3 & #4
+ \end{pmatrix} = #1\times#4-#2\times#3}
+% creates a command which gives an equation for the determinant of a 2x2 matrix.
+
+\DeclareMathOperator{\curl}{curl}
+
+\DeclareMathOperator*{\Res}{Res}
+
+\begin{document}
+\maketitle
+
+\section{Defining commands without any inputs}
+
+It is often useful to define your own commands if there are common bits of code you tend to use. You can create the new command in the preamble and then use it later.
+
+This will help me to make light work of sentences like:
+Suppose that $f : \R^n \times \R^m \to \R^p$ is continuous at $c \in \R^n\times \R^m$. \brightidea
+
+\section{Defining commands with inputs}
+
+The commands you can create can even take \keyword{arguments} just as many other \LaTeX\, commands do.
+
+So, now it's much easier for me to write things like
+\[
+\abs{\frac{uv}{w}} = \frac{\abs{u}\abs{v}}{\abs{w}}.
+\]
+
+\section{Defining commands with multiple inputs}
+
+In the same way, you can make commands which can accept multiple arguments.
+
+Every vector $\myvec{v} \in \R^n$  has $n$ components, let's write $\myvec{v}=\longvec{v}{n}$ and then if $\myvec{w}\in \R^m$ we write $\myvec{w}=\longvec{w}{m}$.
+
+This would be handy if I wanted to write a lot of expressions like:
+\[
+\chooseq{5}{3},
+\qquad
+\chooseq{10}{6},
+\qquad
+\chooseq{3}{1}.
+\]
+
+Or if I have lots of expressions to write of the form:
+\[
+\dettwobytwo{\alpha}{\beta}{\gamma}{\delta},
+\]
+\[
+\dettwobytwo{a_{11}}{a_{12}}{a_{21}}{a_{22}},\\
+\]
+\[
+\dettwobytwo{2}{1}{7}{3}.
+\]
+
+\section{Defining Maths Operators}
+
+Suppose I want to talk about $\curl(v)$ and $\curl w$ of a vector field. There is no in-built command for it, so I've made one up, and because I declared it to be a maths operator, the font, and spacing behaves like other maths operators such as $\sin$ and $\det$.
+
+If I want limits to behave like with $\max$ or $\lim$ then I can do this with the starred version of the command. I did this to create $\Res_{z=2\pi}f(z)=2$ which behaves in-line or in display maths
+\[
+\Res_{z=2\pi}f(z)=2.
+\]
+\end{document}

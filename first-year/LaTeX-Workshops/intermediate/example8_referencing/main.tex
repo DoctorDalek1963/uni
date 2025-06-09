@@ -1,0 +1,46 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{\S 8. Using \hologo{BibTeX} for \LaTeX\, referencing}
+\author{Andrew Brendon-Penn}
+\date{}
+\usepackage{hologo} % only used to make the BibTeX logo in the title
+
+% packages needed for the bibliography to work nicely:
+\usepackage[numbers]{natbib}
+\bibliographystyle{plainnat}
+\usepackage{cite}
+
+\usepackage{url}% allows use of the \url{...} command to typeset a url properly
+
+\begin{document}
+
+\maketitle
+
+\section{My First Citations}
+
+This is some text I want to cite from a page in a book \citep[p.~7]{LPSP}.
+
+Sometimes I may want to reference several pages \citep[pp.~31--42]{MTS} or even a whole chapter \citep[\S~3]{LDC} or chapters \citep[\S\S~6--8]{MTS}.
+
+It isn't often you should do this, but you can just reference a whole book \citep{ATD} by not including the optional argument.
+
+\section{Retrieving Information From The Bibliography}
+
+\citeauthor{LDC} % gives the author's surname
+states in her \citeyear{LDC}  % gives the year
+article \citep[p.~7]{LDC} that monic polynomials all have leading coefficients equal to 1. Whereas \citefullauthor{LPSP} % adapting the code for multiple authors
+make no mention of such things in their book \citep{LPSP}.
+
+On the other hand, \Citet[p.~78]{MTS} % gives the author and the proper citation in one go.
+says something completely different.
+
+\section{Citing Multiple Sources At Once}
+
+If you want to cite more than one source at the same time, then you should do this within the same citation bracket \citep{ATD, MTS}.
+
+If you want the optional arguments, then you can do this using more cumbersome code \citetext{\citealp[p.~10]{ATD};~\citealp[pp.~23--27]{MTS}}.
+
+% \nocite{*} % used if you want to include everything in the bibliography even if they were never used.
+\bibliography{main}
+
+\end{document}

@@ -1,0 +1,97 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{Exercise: Creating your own \LaTeX \, commands}
+\author{Stu Dent}
+\date{June 13, 2020}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{amsopn}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\del}{\partial}
+\newcommand{\dee}{\mathrm{d}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\presentation}[2]{\left\langle #1 \, \middle| \, #2 \right\rangle}
+
+% \DeclareMathOperator{\curl}{curl}
+\newcommand{\curl}{\nabla \times}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator*{\argmax}{arg \, max}
+
+\begin{document}
+
+\maketitle
+
+\section{Sets of numbers}
+
+The sets of natural numbers $\N$, integers $\Z$, rational numbers $\Q$ and complex numbers $\C$ form a chain of sets.
+
+\section{Calculus}
+The Fundamental Theorem of Calculus along with the chain rule for differentiation gives a useful formula for differentiating an integral so long as the integrand is smooth enough.
+\[
+\frac{\dee}{\dee t} \int_{a(t)}^{b(t)} f(x,t) \dee x = \frac{\dee}{\dee t} b(t) - \frac{\dee}{\dee t}a(t) + \int_{a(t)}^{b(t)} \frac{\del}{\del t} f(x,t) \dee x.
+\]
+
+Vector fields often twist and turn, and we can quantify this effect using a vector called the \emph{curl} of $v$, defined by
+\[
+\curl v = \left(
+	\frac{\del v_3}{\del y} - \frac{\del v_2}{\del z}
+\right) \hat{\imath}
++ \left(
+	\frac{\del v_1}{\del z} - \frac{\del v_3}{\del x}
+\right) \hat{\jmath}
++ \left(
+	\frac{\del v_2}{\del x} - \frac{\del v_1}{\del y}
+\right )\hat{k}.
+\]
+
+\section{Norms}
+It is utter nonsense to write $\norm{\frac{u}{v}} = \frac{\norm{u}}{\norm{v}}$ if $u,v$ are vectors in $\R^3$.
+
+\section{Miscellaneous}
+The gradient of a function $\grad f$ is the vector of its partial derivatives.
+
+Complex conjugation is additive and multiplicative, so $\conj{w+z} = \conj{w} + \conj{z}$ and $\conj{wz} = \conj{w} \, \conj{z}$.
+It is now easy to prove that $\conj{(w/z)} = \conj{w} / \conj{z}$.
+
+The adjugate of a matrix is the matrix formed by taking the transpose of the cofactor matrix of a given original matrix. The adjoint of matrix $A = (\alpha_{i,j})$ is often written $\adj A$ --- not to be confused  with the adjoint matrix $A^* = (\conj{\alpha_{j,i}})$ which is the transpose of the matrix of complex conjugate entries.
+
+In Linear Algebra, the space of all linear maps from a vector space $U$ to the vector space $V$ is denoted by $\Hom(U,V)$.
+
+The signum function extracts the sign of a real number. Formally, $\sgn \colon \R \to \{-1, 0, 1\}$ is given by
+\[
+\sgn(x) =
+\begin{cases}
+	-1 	& \text{if } x < 0, \\
+	0 	& \text{if } x = 0, \\
+	1 	& \text{if } x > 0.
+\end{cases}
+\]
+
+\section{Groups}
+
+The Dihedral group, $D_{2n}$ of $2n$ elements is given by 
+\[
+\presentation{a,b}{a^n=1, b^2=1, ba=ba^{-1}}.
+\]
+
+\section{Functional Analysis}
+
+The \emph{arguments of the maxima} are the points of the domain of some function at which the function values are maximized.
+
+Given a function, $f \colon X \to Y$ the $\argmax$ over some subset, $S$, of $X$ of $f$ is defined by
+\[
+\argmax_{x \in S \subset X}
+f(x) := \left\{ x  \in S \, \middle| \, \text{for each } y \in S, f(y) \leq f(x)\right\} .
+\]
+\end{document}
+

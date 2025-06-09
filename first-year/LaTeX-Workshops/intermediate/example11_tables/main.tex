@@ -1,0 +1,433 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{\S 11. Creating Tables in \LaTeX }
+\author{Andrew Brendon-Penn}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{array} 		% used for many of the table properties in this document
+\usepackage{multirow} 	% used for the multirow commands
+\usepackage{tabu} 		% used for the \begin{tabu}... \end{tabu} commands
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document is designed to be read in both its .tex and .pdf forms at the same time. Compare both documents to see examples of \LaTeX \, code that you can adapt for your uses.
+\end{abstract}
+
+\tableofcontents
+
+\pagebreak
+
+\section{Basic tables}
+
+A tabular environment will produce a table. You need to specify how many columns there will be and how each is to be justified by using c, l, r for each column to say whether it is centre / left /  right justified. Then use the ampersand (\&) to start new columns, and double backslash to start a new line.
+
+\textbf{NOTE:} TeXmaker has a wizard to help you to quickly build tables.
+%
+\begin{tabular}{c c c}	% this says have three columns, each one centred (c)
+	1	& 2		& 3  \\	% the & symbol separates columns,
+	10	& 20 	& 30 \\	% the \\ starts a new line
+	40 	& 500 	& 600
+\end{tabular}\\
+
+You'll notice that I use line breaks in my code when I start a new row of my table and that I use tabs to align the ampersands in my code. You don't need to do this, but readable code is easier to work with and means you're less likely to make mistakes, so it is recommended. compare the above code to that of than something like
+%
+\begin{tabular}{l c r} apple & banana & cherry \\a & b & c \end{tabular}
+
+Tables are text environments, but you can include in-line mathematics by using the dollar sign.
+%
+\begin{tabular}{lr} % this says the table will have two columns, the first left justified, the second rght justified
+	$f(t)$    & $\int f(t)dt$ \\
+	$t^2$     & $\frac{t^3}{3}+C$ \\
+	$\cos(t)$ & $\sin(t)+C$ \\
+\end{tabular}
+
+\subsection{Making multiple columns at once}
+
+If you have a large table, and several of the adjacent columns will have the same alignment (l, r, c) then it is faster to create them by use of the asterisk, which takes in two arguments The first says how many time to repeat, and the second says what to repeat.
+
+\begin{tabular}{| l | *{5}{c |} r |}
+		% the *{5}{c |} command says to repeat "c |" five times
+	\hline
+	Team    & score 1 & score 2 & score 3 & score 4 & score 5 & Total \\
+	\hline \hline
+	Bristol & 2       & 1       & 3       & 2       & 2       & 10    \\
+	Cardiff & 1       & 0       & 4       & 1       & 2       & 8    \\
+	Dundee  & 0       & 1       & 2       & 5       & 2       & 10    \\
+	\hline
+\end{tabular}
+
+\pagebreak
+
+\section{The table environment}
+
+Usually we want a bit more control over our tables, and would like to do things such as include a caption, choose how the table is aligned on the page, \dots etc. To do this sort of thing, we first need to place our table (created using the \textit{tabular} environment) into a \textit{table} environment using the begin/end table commands:
+%
+\begin{table}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		where  & did   & this \\
+		\hline
+		come   & from  & ?    \\
+		\hline
+	\end{tabular}\\
+\end{table}
+
+Where did the table go?
+
+\subsection{Alignment \& positioning of tables}
+
+You might notice that the tabular environment has some unusual defaults for where it positions tables.
+
+We can control the positioning by using the optional argument inside square brackets. We use h,b,t p to give a preference for whether we want to allow the table to appear here (h), at the bottom of the page (b), at the top of the page (t) or on a page of figure (p). The order you specify these in makes no difference.
+
+We can also choose the alignment of the table (with respect to the page) by using commands such as centering.
+%
+\begin{table}[hbtp]  % the letters inside the square brackets specify what is allowable for positioning of the table h = here, b= bottom of page, t = top of page, p = page of figures
+	\centering % centres the table horizontally  w.r.t the page
+	\begin{tabular}{c c c}
+		1  & 2   & 3 \\
+		40 & 500 & 600
+	\end{tabular}\\
+	\caption{An array of numbers}
+\end{table}
+
+\subsection{Captions for tables}
+
+It is good practice to add captions (numbered titles) to any tables or figures. These should then be referred to explicitly within the text.
+
+Once inside the table environment you can add a caption either before or after the table (you should be consistent within your document).
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{c c c}
+		a  & b   & c \\
+		d  & e   & f
+	\end{tabular}\\
+	\caption{An array of letters} %  adds a caption below the table (moving this before the \begin{table}... line will  put the caption before the table instead.)
+\end{table}
+
+\subsection{Referencing}
+
+In fact, labels can be put on any numbered objects including equations,  figures, theorems, \dots etc. in much the same way. If you have lost of labels, it's useful to have a system, (e.g. all figures have labels that start fig:, and all tables have labels that start tab:)
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{c c}
+	  $n$ & $n^2$ \\
+		1 & 1 \\
+		2 & 4 \\
+		3 & 9 \\
+		4 & 16 \\
+	\end{tabular}
+	\caption{Squaring Numbers} \label{tab:squaringnumbers}
+\end{table}
+
+For example, I can refer to table \ref{tab:squaringnumbers} now that I have labelled its caption. (Since it is the caption that was given the number).
+
+\pagebreak
+
+\section{Borders for tables}
+
+Use the pipe symbol (vertical line) when you set up the columns to say whether you would like a vertical line between which columns.
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{| c || c c}
+	% there will be a single lined border before the first column
+	% and a double line border between columns 1 and 2.
+    	1  & 2   & 3 \\
+    	40 & 500 & 600
+    \end{tabular}\\
+\end{table}
+
+Horizontal borders are created using the hline command.
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{l c r}
+		\hline  % a horizontal line before the first row of entries
+		a     & b      & c \\
+		apple & banana & cherry \\
+		\hline  % a horizontal line after  the last row of entries
+	\end{tabular}
+\end{table}
+
+And of course, you can do both at the same time.
+\begin{table}[!htbp]
+	\centering
+	\begin{tabular}{r || c | c || l }
+		\hline
+		City       & score 1 & score 2 & Total \\
+		\hline \hline
+		Birmingham & 17      & 23      & 40\\
+		Manchester & 12      & 43      & 55 \\
+		London     & 34      & 12      & 46\\
+	\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Partial horizontal lines}
+
+Sometimes, we do not wish our horizontal lines to extend across the entire table. In such cases, instead of the hline command, we use the cline command which allows us to specify create a partial horizontal line specifying which column to start and end with.
+%
+\begin{table}[!hbtp]
+	\centering
+		\begin{tabular}{| c | l | l |}
+		\hline
+		dogs 	& have wet noses & wag tails when happy \\
+		\cline{2-3} % partial horizontal line spanning columns 2 to 3
+	     		& are loyal      & can be easily trained\\
+		\hline
+		cats 	& have dry noses & wag tails when upset\\
+		\cline{2-3}
+ 	    		& can be selfish & are hard to train\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\pagebreak
+
+\section{Column or row sizes and alignment}
+
+\subsection{Row spacing}
+
+The double backslash which ends each row can take an optional argument in square brackets allowing the user to specify how much extra vertical space to leave.
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{| c | c | c |}
+		\hline
+		a row       & of standard       & height\\
+		\hline
+		adding an   & extra centimetre  & after\\[1cm]
+		\hline
+		 			&					& \\[0.5 in]
+		adding an   & extra  half inch  & beforehand\\
+		\hline
+		\end{tabular}
+\end{table}
+
+We can even use negative numbers to reduce the space.
+
+\subsection{Column spacing}
+
+Where one specifies the l,c,r  alignment parameters, we could use the at symbol, which takes in a parameter which replaces the default spaces with whatever is inside the braces, usually this is text such as:
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{| c @{ is to } c @{ as } c @{ is to } c |}
+		\hline
+		big    & small & tall  & short\\
+		\hline
+		fast   & rapid & cold  & freezing\\
+		\hline
+		monkey & nut   & chick & pea\\
+		\hline
+	\end{tabular}
+\end{table}
+
+But we could use it for spacing instead:
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{| c @{\hspace{1cm}} | @{\hspace{1cm}} c | @{\hspace{1cm}} c @{\hspace{1cm}} |}
+		\hline
+		space   & space    & space\\
+		\hline
+		after   & before   & either side of \\
+		\hline
+		content & content  & content\\
+		\hline
+	\end{tabular}
+\end{table}
+
+Another handy use is for aligning at decimal points:
+%
+\begin{table}[!hbtp]
+	\centering
+	\begin{tabular}{r@{.}l}
+		1   & 23456 \\
+		12  & 3     \\
+		123 & 456   \\
+	\end{tabular}
+\end{table}
+
+\subsection{Column width and wrapping text}
+
+If the entries in your table are too big, the table might fall off the page.
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{l|l|l}
+		\hline
+		The quick brown fox jumped over the lazy dog & How now brown cow & The rain in Spain falls mainly in the plane \\
+		\hline
+		Hey diddle diddle the cat and the fiddle & the cow jumped over the moon & the little dog laughed to see such fun \\
+		\hline
+	\end{tabular}
+\end{table}
+
+One way to fix this is to use ``paragraph columns''. These allow us to specify the width of each column and then the text within the cell is treated as a paragraph and is wrapped within the cell, and is justified on both sides. To create a paragraph column, we replace the use of l in the begin tabular command with p, m or b depending on whether we want the paragraph to be vertically aligned using is top, middle or bottom line respectively. Note that this isn't alignment with the cell, but instead alignment with the entries of the other cells. Each of p,m,b takes an argument in braces which specifies the column width.
+%
+\begin{table}[!hbtp]
+	\centering
+	\begin{tabular}{p{1.5in} | m{1in} | b{2.5cm}}
+		\hline
+		The quick brown fox jumped over the lazy dog & How now brown cow & The rain in Spain falls mainly in the plane \\
+		\hline
+		Hey diddle diddle the cat and the fiddle & the cow jumped over the moon & the little dog laughed to see such fun \\
+		\hline
+	\end{tabular}
+\end{table}
+
+When using paragraph columns, you can start a new line within a cell by using the newline command.
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{| p{5cm} | p{5cm} | }
+		\hline
+		How I wish \newline I could calculate \newline pi. 	& Richard of \newline York gave \newline battle in \newline vein.\\
+		\hline
+		3.141592 											& red orange yellow green blue indigo violet\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\pagebreak
+
+\section{Formatting}
+\subsection{Formatting columns}
+
+If you would like to apply formatting (e.g. bold, italic) to an entire column, then we can do this using the chevrons (pointy brackets). We use the right pointing chevron for commands to executed right before each column element and the left pointing chevron for commands to be executed right after each column element.
+
+In the following example the first column is made bold (bfseries) and the third column is made italic (itshape command) while the fourth column is made big (Large command.)
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{ >{\bfseries} c c >{\itshape} c  >{\Large} c}
+		bold   & normal  &  italic    & large \\
+		strong & usual   & emphasised & bigger\\
+	\end{tabular}
+\end{table}
+
+We can even use this technique to make a columns of maths.
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{l |  >{$} c <{$} }
+		integral    & \int_a^b f\\
+		derivative  & f'\\
+		sequence    & (a_n)\\
+	\end{tabular}
+\end{table}
+
+Don't forget that if your table is primarily maths, it might be easier to instead use an array:
+\[
+\begin{array}{|cc|c|c|c|}
+	\text{function}    & f          & x^2            & \log x          & \sin x\\
+	\hline
+	\text{derivative}  & f'         & 2x             & \frac{1}{x}     & \cos x\\
+	\hline
+	\text{integral}    & \int_a^b f & \frac{x^3}{3}  & x\log x - x + C & -\cos x  \\
+\end{array}
+\]
+
+\subsection{Formatting rows}
+
+In a similar way, we can apply formatting to an entire row. This requires the tabu package and instead of using the tabular environment, we use the tabu environment. This gives us a new command called rowfont which allows us to specify what formatting we'd like for the row.
+%
+\begin{tabu}{cc}   % requires tabu package
+	\rowfont{\bfseries} % this row will be bold
+	Score 1 & Score 2 \\
+	\hline
+	 20     & 34  \\
+	 16     & 12  \\
+	 31     & 25   \\
+	 \hline
+	 \rowfont{\huge}  % this row will be huge (other options for size such as \small, \large etc all work
+	 67     & 71 \\
+	 \rowfont{\itshape} % this row will be in italic
+	 Loser  & Winner \\
+\end{tabu}
+
+\section{Merging cells using multicolumn and multirow}
+
+\subsection{Merging cells using multicolumn}
+
+The multicolumn command is used to merge the cells in the same row across multiple columns. The command takes in three arguments, each in a set of curly braces. The command is placed in the entry of the first cell of the row to be merged. The first argument specifies the number of columns to merge across. The second argument specifies the alignment of this new cell being created, which could be left justified (l), centred (c), right justified (l), or treated as a paragraph (p, m, or b), here we also include the required  borders of the edges of the merged cell using the pipe (vertical line). The final argument specifies the contents of the merged cell.
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{r|r|r|r|}
+	         	 & \multicolumn{3}{|c|}{The Final Result}\\
+		\hline
+		Player 1 & Alex            & 23 & 32 \\
+		Player 2 & Brian           & 26 & 27 \\
+		\hline
+		\multicolumn{2}{r|}{TOTAL} & 49 & 59 \\
+	\end{tabular}
+\end{table}
+
+This command can also be used to just change the alignment or borders of a single cell.
+%
+\begin{table}[hbtp]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \multicolumn{1}{|l|}{left } & \multicolumn{1}{|r|}{right }      & centred \\
+	\hline
+	centred                               & \multicolumn{1}{c}{no side borders}        & standard\\
+	\hline
+	\multicolumn{1}{||c||}{double line} & \multicolumn{1}{|p{1in}|}{paragraph of text} & standard\\
+	\hline
+  \end{tabular}
+\end{table}
+
+And by use of the cline command also, we can easily create different table shapes.
+%
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		entry 1 & entry 2 & entry 3 \\
+		\hline
+		entry 4 & entry 5 & \multicolumn{1}{c}{}\\
+		\cline{1-2}
+		entry 6 & \multicolumn{2}{l}{} \\
+		\cline{1-1}
+	\end{tabular}
+\end{table}
+
+\pagebreak
+
+\subsection{Merging rows using multirow}
+
+By including the package multirow, we can similarly merge adjacent cells from a single column across multiple rows. The multirow command takes in 3 arguments, the first is the number of rows to span, the second specifies the width of the cell (an asterisk will allow \LaTeX\ to choose, else specify such as 2cm or 1.3in). the third argument is the content of the merged cells.
+%
+\begin{table}[!hbtp]
+	\centering
+	\begin{tabular}{| c | l | l |}
+		\hline
+		\multirow{4}{*}{dogs} 	& have wet noses \\
+		% requires multirow package
+		% this says that the new merged cell should span 4 rows, LaTeX should decide on the width and the contents of the new cell is "dogs"
+                      			& wag tails when happy \\
+                      			& are loyal     \\
+                      			& can be easily trained\\
+		\hline
+		\multirow{3}{*}{cats} 	& have dry noses \\
+		\cline{2-2} % the cline command places the horizontal line spanning columns 2-2 here (i.e. just column 2)
+                      			& wag tails when upset\\
+		\cline{2-2}
+                      			& are hard to train\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\end{document}
