@@ -1,4 +1,4 @@
-import "../../../../justfile"
+import "../../../../../justfile"
 
 set allow-duplicate-recipes := true
 
@@ -8,4 +8,3 @@ _default:
 [group("pdf")]
 _pre-build:
     @just _build
-    bibtex main.aux
