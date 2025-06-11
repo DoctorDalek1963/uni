@@ -1,0 +1,10 @@
+import "../../../../../justfile"
+
+set allow-duplicate-recipes := true
+
+_default:
+    @just --list
+
+[group("pdf")]
+_pre-build:
+    @just _build

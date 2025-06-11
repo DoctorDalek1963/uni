@@ -1,0 +1,131 @@
+\documentclass[a4paper,11pt]{article}
+
+\title{Exercise: Creating Tables in \LaTeX }
+\author{Stu Dent}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{array}    % used for many of the table properties in this document
+\usepackage{multirow} % used for the multirow commands
+\usepackage{tabu}     % used for the \begin{tabu}....\end{tabu} commands
+
+\begin{document}
+\maketitle
+
+See if you can recreate the tables in this document.
+
+\section{Numerology}
+
+Numerology is not recognised as a science. Table~\ref{tab:numerology} below shows the numerical value of each letter of the alphabet. By adding the values of the letters in your name $\pmod{9}$, some numerologists claim that you find your lucky number, and predict a good match with a prospective partner if their name has the same numerical value. Try it out and see.
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+		\hline
+		1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+		\hline \hline
+		A & B & C & D & E & F & G & H & I \\
+		\hline
+		J & K & L & M & N & O & P & Q & R \\
+		\hline
+		S & T & U & V & W & X & Y & Z & \\
+		\hline
+	\end{tabular}
+	\caption{Numerology Table}
+	\label{tab:numerology}
+\end{table}
+
+\pagebreak
+
+\section{Accounting}
+
+When displaying accounts for a client, it is useful to think carefully about alignment so that figures are more meaningful. Table~\ref{tab:accounting-centred} has all of its columns centred and as such a figure like £30.23 looks larger to the eye than £302, thus making it harder to spot important features.
+
+\begin{table}[hbtp]
+	\centering
+	\begin{tabu}{|c|c|c|}
+		\hline \hline
+		\rowfont{\bfseries}
+		Income & Expenditure & Balance \\
+		\hline \hline
+		\multicolumn{2}{|c|}{balance carried forward} & £320.26 \\
+		\hline
+		£12.98 & & £333.24 \\
+		\hline
+		& £302.00 & £31.24 \\
+		\hline
+		& £30.23 & £1.01 \\
+		\hline
+		£2.99 & & £4.00 \\
+		\hline
+		& £1.97 & £2.03 \\
+		\hline \hline
+		\rowfont{\bfseries}
+		\multicolumn{2}{|c|}{current balance} & £2.03 \\
+		\hline \hline
+	\end{tabu}
+	\caption{Accounts for July 2019}
+	\label{tab:accounting-centred}
+\end{table}
+
+More careful alignment in table~\ref{tab:accounting-dot-aligned} alleviates this problem --- the entries at the decimal point.
+
+\begin{table}[hbtp]
+	\centering
+	\begin{tabu}{| r@{.}l | r@{.}l | r@{.}l |}
+		\hline \hline
+		\rowfont{\bfseries}
+		\multicolumn{2}{|c|}{Income} & \multicolumn{2}{|c|}{Expenditure} & \multicolumn{2}{|c|}{Balance} \\
+		\hline \hline
+		\multicolumn{4}{|c|}{balance carried forward} & £320 & 26 \\
+		\hline
+		£12&98 & & & £333&24 \\
+		\hline
+		& & £302&00 & £31&24 \\
+		\hline
+		& & £30&23 & £1&01 \\
+		\hline
+		£2&99 & & & £4&00 \\
+		\hline
+		& & £1&97 & £2&03 \\
+		\hline \hline
+		\rowfont{\bfseries}
+		\multicolumn{4}{|c|}{current balance} & £2&03 \\
+		\hline \hline
+	\end{tabu}
+	\caption{Accounts for July 2019 aligned at decimal point}
+	\label{tab:accounting-dot-aligned}
+\end{table}
+
+\pagebreak
+
+\section{Game Theory}
+
+Game theory is a science, and is used in all sorts of fields including economics, politics, and evolutionary biology.
+
+\begin{table}[hbtp]
+	\centering
+	\begin{tabular}{cc}
+		& Player 1 \\
+		Player 2 &
+		\(
+		\begin{array}{c|c|c|}
+			& A & B \\
+			\hline
+			A & (1, 1) & (-1, 3) \\
+			\hline
+			B & (2, 1) & (-1,-1) \\
+			\hline
+		\end{array}
+		\)
+	\end{tabular}
+	\caption{Payoff Values for a 2-player game}
+	\label{tab:game-theory}
+\end{table}
+
+Table~\ref{tab:game-theory} above shows the payoffs for the two players in a simple game. This can be analysed to find optimum strategies for both players.
+
+\end{document}
