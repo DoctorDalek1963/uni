@@ -8,6 +8,7 @@
 
 \fancyhead[L]{CS147 Assignment 2}
 \title{CS147 Discrete Maths and its Applications 2, Assignment 2}
+\colorlet{questionbodycolor}{orange!50}
 
 \begin{document}
 
@@ -19,7 +20,11 @@
 % {{{ Q1
 \question{1}
 
-Let $G = (V, E)$ be a graph, $M \subset E$ be a matching on $G$, and $Z \subset M$.
+\begin{questionbody}
+Consider any matching $M \subseteq E$ in a graph $G = (V, E)$. Consider any subset of edges $Z \subseteq M$. Is the following statement true or false? Justify your answer.
+
+The set of edges $Z$ must also form a matching in $G$.
+\end{questionbody}
 
 A matching is just a set of edges in $G$ which do not share any common endpoint. For $Z$ to not be a matching, we would need to choose two edges from $M$ which share a node. Since $M$ is a matching, no such pair of edges exists by definition, so $Z$ must also be a matching.
 
@@ -28,7 +33,12 @@ A matching is just a set of edges in $G$ which do not share any common endpoint.
 % {{{ Q2
 \newquestion{2}
 
-Let $G = (V, E)$ be a graph with $n$ nodes, where each node $v \in V$ is incident on exactly 2 edges.
+\begin{questionbody}
+Consider any graph $G = (V, E)$ with $|V| = n$ nodes, where each node $v \in V$ is incident on exactly two edges in $E$. Is the following statement true or false? Justify your answer.
+
+There must exist a matching $M \subseteq E$ in $G$ with $|M| \ge \df n2$.
+\end{questionbody}
+
 %By Euler's handshaking lemma, there must be $n$ edges.
 The graph is isomorphic to an $n$-gon. For example, the case of $n=4$ could be drawn as a square.
 
@@ -75,9 +85,11 @@ Therefore it is false that there must exist a matching $M \subset E$ with $|M| \
 % {{{ Q3
 \newquestion{3}
 
-Let $G = (V, E)$ be a graph, and $M$ be a maximal matching on $G$, so every edge in $E \setminus M$ has at least one endpoint that is matched under $M$, meaning $M$ cannot be extended. Also let $M^*$ be a matching of maximum size on $G$.
+\begin{questionbody}
+Let $M \subseteq E$ be a \textit{maximal} matching in a graph $G = (V, E)$, i.e., $M$ is a matching, and furthermore, every edge $(u, v) \in E \setminus M$ has at least one endpoint that is matched under $M$. Let $M^* \subseteq E$ be a matching of \textit{maximum} size in $G$. Is the following statement true or false? Justify your answer.
 
-Is it true that $|M| \ge \f12 |M^*|$? Yes.
+We must have $|M| \ge \f12 |M^*|$.
+\end{questionbody}
 
 Suppose we have a situation where $|M| < \f12 |M^*|$. Let $|M| = \ell$ and $|M^*| = k$ so that $M$ matches $2\ell$ nodes and $M^*$ matches $2k$ nodes. The inequality implies $\ell < \f12 k \iff 2\ell < k$.
 
@@ -88,9 +100,19 @@ There are at most $2\ell$ edges in $M^*$ which are matched by $M$. But since $2\
 % {{{ Q4
 \newquestion{4}
 
-Let $G = (L \cup R, E)$ be a bipartite graph where every edge connects one node in $L$ to one node in $R$, and let $N_G(X)$ denote the neighbours of some set $X$ of nodes in $G$. Also $G$ has the property that for all $A \subset L$, $|N_G(A)| \ge \f12 |A|$.
+\begin{questionbody}
+Consider a bipartite graph $G = (L \cup R, E)$ where each edge $e \in E$ has one endpoint in $L$ and the other endpoint in $R$. For each set of nodes $X \subseteq L$, let $N_G(X)$ = $\l\{v \in R \colon \text{there is an edge } (u, v) \in E \text{ for some } u \in X \r\}$ denote the set of neighbours of $X$ in $G$.
 
-We want to know if there exists a subset $H \subset E$ where $|H| = |L|$, every node in $L$ is incident upon exactly one edge in $H$, and every node in $R$ is incident upon at most two edges in $H$.
+The graph $G$ has the property that $|N_G(A)| \ge \f12 |A|/2$ for all $A \subseteq L$. Is the following statement true or false? Justify your answer. 
+
+There is a subset of edges $H \subseteq E$ in $G$ which satisfy the three properties described below:
+\vspace*{-1em}
+\begin{itemize}
+	\item[--] $|H| = |L|$.
+	\item[--] Every node $u \in L$ is incident upon exactly one edge from $H$.
+	\item[--] Every node $v \in R$ is incident upon at most two edges from $H$.
+\end{itemize}
+\end{questionbody}
 
 To satisfy the first two properties, we require that $H$ is constructed by considering each node in $L$ and choosing one of the edges that connects to it.
 

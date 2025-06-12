@@ -94,6 +94,7 @@ new-ass:
     from rich import print
 
     QUESTION_BODY_COLOR_MAP = {
+        "CS147": "orange!50",
         "MA150": "magenta!50",
     }
 

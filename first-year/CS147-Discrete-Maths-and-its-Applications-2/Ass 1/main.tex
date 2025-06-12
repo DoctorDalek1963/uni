@@ -11,6 +11,7 @@
 \fancyhead[L]{CS147 Assignment 1}
 \title{CS147 Discrete Maths and its Applications 2, Assignment 1}
 \author{Dyson Dyson (ID: 5503449)}
+\colorlet{questionbodycolor}{orange!50}
 
 \begin{document}
 
@@ -22,9 +23,17 @@
 % {{{ Q1
 \question{1}
 
-\subsection{~}
+\begin{questionbody}
+For each of the following statements, check whether each of them is true or false and provide justifications for your answer.
+\end{questionbody}
 
-$8^n = \cal O(7^n)$ implies that $\exists\, c > 0, N > 0$ such that for all $n > N$, \begin{align*}
+\subsection{~} % 1.a
+
+\begin{questionbody}
+$8^n = \cal O(7^n)$
+\end{questionbody}
+
+This implies that $\exists\, c > 0, N > 0$ such that for all $n > N$, \begin{align*}
 8^n &\le c 7^n\\
 n \log 8 &\le \log c + n \log 7\\
 n (\log 8 - \log 7) &\le \log c\\
@@ -32,9 +41,13 @@ n \log \f87 &\le \log c
 \end{align*}
 $\log \f87 > 1$, so whatever value of $c$ we choose, $n \log \f87$ will eventually be larger than $\log c$. Therefore $8^n$ is not $\cal O(7^n)$.
 
-\subsection{~}
+\subsection{~} % 1.b
 
-$n 2^{\f n2} = \Omega(n 2^n)$ implies that $\exists\, c > 0, N > 0$ such that for all $n > N$, \begin{align*}
+\begin{questionbody}
+$n 2^{\f n2} = \Omega(n 2^n)$
+\end{questionbody}
+
+This implies that $\exists\, c > 0, N > 0$ such that for all $n > N$, \begin{align*}
 n 2^{\f n2} &\ge c n 2^n\\
 2^{\f n2} &\ge c 2^n\\
 \log 2^{\f n2} &\ge \log (c 2^n)\\
@@ -43,9 +56,13 @@ n 2^{\f n2} &\ge c n 2^n\\
 \end{align*}
 Everything on the right hand side is $>0$ and therefore not $\le 0$. Therefore $n 2^{\f n2}$ is not $\Omega(n 2^n)$.
 
-\subsection{~}
+\subsection{~} % 1.c
 
-$\log (n!) = \cal O(n \log n)$ implies that $\exists\, c > 0, N > 0$ such that for all $n > N$, \begin{align*}
+\begin{questionbody}
+$\log (n!) = \cal O(n \log n)$
+\end{questionbody}
+
+This implies that $\exists\, c > 0, N > 0$ such that for all $n > N$, \begin{align*}
 \log (n!) &\le c n \log n\\
 \log (n!) &\le \log(n^{cn})\\
 0 &\le \log(n^{cn}) - \log(n!)\\
@@ -57,9 +74,17 @@ We know that $n^n > n!$ for large $n$, so we see that $\df{(n^n)^c}{n!} > 1$, th
 % {{{ Q2
 \newquestion{2}
 
-\subsection{~}
+\begin{questionbody}
+Solve the following recurrences. In each case, $T(c) = \Theta(1)$ for any constant $c > 0$.
+\end{questionbody}
 
-Let $T(n) = 4T\l(\f n2\r) + \Theta(\log n)$. We know that $\log n = \Omega(1)$ and $\log n = \cal O(n)$. So let $T_1(n) = 4T_1\l(\f n2\r) + \Theta(1)$ and $T_2(n) = 4T_2\l(\f n2\r) + \Theta(n)$ and note that $T_1(n) \le T(n) \le T_2(n)$ for large enough $n$.
+\subsection{~} % 2.a
+
+\begin{questionbody}
+$T(n) = 4T\l(\f n2\r) + \Theta(\log n)$
+\end{questionbody}
+
+We know that $\log n = \Omega(1)$ and $\log n = \cal O(n)$. So let $T_1(n) = 4T_1\l(\f n2\r) + \Theta(1)$ and $T_2(n) = 4T_2\l(\f n2\r) + \Theta(n)$ and note that $T_1(n) \le T(n) \le T_2(n)$ for large enough $n$.
 
 We can apply the master theorem to $T_1$ with $a=4$, $b=2$, and $d=0$. Then $\df a{b^d} > 1$ so $T_1(n) = \Theta\!\l(n^{\log_2 4}\r) = \Theta(n^2)$.
 
@@ -67,9 +92,13 @@ We can also apply the master theorem to $T_2$ with $a=4$, $b=2$, and $d=1$. Then
 
 Therefore $\Theta(n^2) \le T(n) \le \Theta(n^2)$ so $T(n) = \Theta(n^2)$.
 
-\subsection{~}
+\subsection{~} % 2.b
 
-Let $T(n) = 8T\l(\f n2\r) + \Theta(5^n)$. We know that $5^n = \Omega(n^d)$ for all $d > 0$. We cannot place a polynomial upper bound on an exponential function. Let $T_1(n) = 8T_1\l(\f n2\r) + \Theta(n^d)$ for some large $d$. Then $T_1(n) \le T(n)$ for large enough $n$.
+\begin{questionbody}
+$T(n) = 8T\l(\f n2\r) + \Theta(5^n)$
+\end{questionbody}
+
+We know that $5^n = \Omega(n^d)$ for all $d > 0$. We cannot place a polynomial upper bound on an exponential function. Let $T_1(n) = 8T_1\l(\f n2\r) + \Theta(n^d)$ for some large $d$. Then $T_1(n) \le T(n)$ for large enough $n$.
 
 We can apply the master theorem to $T_1$ with $a=8$, $b=2$, and large $d$. Then $\df a{b^d} < 1$ so $T_1(n) = \Theta(n^d)$. Therefore $T(n) \ge \Theta(n^d)$ for large $d$. Equivalently, $T(n) = \Omega(n^d)$ for large $d$.
 % }}}
@@ -77,8 +106,15 @@ We can apply the master theorem to $T_1$ with $a=8$, $b=2$, and large $d$. Then 
 % {{{ Q3
 \newquestion{3}
 
+\begin{questionbody}
+Let $A$, $B$, $C$ be three events admitting \[
+P(A \cap B \cap C) = 0.1, \quad P(A \cap B) = 0.3, \quad P(B \cap C) = 0.4, \quad P(C) = 0.5.
+\]
+If $P(A) = 0.6$, find $P(A \,|\, B \cap C)$.
+\end{questionbody}
+
 \begin{align*}
-\bb P(A | B \cap C) &= \f{\bb P(A \cap (B \cap C))}{\bb P(B \cap C)}\\[1ex]
+\bb P(A \,|\, B \cap C) &= \f{\bb P(A \cap (B \cap C))}{\bb P(B \cap C)}\\[1ex]
 &= \f{0.1}{0.4}\\[1ex]
 &= \f14\\[1ex]
 \end{align*}
@@ -87,6 +123,10 @@ We can apply the master theorem to $T_1$ with $a=8$, $b=2$, and large $d$. Then 
 % {{{ Q4
 \question{4}
 
+\begin{questionbody}
+Suppose that $X$ and $Y$ are two discrete random variables uniformly distributed over $\{1, 2, \dotsc, n\}$. Compute the probability of $X \le Y$.
+\end{questionbody}
+
 Let $X$ and $Y$ be discrete random variables distributed uniformly over $\{1,\ \ldots,\ n\}$. Either $X = Y$, $X > Y$, or $X < Y$, and $\bb P(X > Y \lor X < Y) = 1 - \bb P(X = Y)$. These are symmetric so $\bb P(X < Y) = \bb P(X > Y) = \f12 - \f12 \bb P(X = Y)$.
 
 So $\bb P(X \le Y) = \bb P(X < Y) + \bb P(X = Y) = \f12  + \f12 \bb P(X = Y)$ and $\bb P(X = Y) = \f1n$. Therefore $$\bb P(X \le Y) = \f12 + \f1{2n} = \f{n + 1}{2n}$$
@@ -94,6 +134,11 @@ So $\bb P(X \le Y) = \bb P(X < Y) + \bb P(X = Y) = \f12  + \f12 \bb P(X = Y)$ an
 
 % {{{ Q5
 % \newquestion{5}
+%
+% \begin{questionbody}
+% There are $n$ possibly \textbf{biased} coins. That means, some coins admit $P(\texttt{head})̸ \ne P(\texttt{tail})$. Now you throw up each coin once independently. Prove that the probability of getting an odd number of heads is equal to $1/2$ if and only if at least one coin is fair.
+% \end{questionbody}
+
 % TODO: How do I even approach this?
 
 % }}}
