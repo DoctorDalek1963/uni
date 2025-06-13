@@ -7,6 +7,7 @@
 
 \fancyhead[L]{MA141 Assignment 1}
 \title{MA141 Analysis 1, Assignment 1}
+\colorlet{questionbodycolor}{blue!50}
 
 \begin{document}
 
@@ -17,6 +18,10 @@
 
 % {{{ Q1
 \question{1}
+
+\begin{questionbody}
+Use induction to prove Bernoulli’s inequality: if $x > -1$ then for every $n \in N$, $(1 + x)^n \ge 1 + nx$. (Where do you use the fact that $x > -1$?)
+\end{questionbody}
 
 Bernoulli's inequality states: if $x > -1$ then for every $n \in \mathbb{N}$, $(1 + x)^n \ge 1 + nx$. We will prove this by induction.
 
@@ -46,6 +51,10 @@ Now assume that we know the inequality holds for some $n = k$, so $(1 + x)^k \ge
 
 % {{{ Q5
 \newquestion{5}
+
+\begin{questionbody}
+Identify the greatest lower bound and least upper bound for each of the following sets, and prove that they are indeed the GLB and LUB; say whether these bounds are elements of the set.
+\end{questionbody}
 
 For each part, I shall use $S$ to refer to the set in question.
 
@@ -103,9 +112,21 @@ The least upper bound is $0$, which is not in the set. This is an upper bound be
 % {{{ Q7
 \newquestion{7}
 
-$$\lfloor x \rfloor = \text{largest integer } n \in \mathbb Z \text{ such that } n \le x$$
+\begin{questionbody}
+The integer part (or \enquote{floor}) of a rational number $x$, written $\lfloor x \rfloor$, is defined as \[
+\lfloor x \rfloor = \text{largest integer } n \in \Z \text{ such that } n \le x;
+\]
 
-We will consider the set $S = \{ m \in \mathbb Z : m \le x \}$. This is clearly bounded above by $x$, so by the \textit{Least Upper Bound Axiom}, we know that $S$ has a least upper bound $r = \sup S$. In the case of $x \in \mathbb Z$, we can see that $r = x$.
+Use the Least Upper Bound Property to show that this quantity exists and satisfies \begin{equation}
+x - 1 < \lfloor x \rfloor \le x.
+\label{eqn:Q7-target}
+\end{equation}
+
+Hint: Consider the set $S = \l\{ m \in \Z \colon m \le x \r\}$. Show that it has a least upper bound $r$,
+and use Lemma 1.6 with $t = r − 1$ to find $n \in S$ that satisfies the requirements for $\lfloor x \rfloor$ in \eqref{eqn:Q7-target}.
+\end{questionbody}
+
+We will consider the set $S = \l\{ m \in \Z \colon m \le x \r\}$. This is clearly bounded above by $x$, so by the \textit{Least Upper Bound Axiom}, we know that $S$ has a least upper bound $r = \sup S$. In the case of $x \in \mathbb Z$, we can see that $r = x$.
 
 Then Lemma 1.6 tells us that $r = \sup S$ if and only if $r$ is an upper bound for $S$ and for every $t < r$, there exists $s \in S$ such that $s > t$.
 
@@ -113,24 +134,37 @@ We already know that $r = \sup S$ by the \textit{Least Upper Bound Axiom}. That 
 
 Since $n \in S$, we also know that $n \le x$. Therefore $r - 1 < n \le x$. Call this element $n = \lfloor x \rfloor$ and we can conclude that $r - 1 < \lfloor x \rfloor \le x$.
 
-This isn't quite equation $(1)$, but I'm not sure how to finish off the argument. It's intuitive to me that $r = \lfloor x \rfloor = \sup S$ and $x - 1 < \lfloor x \rfloor$, but I don't know how to formalise those ideas into a proper argument.
+This isn't quite equation \eqref{eqn:Q7-target}, but I'm not sure how to finish off the argument. It's intuitive to me that $r = \lfloor x \rfloor = \sup S$ and $x - 1 < \lfloor x \rfloor$, but I don't know how to formalise those ideas into a proper argument.
 
 We could set $t = x - 1$ and then prove that $x - 1 < r$, but that doesn't really help me prove anything, and the problem sheet suggests $t = r - 1$ anyway, so I'm not sure how to finish this argument.
 % }}}
 
 % {{{ Q9
 \newquestion{9}
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
 
-Let $q \in \mathbb N, x \in \mathbb R, y > 1$.
+\begin{questionbody}
+By following the argument of Proposition 1.7 we can show that for any $q \in \N$ and $y > 0$ there exists $x \in \R$ such that $x^q = y$. Take $y > 1$ and consider the set
+\[ S = \l\{ x \in \mathbb R \colon x \ge 0 \text{ with } x^q < y \r\} \]
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 9.i
 
-Let $$S = \{x \in \mathbb R : x \ge 0 \text{ with } x^q < y\}$$
-This set is non-empty, since $0 \in S$, and $S$ is bounded above since $y$ is finite, so there will eventually be some $x$ such that $x^q > y$. That $x$ will be greater than the upper bound of $S$, so $S$ must be bounded above.
+\begin{questionbody}
+Show that $S$ is non-empty and bounded above. It follows from the Least Upper Bound Axiom that $S$ has a supremum: set $r = \sup S$, and note (why?) that $r \ge 1$.
+\end{questionbody}
+
+$S$ is non-empty, since $0 \in S$, and it is bounded above since $y$ is finite, so there will eventually be some $x$ such that $x^q > y$. That $x$ will be greater than the upper bound of $S$, so $S$ must be bounded above.
 
 Thus, from the \textit{Least Upper Bound Axiom}, we know that $S$ has a supremum, $r = \sup S$. $1$ will always be $\in S$, since $1^q < y$ for any $q$ when $y > 1$. Thus, $r \ge 1$.
 
-\subsection{~}
+\subsection{~} % 9.ii
+
+\begin{questionbody}
+Use the binomial expansion to show that if $x \ge 1$ and $0 < \varepsilon < 1$ then $(x + \varepsilon)^q \le x^q (1 + 2^q \varepsilon)$.
+
+Hint: $(1 + 1)^q = 2^q$. If you cannot do this part of the question, you can still use the result to try part \textbf{(iii)}.
+\end{questionbody}
 
 The binomial expansion of $(x + \varepsilon)^q$ gives \begin{align*}
 	(x + \varepsilon)^q &= \sum_{k=0}^q \binom{q}{k} x^{q-k} \varepsilon^k\\[1ex]
@@ -146,7 +180,11 @@ We can then factor this to get \begin{align*}
 
 Somehow we conclude that $(x + \varepsilon)^q \le x^q \left( 1 + 2^q \varepsilon \right)$.
 
-\subsection{~}
+\subsection{~} % 9.iii
+
+\begin{questionbody}
+Suppose that $r^q < y$. Use part \textbf{(ii)} to show that $(r + \varepsilon)^q < y$ for some sufficiently small $\varepsilon > 0$, and hence deduce a contradiction with the fact that $r$ is an upper bound for $S$.
+\end{questionbody}
 
 Suppose that $r^q < y$ and let $0 < \varepsilon < 1$.
 
@@ -156,7 +194,11 @@ For sufficiently small $\varepsilon$, $(1 + 2^q \varepsilon) \approx 1$, but I d
 
 Since $(r + \varepsilon)^q < y$, $r + \varepsilon \in S$. But $\varepsilon > 0$, so $r + \varepsilon > r$. Thus, we have found an element of $S$ which is greater than $r$. That's a contradiction, since $r = \sup S$. Therefore, we know that $r^q < y$ must be false.
 
-\subsection{~}
+\subsection{~} % 9.iv
+
+\begin{questionbody}
+Suppose that $r^q > y$. Use Bernoulli’s Inequality from \textbf{Q1} to show that ${(r - \varepsilon)^q} > y$ for some sufficiently small $\varepsilon > 0$, and hence deduce a contradiction with the fact that $r$ is the least upper bound for $S$.
+\end{questionbody}
 
 Suppose that $r^q > y$ and let $0 < \varepsilon < 1$.
 

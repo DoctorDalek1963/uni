@@ -96,6 +96,7 @@ new-ass:
 
     QUESTION_BODY_COLOR_MAP = {
         "CS147": "orange!50",
+        "MA141": "blue!50",
         "MA150": "magenta!50",
         "MA151": "violet!50",
     }

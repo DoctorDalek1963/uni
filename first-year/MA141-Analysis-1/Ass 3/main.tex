@@ -8,6 +8,7 @@
 
 \fancyhead[L]{MA141 Assignment 3}
 \title{MA141 Analysis 1, Assignment 3}
+\colorlet{questionbodycolor}{blue!50}
 
 \begin{document}
 
@@ -19,7 +20,9 @@
 % {{{ Q3
 \question{3}
 
-$(a_n)$ is an increasing sequence and the subsequence $\l(a_{n_j}\r)$ converges to some $\ell \in \mathbb R$.
+\begin{questionbody}
+Suppose that $(a_n)$ is an increasing sequence. Assume that $(a_n)$ has a subsequence $(a_{n_j})$ that converges to some $l \in \R$ as $j \to \infty$. Show that $a_n \to l$ as $n \to \infty$.
+\end{questionbody}
 
 Since $\l(a_{n_j}\r) \to \ell$, that means $\exists \varepsilon > 0, N \in \mathbb N$ such that $|a_{n_j} - \ell| < \varepsilon\ \forall\ n_j \ge N$.
 
@@ -31,13 +34,29 @@ Therefore $|a_n - \ell| < \varepsilon\ \forall\ n \ge N$.
 % {{{ Q10
 \newquestion{10}
 
+\begin{questionbody}
+Use the comparison test to investigate the convergence of $\sum_{n=1}^\infty a_n$ in the following cases.
+
+Before you apply the comparison test rigorously, you should use \enquote{heuristics} to work out the answer you expect, so that you know whether to try to bound the terms in the sum above or below.
+
+You can assume that $\sum \f1{n^p}$ diverges if $0 < p \le 1$ and converges for $p > 1$.
+\end{questionbody}
+
 I had absolutely no idea what to do with this one, sorry.
 
-\subsection{$a_n = \dfrac{\sqrt{n + 1}}{\sqrt{n^3 + 2}}$}
+\subsection{~} % 10.a
+
+\begin{questionbody}
+\[ a_n = \df{\sqrt{n + 1}}{\sqrt{n^3 + 2}} \]
+\end{questionbody}
 
 For large $n$, $a_n \approx \dfrac{\sqrt n}{\sqrt{n^3}} = \dfrac{1}{n^2}$, so we expect $\sum a_n < \infty$.
 
-\subsection{$a_n = \dfrac{n - 3}{n^3 + 2}$}
+\subsection{~} % 10.b
+
+\begin{questionbody}
+\[ a_n = \df{n - 3}{n^3 + 2} \]
+\end{questionbody}
 
 For large $n$, $a_n \approx \dfrac{1}{n^2}$, so we expect $\sum a_n < \infty$.
 % }}}
@@ -45,7 +64,11 @@ For large $n$, $a_n \approx \dfrac{1}{n^2}$, so we expect $\sum a_n < \infty$.
 % {{{ Q15
 \newquestion{15}
 
-We care about the convergence of $\ds\sum_{n=2}^\infty \frac1{n (\log n)^\alpha}$, so we will use the integral test.
+\begin{questionbody}
+Use the integral test to find for which $\alpha > 0$ the sum \[
+\sum_{n=2}^\infty \f 1{n (\log n)^\alpha}
+\] converges and for which $\alpha > 0$ it diverges.
+\end{questionbody}
 
 $$\int_1^n \frac1{x (\log x)^\alpha} \mathrm d x = \left[ \frac{(\log x)^{1 - \alpha}}{1 - \alpha} \right]_1^n =  \frac{(\log n)^{1 - \alpha}}{1 - \alpha} \qquad \text{where } \alpha \ne 1$$
 
@@ -57,13 +80,26 @@ Therefore $\ds\sum_{n=2}^\infty \frac1{n (\log n)^\alpha}$ converges when $\alph
 % {{{ Q16
 \newquestion{16}
 
-\subsection{$\ds\sum_{n=1}^\infty (-1)^{n+1} \frac1{2n+1}$}
+\begin{questionbody}
+Why do the following series converge? Do they converge absolutely?
+\end{questionbody}
+
+\subsection{~} % 16.a
+
+\begin{questionbody}
+\[ \sum_{n=1}^\infty (-1)^{n+1} \f1{2n+1} \]
+\end{questionbody}
 
 The absolute version of this sum is the sum of reciprocals of odd numbers. Much like the Harmonic series, this series diverges to $\infty$, so the series does not converge absolutely.
 
 It does however converge conditionally to $1 - \dfrac\pi4$ thanks to the alternating minus signs.
 
-\subsection{$\ds\sum_{n=1}^\infty (-1)^{n+1} \frac1{n^2}$}
+\subsection{~} % 16.b
+
+\begin{questionbody}
+\[ \sum_{n=1}^\infty (-1)^{n+1} \f1{n^2} \]
+What is the value of this sum?
+\end{questionbody}
 
 The absolute version of this sum is $$\sum_{n=1}^\infty \l| (-1)^{n+1} \frac1{n^2} \r| = \sum_{n=1}^\infty \frac1{n^2}$$
 

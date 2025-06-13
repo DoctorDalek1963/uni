@@ -7,6 +7,7 @@
 
 \fancyhead[L]{MA141 Assignment 4}
 \title{MA141 Analysis 1, Assignment 4}
+\colorlet{questionbodycolor}{blue!50}
 
 \begin{document}
 
@@ -18,20 +19,26 @@
 % {{{ Q5
 \question{5}
 
-Let $f : \R \to \R$ and $g : \R \to \R$ be functions where $f(x) = g(x)\ \fa x \in \Q$. We want to show that $f(x) = g(x)\ \fa x \in \R$.
+\begin{questionbody}
+Suppose that $f \colon \R \to \R$ and $g \colon \R \to \R$ are continuous functions, and that we have $f(x) = g(x)$ for every $x \in \Q$. Use sequential continuity to show that $f = g$ everywhere.
+\end{questionbody}
 
-For every real number $x$, we can define a sequence $(a_n)$ as $a_n = \dfrac{\lfloor x \cdot 10^n \rfloor}{10^n}$, starting at $n=0$. This is a way to generate decimal truncations of $x$. For example if $x = \pi$, then $a_0 = 3,\ a_1 = 3.1,\ a_2 = 3.14,\ \ldots,\ a_{10} = 3.1415926535,\ \ldots$ It is clear that $a_n \to x$ as $n \to \infty$.
+For every real number $x$, we can define a sequence $(a_n)$ as $a_n = \df{\lfloor x \cdot 10^n \rfloor}{10^n}$, starting at $n=0$. This is a way to generate decimal truncations of $x$. For example if $x = \pi$, then $a_0 = 3,\ a_1 = 3.1,\ a_2 = 3.14,\ \ldots,\ a_{10} = 3.1415926535,\ \ldots$ It is clear that $a_n \to x$ as $n \to \infty$.
 
 We can use this process of generating a sequence for any real number to fill in the gaps of $f$ and $g$. Let $x \in \R$ and define $(a_n)$ as above to be the sequence converging to $x$. All terms of $a_n$ are rational, so $f(a_0) = g(a_0),\ f(a_1) = g(a_1),\ \ldots$ Since $f$ and $g$ are continuous, $f(a_n) \to f(x)$ and $g(a_n) \to g(x)$, and since $f(a_n) = g(a_n)\ \fa n$, we must conclude that $f(x) = g(x)\ \fa x \in \R$.
 % }}}
 
 % {{{ Q7
-\newquestion{7}
+\question{7}
 
-Let $f : (-\infty, 0] \to \R$ and $g : [0, \infty)$ both be continuous on their entire domain. Let $$h(x) = \begin{cases}
+\begin{questionbody}
+Let $f \colon (-\infty, 0] \to \R$ and $g \colon [0, \infty) \to \R$ both be continuous on their entire domain. Show that the function \[
+h(x) = \begin{cases}
 	f(x) & x \le 0\\
 	g(x) & x > 0
-\end{cases}$$We want to show that $h$ is continuous at $x=0$ if and only if $f(0) = g(0)$.
+\end{cases} \]
+is continuous at $x = 0$ (and hence on $\R$) if and only if $f(0) = g(0)$.
+\end{questionbody}
 
 If $h$ is continuous at 0, then $\fa \varepsilon > 0, \exists\ \delta > 0$ such that $|x| < \delta \implies |h(x)| < \varepsilon$.
 
@@ -41,7 +48,13 @@ I just don't know what to do with this question, sorry.
 % {{{ Q11
 \newquestion{11}
 
-Let $f : [a, b] \to [a, b]$ be any continuous function. We will show that it has a fixed point.
+\begin{questionbody}
+Show that any continuous function $f \colon [a, b] \to [a, b]$ has a fixed point, i.e. there exists an $x^* \in [a, b]$ such that $f(x^*) = x^*$.
+
+Hint: consider the function $g(x) = f(x) - x$ and use the Intermediate Value Theorem.
+
+Give an example to show that the conclusion is not true if $f \colon (a, b) \to (a, b)$.
+\end{questionbody}
 
 Let $g(x) = f(x) - x$. Then we have three cases, either $g(a) < g(b)$, $g(a) > g(b)$, or $g(a) = g(b)$. We only get the final case if $f(x) = x$, in which case every point is a fixed point.
 
@@ -55,11 +68,11 @@ Now let $f : (a, b) \to (a, b)$. The example $f(x) = x^2$ would have fixed point
 % }}}
 
 % {{{ Q19
-\newquestion{19}
+\question{19}
 
-Suppose $f : [0, \infty) \to \R$ is continuous and that $f(x) \to L$ as $x \to \infty$. We will show that $f$ is bounded above and below on $[0, \infty)$.
-
-We will now also show that $f$ doesn't need to attain both its upper and lower bound.
+\begin{questionbody}
+Suppose that $f \colon [0, \infty) \to \R$ is continuous and that $f(x) \to L$ as $x \to \infty$. Show that $f$ is bounded above and below on $[0, \infty)$. Show that $f$ need not attain both its upper and lower bound.
+\end{questionbody}
 
 We know that any convergent sequence is bounded above and below, so we can just define the sequence $(a_n)$ as $a_n = f(n)$. Then $a_n \to L$ as $n \to \infty$ and since $(a_n)$ is bounded above and below, $f$ must also be bounded above and below.
 % FIXME: This proof is definitely wrong

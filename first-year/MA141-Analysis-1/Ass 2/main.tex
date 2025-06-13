@@ -7,6 +7,7 @@
 
 \fancyhead[L]{MA141 Assignment 2}
 \title{MA141 Analysis 1, Assignment 2}
+\colorlet{questionbodycolor}{blue!50}
 
 \begin{document}
 
@@ -18,7 +19,9 @@
 % {{{ Q7
 \question{7}
 
-Let $(a_n)$ be a sequence such that $a_n \in \mathbb Z$ for all $n$, and let $a_n \to L$ as $n \to \infty$ for some $L \in \mathbb R$.
+\begin{questionbody}
+Let $(a_n)$ be a sequence of integers ($a_n \in \Z$ for every $n$) and assume that $a_n \to L$ as $n \to \infty$, for some $L \in \R$. Show that $L \in \Z$ and deduce that the sequence $a_n$ must eventually be constant: i.e. that $a_n = L$ for all $n \ge N$, for some $N \in \N$.
+\end{questionbody}
 
 Since $a_n \to L$, $\forall \varepsilon > 0,\ \exists N \in \mathbb N$ such that $|a_n - L| < \varepsilon$. We can rewrite this as $L - \varepsilon < a_n < L + \varepsilon$. Since $\varepsilon$ can be arbitrarily small, we can conclude that $L$ must be an integer.
 
@@ -30,7 +33,15 @@ Since $L$ is an integer and all $a_n$ are integers, we can conclude that $a_n = 
 % {{{ Q9
 \newquestion{9}
 
-\subsection{$\dfrac{2n^2 + 3n}{n^3 + n^2}$}
+\begin{questionbody}
+Use the algebra of limits to find the limit as $n \to \infty$ of the following:
+\end{questionbody}
+
+\subsection{~} % 9.a
+
+\begin{questionbody}
+\[ \f{2n^2 + 3n}{n^3 + n^2} \]
+\end{questionbody}
 
 We can factor out an $n^3$ on the top and bottom to get $\dfrac{\frac{2}{n} + \frac{3}{n^2}}{1 + \frac{1}{n}}$. Then the numerator will converge to $0$ and the denominator will converge to $1$, so the whole fraction will converge to $0$ as $n \to \infty$.
 
@@ -40,7 +51,11 @@ Likewise the denominator $1 + \frac1n$ will converge to $1 + \ell_3$ where $\fra
 
 Therefore $\dfrac{2n^2 + 3n}{n^3 + n^2} \to \dfrac01 = 0$ as $n \to \infty$.
 
-\subsection{$\dfrac{3n^2 + n\cos n}{2n (n-3)}$}
+\subsection{~} % 9.b
+
+\begin{questionbody}
+\[ \f{3n^2 + n\cos n}{2n (n-3)} \]
+\end{questionbody}
 
 Expand the denominator and cancel the $n^2$.
 \begin{align*}
@@ -61,29 +76,52 @@ Therefore $\dfrac{3n^2 + n\cos n}{2n (n-3)} \to \dfrac32$ as $n \to \infty$.
 
 \newquestion{12}
 
-Define $(a_n)$ as $a_0 = 1$ and $a_{n+1} = \sqrt{a_n + 2}$.
+\begin{questionbody}
+Suppose that $(a_n)$ is defined by setting $a_0 = 1$, and $a_{n + 1} = \sqrt{a_n + 2}$ (taking the positive square root).
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 12.i
 
+\begin{questionbody}
+Write down $a_1$, $a_2$, and $a_3$.
+\end{questionbody}
+%
 \begin{align*}
 	a_1 &= \sqrt3\\[1ex]
 	a_2 &= \sqrt{2 + \sqrt3}\\[1ex]
 	a_2 &= \sqrt{2 + \sqrt{2 + \sqrt3}}
 \end{align*}
 
-\subsection{~}
+\subsection{~} % 12.ii
 
-We will prove that $1 \le a_n \le 2$ for all $N \in \mathbb N$. For $n=0$, we get $a_0 = 1$, which fits the inequality, so the statement is true for $n=0$.
+\begin{questionbody}
+Use induction to show that $1 \le a_n \le 2$ for all $n \in \N$. 
+\end{questionbody}
+
+For $n=0$, we get $a_0 = 1$, which fits the inequality, so the statement is true for $n=0$.
 
 Assume that $1 \le a_k \le 2$ for some $k$. Then we will prove that $1 \le \sqrt{2 + a_k} \le 2$. Since all three of these terms are positive, and $a \le b \iff a^2 \le b^2$ for positive $a$ and $b$, we can conclude that $1 \le \sqrt{2 + a_k} \le 2 \iff 1 \le 2 + a_k \le 4$. Since we know that $1 \le a_k \le 2$ from our assumption, we also know that $1 \le a_k \le 4$, and we can then follow the $\iff$ chain backwards and conclude that $1 \le \sqrt{2 + a_k} \le 2$ must also be true.
 
 Since $1 \le a_n \le 2$ is true for $n=0$ and it being true for $n=k$ implies that it's true for $n=k+1$, we can conclude that $1 \le a_n \le 2$ for all $n \in \mathbb N$.
 
-\subsection{~}
+\subsection{~} % 12.iii
 
-Suppose $a_n \to l$ as $N \to \infty$.
+\begin{questionbody}
+Suppose that $a_n \to l$ as $n \to \infty$. Use the algebra of limits along with the interaction between inequalities and limits to show that we must have $l = 2$.
+\end{questionbody}
 
-\subsection{~}
+I don't know how to do this.
+
+\newpage
+\subsection{~} % 12.iv
+
+\begin{questionbody}
+Show that \[
+a_{n+1} - 2 = \f{a_n - 2}{2 + \sqrt{2 + a_n}},
+\] and deduce that \[
+|a_n - 2| \le 2^{-n},
+\] which shows that $a_n \to 2$ as $n \to \infty$.
+\end{questionbody}
 
 We can manipulate the target equation to show something which we know to be true, and then follow all the steps in reverse to show that the target equation must be true.
 \begin{align*}
@@ -100,7 +138,9 @@ We only have to take care that $2 + \sqrt{2 + a_n} \ne 0$, but square roots are 
 % {{{ Q14
 \newquestion{14}
 
-Suppose $a_n \to \infty$ and $b_n \to \infty$.
+\begin{questionbody}
+Give examples of sequences $(a_n)$ and $(b_n)$, where $a_n \to \infty$ and $b_n \to \infty$, such that the following conditions hold.
+\end{questionbody}
 
 \subsection{$a_n - b_n \to \infty$}
 
