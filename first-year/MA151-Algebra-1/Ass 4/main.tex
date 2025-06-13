@@ -8,6 +8,7 @@
 
 \fancyhead[L]{MA151 Assignment 4}
 \title{MA151 Algebra 1, Assignment 4}
+\colorlet{questionbodycolor}{violet!50}
 
 \begin{document}
 
@@ -19,9 +20,15 @@
 % {{{ Q1
 \question{1}
 
+\begin{questionbody}
 Let $R$ be a non-zero ring. Let $a \sim b$ be the relation \enquote*{$a$ is an associate of $b$}, meaning there exists a unit $v \in R$ such that $av = b$.
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 1.a
+
+\begin{questionbody}
+Prove that $a \sim b$ is an equivalence relation on $R$.
+\end{questionbody}
 
 An equivalence relation is reflexive, transitive, and symmetric.
 
@@ -33,41 +40,67 @@ And for symmetry, $a 1 = a$, so $a \sim a$.
 
 Therefore this is an equivalence relation.
 
-\subsection{~}
+\subsection{~} % 1.b
 
-Suppose $R = \Z$. The only units in $\Z$ are $\{1, -1\}$, so $a \sim b$ if and only if $a = b$ or $a = -b$. Therefore $0$ is equivalent to nothing, and every positive integer $x$ gets the equivalence class $[x]_\sim = \{x, -x\}$.
+\begin{questionbody}
+Describe the equivalence classes in the case $R = \Z$.
+\end{questionbody}
+
+The only units in $\Z$ are $\{1, -1\}$, so $a \sim b$ if and only if $a = b$ or $a = -b$. Therefore $0$ is equivalent to nothing, and every positive integer $x$ gets the equivalence class $[x]_\sim = \{x, -x\}$.
 % }}}
 
 % {{{ Q2
 \newquestion{2}
 
+\begin{questionbody}
 Let $R$ be a ring and let $a \in R$.
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 2.a
 
-Suppose $R$ is commutative, and let $aR = \{ar : r \in R\}$. For $aR$ to be an ideal of $R$, we need $(aR, +)$ to be a subgroup of $(R, +)$, and we need $xy \in aR$ and $yx \in aR$ for all $x \in R,\ y \in aR$. Since $R$ is commutative, we only need to worry about one of these.
+\begin{questionbody}
+Show that if $R$ is commutative, $aR = \l\{ar \,\m|\, r \in R\r\}$ is an ideal of $R$.
+\end{questionbody}
+
+For $aR$ to be an ideal of $R$, we need $(aR, +)$ to be a subgroup of $(R, +)$, and we need $xy \in aR$ and $yx \in aR$ for all $x \in R,\ y \in aR$. Since $R$ is commutative, we only need to worry about one of these.
 
 First, the ABC test for subgroups. The identity in $(R, +)$ is just $0$, which is trivially in $aR$. The sum of two terms $ar_1$ and $ar_2$ is $a(r_1 + r_2)$. Clearly $r_1 + r_2 \in R$, so $a(r_1 + r_2) \in aR$. The inverse of an element $ar$ is just $-ar = a(-r)$, and $-r \in R$, so $-ar \in aR$. Therefore $(aR, +)$ is a subgroup of $(R, +)$.
 
 Now consider an arbitrary element $ar \in aR$ and an arbitrary element $x \in R$. Their product is $arx = a(rx)$, and since $rx \in R$, $a(rx) \in aR$. Therefore $aR$ is an ideal of $R$.
 
-\subsection{~}
+\subsection{~} % 2.b
 
-Now if we allow $R$ to be non-commutative, we could choose $R = GL_2(\R)$ and $a = \begin{pmatrix}1 & 1\\ 1 & 0\end{pmatrix}$. Then right-multiplying an element of $aR$ by an element of $R$ would keep the result in $aR$, but left-multiplying wouldn't necessarily. Therefore $aR$ is not an ideal of $R$ in this case.
+\begin{questionbody}
+Show by an example that this may be false if $R$ is not commutative.
+\end{questionbody}
+
+Choose $R = GL_2(\R)$ and $a = \begin{pmatrix}1 & 1\\ 1 & 0\end{pmatrix}$. Then right-multiplying an element of $aR$ by an element of $R$ would keep the result in $aR$, but left-multiplying wouldn't necessarily. Therefore $aR$ is not an ideal of $R$ in this case.
 % }}}
 
 % {{{ Q3
 \newquestion{3}
 
-\subsection{~}
+\subsection{~} % 3.a
 
-$$\l(\Z / 7\Z\r)^* = \{1, 2, 3, 4, 5, 6\}$$
+\begin{questionbody}
+List the elements of $(\Z / 7\Z)^*$, the group of units in the ring $\Z / 7\Z$.
+\end{questionbody}
 
-\subsection{~}
+$$(\Z / 7\Z)^* = \{1, 2, 3, 4, 5, 6\}$$
 
-$$\l(\Z / 8\Z\r)^* = \{1, 3, 5, 7\}$$
+\subsection{~} % 3.b
 
-\subsection{~}
+\begin{questionbody}
+List the elements of $(\Z / 8\Z)^*$, the group of units in the ring $\Z / 8\Z$.
+\end{questionbody}
+
+$$(\Z / 8\Z)^* = \{1, 3, 5, 7\}$$
+
+\subsection{~} % 3.c
+
+\begin{questionbody}
+Show that $\l( (\Z / 7\Z)^*, \times_7 \r)$ is a cyclic group but $\l( (\Z / 8\Z)^*, \times_8 \r)$ is not a cyclic group.
+\end{questionbody}
 
 We shall just draw the Cayley tables for these groups.
 
@@ -105,7 +138,9 @@ Just from looking at these tables, we can deduce that $\l( \l(\Z / 7 \Z\r)^*, \t
 % {{{ Q4
 \newquestion{4}
 
-Let $R = M_{2 \times 2}(\Q)$. We will show that the only ideals of $R$ are $\{0\}$ and $R$.
+\begin{questionbody}
+Let $R = M_{2 \times 2}(\Q)$, the ring of $2 \times 2$ matrices with rational entries under matrix addition and multiplication. Show that the only ideals of $R$ are $\{\bf 0\}$ and $R$.
+\end{questionbody}
 
 Let $\bf 0 = \begin{pmatrix}0 & 0\\ 0 & 0\end{pmatrix}$. If an ideal of $R$ did not contain $\bf 0$, then it wouldn't be a subgroup under addition because it wouldn't have an additive identity. Therefore every ideal needs $\bf 0$. Also note that $\{ \bf 0 \}$ is itself an ideal of $R$, since multiplying by anything from $R$ just results in $\bf 0$ again.
 
@@ -126,9 +161,16 @@ Therefore the only ideals of $R$ are $\{ \bf 0 \}$ and $R$.
 % {{{ Q5
 \newquestion{5}
 
-Let $R = \R[x]$ and let $I = \l\{ f(x) \in \R[x] : f(0) = 0 \r\}$.
+\begin{questionbody}
+Let $R = \R[x]$, the ring of polynomials with real coefficients. Let
+\[ I = \l\{ f(x) \in \R[x] \,\m|\, f(0) = 0 \r\}. \]
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 5.a
+
+\begin{questionbody}
+Show that $I$ is an ideal of $R$ with $I̸ \ne R$.
+\end{questionbody}
 
 Clearly $I \ne R$, since there exists polynomials in $f(x) \in\R[x]$ where $f(0) \ne 0$. Take $f(x) = x^2 + 1$, for instance. In this case, $f(0) = 1$. Therefore $I \ne R$.
 
@@ -140,9 +182,13 @@ Now consider an arbitrary polynomial $r$ from $\R[x]$ and an arbitrary polynomia
 
 Therefore $I$ is an ideal of $R$.
 
-\subsection{~}
+\subsection{~} % 5.b
 
-Suppose $J$ is an ideal of $R$ with $I \subsetneq J$. Since $I$ definitionally includes all polynomials with zero constant term, $J$ must include at least one polynomial with non-zero constant term. Without loss of generality, assume we have some $j(x) \in J$ where $j(0) = a$ and $a \ne 0$. Then for $J$ to be an ideal of $R$, we need $r(x) j(x) \in J$ and $j(x) r(x) \in J$ for all $x \in R$, although multiplication is commutative here, so we only need to worry about one of these.
+\begin{questionbody}
+Prove that if $J$ is an ideal of $R$ with $I \subsetneq J$ then $J = R$.
+\end{questionbody}
+
+Since $I$ definitionally includes all polynomials with zero constant term, $J$ must include at least one polynomial with non-zero constant term. Without loss of generality, assume we have some $j(x) \in J$ where $j(0) = a$ and $a \ne 0$. Then for $J$ to be an ideal of $R$, we need $r(x) j(x) \in J$ and $j(x) r(x) \in J$ for all $x \in R$, although multiplication is commutative here, so we only need to worry about one of these.
 
 Since $r(x)$ could be any element from $\R[x]$, we will end up generating all of $\R[x]$. We know that $J$ already contains every combination of real coefficients for powers of $x$, but we only know that it contains constant term $a$. But we can obtain any constant term $b$ by multiplying by some particular $r(x)$ with $r(0) = \frac ba$, since $j(0) = a$ and $a \ne 0$. Then $r(0) j(0) = b$, so $J$ must contain polynomials that cover all real constant terms.
 
@@ -152,21 +198,33 @@ Thus, $J$ must contain every polynomial from $\R[x]$, so $J = R$.
 % {{{ Q6
 \newquestion{6}
 
-\subsection{~}
+\subsection{~} % 6.a
 
-Consider $f(x) = x^3 + x^2 + x + 1$. $f(x)$ is not irreducible over $\Q$ since $x^3 + x^2 + x + 1 = (x + 1) (x^2 + 1)$.
+\begin{questionbody}
+Show that $x^3 + x^2 + x + 1$ is not irreducible over $\Q$.
+\end{questionbody}
 
-\subsection{~}
+\[ x^3 + x^2 + x + 1 = (x + 1) (x^2 + 1) \]
 
-Consider $f(x) = x^4 + 1$. We can use Eisenstein's criterion to show that $f(x)$ is irreducible over $\Q$, recalling the fact that $f(x)$ is irreducible if and only if $f(x+1)$ is irreducible. In this case $f(x+1) = x^4 + 4x^3 + 6x^2 + 4x + 2$.
+\subsection{~} % 6.b
+
+\begin{questionbody}
+Show that $x^4 + 1$ is irreducible over $\Q$ but not irreducible over $\R$.
+\end{questionbody}
+
+Let $f(x) = x^4 + 1$. We can use Eisenstein's criterion to show that $f(x)$ is irreducible over $\Q$, recalling the fact that $f(x)$ is irreducible if and only if $f(x+1)$ is irreducible. In this case $f(x+1) = x^4 + 4x^3 + 6x^2 + 4x + 2$.
 
 Now we will choose our prime $p=2$. $p$ divides all the coefficients, excluding the coefficient of the term with the highest degree. $p \nmid 1$, and $p^2 \nmid 2$. Therefore $f(x+1)$ fulfils Eisenstein's criterion and is therefore irreducible over $\Q$. Therefore $f(x)$ is irreducible over $\Q$.
 
 But $x^4 + 1 = \l(x^2 + \sqrt2 x + 1\r) \l(x^2 - \sqrt2 x + 1\r)$, so $f(x)$ is not irreducible over $\R$.
 
-\subsection{~}
+\subsection{~} % 6.c
 
-Consider $f(x) = x^2 + x + 4$. If $f(x)$ were not irreducible over $\Z / 11 \Z$, then we could write $x^2 + x + 4 = (ax + b) (cx + d) = acx^2 + (ad + bc)x + bd$, which gives the following system of equations, \begin{align*}
+\begin{questionbody}
+Show that $x^2 + x + 4$ is irreducible over $\Z / 11\Z$. Here any coefficients should be interpreted modulo 11.
+\end{questionbody}
+
+Let $f(x) = x^2 + x + 4$. If $f(x)$ were not irreducible over $\Z / 11 \Z$, then we could write $x^2 + x + 4 = (ax + b) (cx + d) = acx^2 + (ad + bc)x + bd$, which gives the following system of equations, \begin{align*}
 	ac &\stackrel{11}{\ \equiv\ } 1\\
 	ad + bc &\stackrel{11}{\ \equiv\ } 1\\
 	bd &\stackrel{11}{\ \equiv\ } 4\\
@@ -175,7 +233,12 @@ Consider $f(x) = x^2 + x + 4$. If $f(x)$ were not irreducible over $\Z / 11 \Z$,
 And then I get stuck.
 % TODO: What now?
 
-\subsection{~}
+\newpage
+\subsection{~} % 6.d
+
+\begin{questionbody}
+Show that $x^4 + 1$ is not irreducible over $\Z / 5\Z$. Here any coefficients should be interpreted modulo 5.
+\end{questionbody}
 
 Consider $f(x) = x^4 + 1$. The question says this is not irreducible over $\Z / 5 \Z$, but I don't know why. I can't find a root modulo 5, so it has no linear factors, but factoring into two quadratics doesn't seem to work either because I get two simultaneous equations mod 5 and nothing satisfies both.
 % }}}

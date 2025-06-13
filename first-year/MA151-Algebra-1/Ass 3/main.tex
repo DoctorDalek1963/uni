@@ -8,6 +8,7 @@
 
 \fancyhead[L]{MA151 Assignment 3}
 \title{MA151 Algebra 1, Assignment 3}
+\colorlet{questionbodycolor}{violet!50}
 
 \begin{document}
 
@@ -20,9 +21,18 @@
 \question{1}
 \renewcommand{\thesubsection}{Q\arabic{section}~\roman{subsection}.}
 
-$$\rho = \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 1 & 3 & 5 & 2 & 4\end{pmatrix}, \qquad \tau = \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 3 & 1 & 5 & 2 & 4\end{pmatrix}$$
+\begin{questionbody}
+Let $\rho$ and $\tau$ be the following permutations: \[
+\rho = \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 1 & 3 & 5 & 2 & 4\end{pmatrix},
+\qquad \tau = \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 3 & 1 & 5 & 2 & 4\end{pmatrix}
+\]
+\end{questionbody}
 
-\subsection{}
+\subsection{~} % 1.i
+
+\begin{questionbody}
+Express $\rho^{−1}$, $\rho \tau$, $\tau^2$ in the notation used above.
+\end{questionbody}
 
 \begin{align*}
 	\rho^{-1} &= \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 1 & 4 & 2 & 5 & 3\end{pmatrix}\\[1ex]
@@ -30,31 +40,49 @@ $$\rho = \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 1 & 3 & 5 & 2 & 4\end{pmatrix}, \qqu
 	\tau^2    &= \begin{pmatrix}1 & 2 & 3 & 4 & 5\\ 5 & 3 & 4 & 1 & 2\end{pmatrix}\\[1ex]
 \end{align*}
 
-\subsection{}
+\subsection{~} % 1.ii
+
+\begin{questionbody}
+Write $\rho$ and $\tau$ as products of disjoint cycles.
+\end{questionbody}
 
 $$\rho = (1) (2, 3, 5, 4) = (2, 3, 5, 4), \qquad \tau = (1, 3, 5, 4, 2)$$
 
-\subsection{}
+\newpage
+\subsection{~} % 1.iii
+
+\begin{questionbody}
+For each of $\rho$ and $\tau$ state whether it is an even permutation or an odd permutation.
+\end{questionbody}
 
 $\rho$ is an odd permutation (since $\rho = (2, 4) (2, 5) (2, 3)$) and $\tau$ is an even permutation (since $\tau = (1, 2) (1, 4) (1, 5) (1, 3)$).
 % }}}
 
 % {{{ Q2
-\newquestion{2}
+\question{2}
 
-\subsection{}
+\begin{questionbody}
+Write down the order of each of the following elements of $S_6$: \[
+\text{i. } (1\ 2)
+\qquad \text{ii. } (1\ 2\ 3)
+\qquad \text{iii. } (1\ 2\ 3) (4\ 6)
+\qquad \text{iv. } (1\ 2\ 3) (1\ 2)
+\]
+\end{questionbody}
+
+\subsection{~} % 2.i
 
 $(1\ 2)$ has order 2, since it is a transposition.
 
-\subsection{}
+\subsection{~} % 2.ii
 
 $(1\ 2\ 3)$ has order 3.
 
-\subsection{}
+\subsection{~} % 2.iii
 
 $(1\ 2\ 3)(4\ 6)$ has order 6.
 
-\subsection{}
+\subsection{~} % 2.iv
 
 $$(1\ 2\ 3)(1\ 2) = \begin{pmatrix}1 & 2 & 3\\ 3 & 2 & 1\end{pmatrix} = (1\ 3)$$
 So $(1\ 2\ 3)(1\ 2) = (1\ 3)$ and has order 2.
@@ -64,13 +92,25 @@ So $(1\ 2\ 3)(1\ 2) = (1\ 3)$ and has order 2.
 \newquestion{3}
 \renewcommand{\thesubsection}{Q\arabic{section}~(\alph{subsection})}
 
-\subsection{}
+\begin{questionbody}
+This question demonstrates a way to argue that two groups cannot be isomorphic.
+\end{questionbody}
 
-Suppose $G$ and $H$ are groups and $G \cong H$. Suppose $g \in G$ has order $n$, so $g^n = 1_G$. Let $\phi$ be the isomorphic bijection between $G$ and $H$. We know that $\phi(1_G) = 1_H$ and $\phi\l(g^n\r) = \phi(\, \underbrace{g \cdot g \cdots g}_{n \text{ times}} \,) = \underbrace{\phi(g) \cdot \phi(g) \cdots \phi(g)}_{n \text{ times}} = \phi(g)^n$.
+\subsection{~} % 3.a
+
+\begin{questionbody}
+Suppose the group $G$ is isomorphic to the group $H$. Show that if $G$ contains an element with finite order $n$ then $H$ also contains an element with order $n$.
+\end{questionbody}
+
+Suppose $g \in G$ has order $n$, so $g^n = 1_G$. Let $\phi$ be the isomorphic bijection between $G$ and $H$. We know that $\phi(1_G) = 1_H$ and $\phi\l(g^n\r) = \phi(\, \underbrace{g \cdot g \cdots g}_{n \text{ times}} \,) = \underbrace{\phi(g) \cdot \phi(g) \cdots \phi(g)}_{n \text{ times}} = \phi(g)^n$.
 
 Therefore $\phi\l( g^n \r) = \phi(1_G) \implies \phi(g)^n = 1_H$. Therefore the element $\phi(g) \in H$ has order $n$.
 
-\subsection{}
+\subsection{~} % 3.b
+
+\begin{questionbody}
+Use \textbf{(a)} to deduce that $\Z / 6\Z$ cannot be isomorphic to $D_6$.
+\end{questionbody}
 
 $\Z / 6\Z \cong C_6$, so every non-identity element of $\Z / 6\Z$ has order 6. In $D_6$, the reflections have order 2, the non-identity rotations have order 3, and the identity has order 1, so no elements of $D_6$ have order 6. Therefore $\Z / 6\Z \ncong D_6$ by \textbf{(a)}.
 % }}}
@@ -78,9 +118,15 @@ $\Z / 6\Z \cong C_6$, so every non-identity element of $\Z / 6\Z$ has order 6. I
 % {{{ Q4
 \newquestion{4}
 
-Let $G$ and $H$ be groups and $\phi : G \to H$ be a homomorphism.
+\begin{questionbody}
+Let $G$ and $H$ be groups and suppose $\phi : G \to H$ is a homomorphism.
+\end{questionbody}
 
-\subsection{}
+\subsection{~} % 4.a
+
+\begin{questionbody}
+Show that $\phi(1_G) = 1_H$.
+\end{questionbody}
 
 We know that $1_G 1_G = 1_G$, so $\phi(1_G) = \phi(1_G 1_G) = \phi(1_G) \phi(1_G)$. But $\phi(1_G) \in H$, so it has an inverse in $H$. Thus, we can say \begin{align*}
 	\phi(1_G) \phi(1_G)^{-1} &= \phi(1_G) \phi(1_G) \phi(1_G)^{-1}\\[1ex]
@@ -89,7 +135,11 @@ We know that $1_G 1_G = 1_G$, so $\phi(1_G) = \phi(1_G 1_G) = \phi(1_G) \phi(1_G
 	\therefore \phi(1_G) &= 1_H
 \end{align*}
 
-\subsection{}
+\subsection{~} % 4.b
+
+\begin{questionbody}
+Show that $\phi$ is injective if and only if $\ker \phi = \{1_G\}$.
+\end{questionbody}
 
 Recall that $\ker \phi = \{g \in G : \phi(g) = 1_H\}$. First we will show that $\phi$ being injective implies that $\ker \phi = \{1_G\}$.
 
@@ -104,7 +154,12 @@ For the converse, now suppose $\ker \phi = \{1_G\}$. That means that $\phi(g) \n
 \end{align*}
 But that's a contradiction, since we assumed $g_1 \ne g_2$. Therefore $\phi(g_1) \ne \phi(g_2)$, so $\phi$ is injective.
 
-\subsection{}
+\newpage
+\subsection{~} % 4.c
+
+\begin{questionbody}
+Show that if $\phi$ is surjective and $G$ is abelian then $H$ is abelian.
+\end{questionbody}
 
 If $\phi$ is surjective, then $\fa h \in H,\, \exists g \in G, \phi(g) = h$. If $G$ is Abelian, then $g_1 g_2 = g_2 g_1\ \fa g_1, g_2 \in G$.
 
@@ -117,7 +172,11 @@ Then $\fa h_1, h_2 \in H$, \begin{align*}
 \end{align*}
 Therefore $H$ is also Abelian.
 
-\subsection{}
+\subsection{~} % 4.d
+
+\begin{questionbody}
+Show that if $\phi$ is injective and $H$ is abelian then $G$ is abelian.
+\end{questionbody}
 
 If $\phi$ is injective, then $\phi(g_1) = \phi(g_2) \iff g_1 = g_2\ \fa g_1, g_2 \in G$. If $H$ is Abelian, then $h_1 h_2 = h_2 h_1\ \fa h_1, h_2 \in H$.
 
@@ -132,7 +191,11 @@ Therefore $G$ is also Abelian.
 % {{{ Q5
 \newquestion{5}
 
-Let $A, B, C \in M_{2 \times 2}(\Z)$. We want $AB = AC, A \ne \mathbf 0, B \ne C$. Take $$A = \begin{pmatrix}1 & 0\\ 0 & 0\end{pmatrix}, \qquad B = \begin{pmatrix}2 & -1\\ 10 & 2\end{pmatrix}, \qquad C = \begin{pmatrix}2 & -1\\ -3 & 4\end{pmatrix}$$
+\begin{questionbody}
+Show that, in the ring $M_{2 \times 2}(\Z)$, there are elements ($2 \times 2$ matrices with integer entries) $A$, $B$, $C$ with $A̸ \ne 0$ such that $AB = AC$ but $B̸ \ne C$.
+\end{questionbody}
+
+Suppose $$A = \begin{pmatrix}1 & 0\\ 0 & 0\end{pmatrix}, \qquad B = \begin{pmatrix}2 & -1\\ 10 & 2\end{pmatrix}, \qquad C = \begin{pmatrix}2 & -1\\ -3 & 4\end{pmatrix}$$
 
 Clearly $A \ne \mathbf 0$ and $B \ne C$ but $$AB = \begin{pmatrix}2 & -1\\ 0 & 0\end{pmatrix} \quad \text{and} \quad AC = \begin{pmatrix}2 & -1\\ 0 & 0\end{pmatrix}$$
 So $AB = AC$.
@@ -140,6 +203,10 @@ So $AB = AC$.
 
 % {{{ Q6
 \question{6}
+
+\begin{questionbody}
+Suppose $R$ is a ring with the property that whenever $a̸ \ne 0$ and $b̸ \ne 0$ then $ab̸ \ne 0$. Show that if $rs = rt$ where $r, s, t \in R$ with $r̸ \ne 0$ then $s = t$.
+\end{questionbody}
 
 Suppose $R$ is a ring where $a \ne 0, b \ne 0 \implies ab \ne 0$ and $rs = rt$. Then either $s = 0$ or $s \ne 0$.
 
@@ -155,7 +222,13 @@ In the case where $s \ne 0$, we have, by distributivity, \begin{align*}
 % }}}
 
 % {{{ Q7
-\question{7}
+\newquestion{7}
+
+\begin{questionbody}
+Give an example of a non-commutative ring with a finite number of elements. Justify your answer by exhibiting two elements $a, b$ in your ring for which $ab̸ \ne ba$.
+
+Hint: if $R$ is a ring then so is $M_{2 \times 2}(R)$.
+\end{questionbody}
 
 $M_{2 \times 2} \l( \Z / 5\Z \r)$ is a non-commutative ring. We know that $\Z / 5\Z$ is a ring, so $M_{2 \times 2}(\Z / 5 \Z)$ is also a ring. It has finite elements, since each matrix has 4 numbers, each of which has 5 choices, so there are $5^4 = 625$ elements.
 

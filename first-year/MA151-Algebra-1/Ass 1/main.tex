@@ -11,6 +11,7 @@
 
 \fancyhead[L]{MA151 Assignment 1}
 \title{MA151 Algebra 1, Assignment 1}
+\colorlet{questionbodycolor}{violet!50}
 
 \begin{document}
 
@@ -22,15 +23,31 @@
 % {{{ Q1
 \question{1}
 
-\subsection{$x \star y = x^2 + y^2,\ S = \mathbb Z$}
+\begin{questionbody}
+In each case below determine whether the operation $\star$ defines a binary operation on the set $S$. Give reasons for your answers.
+\end{questionbody}
+
+\subsection{~} % 1.i
+
+\begin{questionbody}
+$x \star y = x^2 + y^2,\ S = \mathbb Z$
+\end{questionbody}
 
 This is a binary operation, since it takes two elements of $S$ and always returns another element of $S$. An integer squared plus another integer squared will always be another integer.
 
-\subsection{$x \star y = x + 3,\ S = \mathbb N$}
+\subsection{~} % 1.ii
+
+\begin{questionbody}
+$x \star y = x + 3,\ S = \mathbb N$
+\end{questionbody}
 
 This is a binary operation, since it takes two elements of $S$ and always returns another element of $S$. A natural number plus 3 is always another natural number.
 
-\subsection{$x \star y = \frac{x + y}{2},\ S = \mathbb Z$}
+\subsection{~} % 1.iii
+
+\begin{questionbody}
+$x \star y = \frac{x + y}{2},\ S = \mathbb Z$
+\end{questionbody}
 
 This is \textit{not} a binary operation, since it takes two elements of $S$ and but doesn't always return another element of $S$. The mean of two integers is not always an integer. Consider $2 \star 3$, for example. $2 \star 3 = \frac{2 + 3}{2} = \frac52 \notin \mathbb Z$.
 % }}}
@@ -38,8 +55,13 @@ This is \textit{not} a binary operation, since it takes two elements of $S$ and 
 % {{{ Q2
 \newquestion{2}
 
-Associativity means that $(a \star b) \star c = a \star (b \star c)$. For the sake of explanation, I shall call the middle term the \textit{pivot term}. So in the case of the example just given, the pivot term was $b$. In the case of $(f \circ (g \circ h)) \circ t = f \circ ((g \circ h) \circ t)$, the pivot term is $(g \circ h)$.
+\begin{questionbody}
+Let $S$ be a set and $\star$ a binary operation on $S$ which is associative. Stating clearly how and when you use the associative property, show that if $a, b, c, d, e \in S$ then \[
+((a \star b) \star (c \star d)) \star e = a \star (((b \star c) \star d) \star e)
+\]
+\end{questionbody}
 
+Associativity means that $(a \star b) \star c = a \star (b \star c)$. For the sake of explanation, I shall call the middle term the \textit{pivot term}. So in the case of the example just given, the pivot term was $b$. In the case of $(f \circ (g \circ h)) \circ t = f \circ ((g \circ h) \circ t)$, the pivot term is $(g \circ h)$.
 \begin{align*}
 	((a \star b) \star (c \star d)) \star e &= (a \star b) \star ((c \star d) \star e) &&\text{pivoting around } (c \star d) \\[1ex]
 											&= a \star (b \star ((c \star d) \star e)) &&\text{pivoting around } b \\[1ex]
@@ -51,7 +73,9 @@ Associativity means that $(a \star b) \star c = a \star (b \star c)$. For the sa
 % {{{ Q3
 \question{3}
 
-$$S = \{a, b, c, d\}$$
+\begin{questionbody}
+How many distinct commutative binary operations are there on the set $S = \{a, b, c, d\}$? Explain your answer carefully.
+\end{questionbody}
 
 Call the binary operation $\oplus$. Since $\oplus$ is commutative over $S$, we know that $a \oplus b = b \oplus a$, $d \oplus b = b \oplus d$, etc. So we only need to consider half of the possible combinations. Specifically, we only need to define $a \oplus a$, $a \oplus b$, $a \oplus c$, $a \oplus d$, $b \oplus b$, $b \oplus c$, $b \oplus d$, $c \oplus c$, $c \oplus d$, and $d \oplus d$. Operations like $c \oplus a$ are necessarily given by $a \oplus c$, since $\oplus$ is commutative.
 
@@ -63,7 +87,16 @@ Most of these operations will not be associative. For example, if $a \oplus b = 
 % {{{ Q4
 \newquestion{4}
 
-\subsection{$\left( \left\{ 3^n : n \in \mathbb Z \right\}, \times \right)$}
+\begin{questionbody}
+n each case below prove that the set together with the binary operation is
+a group. Justify your answers
+\end{questionbody}
+
+\subsection{~} % 4.i
+
+\begin{questionbody}
+$\left( \left\{ 3^n : n \in \mathbb Z \right\}, \times \right)$
+\end{questionbody}
 
 \begin{enumerate}
 	\item A power of 3 multiplied by a power of 3 is always another power of 3, so the group is closed.
@@ -74,7 +107,11 @@ Most of these operations will not be associative. For example, if $a \oplus b = 
 
 Therefore this is a group.
 
-\subsection{$\left( \left\{ \begin{pmatrix}a & b\\ 0 & c\end{pmatrix} : a, b, c \in \mathbb R \text{ and } ac \ne 0 \right\}, \times \right)$}
+\subsection{~} % 4.ii
+
+\begin{questionbody}
+$\left( \left\{ \begin{pmatrix}a & b\\ 0 & c\end{pmatrix} : a, b, c \in \mathbb R \text{ and } ac \ne 0 \right\}, \times \right)$
+\end{questionbody}
 
 \begin{enumerate}
 	\item Some matrix $\begin{pmatrix}a & b\\ 0 & c\end{pmatrix}$ multiplied by another matrix $\begin{pmatrix}x & y\\ 0 & z\end{pmatrix}$ equals $\begin{pmatrix}ax & ay + bz\\ 0 & cz\end{pmatrix}$. We note that $ac \ne 0$ and $xz \ne 0$, so $acxz \ne 0$, so this result is in the set and the group is closed under matrix multiplication.
@@ -89,7 +126,15 @@ Therefore this is a group.
 % {{{ Q5
 \newquestion{5}
 
-\subsection{Isosceles triangle}
+\begin{questionbody}
+In both cases below, draw diagrams to show the symmetries of the object $X$. Give your symmetries letter names and then draw up a table to show the effect of any symmetry followed by any other symmetry (like you have seen in lectures for an equilateral triangle and a square).
+\end{questionbody}
+
+\subsection{~} % 5.i
+
+\begin{questionbody}
+$X$ is an isosceles triangle which is not equilateral.
+\end{questionbody}
 
 For the non-equilateral isosceles triangle, the only symmetries are the $0\degree$ rotation (the identity), called $\rho_0$, and the reflection in the vertical line, called $\sigma_0$.
 
@@ -116,7 +161,11 @@ And here's the table:
 \end{array} 
 \]
 
-\subsection{Rectangle}
+\subsection{~} % 5.ii
+
+\begin{questionbody}
+$X$ is a rectangle which is not a square.
+\end{questionbody}
 
 For the non-square rectangle, the only symmetries are the $0\degree$ rotation (the identity), called $\rho_0$, the $180\degree$ rotation, called $\rho_1$, the reflection in the vertical line, called $\sigma_0$, and the reflection in the horizontal line, called $\sigma_1$.
 
@@ -147,22 +196,30 @@ And here's the table:
 \sigma_1 & \sigma_1 & \sigma_0 & \rho_1 & \rho_0 \\
 \end{array} 
 \]
+% }}}
 
-\section*{Question 6}
-\setcounter{section}{6}
-\setcounter{subsection}{0}
+% {{{ Q6
+\question{6}
 
+\begin{questionbody}
 Let $G$ be a group and let $h \in G$.
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 6.i
 
-Let $g_1, g_2 \in G$. If $h g_1 = h g_2$, then we can left-multiply by $h^{-1}$ on both sides to get $h^{-1} h g_1 = h^{-1} h g_2 \implies 1 g_1 = 1 g_2 \implies g_1 g_2$. We know that $h^{-1}$ must exist since $h \in G$ and $G$ is a group.
+\begin{questionbody}
+Let $g_1, g_2 \in G$. Prove that $h g_1 = h g_2$ if and only if $g_1 = g_2$.
+\end{questionbody}
+
+If $h g_1 = h g_2$, then we can left-multiply by $h^{-1}$ on both sides to get $h^{-1} h g_1 = h^{-1} h g_2 \implies 1 g_1 = 1 g_2 \implies g_1 g_2$. We know that $h^{-1}$ must exist since $h \in G$ and $G$ is a group.
 
 Conversely, if $g_1 = g_2$, then we can left-multiply by $h$ on both sides and get $h g_1 = h g_2$.
 
-\subsection{~}
+\subsection{~} % 6.ii
 
-Let $S = \{hg : g \in G\}$.
+\begin{questionbody}
+Let $S = \{hg : g \in G\}$. Prove that $S = G$.
+\end{questionbody}
 
 Suppose that $S \ne G$. That means there is some element $a \in G$ which is not in $S$, or there is some element $b \in S$ that was never in $G$.
 
