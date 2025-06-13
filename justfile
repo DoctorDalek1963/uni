@@ -71,13 +71,14 @@ rename: build
     #!/usr/bin/env python3
     import os
     import re
+    import shutil
 
     [course_dir, ass_dir] = os.getcwd().split("/")[-2:]
 
     course_code = re.match(r"([A-Z0-9]{5}).*", course_dir).group(1)
     ass_num = re.match(r".*?(\d+)$", ass_dir).group(1)
 
-    os.rename("main.pdf", f"Dyson_Dyson_5503449_{course_code}_Assignment_{ass_num}.pdf")
+    shutil.copyfile("main.pdf", f"Dyson_Dyson_5503449_{course_code}_Assignment_{ass_num}.pdf")
 
 # build a fresh PDF from scratch and rename it
 [group("pdf")]
