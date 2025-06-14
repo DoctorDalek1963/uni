@@ -10,6 +10,7 @@
 
 \fancyhead[L]{MA139 Assignment 1}
 \title{MA139 Analysis 2, Assignment 1}
+\colorlet{questionbodycolor}{cyan!50}
 
 \begin{document}
 
@@ -20,6 +21,12 @@
 
 % {{{ Q1
 \question{1}
+
+\begin{questionbody}
+Show that the series\[
+\sum_{n=1}^\infty \f{x^n}n
+\] converges for every $x$ in the interval satisfying $-1 \le x < 1$ and that it diverges for all other real values of $x$.
+\end{questionbody}
 
 Let $\ds S = \sum_{n=1}^\infty \f{x^n}n$. Using the ratio test, we find \begin{align*}
 r &= \lim_{n \to \infty} \l| \l. \f{x^{n+1}}{n+1} \r/ \f{x^n}n \r|\\[1ex]
@@ -42,10 +49,23 @@ Therefore $S$ converges when $-1 \le x < 1$.
 % {{{ Q2
 \newquestion{2}
 
-Let $S = \smlm_{n=1}^\infty a_n x^n$ be the power series in which $a_n = \begin{cases}
-1 & \text{if } n \text{ is prime}\\
-0 & \text{if } n \text{ is not prime}
-\end{cases}$. Then when $0 < x < 1$, $\smlm_{n=1}^\infty a_n x^n < \smlm_{n=1}^\infty x^n = \df1{1-x}$, so $S$ converges. Likewise when $-1 < x < 0$, $\smlm_{n=1}^\infty |a_n x^n| < \smlm_{n=1}^\infty |x|^n = \df1{1-|x|}$, so $S$ converges absolutely. And $S$ trivially converges when $x=0$, so it converges when $-1 < x < 1$. Now we only need to check $x=1$ and $x=-1$.
+\begin{questionbody}
+Let $\sum_{n=1}^\infty a_n x^n$ be the power series in which \[
+a_n = \begin{cases}
+1 & \text{if $n$ is a prime number} \\
+0 & \text{if $n$ is not a prime number}
+\end{cases} \] Prove that the series has radius of convergence 1.
+\end{questionbody}
+
+Let $S = \sum_{n=1}^\infty a_n x^n$. When $0 < x < 1$, \[
+\sum_{n=1}^\infty a_n x^n < \sum_{n=1}^\infty x^n = \f1{1-x},
+\] so $S$ converges.
+
+Likewise when $-1 < x < 0$, \[
+\sum_{n=1}^\infty |a_n x^n| < \sum_{n=1}^\infty |x|^n = \f1{1-|x|},
+\] so $S$ converges absolutely.
+
+$S$ trivially converges when $x=0$, so it converges when $-1 < x < 1$. Now we only need to check $x=1$ and $x=-1$.
 
 We know there are infinitely many primes, so $\smlm_{n=1}^\infty a_n \to \infty$. And when $x = 1$, $S = \smlm_{n=1}^\infty a_n$, so $S$ cannot converge.
 
@@ -57,9 +77,13 @@ Therefore, $S$ converges exactly when $-1 < x < 1$.
 % {{{ Q3
 \newquestion{3}
 
-Let $\sum a_n x^n$ be a power series with radius of convergence $R$, let $[-K, K] \subseteq (-R, R)$, and let $f(x) = \smlm_{n=0}^\infty a_n x^n$.
+\begin{questionbody}
+Let $\sum a_n x^n$ be a power series with radius of convergence $R$. Show that if the closed interval $[-K, K]$ lies inside the interval $(-R, R)$ then the function $f$ given by \[
+f(x) = \sum_{n=0}^\infty a_n x^n
+\] is bounded on the interval $[-K, K]$.
+\end{questionbody}
 
-% We will show that $f(x)$ is continuous at all $c \in [-K, K]$. For all $\varepsilon > 0$, we want $\delta > 0$ such that $|x-c| < \delta \implies |f(x) - f(c)| < \varepsilon$.
+% For all $\varepsilon > 0$, we want $\delta > 0$ such that $|x-c| < \delta \implies |f(x) - f(c)| < \varepsilon$.
 % \begin{align*}
 % |f(x) - f(c)| &= \l| \smlm_{n=0}^\infty a_n (x^n - c^n) \r|\\[1ex]
 % &\le \smlm_{n=0}^\infty \l| a_n (x^n - c^n) \r|
@@ -73,7 +97,13 @@ Since $f(x)$ is continuous in $[-K, K]$, by the extreme value theorem, it is bou
 % {{{ Q4
 \newquestion{4}
 
-Consider the sequence $\l(\df{\e^n n!}{n^n}\r)$. The ratio of successive terms is \begin{align*}
+\begin{questionbody}
+By considering the ratio of successive terms, show that the sequence $\ds\l( \f{e^n n!}{n^n} \r)$ is increasing. Plot a graph of the first 10 or so terms.
+
+Plot another graph of the squares $\ds\l( \f{e^n n!}{n^n} \r)^2$. How fast do you think they are growing?
+\end{questionbody}
+
+The ratio of successive terms is \begin{align*}
 & \f{\e^{n+1}\, (n+1)!\, n^n}{\e^n\, n!\, (n+1)^{n+1}}\\[1ex]
 &= \f{\e\, (n+1)\, n^n}{(n+1)^{n+1}}\\[1ex]
 &= \e \l(\f{n}{n+1}\r)^n\\[1ex]
@@ -83,23 +113,23 @@ Consider the sequence $\l(\df{\e^n n!}{n^n}\r)$. The ratio of successive terms i
 &= 1
 \end{align*}
 
-The ratio tends to $1$. In particular, $\l(1+\df1n\r)^n$ tends to $\e$ from below, so $\l(1+\df1n\r)^{-n}$ tends to $\df1\e$ from above. Therefore the ratio of successive terms tends to $1$ from above and the ratio is therefore always $\ge 1$, so the terms of the sequence are increasing.
+The ratio tends to 1. In particular, $\l(1+\df1n\r)^n$ tends to $\e$ from below, so $\l(1+\df1n\r)^{-n}$ tends to $\df1\e$ from above. Therefore the ratio of successive terms tends to 1 from above and the ratio is therefore always $\ge 1$, so the terms of the sequence are increasing.
 
-\begin{figure}[h]
+\begin{figure}[hbtp]
 	\centering
 	\includegraphics[scale=0.4]{Q4a}
 	\caption{The first 10 terms of $\l(\df{\e^n n!}{n^n}\r)$}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[hbtp]
 	\centering
 	\includegraphics[scale=0.4]{Q4b}
 	\caption{The first 10 terms of $\l(\df{\e^n n!}{n^n}\r)^2$}
 \end{figure}
 
-The sequence $\l(\df{\e^n n!}{n^n}\r)^2$ looks linear. Experimentally it has a gradient of $6.288747$, which looks suspiciously like $2\pi$. In fact, the line $y = 2\pi x + 1$ fits it almost exactly.
+The sequence $\l(\df{\e^n n!}{n^n}\r)^2$ looks linear. Experimentally it has a gradient of 6.288747, which looks suspiciously like $2\pi$. In fact, the line $y = 2\pi x + 1$ fits it almost exactly.
 
-\begin{figure}[h]
+\begin{figure}[hbtp]
 	\centering
 	\includegraphics[scale=0.4]{Q4c}
 	\caption{$\l(\df{\e^n n!}{n^n}\r)^2$ in blue and $y = 2\pi x + 1$ in red}

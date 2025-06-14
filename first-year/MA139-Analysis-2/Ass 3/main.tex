@@ -10,6 +10,7 @@
 
 \fancyhead[L]{MA139 Assignment 3}
 \title{MA139 Analysis 2, Assignment 3}
+\colorlet{questionbodycolor}{cyan!50}
 
 \begin{document}
 
@@ -21,14 +22,29 @@
 % {{{ Q1
 \question{1}
 
-$$f(t) = \log\l( \f{1+t}{1-t} \r) - 2t = \log(1+t) - \log(1-t) - 2t$$
+\begin{questionbody}
+Let $f \colon (-1, 1) \to \R$ be the function defined by \[
+f(t) = \log\l( \f{1+t}{1-t} \r) - 2t = \log(1+t) - \log(1-t) - 2t.
+\] Assuming knowledge of the derivative of $\log$ show that $f$ is increasing on $(-1, 1)$.
 
-Therefore \begin{align*}
+Deduce that $\ds\log\l( \f{1+t}{1-t} \r) \ge 2t$ for $0 \le t < 1$.
+
+Prove that if $x > 0$ then $\ds\log\l( 1 + \f1x \r) \ge \f2{2x+1}$.
+
+Deduce that for each positive $x$, $\ds\l( 1 + \f1x \r)^{x + \f12} \ge \e$.
+
+You already saw that $\ds\l( 1 + \f1x \r)^{x + 1} \ge \e$.
+
+Draw a graph of the two functions $\ds x \mapsto \l( 1 + \f1x \r)^{x + \f12}$ and $\ds x \mapsto \l( 1 + \f1x \r)^{x + 1}$ for $x > 0$ and the horizontal line $y = \e$ to see how much more accurate the new inequality is. (This gives you some idea of the power of the derivative.)
+\end{questionbody}
+
+\begin{align*}
 f'(t) &= \f1{1+t} - (-1)\f1{1-t} - 2\\[1ex]
 &= \f{1-t + 1+t}{1-t^2} - 2\\[1ex]
 &= \f{2 - 2(1-t^2)}{1-t^2}\\[1ex]
 &= \f{2t^2}{1-t^2}
 \end{align*}
+
 In the range $t \in (-1, 1)$, $t^2 \in (0, 1)$. Therefore $2t^2 > 0$ and $1 - t^2 > 0$, so $f'(t) > 0$. Therefore $f(t)$ is increasing for $t \in (-1, 1)$.
 
 $f(0) = \log(1) - 0 = 0$ and since $f(t)$ is increasing, $f(t) \ge 0$ for $t \in [0, 1)$. Therefore $\log\l( \f{1+t}{1-t} \r) - 2t \ge 0 \implies \log\l( \f{1+t}{1-t} \r) \ge 2t$ for $0 \le t < 1$ as required.
@@ -66,7 +82,9 @@ Then \begin{align*}
 % {{{ Q2
 \newquestion{2}
 
-$$\phantom{\qquad x \in (0, \infty)} y = \f1{\sqrt x} - \f1x \qquad x \in (0, \infty)$$
+\begin{questionbody}
+Find the maximum value of $\ds y = \f1{\sqrt x} - \f1x$ on $(0, \infty)$.
+\end{questionbody}
 
 For $x \in (0,1)$, $\sqrt x > x$, so $y < 0$. And for $x > 1$, $x > \sqrt x$, so $y > 0$. Clearly the maximum will be when $y > 0$, so $x > 1$.
 
@@ -103,6 +121,14 @@ Therefore $x = 4$, $y = \df14$ is the maximum of this function.
 
 % {{{ Q3
 \newquestion{3}
+
+\begin{questionbody}
+Use the differentiability of $\log$ at 1 to show that for each $t$ \[
+\f nt \log\l( 1 + \f tn \r) \to 1 \quad\text{ as } n \to \infty
+\]
+
+What property of the exponential function do you need (in addition to the fact that it is the inverse of the logarithm) to deduce that $\ds \l( 1 + \f tn \r)^n \to \e^t$?
+\end{questionbody}
 
 Let $$f(n) = \f nt \log\l( 1 + \f tn \r)$$
 And therefore \begin{align*}

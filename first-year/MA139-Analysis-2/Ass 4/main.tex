@@ -7,6 +7,7 @@
 
 \fancyhead[L]{MA139 Assignment 4}
 \title{MA139 Analysis 2, Assignment 4}
+\colorlet{questionbodycolor}{cyan!50}
 
 \begin{document}
 
@@ -18,9 +19,19 @@
 % {{{ Q1
 \question{1}
 
-Let $F : \R \to \R$ be defined as $$F(x) = \l( 1 - \f12 x + \f1{12} x^2 \r) \e^x$$
+\begin{questionbody}
+Let $F : \R \to \R$ be defined by \[
+F(x) = \l( 1 - \f12 x + \f1{12} x^2 \r) \e^x.
+\]
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 1.a
+
+\begin{questionbody}
+Use Taylor's theorem with remainder to show that \[
+F(x) \ge 1 + \f12 x + \f1{12} x^2 \quad\text{ for } x \ge 0.
+\]
+\end{questionbody}
 
 To apply Taylor's theorem with remainder to $F$, we need the first few derivatives of $F$. \begin{align*}
 F'(x) &= \l( 1 - \f12 x + \f1{12} x^2 \r) \e^x + \l( - \f12 + \f16 x \r) \e^x\\[1ex]
@@ -60,13 +71,25 @@ for some $t$ between $0$ and $x$. Assuming $x \ge 0$, then $0 \le t \le x$.
 
 Since $F^{(4)}(t) \ge 0$ for all $t \ge 0$, we get $\ds F(x) \ge 1 + \f12 x + \f1{12} x^2$ for all $x \ge 0$, as required.
 
-\subsection{~}
+\subsection{~} % 1.b
+
+\begin{questionbody}
+Show that for all $x$, \[
+1 - \f12 x + \f1{12} x^2 \ge 0.
+\]
+\end{questionbody}
 
 We shall treat $\ds \f1{12} x^2 - \f12 x + 1$ as a quadratic equation in $x$. Then we can see its discriminant \enquote{$b^2 - 4ac$} to be $\ds \f14 - \f4{12} = -\f1{12} < 0$. The discriminant is negative, which means the quadratic has no real roots.
 
 Since the quadratic equation has no real roots, and the $x^2$ coefficient is positive, we can conclude that $\ds 1 - \f12 x + \f1{12} x^2 > 0\ \fa x \in \R$.
 
-\subsection{~}
+\subsection{~} % 1.c
+
+\begin{questionbody}
+Deduce that for $x \ge 0$, \[
+\e^x \ge \f{1 + \f12 x + \f1{12} x^2}{1 - \f12 x + \f1{12} x^2}
+\] and hence that $\e \ge \df{19}7$.
+\end{questionbody}
 
 In part \textbf{(a)}, we showed that for all $x \ge 0$, $$\e^x \l( 1 - \f12 x + \f1{12} x^2 \r) \ge 1 + \f12 x + \f1{12} x^2$$
 The quadratic in brackets on the LHS has discriminant $\f14 - \f13 < 0$, and positive coefficient of $x^2$, so that term in brackets is always strictly positive, so we can divide by it.
@@ -85,7 +108,13 @@ Therefore $\e \ge \df{19}7$ as required.
 % {{{ Q2
 \newquestion{2}
 
-Let $f, g : [a, b] \to \R$ be Riemann integrable functions which agree except at finitely many points in the interval, so $f(x) = g(x) \ \fa x \in [a,b] \setminus \{\enum c1n\}$.
+\begin{questionbody}
+Suppose $f, g \colon [a, b] \to \R$ are integrable and agree except at finitely many points in the interval. Show that \[
+\int_a^b f = \int_a^b g.
+\]
+\end{questionbody}
+
+We know that $f(x) = g(x) \ \fa x \in [a,b] \setminus \{\enum c1n\}$.
 
 % TODO: Make this argument rigorous?
 
@@ -121,7 +150,13 @@ Since the upper sums and lower sums for $f$ and $g$ both agree on the partition 
 % {{{ Q3
 \newquestion{3}
 
-We want to find $\ds \llim{n \to \infty} \f1n \smlm_{k=1}^n \log \l( 1 + \f kn \r)$.
+\begin{questionbody}
+Find \[
+\lim_{n \to \infty} \f1n \smlm_{k=1}^n \log \l( 1 + \f kn \r).
+\]
+
+Be careful to explain what facts you use from the course.
+\end{questionbody}
 
 This can be viewed as $\llim{n \to \infty} U(f, P_n)$ where $f(x) = \log(1 + x)$ and $P_n$ is the partition of $[0,1]$ into $n$ equal intervals, since the area of each rectangle is the width $\f1n$ times the height $f(x_i)$, and since $f$ is increasing and the sum always takes $f(x_i)$ on the right hand side of the interval, we get the upper sum.
 
