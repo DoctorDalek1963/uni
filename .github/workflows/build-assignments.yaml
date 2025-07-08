@@ -33,4 +33,4 @@ jobs:
           cp "$(nix-build --expr "(import <nixpkgs> {}).nix-direnv")"/share/nix-direnv/direnvrc "${XDG_CONFIG_HOME}/direnv/lib/nix-direnv.sh"
 
       - name: Build every assignment
-        run: nix-shell --run "just ci-build-all"
+        run: nix develop .#ci --command just ci-build-all

@@ -1,5 +1,7 @@
 # Nix stuff
 .direnv/
+/.pre-commit-config.yaml
+/flake.lock
 
 # LaTeX stuff
 *.aux
