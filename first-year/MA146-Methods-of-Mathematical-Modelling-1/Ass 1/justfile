@@ -2,12 +2,14 @@ import "../../../justfile"
 
 set allow-duplicate-recipes := true
 
+alias bo := build-original
+
 _default:
     @just --list
 
 # assemble the scans and screenshots into a PDF
 [group("pdf")]
-build:
+build-original:
     #!/usr/bin/env nix-shell
     #! nix-shell -i bash -p imagemagick pdftk
     set -x
@@ -17,7 +19,12 @@ build:
     magick imgs/Q2-f.png .tmp_pdfs/Q2-f.pdf
     pdftk A="Original scan.pdf" B=.tmp_pdfs/Q2-e.pdf C=.tmp_pdfs/Q2-f.pdf cat A1-3 B C A4-6 output main.pdf
 
+[group("pdf")]
+_pre-build:
+    @just _build
+
 # remove all build artifacts
 [group("pdf")]
 clean:
+    @just _clean_latex
     rm -rfv .tmp_pdfs/
