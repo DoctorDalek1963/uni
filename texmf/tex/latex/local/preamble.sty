@@ -53,6 +53,19 @@
 	backgroundcolor=questionbodycolor!25!white,
 ]{questionbody}
 
+%%%%% Include code snippets
+
+\usepackage{minted}
+\setminted{
+	linenos,
+	breaklines,
+	fontsize=\footnotesize,
+	encoding=utf8,
+	style=catppuccin-latte,
+}
+\usepackage[quiet]{fontspec}
+\setmonofont[Scale=MatchLowercase]{Hack}
+
 %%%%% Shorthand and missing functions (taken mostly from my Obsidian notes)
 % Environments
 \newenvironment{apmatrix}[2]

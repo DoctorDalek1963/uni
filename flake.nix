@@ -38,6 +38,9 @@
             cancel
             csquotes
 
+            minted
+            upquote
+
             # For questionbody environment
             mdframed
             needspace
@@ -46,9 +49,19 @@
 
         python = pkgs.python3.withPackages (p: [p.rich]);
 
+        # Include Catppuccin styles
+        latexminted = pkgs.latexminted.overridePythonAttrs (oldAttrs: {
+          dependencies =
+            (oldAttrs.dependencies or [])
+            ++ [
+              pkgs.python3Packages.catppuccin
+            ];
+        });
+
         nativeBuildInputs = [
           texlive
           python
+          latexminted
 
           pkgs.fd
           pkgs.inotify-tools
@@ -58,6 +71,8 @@
         devShells = {
           default = pkgs.mkShell {
             inherit nativeBuildInputs;
+
+            env.OSFONTDIR = "${pkgs.hack-font}/share/fonts";
 
             shellHook = ''
               ${config.pre-commit.installationScript}

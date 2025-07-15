@@ -14,6 +14,8 @@
 *.toc
 *.bbl
 *.blg
+*.minted
+_minted/
 
 *.pdf
 !Dyson_Dyson_*.pdf

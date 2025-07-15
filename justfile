@@ -45,6 +45,7 @@ build: _pre-build _build
 [no-cd]
 _clean_latex:
     latexmk -c -C
+    rm -rf *.minted _minted/
     texhash
 
 # remove all build artifacts
