@@ -99,6 +99,7 @@ new-ass:
         "CS147": "orange!50",
         "MA139": "cyan!50",
         "MA141": "blue!50",
+        "MA144": "green!50",
         "MA146": "green!50!teal!50",
         "MA150": "magenta!50",
         "MA151": "violet!50",

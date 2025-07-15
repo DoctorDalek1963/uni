@@ -13,6 +13,7 @@
 
 \fancyhead[L]{MA144 Assignment 2}
 \title{MA144 Methods of Mathematical Modelling 2, Assignment 2}
+\colorlet{questionbodycolor}{green!50}
 
 \begin{document}
 
@@ -24,21 +25,34 @@
 % {{{ Q1
 \question{1}
 
-\subsection{~}
+\subsection{~} % 1.a
 
-The heat equation is
-$$\pdd ut = \alpha \pddd 2ux$$
+\begin{questionbody}
+\textbf{The heat equation} \quad
+Let $u(x, t)$ be the temperature at a point $x$ on a long solid metal rod lying along the $x$ axis ($x \in \R$) at time $t > 0$.
 
-A solution to the heat equation is
-$$u(x, t) = \f1{\sqrt{2 \pi t}}\, \e^{- x^2 / 2t} = \f1{\sqrt{2\pi}}\, t^{-\f12}\, \e^{- x^2 / 2t}$$
+It can be shown that $u$ satisfies the \textit{heat equation} \[
+\pdd ut = \alpha \pddd 2ux,
+\] where $\alpha$ is a constant called the thermal conductivity of the metal.
 
-\subsubsection{~}
+A solution to the heat equation is \[
+u(x, t) = \f1{\sqrt{2 \pi t}}\, \e^{- x^2 / 2t} = \f1{\sqrt{2\pi}}\, t^{-\f12}\, \e^{- x^2 / 2t}
+\]
+\end{questionbody}
+
+\subsubsection{~} % 1.a.i
+
+\begin{questionbody}
+Find the value of $\alpha$.
+\end{questionbody}
 
 The solution gives \begin{align*}
 \pdd ut &= \f1{\sqrt{2\pi}} \l( t^{-\f12} \e^{-x^2 / 2t} \f{x^2}{2t^2} - \f12 t^{-\f32} \e^{-x^2 / 2t} \r)\\[1ex]
 &= \f1{\sqrt{2\pi}}\, \e^{-x^2 / 2t} \l( t^{-\f12} \f{x^2}{2} t^{-2} - \f12 t^{-\f32} \r)\\[1ex]
 &= \f1{2\sqrt{2\pi}}\, \e^{-x^2 / 2t} \l( x^2 t^{-\f52} - t^{-\f32} \r)\\[1ex]
-&= \f1{2\sqrt{2\pi}}\, \e^{-x^2 / 2t} t^{-\f32} \l( x^2 t^{-1} - 1 \r)\\[1ex]
+&= \f1{2\sqrt{2\pi}}\, \e^{-x^2 / 2t} t^{-\f32} \l( x^2 t^{-1} - 1 \r)
+\end{align*}
+\begin{align*}
 &= \f1{2\sqrt{2\pi t^3}}\, \e^{-x^2 / 2t} \l( \f{x^2}t - 1 \r)
 \end{align*}
 and \begin{align*}
@@ -50,8 +64,12 @@ and \begin{align*}
 
 Therefore $\alpha = 2$ for this solution.
 
-\subsubsection{~}
+\subsubsection{~} % 1.a.ii
 
+\begin{questionbody}
+Sketch the solution $u(x, 1)$.
+\end{questionbody}%
+%
 $$u(x, 1) = \f1{\sqrt{2\pi}}\, \e^{-x^2 / 2}$$
 
 \begin{figure}[h]
@@ -60,16 +78,24 @@ $$u(x, 1) = \f1{\sqrt{2\pi}}\, \e^{-x^2 / 2}$$
 	\caption{A plot of $y = u(x,1)$}
 \end{figure}
 
-\subsection{~}
+\subsection{~} % 1.b
 
-The wave equation is
-$$\pddd 2ux = \f1{c^2}\, \pddd 2ut$$
+\begin{questionbody}
+\textbf{The wave equation} \quad
+A thin elastic string is stretched along the $x$ axis. A point $x$ on the string is free to vibrate along the $y$ direction. Let $u(x, t)$ be the amplitude of the vibration of point $x$ at time $t$.
 
-A solution to the wave equation is
-$$u(x, t) = \sin x \cos \beta t$$
-where $\beta > 0$.
+It can be shown that $u$ satisfies the \textit{wave equation} \[
+\pddd 2ux = \f1{c^2}\, \pddd 2ut,
+\] where the constant $c > 0$ is the speed of the wave (determined by the material of the string).
+\end{questionbody}
 
-\subsubsection{~}
+\subsubsection{~} % 1.b.i
+
+\begin{questionbody}
+A solution to the wave equation is \[
+u(x, t) = \sin x \cos \beta t
+\] where $\beta > 0$. Find $\beta$.
+\end{questionbody}
 
 The solution gives \begin{align*}
 \pddd 2ux &= \pdiff x \l( \cos x \cos \beta t \r)\\[1ex]
@@ -85,9 +111,15 @@ and \begin{align*}
 Plugging this into the wave equation gives $$-u(x, t) = -\f{\beta^2}{c^2} u(x, t)$$
 Therefore $\df{\beta^2}{c^2} = 1$ so $\beta = \pm c$. We know $c > 0$ and we want $\beta > 0$, so $\beta = c$.
 
-\subsubsection{~}
+\subsubsection{~} % 1.b.ii
 
-Let $u(x, t) = f(x+ct) + g(x-ct)$. Then by the chain rule, \begin{align*}
+\begin{questionbody}
+Using the chain rule, show that \[
+u(x, t) = f(x + ct) + g(x - ct)
+\] satisfies the wave equation. Assume that $f$ and $g$ are twice-differentiable functions defined on $\R$.
+\end{questionbody}
+
+\begin{align*}
 \pddd 2ux &= \pdiff x \l( f'(x+ct) + g'(x-ct) \r)\\[1ex]
 &= f''(x+ct) + g''(x-ct)
 \end{align*}
@@ -102,10 +134,18 @@ Therefore $\ds \pddd 2ux = \f1{c^2} \pddd 2ut$, so this $u$ satisfies the wave e
 % {{{ Q2
 \newquestion{2}
 
-$$f(x, y) = \e^x + y^3 - 2x - 3y$$
+\begin{questionbody}
+Consider the function $f \colon \R^2 \to \R$ defined by \[
+f(x, y) = \e^x + y^3 - 2x - 3y.
+\]
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 2.a
 
+\begin{questionbody}
+Find and classify the critical points of $f$.
+\end{questionbody}%
+%
 $$\pdd fx = \e^x - 2 \qquad \pdd fy = 3y^2 - 3$$
 
 Critical points are where $\ds \pdd fx = \pdd fy = 0$. That means $\e^x - 2 = 0$ so $x = \log 2$, and $3y^3 - 3 = 0$ so $y = \pm 1$. Therefore the critical points of $f$ are at $(\log 2, 1)$ and $(\log 2, -1)$.
@@ -116,9 +156,13 @@ At the point $(\log 2, 1)$, $D = 12$ and $f_{xx} = 2$, so this point is a local 
 
 At the point $(\log 2, -1)$, $D = -12$, so this point is a saddle point.
 
-\subsection{~}
+\subsection{~} % 2.b
 
-Linear approximation around $P = (0, 2)$ gives \begin{align*}
+\begin{questionbody}
+Let $P$ be the point $(0, 2)$. Using linear approximation around $P$, show how we can estimate $f(0.01, 1.99)$ without a calculator.
+\end{questionbody}
+
+Linear approximation around $P$ gives \begin{align*}
 f(x, y) &\approx f(0, 2) + \l. \nabla f \r|_{(0,2)} \cdot \begin{pmatrix}x\\ y-2\end{pmatrix}\\[1ex]
 &= \l( 1 + 8 - 0 - 6 \r) + \l. \begin{pmatrix}\e^x - 2\\ 3y^2 - 3\end{pmatrix} \r|_{(0,2)} \cdot \begin{pmatrix}x\\ y-2\end{pmatrix}\\[1ex]
 &= 3 + \begin{pmatrix}-1\\ 9\end{pmatrix} \cdot \begin{pmatrix}x\\ y-2\end{pmatrix}\\[1ex]
@@ -135,7 +179,15 @@ f(0.01, 1.99) &\approx -15 - 0.01 + 9 \times 1.99\\
 
 For completeness, $f(0.01, 1.99)$ is actually around $2.900649$, so this approximation is very good.
 
-\subsection{~}
+\subsection{~} % 2.c
+
+\begin{questionbody}
+Sketch (by hand) the level curves of $f$. On your sketch, indicate: \begin{itemize}[nosep]
+\item the point $P$
+\item the critical points
+\item a vector representing the direction of \textit{steepest descent} at $P$
+\end{itemize}
+\end{questionbody}
 
 The direction of steepest descent at point $P$ is $\l. -\nabla f \r|_P = \begin{pmatrix}1\\ -9\end{pmatrix}$.
 
@@ -145,7 +197,12 @@ The direction of steepest descent at point $P$ is $\l. -\nabla f \r|_P = \begin{
 	\caption{A contour plot of $z=f(x,y)$. Red is negative $z$, blue is small positive $z$, and green is large positive $z$. The red cross is the local minimum point, the blue cross is the saddle point, the black cross is $P$, and the black arrow is the direction of steepest descent from $P$.}
 \end{figure}
 
-\subsection{~}
+\newpage
+\subsection{~} % 2.d
+
+\begin{questionbody}
+Use Python to produce a 3D plot of the surface $z = f(x, y)$. On your plot, indicate the critical points and point $P$.
+\end{questionbody}
 
 \begin{figure}[h]
 	\centering
@@ -159,7 +216,7 @@ The direction of steepest descent at point $P$ is $\l. -\nabla f \r|_P = \begin{
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.3]{Q2d-code}
+	\inputminted{python}{./code/plot_surface.py}
 	\caption{The code used to generate Figure~\ref{fig:3d-plot}. The code can also be found \href{https://github.com/DoctorDalek1963/uni/blob/1ee2e9f33bdd8e5d2054b4487684af46f686b5bd/first-year/MA144-Methods-of-Mathematical-Modelling-2/Ass 2/code/plot_surface.py}{on GitHub}.}
 \end{figure}
 

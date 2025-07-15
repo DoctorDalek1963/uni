@@ -13,6 +13,7 @@
 
 \fancyhead[L]{MA144 Assignment 1}
 \title{MA144 Methods of Mathematical Modelling 2, Assignment 1}
+\colorlet{questionbodycolor}{green!50}
 
 \begin{document}
 
@@ -24,7 +25,17 @@
 % {{{ Q1
 \question{1}
 
-\subsection{~}
+\begin{questionbody}
+Consider the polar curve with equation $r = f(\theta)$, where $\theta \in [a, b]$ and $f$ is some function of $\theta$.
+\end{questionbody}
+
+\subsection{~} % 1.a
+
+\begin{questionbody}
+Using the arc-length formula for parametric curves (in the lecture notes), show that the arc length of the polar curve is given by the integral \[
+\intlim a b {\sqrt{\l( \dd f \theta \r)^2 + f^2}} \theta .
+\]
+\end{questionbody}
 
 The polar curve with equation $r = f(\theta)$ can be parametrised as $\ul r (\theta) = (f(\theta) \cos \theta, f(\theta) \sin \theta)$. Then $$\dd{\ul r}\theta = \l(\dd f\theta (\theta) \cos \theta - f(\theta) \sin \theta, \dd f\theta (\theta) \sin \theta + f(\theta) \cos \theta\r)$$
 Therefore \begin{align*}
@@ -38,9 +49,11 @@ Therefore \begin{align*}
 
 Therefore the arc length of the curve is $$s = \intlim ab {\sqrt{\l(\dd f\theta\r)^2 + f^2}}\theta$$ as required.
 
-\subsection{~}
+\subsection{~} % 1.b
 
-Let $r = 1 + \cos\theta$. %Then $\ul r(\theta) = (\cos\theta + \cos^2\theta, \sin\theta + \sin\theta\cos\theta)$.
+\begin{questionbody}
+Sketch the closed curve with polar equation $r = 1 + \cos \theta$. Find its arc length.
+\end{questionbody}
 
 \begin{figure}[h]
 	\centering
@@ -56,7 +69,12 @@ s &= \intlim 0{2\pi} {\sqrt{\sin^2 \theta + (1 + \cos\theta)^2}} \theta\\[1ex]
 % TODO: Do this integral by hand
 I don't know how to do this integral but apparently it's $4\pi$.
 
-\subsection{~}
+\newpage
+\subsection{~} % 1.c
+
+\begin{questionbody}
+Consider the curve with polar equation $r = 1 + \cos k \theta$, where $\theta \in \R$. Give a value of the constant $k$ such that the curve is not simple. Justify your answer.
+\end{questionbody}
 
 % TODO: Justify this
 The curve given by $r = 1 + \cos k\theta$ is non-simple (self-intersecting) whenever $k$ is not an integer.
@@ -65,15 +83,27 @@ The curve given by $r = 1 + \cos k\theta$ is non-simple (self-intersecting) when
 % {{{ Q2
 \newquestion{2}
 
-Consider the curve $\cal C$ with equation $$\quad 4y^2 - 9x^2 = 1, \quad y > 0$$
+\begin{questionbody}
+Consider the curve $\cal C$ with equation \[
+\quad 4y^2 - 9x^2 = 1, \quad y > 0
+\]
+\end{questionbody}
 
-\subsection{~}
+\subsection{~} % 2.a
+
+\begin{questionbody}
+Parametrise the curve in terms of hyperbolic functions of $t$. Is this a regular parametrisation of the curve?
+\end{questionbody}
 
 Since $\cosh^2 t - \sinh^2 t = 1$, we can let $y = \f12 \cosh t$ and $x = \f13 \sinh t$. Then we'll have the equation of $\cal C$. Therefore we can parametrise $\cal C$ as $\ul r(t) = \l( \f13 \sinh t, \f12 \cosh t \r)$.
 
 Since $\f12 \cosh t > 0$ for all $t \in (-\infty, \infty)$, the requirement of $y>0$ is satisfied by $t \in (-\infty, \infty)$, so that's the range of this parametrisation.
 
-\subsection{~}
+\subsection{~} % 2.b
+
+\begin{questionbody}
+Sketch the curve described by your parametrisation (include an arrow to indicate its orientation). Give the equations of any asymptotes.
+\end{questionbody}
 
 \begin{figure}[h]
 	\centering
@@ -83,7 +113,12 @@ Since $\f12 \cosh t > 0$ for all $t \in (-\infty, \infty)$, the requirement of $
 
 There is a turning point at $\l(0, \f12\r)$ and asymptotes are $y = \f32 x$ and $y = -\f32 x$.
 
-\subsection{~}
+\newpage
+\subsection{~} % 2.c
+
+\begin{questionbody}
+Write down a parametrisation of the curve using parameter $u$ such that $0 < u < 1$.
+\end{questionbody}
 
 To reparametrise with $u$ such that the bounds on the parametrisation are $u \in (0, 1)$, we want to adjust $t$ in the old parametrisation. We want $u = \f12$ when $t = 0$, $u \to 1$ as $t \to \infty$, and $u \to 0$ as $t \to \infty$. We want an increasing, sigmoid-shaped curve with horizontal asymptotes at $y=0$ and $y=1$. $\tanh$ almost fits this shape, but needs minor adjustments.
 
@@ -97,9 +132,22 @@ We can also remove the hyperbolic functions and write it as $$\l( \f{2u-1}{6\sqr
 % {{{ Q3
 \newquestion{3}
 
-\subsection{~}
+\begin{questionbody}
+A circle radius $r < 1$ is rolling on the inside of a circle radius 1, centred at the origin $O$. The centre $C$ of the smaller circle is initially at $(1 - r, 0)$. Let $\theta$ be the angle subtended by the line $OC$ measured with respect to the positive $x$ axis. The point $P$, initially at $(1, 0)$, traces out a curve as the smaller circle rolls inside the unit circle.
 
-\begin{figure}[h]
+The curve traced out by $P$ has the parametric equations: \begin{align*}
+x(\theta) &= (1 - r) \cos \theta + r \cos \l( \f{1-r}r \theta \r) , \\
+y(\theta) &= (1 - r) \sin \theta - r \cos \l( \f{1-r}r \theta \r) .
+\end{align*}
+\end{questionbody}
+
+\subsection{~} % 3.a
+
+\begin{questionbody}
+Use Python to plot the curves corresponding to $r = \f12, \f14, \f23$, and $\f1{\sqrt2}$, where $\theta \in [0, 10\pi]$. Plot them in 4 separate figures.
+\end{questionbody}
+
+\begin{figure}[hbtp]
 	\centering
 	\begin{tabular}{cc}
 		\includegraphics[scale=0.4]{Q3a-1} & \includegraphics[scale=0.4]{Q3a-2}\\
@@ -109,13 +157,17 @@ We can also remove the hyperbolic functions and write it as $$\l( \f{2u-1}{6\sqr
 	\label{fig:hypocycloid-plots}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[hbtp]
 	\centering
-	\includegraphics[scale=0.3]{Q3a-code}
+	\inputminted{python}{./code/generate_plots.py}
 	\caption{The code used to generate the plots in Figure~\ref{fig:hypocycloid-plots}. The code can also be found \href{https://github.com/DoctorDalek1963/uni/blob/fe244f6880c7df0d801d426ca7ef9149b585ec2f/first-year/MA144-Methods-of-Mathematical-Modelling-2/Ass 1/code/generate_plots.py}{on GitHub}}
 \end{figure}
 
-\subsection{~}
+\subsection{~} % 3.b
+
+\begin{questionbody}
+Make one conjecture on the appearance of the curve for an arbitrary $r \in \R$.
+\end{questionbody}
 
 I conjecture that for any $r \in \R$, the curve will be closed if and only if $r \in \Q$.
 % }}}
