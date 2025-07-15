@@ -99,6 +99,14 @@
             trim-trailing-whitespace.enable = true;
 
             alejandra.enable = true;
+
+            chktex = {
+              enable = true;
+              name = "chktex";
+              description = "Run chktex";
+              files = "\\.(tex)$";
+              entry = "${texlive}/bin/chktex";
+            };
           };
         };
       };
