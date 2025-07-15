@@ -37,6 +37,7 @@
             gensymb
             cancel
             csquotes
+            enumitem
 
             minted
             upquote
