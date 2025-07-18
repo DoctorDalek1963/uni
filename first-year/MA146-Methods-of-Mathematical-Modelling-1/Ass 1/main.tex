@@ -74,7 +74,7 @@ In this question we stuy linear second order equations with constant coefficient
 a \ddd{2}{}{t} x(t) + b \diff x(t) + c x(t) = 0, \quad t \in \R
 \label{eqn:general-second-order}
 \end{equation}
-where $a, b, c \in \R$ are given numbers and $a \ne 0$. One way to find solutions of \eqref{eqn:general-second-order} is by substituting $x(t) = \e^{\lambda t}$ for some $\lambda \in \C$ into the equation. This yields $a \lambda^2 \e^{\lambda t} + b \lambda \e^{\lambda t} + c e^{\lambda t} = 0$.
+where $a, b, c \in \R$ are given numbers and $a \ne 0$. One way to find solutions of~\eqref{eqn:general-second-order} is by substituting $x(t) = \e^{\lambda t}$ for some $\lambda \in \C$ into the equation. This yields $a \lambda^2 \e^{\lambda t} + b \lambda \e^{\lambda t} + c e^{\lambda t} = 0$.
 
 After dividing by $\e^{\lambda t} \ne 0$ we obtain the \textit{auxiliary equation} \[
 a \lambda^2 + b \lambda + c = 0.
@@ -84,14 +84,14 @@ Its solutions are given by \[
 \lambda_{1,2} = -\f b{2a} \pm \f 1{2a} \sqrt{b^2 - 4ac}.
 \]
 
-If $b^2 - 4ac > 0$ then the solutions $\lambda_1 \ne \lambda_2$ are real. Two solutions to \eqref{eqn:general-second-order} then are given by $x_1(t) = \e^{\lambda_1 t}$ and $x_2(t) = \e^{\lambda_2 t}$.
+If $b^2 - 4ac > 0$ then the solutions $\lambda_1 \ne \lambda_2$ are real. Two solutions to~\eqref{eqn:general-second-order} then are given by $x_1(t) = \e^{\lambda_1 t}$ and $x_2(t) = \e^{\lambda_2 t}$.
 
 The \textit{complementary function} (or \textit{general solution}) \[
 x(t) = l_1 x_1(t) + l_2 x_2(t) = l_1 \e^{\lambda_1 t} + l_2 \e^{\lambda_2 r}, \quad l_1, l_2 \in \R
-\] describes all solutions to \eqref{eqn:general-second-order}.
+\] describes all solutions to~\eqref{eqn:general-second-order}.
 
 If $b^2 - 4ac < 0$ then we write $\lambda_1 = -\f b{2a} + \mathbf{i} \omega \in \C$ with $\omega = \f 1{2a} \sqrt{4ac - b^2} \in \R$ and note that $\lambda_2 = -\f b{2a} - \mathbf{i} \omega = \overline{\lambda_1}$.
-Two real-values solutions of \eqref{eqn:general-second-order} then are $x_1(t) = \e^{-\f b{2a} t} \cos(\omega t)$ and $x_2(t) = \e^{-\f b{2a} t} \sin(\omega t)$, and the \textit{complementary function} is given by \[
+Two real-values solutions of~\eqref{eqn:general-second-order} then are $x_1(t) = \e^{-\f b{2a} t} \cos(\omega t)$ and $x_2(t) = \e^{-\f b{2a} t} \sin(\omega t)$, and the \textit{complementary function} is given by \[
 x(t) = l_1 x_1(t) + l_2 x_2(t) = l_1 \e^{-\f b{2a} t} \cos(\omega t) + l_2 \e^{-\f b{2a} t} \sin(\omega t), \quad l_1, l_2 \in \R
 \]
 \end{questionbody}
@@ -100,7 +100,7 @@ x(t) = l_1 x_1(t) + l_2 x_2(t) = l_1 \e^{-\f b{2a} t} \cos(\omega t) + l_2 \e^{-
 \subsection{~} % 2.a
 
 \begin{questionbody}
-In the case $b^2 - 4ac < 0$ with complex solutions of the auxiliary equation, show that $x_2(t)$ is indeed a solution of \eqref{eqn:general-second-order}.
+In the case $b^2 - 4ac < 0$ with complex solutions of the auxiliary equation, show that $x_2(t)$ is indeed a solution of~\eqref{eqn:general-second-order}.
 \end{questionbody}
 
 We have $x_2(t) = \e^{-\f b{2a} t} \sin(\omega t)$ and derivatives \begin{align*}
@@ -117,7 +117,7 @@ x_2''(t) &= \e^{-\f b{2a} t} \l(
 \r)
 \end{align*}
 
-We plug these into \eqref{eqn:general-second-order} and get \begin{align*}
+We plug these into~\eqref{eqn:general-second-order} and get \begin{align*}
 &\quad \e^{-\f b{2a} t} \Bigg( a \l( \l( \f{b^2}{4a^2} - \omega^2 \r) \sin(\omega t) - \f{b\omega}a \cos(\omega t) \r) \\
 & \qquad + b \l( \omega \cos(\omega t) - \f b{2a} \sin(\omega t) \r) + c \sin(\omega t) \Bigg) \\
 %
@@ -125,7 +125,7 @@ We plug these into \eqref{eqn:general-second-order} and get \begin{align*}
 &= \e^{-\f b{2a} t} \l( -\f{b^2}{4a} - a\omega^2 + c \r) \sin(\omega t)
 \end{align*}
 
-Recall that $\omega = \f1{2a} \sqrt{4ac - b^2}$ so $\omega^2 = \f1{4a^2} (4ac - b^2)$. Therefore \eqref{eqn:general-second-order} becomes \begin{align*}
+Recall that $\omega = \f1{2a} \sqrt{4ac - b^2}$ so $\omega^2 = \f1{4a^2} (4ac - b^2)$. Therefore~\eqref{eqn:general-second-order} becomes \begin{align*}
 &\quad \e^{-\f b{2a} t} \l( -\f{b^2}{4a} - \f{4ac}{4a} + \f{b^2}{4a} + c \r) \sin(\omega t) \\
 &= \e^{-\f b{2a} t} \times 0 \times \sin(\omega t) \\
 &= 0
@@ -135,7 +135,7 @@ Recall that $\omega = \f1{2a} \sqrt{4ac - b^2}$ so $\omega^2 = \f1{4a^2} (4ac - 
 \subsection{~} % 2.b
 
 \begin{questionbody}
-Find the complementary function of \eqref{eqn:general-second-order} with $a = 2$, $b = -4$, and $c = -6$.
+Find the complementary function of~\eqref{eqn:general-second-order} with $a = 2$, $b = -4$, and $c = -6$.
 \end{questionbody}
 %
 \begin{align*}
@@ -149,7 +149,7 @@ x(t) &= l_1 \e^{3t} + l_2 \e^{-t}
 \subsection{~} % 2.c
 
 \begin{questionbody}
-Find the complementary function of \eqref{eqn:general-second-order} with $a = -2$, $b = 3$, and $c = -\f54$.
+Find the complementary function of~\eqref{eqn:general-second-order} with $a = -2$, $b = 3$, and $c = -\f54$.
 \end{questionbody}
 %
 \begin{align*}
@@ -163,7 +163,7 @@ x(t) &= \e^{\f34 t} \l( l_1 \cos \f{-t}{4} + l_2 \sin \f{-t}{4} \r)
 \subsection{~} % 2.d
 
 \begin{questionbody}
-Find the complementary function solution of \eqref{eqn:general-second-order} with $a = -2$, $b = 0$, and $c = -18$ and then find numbers $l_1, l_2$ such that the solution also satisfies \[
+Find the complementary function solution of~\eqref{eqn:general-second-order} with $a = -2$, $b = 0$, and $c = -18$ and then find numbers $l_1, l_2$ such that the solution also satisfies \[
 x(2\pi) = 15, \quad \diff t x(2\pi) = 12.
 \]
 \end{questionbody}
@@ -198,13 +198,13 @@ Run the notebook with the parameters $a = 3$, $b = 12$, $c = 12$ and the initial
 
 Submit the code where the initial condition is implemented and the output that displays the solution.
 
-Furthermore, retrieve the solution $x(t)$ from the notebook and show with \enquote{pen and paper} that it indeed satisfies the differential equation \eqref{eqn:general-second-order}.
+Furthermore, retrieve the solution $x(t)$ from the notebook and show with \enquote{pen and paper} that it indeed satisfies the differential equation~\eqref{eqn:general-second-order}.
 \end{questionbody}
 
 \begin{figure}[hbtp]
-	\centering
-	\includegraphics[width=\linewidth]{Q2-e}
-	\caption{The code for \textbf{Q2 (e)}}
+    \centering
+    \includegraphics[width=\linewidth]{Q2-e}
+    \caption{The code for \textbf{Q2 (e)}}
 \end{figure}
 
 The solution given by the notebook is \[
@@ -219,7 +219,7 @@ x''(t) &= -2(12t + 2) \e^{-2t} + 12 \e^{-2t} \\
 &= (-24t + 8) \e^{-2t}
 \end{align*}
 
-Plugging this into \eqref{eqn:general-second-order} gives \begin{align*}
+Plugging this into~\eqref{eqn:general-second-order} gives \begin{align*}
 & 3 (-24t + 8) \e^{-2t} + 12 (12t + 2) \e^{-2t} - 12 (6t + 4) \e^{-2t} \\
 &= \e^{-2t} \l( -72t + 24 + 144t + 24 - 72t - 48 \r) \\
 &= \e^{-2t} \times 0 \\
@@ -235,9 +235,9 @@ Generate a parametric plot displaying all solutions for $t \in (0, 4\pi)$ in the
 \end{questionbody}
 
 \begin{figure}[hbtp]
-	\centering
-	\includegraphics[width=\linewidth]{Q2-f}
-	\caption{The code for \textbf{Q2 (f)}}
+    \centering
+    \includegraphics[width=\linewidth]{Q2-f}
+    \caption{The code for \textbf{Q2 (f)}}
 \end{figure}
 
 % }}}
@@ -254,7 +254,7 @@ m \ddot h(t) = f(t), \quad t > 0
 
 Denote the length of the rope with $\ell > 0$. Whilst the jumper is in free fall, gravitation is the only force acting on them, hence \[
 f(t) = -mg, \quad \text{when } h(t) \ge -\ell
-\] with the gravitation constant $g$. Once the rope gets extended, i.e. when $h(t) \le -\ell$, it exerts a fall-damping tension force that we assume to be proportional to the extension.
+\] with the gravitation constant $g$. Once the rope gets extended, i.e.\ when $h(t) \le -\ell$, it exerts a fall-damping tension force that we assume to be proportional to the extension.
 
 Denoting the proportionality factor by $k > 0$ the force then is \[
 f(t) = k(-\ell - h(t)) - mg \quad \text{when } h(t) \le -\ell.
@@ -293,7 +293,9 @@ h(t) &= C_1 \e^{\mathbf i t \sqrt{\f km}} + C_2 \e^{-\mathbf i t \sqrt{\f km}} \
 &= A \cos \sqrt{\f km} t + B \sin \sqrt{\f km} t
 \end{align*}
 
-The particular solution wants $h(t)$ to be some constant to reflect the constant $-\df{k\ell}m - g$ on the right hand side of \eqref{eqn:Q3a-second-order-ODE}. Let $h(t)$ be some constant $C$. Then $\ddot h(t) = 0$. We plug that into \eqref{eqn:Q3a-second-order-ODE} and get $$0 + \f km C = - \f{k\ell}m - g$$ so then $C = -\ell - \df{mg}k$.
+The particular solution wants $h(t)$ to be some constant to reflect the constant $-\df{k\ell}m - g$ on the right hand side of~\eqref{eqn:Q3a-second-order-ODE}. Let $h(t)$ be some constant $C$. Then $\ddot h(t) = 0$. We plug that into~\eqref{eqn:Q3a-second-order-ODE} and get \[
+0 + \f km C = - \f{k\ell}m - g
+\] so then $C = -\ell - \df{mg}k$.
 
 We can then add the particular solution to the complementary function and get \[ h(t) = A \cos \sqrt{\f km} t + B \sin \sqrt{\f km } t - \ell - \f{mg}k \]
 
@@ -323,7 +325,8 @@ In the re-bounce stage, $h(t)$ is basically just a scaled cosine function. That 
 
 If we want the jumper to just touch the floor in the worst case, then \[ h_m \le -2\l( \ell + \f{mg}k \r) \]
 
-We can then simply rearrange to find $\ell$. \begin{align*}
+We can then simply rearrange to find $\ell$.
+\begin{align*}
 -\f{h_m}2 &\ge \ell + \f{mg}k \\
 \thf \ell &\le -\l( \f{h_m}2 + \f{mg}k \r)
 \end{align*}

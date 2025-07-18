@@ -24,10 +24,10 @@ Let $V$ be a Euclidean space with inner product $\angb{\cdot, \cdot}$. Suppose $
 \end{questionbody}
 
 For any fixed $i \le n$ \begin{align*}
-v &= \smlm_{j=1}^n \lambda_j w_j\\[1ex]
-\angb{v, w_i} &= \angb{\smlm_{j=1}^n \lambda_j w_j, w_i}\\[1ex]
-&= \smlm_{j=1}^n \lambda_j \angb{w_j, w_i}\\[1ex]
-&= \lambda_1 \angb{w_1, w_i} + \cdots + \lambda_i \angb{w_i, w_i} + \cdots + \lambda_n \angb{w_n, w_i}\\[1ex]
+v &= \smlm_{j=1}^n \lambda_j w_j \\[1ex]
+\angb{v, w_i} &= \angb{\smlm_{j=1}^n \lambda_j w_j, w_i} \\[1ex]
+&= \smlm_{j=1}^n \lambda_j \angb{w_j, w_i} \\[1ex]
+&= \lambda_1 \angb{w_1, w_i} + \cdots + \lambda_i \angb{w_i, w_i} + \cdots + \lambda_n \angb{w_n, w_i} \\[1ex]
 &= \lambda_i
 \end{align*}
 Since all $\enum w1n$ are orthonormal, so all but one of the inner products are zero.
@@ -39,7 +39,11 @@ Therefore $\angb{v, w_i} = \lambda_i$ for all $i = 1,\ \ldots,\ n$, as required.
 \newquestion{5}
 
 \begin{questionbody}
-Let $V = \R^3$ equipped with the usual inner (dot) product. Let $$v_1 = \begin{pmatrix}1\\ 1\\ 0\end{pmatrix}, \quad v_2 = \begin{pmatrix}2\\ 0\\ 1\end{pmatrix}, \quad v_3 = \begin{pmatrix}1\\ 1\\ 2\end{pmatrix}$$
+Let $V = \R^3$ equipped with the usual inner (dot) product. Let \[
+v_1 = \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix},
+\quad v_2 = \begin{pmatrix}2 \\ 0 \\ 1\end{pmatrix},
+\quad v_3 = \begin{pmatrix}1 \\ 1 \\ 2\end{pmatrix}
+\]
 \end{questionbody}
 
 \subsection{~} % 5.a
@@ -49,22 +53,22 @@ Apply the Gram-Schmidt orthogonalisation process to $v_1, v_2, v_3$ to construct
 \end{questionbody}
 
 \begin{align*}
-w_1 &= \f{v_1}{\| v_1 \|} = \f1{\sqrt 2} \begin{pmatrix}1\\ 1\\ 0\end{pmatrix}\\[1ex]
-u_2 &= v_2 - (v_2 \cdot w_1) w_1\\[1ex]
-&= \begin{pmatrix}2\\ 0\\ 1\end{pmatrix} - \f2{\sqrt2} \f1{\sqrt2} \begin{pmatrix}1\\ 1\\ 0\end{pmatrix} = \begin{pmatrix}1\\ -1\\ 0\end{pmatrix}\\[1ex]
-w_2 &= \f{u_2}{\| u_2 \|} = \f1{\sqrt2} \begin{pmatrix}1\\ -1\\ 0\end{pmatrix}\\[1ex]
-u_3 &= v_3 - (v_3 \cdot w_1) w_1 - (v_3 \cdot w_2) w_2\\[1ex]
-&= \begin{pmatrix}1\\ 1\\ 2\end{pmatrix} - \f2{\sqrt2} \f1{\sqrt2} \begin{pmatrix}1\\ 1\\ 0\end{pmatrix} - 0 \begin{pmatrix}1\\ -1\\ 0\end{pmatrix} = \begin{pmatrix}0\\ 0\\ 2\end{pmatrix}\\[1ex]
-w_3 &= \f{u_3}{\| u_3 \|} = \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}
+w_1 &= \f{v_1}{\| v_1 \|} = \f1{\sqrt 2} \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix} \\[1ex]
+u_2 &= v_2 - (v_2 \cdot w_1) w_1 \\[1ex]
+&= \begin{pmatrix}2 \\ 0 \\ 1\end{pmatrix} - \f2{\sqrt2} \f1{\sqrt2} \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix} = \begin{pmatrix}1 \\ -1 \\ 0\end{pmatrix} \\[1ex]
+w_2 &= \f{u_2}{\| u_2 \|} = \f1{\sqrt2} \begin{pmatrix}1 \\ -1 \\ 0\end{pmatrix} \\[1ex]
+u_3 &= v_3 - (v_3 \cdot w_1) w_1 - (v_3 \cdot w_2) w_2 \\[1ex]
+&= \begin{pmatrix}1 \\ 1 \\ 2\end{pmatrix} - \f2{\sqrt2} \f1{\sqrt2} \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix} - 0 \begin{pmatrix}1 \\ -1 \\ 0\end{pmatrix} = \begin{pmatrix}0 \\ 0 \\ 2\end{pmatrix} \\[1ex]
+w_3 &= \f{u_3}{\| u_3 \|} = \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}
 \end{align*}
 
-Therefore our orthonormal basis $w_1, w_2, w_3$ is $\ds \f1{\sqrt2} \begin{pmatrix}1\\ 1\\ 0\end{pmatrix}, \f1{\sqrt2} \begin{pmatrix}1\\ -1\\ 1\end{pmatrix}, \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}$
+Therefore our orthonormal basis $w_1, w_2, w_3$ is $\ds \f1{\sqrt2} \begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}, \f1{\sqrt2} \begin{pmatrix}1 \\ -1 \\ 1\end{pmatrix}, \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}$
 
 \newpage
 \subsection{~} % 5.b
 
 \begin{questionbody}
-Consider $v = \begin{pmatrix}0\\ 0\\ 1\end{pmatrix}$. Find $\lambda_1, \lambda_2, \lambda_3$ such that $v = \lambda_1 w_1 + \lambda_2 w_2 + \lambda_3 w_3$.
+Consider $v = \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}$. Find $\lambda_1, \lambda_2, \lambda_3$ such that $v = \lambda_1 w_1 + \lambda_2 w_2 + \lambda_3 w_3$.
 \end{questionbody}
 
 Clearly $v = w_3$ so if $v = \lambda_1 w_1 + \lambda_2 w_2 + \lambda_3 w_3$ then, since $w_1, w_2, w_3$ are linearly independent, $\lambda_1 = \lambda_2 = 0$ and $\lambda_3 = 1$.
@@ -75,15 +79,19 @@ Clearly $v = w_3$ so if $v = \lambda_1 w_1 + \lambda_2 w_2 + \lambda_3 w_3$ then
 \newquestion{6}
 
 \begin{questionbody}
-Consider the symmetric matrix $$A = \begin{pmatrix} a & \f b2 \\ \f b2 & c \end{pmatrix}$$
-and define a function \begin{align*}
-\varphi : \R^2 &\to \R\\[1ex]
+Consider the symmetric matrix \[
+A = \begin{pmatrix} a & \f b2 \\ \f b2 & c \end{pmatrix}
+\] and define a function \begin{align*}
+\varphi \colon \R^2 &\to \R \\[1ex]
 v = \begin{pmatrix} x \\ y \end{pmatrix} &\mapsto v^T A v = \begin{pmatrix} x & y \end{pmatrix} \begin{pmatrix} a & \f b2 \\ \f b2 & c \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}
 \end{align*}
 
 Notice that $\varphi(\ul 0) = 0$. This question determines precise conditions for which $\varphi(v) = 0$ for all $v \ne \ul 0$.
 
-Notice that $\varphi(\lambda v) = \lambda^2 \varphi(v)$ so we only need to consider $v \in \R^2$ of the form $$e_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad\text{and}\quad v_x = \begin{pmatrix} x \\ 1 \end{pmatrix}\ \fa x \in \R$$
+Notice that $\varphi(\lambda v) = \lambda^2 \varphi(v)$ so we only need to consider $v \in \R^2$ of the form \[
+e_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad\text{and}\quad
+v_x = \begin{pmatrix} x \\ 1 \end{pmatrix}\ \fa x \in \R
+\]
 \end{questionbody}
 
 \subsection{~} % 6.a
@@ -101,9 +109,9 @@ Express $\varphi(v_x)$ as a polynomial in $x$.
 \end{questionbody}
 
 \begin{align*}
-\varphi(v_x) &= \begin{pmatrix}x & 1\end{pmatrix} \begin{pmatrix}a & \f b2 \\ \f b2 & c\end{pmatrix} \begin{pmatrix}x \\ 1\end{pmatrix}\\[1ex]
-&= \begin{pmatrix}x & 1\end{pmatrix} \begin{pmatrix}ax + \f b2 \\ \f b2 x + c\end{pmatrix}\\[1ex]
-&= \l(ax + \f b2\r)x + \f b2 x + c\\[1ex]
+\varphi(v_x) &= \begin{pmatrix}x & 1\end{pmatrix} \begin{pmatrix}a & \f b2 \\ \f b2 & c\end{pmatrix} \begin{pmatrix}x \\ 1\end{pmatrix} \\[1ex]
+&= \begin{pmatrix}x & 1\end{pmatrix} \begin{pmatrix}ax + \f b2 \\ \f b2 x + c\end{pmatrix} \\[1ex]
+&= \l(ax + \f b2\r)x + \f b2 x + c \\[1ex]
 &= ax^2 + bx + c
 \end{align*}
 
@@ -134,25 +142,26 @@ Show that $\angb{v, w} = \angb{w, v}$ for any $v, w \in \R^2$.
 \end{questionbody}
 
 The transpose of a scalar is the same scalar, so \begin{align*}
-\quad\qquad\qquad \angb{v, w} &= \angb{v, w}^T\\
-&= \l( v^T A w \r)^T\\
-&= w^T A^T \l( v^T \r)^T\\
-&= w^T A^T v\\
-&= w^T A v \qqt{since }A^T = A\\
+\quad\qquad\qquad \angb{v, w} &= \angb{v, w}^T \\
+&= {\l( v^T A w \r)}^T \\
+&= w^T A^T {\l( v^T \r)}^T \\
+&= w^T A^T v \\
+&= w^T A v \qqt{since }A^T = A \\
 &= \angb{w, v}
 \end{align*}
 
 \subsection{~} % 7.b
 
 \begin{questionbody}
-Show that for any $v_1, v_2, w \in \R^2$ and $\lambda_1, \lambda_2 \in \R$,
-$$\angb{\lambda_1 v_1 + \lambda_2 v_2, w} = \lambda_1 \angb{v_1, w} + \lambda_2 \angb{v_2, w}$$
+Show that for any $v_1, v_2, w \in \R^2$ and $\lambda_1, \lambda_2 \in \R$, \[
+\angb{\lambda_1 v_1 + \lambda_2 v_2, w} = \lambda_1 \angb{v_1, w} + \lambda_2 \angb{v_2, w}
+\]
 \end{questionbody}
 
 \begin{align*}
-\angb{\lambda_1 v_1 + \lambda_2 v_2, w} &= \l(\lambda_1 v_1 + \lambda_2 v_2\r)^T A w\\[1ex]
-&= \l(\lambda_1 v_1^T + \lambda_2 v_2^T\r) A w\\[1ex]
-&= \lambda_1 v_1^T A w + \lambda_2 v_2^T A w\\[1ex]
+\angb{\lambda_1 v_1 + \lambda_2 v_2, w} &= {\l(\lambda_1 v_1 + \lambda_2 v_2\r)}^T A w \\[1ex]
+&= \l(\lambda_1 v_1^T + \lambda_2 v_2^T\r) A w \\[1ex]
+&= \lambda_1 v_1^T A w + \lambda_2 v_2^T A w \\[1ex]
 &= \lambda_1 \angb{v_1, w} + \lambda_2 \angb{v_2, w}
 \end{align*}
 
@@ -170,16 +179,16 @@ Essentially, the desired result follows immediately from Question~6 and the obse
 
 \begin{questionbody}
 Which of the following matrices $A$ determine an inner product on $V = \R^2$ by the formula $v^T A w$ above?
-$$
-\begin{pmatrix}-2 & 1\\ 1 & -2\end{pmatrix}\hspace{1em}
-\begin{pmatrix}5 & -3\\ -3 & 2\end{pmatrix}\hspace{1em}
-\begin{pmatrix}5 & 3\\ 3 & -2\end{pmatrix}\hspace{1em}
-\begin{pmatrix}2 & -1\\ -1 & 1\end{pmatrix}\hspace{1em}
-\begin{pmatrix}1 & -1\\ -1 & 1\end{pmatrix}
-$$
+\[
+\begin{pmatrix}-2 & 1 \\ 1 & -2\end{pmatrix}\hspace{1em}
+\begin{pmatrix}5 & -3 \\ -3 & 2\end{pmatrix}\hspace{1em}
+\begin{pmatrix}5 & 3 \\ 3 & -2\end{pmatrix}\hspace{1em}
+\begin{pmatrix}2 & -1 \\ -1 & 1\end{pmatrix}\hspace{1em}
+\begin{pmatrix}1 & -1 \\ -1 & 1\end{pmatrix}
+\]
 \end{questionbody}
 
-For a matrix $A$ to determine an inner product as above, we need $a > 0$ and $\det A > 0$, so only $\begin{pmatrix}5 & -3\\ -3 & 2\end{pmatrix}$ and $\begin{pmatrix}2 & -1\\ -1 & 1\end{pmatrix}$ determine inner products
+For a matrix $A$ to determine an inner product as above, we need $a > 0$ and $\det A > 0$, so only $\begin{pmatrix}5 & -3 \\ -3 & 2\end{pmatrix}$ and $\begin{pmatrix}2 & -1 \\ -1 & 1\end{pmatrix}$ determine inner products
 
 % }}}
 

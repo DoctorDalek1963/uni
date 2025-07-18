@@ -66,15 +66,17 @@ For large $n$, $a_n \approx \dfrac{1}{n^2}$, so we expect $\sum a_n < \infty$.
 
 \begin{questionbody}
 Use the integral test to find for which $\alpha > 0$ the sum \[
-\sum_{n=2}^\infty \f 1{n (\log n)^\alpha}
+\sum_{n=2}^\infty \f 1{n {(\log n)}^\alpha}
 \] converges and for which $\alpha > 0$ it diverges.
 \end{questionbody}
 
-$$\int_1^n \frac1{x (\log x)^\alpha} \mathrm d x = \left[ \frac{(\log x)^{1 - \alpha}}{1 - \alpha} \right]_1^n =  \frac{(\log n)^{1 - \alpha}}{1 - \alpha} \qquad \text{where } \alpha \ne 1$$
+\[
+\intlim 1n {\f1{x {(\log x)}^\alpha}} x = {\l[ \f{{(\log x)}^{1 - \alpha}}{1 - \alpha} \r]}_1^n = \f{{(\log n)}^{1 - \alpha}}{1 - \alpha} \qquad \text{where } \alpha \ne 1
+\]
 
-Since $(\log n)^\beta \to \infty$ exactly when $b > 0$, we know that the integral is bounded when $1 - \alpha > 0 \implies \alpha > 1$. And the integral is unbounded when $\alpha < 1$ and undefined when $\alpha = 1$.
+Since ${(\log n)}^\beta \to \infty$ exactly when $b > 0$, we know that the integral is bounded when $1 - \alpha > 0 \implies \alpha > 1$. And the integral is unbounded when $\alpha < 1$ and undefined when $\alpha = 1$.
 
-Therefore $\ds\sum_{n=2}^\infty \frac1{n (\log n)^\alpha}$ converges when $\alpha > 1$ and diverges when $\alpha \le 1$.
+Therefore $\ds\sum_{n=2}^\infty \f1{n {(\log n)}^\alpha}$ converges when $\alpha > 1$ and diverges when $\alpha \le 1$.
 % }}}
 
 % {{{ Q16
@@ -87,7 +89,7 @@ Why do the following series converge? Do they converge absolutely?
 \subsection{~} % 16.a
 
 \begin{questionbody}
-\[ \sum_{n=1}^\infty (-1)^{n+1} \f1{2n+1} \]
+\[ \sum_{n=1}^\infty {(-1)}^{n+1} \f1{2n+1} \]
 \end{questionbody}
 
 The absolute version of this sum is the sum of reciprocals of odd numbers. Much like the Harmonic series, this series diverges to $\infty$, so the series does not converge absolutely.
@@ -97,13 +99,15 @@ It does however converge conditionally to $1 - \dfrac\pi4$ thanks to the alterna
 \subsection{~} % 16.b
 
 \begin{questionbody}
-\[ \sum_{n=1}^\infty (-1)^{n+1} \f1{n^2} \]
+\[ \sum_{n=1}^\infty {(-1)}^{n+1} \f1{n^2} \]
 What is the value of this sum?
 \end{questionbody}
 
-The absolute version of this sum is $$\sum_{n=1}^\infty \l| (-1)^{n+1} \frac1{n^2} \r| = \sum_{n=1}^\infty \frac1{n^2}$$
+The absolute version of this sum is \[
+\sum_{n=1}^\infty \l\vert {(-1)}^{n+1} \f1{n^2} \r\vert = \sum_{n=1}^\infty \f1{n^2}
+\]
 
-This is the Basel problem, which famously equals $\dfrac{\pi^2}6$. Therefore this series is absolutely convergent, and therefore convergent.
+This is the Basel problem, which famously equals $\df{\pi^2}6$. Therefore this series is absolutely convergent, and therefore convergent.
 % }}}
 
 \end{document}

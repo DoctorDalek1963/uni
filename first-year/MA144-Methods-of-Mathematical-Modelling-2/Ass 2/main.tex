@@ -47,18 +47,18 @@ Find the value of $\alpha$.
 \end{questionbody}
 
 The solution gives \begin{align*}
-\pdd ut &= \f1{\sqrt{2\pi}} \l( t^{-\f12} \e^{-x^2 / 2t} \f{x^2}{2t^2} - \f12 t^{-\f32} \e^{-x^2 / 2t} \r)\\[1ex]
-&= \f1{\sqrt{2\pi}}\, \e^{-x^2 / 2t} \l( t^{-\f12} \f{x^2}{2} t^{-2} - \f12 t^{-\f32} \r)\\[1ex]
-&= \f1{2\sqrt{2\pi}}\, \e^{-x^2 / 2t} \l( x^2 t^{-\f52} - t^{-\f32} \r)\\[1ex]
+\pdd ut &= \f1{\sqrt{2\pi}} \l( t^{-\f12} \e^{-x^2 / 2t} \f{x^2}{2t^2} - \f12 t^{-\f32} \e^{-x^2 / 2t} \r) \\[1ex]
+&= \f1{\sqrt{2\pi}}\, \e^{-x^2 / 2t} \l( t^{-\f12} \f{x^2}{2} t^{-2} - \f12 t^{-\f32} \r) \\[1ex]
+&= \f1{2\sqrt{2\pi}}\, \e^{-x^2 / 2t} \l( x^2 t^{-\f52} - t^{-\f32} \r) \\[1ex]
 &= \f1{2\sqrt{2\pi}}\, \e^{-x^2 / 2t} t^{-\f32} \l( x^2 t^{-1} - 1 \r)
 \end{align*}
 \begin{align*}
 &= \f1{2\sqrt{2\pi t^3}}\, \e^{-x^2 / 2t} \l( \f{x^2}t - 1 \r)
 \end{align*}
 and \begin{align*}
-\pddd 2ux &= \pdiff x \l( \f1{\sqrt{2\pi t}}\, \e^{-x^2 / 2t} \l( \f{-x}t \r) \r)\\[1ex]
-&= \pdiff x \l( \f{-1}{\sqrt{2\pi t^3}}\, x \e^{-x^2 / 2t} \r)\\[1ex]
-&= \f{-1}{\sqrt{2\pi t^3}} \l( \e^{-x^2 / 2t} + x \e^{-x^2 / 2t} \l(\f{-x}t\r) \r)\\[1ex]
+\pddd 2ux &= \pdiff x \l( \f1{\sqrt{2\pi t}}\, \e^{-x^2 / 2t} \l( \f{-x}t \r) \r) \\[1ex]
+&= \pdiff x \l( \f{-1}{\sqrt{2\pi t^3}}\, x \e^{-x^2 / 2t} \r) \\[1ex]
+&= \f{-1}{\sqrt{2\pi t^3}} \l( \e^{-x^2 / 2t} + x \e^{-x^2 / 2t} \l(\f{-x}t\r) \r) \\[1ex]
 &= \f1{\sqrt{2\pi t^3}} \e^{-x^2 / 2t} \l( \f{x^2}t - 1 \r)
 \end{align*}
 
@@ -70,12 +70,12 @@ Therefore $\alpha = 2$ for this solution.
 Sketch the solution $u(x, 1)$.
 \end{questionbody}%
 %
-$$u(x, 1) = \f1{\sqrt{2\pi}}\, \e^{-x^2 / 2}$$
+\[ u(x, 1) = \f1{\sqrt{2\pi}}\, \e^{-x^2 / 2} \]
 
 \begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.35]{Q1a-ii}
-	\caption{A plot of $y = u(x,1)$}
+    \centering
+    \includegraphics[scale=0.35]{Q1a-ii}
+    \caption{A plot of $y = u(x,1)$}
 \end{figure}
 
 \subsection{~} % 1.b
@@ -98,18 +98,19 @@ u(x, t) = \sin x \cos \beta t
 \end{questionbody}
 
 The solution gives \begin{align*}
-\pddd 2ux &= \pdiff x \l( \cos x \cos \beta t \r)\\[1ex]
-&= -\sin x \cos \beta t\\[1ex]
+\pddd 2ux &= \pdiff x \l( \cos x \cos \beta t \r) \\[1ex]
+&= -\sin x \cos \beta t \\[1ex]
 &= -u(x, t)
 \end{align*}
 and \begin{align*}
-\pddd 2ut &= \pdiff t \l( -\beta \sin x \sin \beta t \r)\\[1ex]
-&= -\beta^2 \sin x \cos \beta t\\[1ex]
+\pddd 2ut &= \pdiff t \l( -\beta \sin x \sin \beta t \r) \\[1ex]
+&= -\beta^2 \sin x \cos \beta t \\[1ex]
 &= -\beta^2 u(x, t)
 \end{align*}
 
-Plugging this into the wave equation gives $$-u(x, t) = -\f{\beta^2}{c^2} u(x, t)$$
-Therefore $\df{\beta^2}{c^2} = 1$ so $\beta = \pm c$. We know $c > 0$ and we want $\beta > 0$, so $\beta = c$.
+Plugging this into the wave equation gives \[
+-u(x, t) = -\f{\beta^2}{c^2} u(x, t).
+\] Therefore $\df{\beta^2}{c^2} = 1$ so $\beta = \pm c$. We know $c > 0$ and we want $\beta > 0$, so $\beta = c$.
 
 \subsubsection{~} % 1.b.ii
 
@@ -146,7 +147,7 @@ f(x, y) = \e^x + y^3 - 2x - 3y.
 Find and classify the critical points of $f$.
 \end{questionbody}%
 %
-$$\pdd fx = \e^x - 2 \qquad \pdd fy = 3y^2 - 3$$
+\[ \pdd fx = \e^x - 2 \qquad \pdd fy = 3y^2 - 3 \]
 
 Critical points are where $\ds \pdd fx = \pdd fy = 0$. That means $\e^x - 2 = 0$ so $x = \log 2$, and $3y^3 - 3 = 0$ so $y = \pm 1$. Therefore the critical points of $f$ are at $(\log 2, 1)$ and $(\log 2, -1)$.
 
@@ -192,9 +193,9 @@ Sketch (by hand) the level curves of $f$. On your sketch, indicate: \begin{itemi
 The direction of steepest descent at point $P$ is $\l. -\nabla f \r|_P = \begin{pmatrix}1\\ -9\end{pmatrix}$.
 
 \begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.4]{Q2c}
-	\caption{A contour plot of $z=f(x,y)$. Red is negative $z$, blue is small positive $z$, and green is large positive $z$. The red cross is the local minimum point, the blue cross is the saddle point, the black cross is $P$, and the black arrow is the direction of steepest descent from $P$.}
+    \centering
+    \includegraphics[scale=0.4]{Q2c}
+    \caption{A contour plot of $z=f(x,y)$. Red is negative $z$, blue is small positive $z$, and green is large positive $z$. The red cross is the local minimum point, the blue cross is the saddle point, the black cross is $P$, and the black arrow is the direction of steepest descent from $P$.}
 \end{figure}
 
 \newpage
@@ -205,19 +206,19 @@ Use Python to produce a 3D plot of the surface $z = f(x, y)$. On your plot, indi
 \end{questionbody}
 
 \begin{figure}[h]
-	\centering
-	\begin{tabular}{cc}
-		\includegraphics[scale=0.6]{Q2d-1} &
-		\includegraphics[scale=0.6]{Q2d-2}
-	\end{tabular}
-	\caption{A 3D plot of $z=f(x,y)$ from two angles. $m$ is the local minimum point and $s$ is the saddle point.}
-	\label{fig:3d-plot}
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[scale=0.6]{Q2d-1} &
+        \includegraphics[scale=0.6]{Q2d-2}
+    \end{tabular}
+    \caption{A 3D plot of $z=f(x,y)$ from two angles. $m$ is the local minimum point and $s$ is the saddle point.}%
+    \label{fig:3d-plot}
 \end{figure}
 
 \begin{figure}[h]
-	\centering
-	\inputminted{python}{./code/plot_surface.py}
-	\caption{The code used to generate Figure~\ref{fig:3d-plot}. The code can also be found \href{https://github.com/DoctorDalek1963/uni/blob/1ee2e9f33bdd8e5d2054b4487684af46f686b5bd/first-year/MA144-Methods-of-Mathematical-Modelling-2/Ass 2/code/plot_surface.py}{on GitHub}.}
+    \centering
+    \inputminted{python}{./code/plot_surface.py}
+    \caption{The code used to generate Figure~\ref{fig:3d-plot}. The code can also be found \href{https://github.com/DoctorDalek1963/uni/blob/1ee2e9f33bdd8e5d2054b4487684af46f686b5bd/first-year/MA144-Methods-of-Mathematical-Modelling-2/Ass 2/code/plot_surface.py}{on GitHub}.}
 \end{figure}
 
 % }}}

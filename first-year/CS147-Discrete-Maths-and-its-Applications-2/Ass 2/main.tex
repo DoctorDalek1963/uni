@@ -48,31 +48,31 @@ In the case of odd $n$, we still get two complementary matchings, but they are n
 
 \begin{center}
 \begin{tikzpicture}[
-	every path/.style={thick},
+    every path/.style={thick},
 ]
-	\node (a) at (90:1) {$a$};
-	\node (b) at (162:1) {$b$};
-	\node (c) at (234:1) {$c$};
-	\node (d) at (306:1) {$d$};
-	\node (e) at (18:1) {$e$};
+    \node (a) at (90:1) {$a$};
+    \node (b) at (162:1) {$b$};
+    \node (c) at (234:1) {$c$};
+    \node (d) at (306:1) {$d$};
+    \node (e) at (18:1) {$e$};
 
-	\draw [red] (a) -- (b);
-	\draw (b) -- (c);
-	\draw [red] (c) -- (d);
-	\draw (d) -- (e);
-	\draw (e) -- (a);
+    \draw [red] (a) -- (b);
+    \draw (b) -- (c);
+    \draw [red] (c) -- (d);
+    \draw (d) -- (e);
+    \draw (e) -- (a);
 
-	\node (a) at ([xshift=3cm]90:1) {$a$};
-	\node (b) at ([xshift=3cm]162:1) {$b$};
-	\node (c) at ([xshift=3cm]234:1) {$c$};
-	\node (d) at ([xshift=3cm]306:1) {$d$};
-	\node (e) at ([xshift=3cm]18:1) {$e$};
-                        
-	\draw (a) -- (b);   
-	\draw [red] (b) -- (c);
-	\draw (c) -- (d);
-	\draw (d) -- (e);
-	\draw [red] (e) -- (a);
+    \node (a) at ([xshift=3cm]90:1) {$a$};
+    \node (b) at ([xshift=3cm]162:1) {$b$};
+    \node (c) at ([xshift=3cm]234:1) {$c$};
+    \node (d) at ([xshift=3cm]306:1) {$d$};
+    \node (e) at ([xshift=3cm]18:1) {$e$};
+
+    \draw (a) -- (b);
+    \draw [red] (b) -- (c);
+    \draw (c) -- (d);
+    \draw (d) -- (e);
+    \draw [red] (e) -- (a);
 \end{tikzpicture}
 \end{center}
 
@@ -103,14 +103,14 @@ There are at most $2\ell$ edges in $M^*$ which are matched by $M$. But since $2\
 \begin{questionbody}
 Consider a bipartite graph $G = (L \cup R, E)$ where each edge $e \in E$ has one endpoint in $L$ and the other endpoint in $R$. For each set of nodes $X \subseteq L$, let $N_G(X)$ = $\l\{v \in R \colon \text{there is an edge } (u, v) \in E \text{ for some } u \in X \r\}$ denote the set of neighbours of $X$ in $G$.
 
-The graph $G$ has the property that $|N_G(A)| \ge \f12 |A|/2$ for all $A \subseteq L$. Is the following statement true or false? Justify your answer. 
+The graph $G$ has the property that $|N_G(A)| \ge \f12 |A|/2$ for all $A \subseteq L$. Is the following statement true or false? Justify your answer.
 
 There is a subset of edges $H \subseteq E$ in $G$ which satisfy the three properties described below:
 \vspace*{-1em}
 \begin{itemize}
-	\item[--] $|H| = |L|$.
-	\item[--] Every node $u \in L$ is incident upon exactly one edge from $H$.
-	\item[--] Every node $v \in R$ is incident upon at most two edges from $H$.
+    \item[--] $|H| = |L|$.
+    \item[--] Every node $u \in L$ is incident upon exactly one edge from $H$.
+    \item[--] Every node $v \in R$ is incident upon at most two edges from $H$.
 \end{itemize}
 \end{questionbody}
 

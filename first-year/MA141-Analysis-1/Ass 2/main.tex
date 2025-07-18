@@ -20,7 +20,7 @@
 \question{7}
 
 \begin{questionbody}
-Let $(a_n)$ be a sequence of integers ($a_n \in \Z$ for every $n$) and assume that $a_n \to L$ as $n \to \infty$, for some $L \in \R$. Show that $L \in \Z$ and deduce that the sequence $a_n$ must eventually be constant: i.e. that $a_n = L$ for all $n \ge N$, for some $N \in \N$.
+Let $(a_n)$ be a sequence of integers ($a_n \in \Z$ for every $n$) and assume that $a_n \to L$ as $n \to \infty$, for some $L \in \R$. Show that $L \in \Z$ and deduce that the sequence $a_n$ must eventually be constant: i.e.\ that $a_n = L$ for all $n \ge N$, for some $N \in \N$.
 \end{questionbody}
 
 Since $a_n \to L$, $\forall \varepsilon > 0,\ \exists N \in \mathbb N$ such that $|a_n - L| < \varepsilon$. We can rewrite this as $L - \varepsilon < a_n < L + \varepsilon$. Since $\varepsilon$ can be arbitrarily small, we can conclude that $L$ must be an integer.
@@ -59,8 +59,8 @@ Therefore $\dfrac{2n^2 + 3n}{n^3 + n^2} \to \dfrac01 = 0$ as $n \to \infty$.
 
 Expand the denominator and cancel the $n^2$.
 \begin{align*}
-	\frac{3n^2 + n\cos n}{2n (n-3)} &= \frac{3n^2 + n\cos n}{2n^2 - 6n}\\[1ex]
-									&= \frac{3 + \frac1n \cos n}{2 - \frac6n}
+    \frac{3n^2 + n\cos n}{2n (n-3)} &= \frac{3n^2 + n\cos n}{2n^2 - 6n} \\[1ex]
+                                    &= \frac{3 + \frac1n \cos n}{2 - \frac6n}
 \end{align*}
 
 The denominator will converge to $2 - \ell_1$, where $\frac6n \to \ell_1$. It should be fairly trivial that $\ell_1 = 0$, so the denominator converges to $2$.
@@ -87,15 +87,15 @@ Write down $a_1$, $a_2$, and $a_3$.
 \end{questionbody}
 %
 \begin{align*}
-	a_1 &= \sqrt3\\[1ex]
-	a_2 &= \sqrt{2 + \sqrt3}\\[1ex]
-	a_2 &= \sqrt{2 + \sqrt{2 + \sqrt3}}
+    a_1 &= \sqrt3 \\[1ex]
+    a_2 &= \sqrt{2 + \sqrt3} \\[1ex]
+    a_2 &= \sqrt{2 + \sqrt{2 + \sqrt3}}
 \end{align*}
 
 \subsection{~} % 12.ii
 
 \begin{questionbody}
-Use induction to show that $1 \le a_n \le 2$ for all $n \in \N$. 
+Use induction to show that $1 \le a_n \le 2$ for all $n \in \N$.
 \end{questionbody}
 
 For $n=0$, we get $a_0 = 1$, which fits the inequality, so the statement is true for $n=0$.
@@ -125,11 +125,11 @@ a_{n+1} - 2 = \f{a_n - 2}{2 + \sqrt{2 + a_n}},
 
 We can manipulate the target equation to show something which we know to be true, and then follow all the steps in reverse to show that the target equation must be true.
 \begin{align*}
-	a_{n+1} - 2 &= \frac{a_n - 2}{2 + \sqrt{2 + a_n}}\\
-	\left( 2 + \sqrt{2 + a_n} \right) (a_{n+1} - 2) &= a_n - 2\\
-	\left( 2 + \sqrt{2 + a_n} \right) \left( \sqrt{2 + a_n} - 2 \right) &= a_n - 2\\
-	2 + a_n - 4 &= a_n - 2\\
-	a_n - 2 &= a_n - 2
+    a_{n+1} - 2 &= \frac{a_n - 2}{2 + \sqrt{2 + a_n}} \\
+    \left( 2 + \sqrt{2 + a_n} \right) (a_{n+1} - 2) &= a_n - 2 \\
+    \left( 2 + \sqrt{2 + a_n} \right) \left( \sqrt{2 + a_n} - 2 \right) &= a_n - 2 \\
+    2 + a_n - 4 &= a_n - 2 \\
+    a_n - 2 &= a_n - 2
 \end{align*}
 
 We only have to take care that $2 + \sqrt{2 + a_n} \ne 0$, but square roots are always $\ge 0$, so it's clear that $2 + \sqrt{2 + a_n} \ge 2$, so this chain of reasoning works fine both ways.
@@ -161,13 +161,13 @@ $a_n = n$ and $b_n = n^2$. In this case, both $a_n \to \infty$ and $b_n \to \inf
 \subsection{$a_n - b_n$\normalfont\ does not converge}
 
 Let $(a_n)$ be any sequence where $a_n \to \infty$, then let $b_n = \begin{cases}
-	a_n + c &\text{when } n \text{ is even}\\[1ex]
-	a_n - c &\text{when } n \text{ is odd}
+    a_n + c &\text{when } n \text{ is even} \\[1ex]
+    a_n - c &\text{when } n \text{ is odd}
 \end{cases}$ where $c \in \mathbb R$ is some constant and $c \ne 0$.
 
 Then $a_n \to \infty$ and $b_n \to \infty$, and $a_n - b_n = \begin{cases}
-	c  &\text{when } n \text{ is even}\\[1ex]
-	-c &\text{when } n \text{ is odd}
+    c  &\text{when } n \text{ is even} \\[1ex]
+    -c &\text{when } n \text{ is odd}
 \end{cases}$
 
 Since $c \ne 0$, the sequence $a_n - b_n$ will oscillate between $c$ and $-c$ forever and never converge.

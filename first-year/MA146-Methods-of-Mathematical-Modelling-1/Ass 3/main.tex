@@ -8,8 +8,6 @@
 \usepackage{graphicx}
 \graphicspath{ {./imgs/} }
 
-% \renewcommand{\thesubsection}{Q\thesection~(\alph{subsection})}
-
 \fancyhead[L]{MA146 Assignment 3}
 \title{MA146 Methods of Mathematical Modelling 1, Assignment 3}
 \colorlet{questionbodycolor}{green!50!teal!50}
@@ -34,35 +32,35 @@ Perform a dimensional analysis using the power of $\mu$ to express the solution 
 Hint: the viscosity has dimension $[\mu] = M L^{-1} T^{-1}$, and the drag (force) $[d] = M L T^{-2}$
 \end{questionbody}
 
-Let $a, b, c, d \in \mathbb Z$. Then $$[d] = \left[ r^a v^b \rho^c \mu^d \right] = L^a L^b T^{-2b} M^c L^{-3c} M^d L^{-d} T^{-d} = MLT^{-2}$$
+Let $a, b, c, d \in \mathbb Z$. Then \[ [d] = \left[ r^a v^b \rho^c \mu^d \right] = L^a L^b T^{-2b} M^c L^{-3c} M^d L^{-d} T^{-d} = MLT^{-2} \]
 
 Then we get the simultaneous equations \begin{align*}
-	c + d &= 1\\
-	a + b - 3c - d &= 1\\
-	-2b - d &= -2
+    c + d &= 1 \\
+    a + b - 3c - d &= 1 \\
+    -2b - d &= -2
 \end{align*}
 
 We don't have enough information to solve the system from here, but we can simplify to get \begin{align*}
-	a &= 3 - \frac32 d\\
-	b &= 1 - \frac d2\\
-	c &= 1 - d
+    a &= 3 - \frac32 d \\
+    b &= 1 - \frac d2 \\
+    c &= 1 - d
 \end{align*}
 
 Since they're all integers, we know that $d$ is even, so we can just try even values of $d$.
 
 $d=2$ gives \begin{align*}
-	a &= 0\\
-	b &= 0\\
-	c &= -1\\
-	d &= 2\\
+    a &= 0 \\
+    b &= 0 \\
+    c &= -1 \\
+    d &= 2
 \end{align*}
 But we want the radius and velocity to be part of the equation, so we don't want $a=b=0$.
 
 $d=4$ gives \begin{align*}
-	a &= -3\\
-	b &= -1\\
-	c &= -3\\
-	d &= 4\\
+    a &= -3 \\
+    b &= -1 \\
+    c &= -3 \\
+    d &= 4
 \end{align*}
 
 Therefore $[d] = \left[ r^{-3} v^{-1} \rho^{-3} \mu^4 \right]$.
@@ -81,7 +79,7 @@ To model the freezing of a pond at very cold temperatures, assume that the thick
 Denoting the thickness of the ice by $x(t)$ as a function of time $t$, formulate the problem as a differential equation for $x$ using a proportionality constant denoted by $\alpha$.
 \end{questionbody}
 
-$$\dot x(t) = \frac{\alpha}{x(t)}$$
+\[ \dot x(t) = \frac{\alpha}{x(t)} \]
 
 \subsection{~} % 2.b
 
@@ -92,28 +90,28 @@ If the ice initially (at midnight) is 2mm thick and at 4am it is 3mm thick, how 
 Let midnight be time $t = 0$, $t$ be in hours and $x(t)$ be in millimetres. Then $x(0) = 2$ and $x(4) = 3$.
 
 \begin{align*}
-	\frac{\mathrm d x}{\mathrm d t} &= \frac{\alpha}{x}\\
-	\int x \mathrm d x              &= \int \alpha \mathrm d t\\
-	\frac{x^2}{2}                   &= \alpha t + C\\
-	\therefore x(t)                 &= \sqrt{2\alpha t + C}
+    \frac{\mathrm d x}{\mathrm d t} &= \frac{\alpha}{x} \\
+    \int x \mathrm d x              &= \int \alpha \mathrm d t \\
+    \frac{x^2}{2}                   &= \alpha t + C \\
+    \therefore x(t)                 &= \sqrt{2\alpha t + C}
 \end{align*}
 
 Then we can use the initial values.
 
 \begin{align*}
-	x(0) &= \sqrt{2 \alpha \times 0 + C}\\
-		 &= \sqrt C\\
-		 &= 2\\
-	\implies C &= 4
+    x(0) &= \sqrt{2 \alpha \times 0 + C} \\
+         &= \sqrt C \\
+         &= 2 \\
+    \implies C &= 4
 \end{align*}
 
 \begin{align*}
-	x(2) &= \sqrt{2 \alpha \times 4 + 4}\\
-		 &= 3\\
-	\implies 8 \alpha &= 3^2 - 4\\
-					  &= 5\\
-	\implies \alpha &= \frac58\\
-	\therefore x(t) &= \sqrt{\frac54 t + 4}
+    x(2) &= \sqrt{2 \alpha \times 4 + 4} \\
+         &= 3 \\
+    \implies 8 \alpha &= 3^2 - 4 \\
+                      &= 5 \\
+    \implies \alpha &= \frac58 \\
+    \therefore x(t) &= \sqrt{\frac54 t + 4}
 \end{align*}
 
 Now we can just plug in 9:36 am, which is $9.6$ hours after midnight, and find that $x(9.6) = \sqrt{12 + 4} = 4$. Therefore the ice will be 4 mm thick at 9:36 am.
@@ -121,23 +119,23 @@ Now we can just plug in 9:36 am, which is $9.6$ hours after midnight, and find t
 \subsection{~} % 2.c
 
 \begin{questionbody}
-Assume that the proportionality factor $\alpha$ is replaced by a time dependent function of the form $\alpha(1 + cos(\omega t))$, which aims for modelling temperature changes during the day. Here, $t$ is time measured in hours (denoted $h$) and $\omega = \f{2\pi}{24h}$.
+Assume that the proportionality factor $\alpha$ is replaced by a time dependent function of the form $\alpha(1 + \cos(\omega t))$, which aims for modelling temperature changes during the day. Here, $t$ is time measured in hours (denoted $h$) and $\omega = \f{2\pi}{24h}$.
 
 Assuming also an initial condition of the form $x(t_0) = x_0$, find the ice thickness as a function of time. (You may keep the parameter $\alpha$, no need to replace it with the value from part \textbf{(b)}.)
 \end{questionbody}
 
-Now we have the differential equation $$\dot x(t) = \frac{\alpha \left(1 + \cos\left( \frac{\pi}{12} t \right)\right)}{x(t)}$$
+Now we have the differential equation \[ \dot x(t) = \frac{\alpha \left(1 + \cos\left( \frac{\pi}{12} t \right)\right)}{x(t)} \]
 
 We can solve this like before, \begin{align*}
-	\frac{\mathrm d x}{\mathrm d t} &= \frac{\alpha \left(1 + \cos\left( \frac{\pi}{12} t \right)\right)}{x}\\[1ex]
-	\int x \mathrm d x &= \int \alpha \left( 1 + \cos\left(\frac{\pi}{12} t\right) \right) \mathrm d t\\[1ex]
-	\frac{x^2}{2} &= \alpha t + \alpha \frac{12}{\pi} \sin \left(\frac{\pi}{12} t\right) + C\\[1ex]
-	\therefore x(t) &= \sqrt{2\alpha t + \frac{24\alpha}{\pi} \sin \left(\frac{\pi}{12} t\right) + C}
+    \frac{\mathrm d x}{\mathrm d t} &= \frac{\alpha \left(1 + \cos\left( \frac{\pi}{12} t \right)\right)}{x} \\[1ex]
+    \int x \mathrm d x &= \int \alpha \left( 1 + \cos\left(\frac{\pi}{12} t\right) \right) \mathrm d t \\[1ex]
+    \frac{x^2}{2} &= \alpha t + \alpha \frac{12}{\pi} \sin \left(\frac{\pi}{12} t\right) + C \\[1ex]
+    \therefore x(t) &= \sqrt{2\alpha t + \frac{24\alpha}{\pi} \sin \left(\frac{\pi}{12} t\right) + C}
 \end{align*}
 
-Let $t_0 = 0$. Then $x(t_0) = x(0) = \sqrt{0 + \frac{24 \alpha}{\pi} \sin 0 + C} = \sqrt{C} = x_0$, therefore $C = (x_0)^2$.
+Let $t_0 = 0$. Then $x(t_0) = x(0) = \sqrt{0 + \frac{24 \alpha}{\pi} \sin 0 + C} = \sqrt{C} = x_0$, therefore $C = {(x_0)}^2$.
 
-Therefore, $$x(t) = \sqrt{2\alpha t + \frac{24\alpha}{\pi} \sin \left(\frac{\pi}{12} t\right) + (x_0)^2}$$
+Therefore, \[ x(t) = \sqrt{2\alpha t + \frac{24\alpha}{\pi} \sin \left(\frac{\pi}{12} t\right) + {(x_0)}^2} \]
 % }}}
 
 % {{{ Q3
@@ -167,7 +165,7 @@ Provide your code, the algebraic expression for the solution produced by the sof
 \subsection{~} % 3.b
 
 \begin{questionbody}
-Implement now a solver for \eqref{eqn:Q3-vibrations-ode} with \[
+Implement now a solver for~\eqref{eqn:Q3-vibrations-ode} with \[
 f(t) = a \cos(\alpha t)
 \] and initial conditions \[
 x(0) = 0, x'(0) = 0.
@@ -184,9 +182,9 @@ You might observe some odd behaviour in the graph but which (hopefully) are visu
 
 My solution is $n_\text{min} = 9$.
 
-\includegraphics[scale=0.45]{Q3-b}
-\includegraphics[scale=0.8]{n9}
-\includegraphics[scale=0.8]{n8}
+\includegraphics[width=\linewidth]{Q3-b}
+\includegraphics[width=\linewidth]{n9}
+\includegraphics[width=\linewidth]{n8}
 % }}}
 
 % {{{ Q4
@@ -200,27 +198,35 @@ Find a particular integral for the second order differential equation \[
 
 Since the right hand side is $f \cos(\theta t)$, we will use $y(t) = A \cos(\theta t) + B \sin(\theta t)$ as our particular integral.
 \begin{align*}
-	y(t)   &= A \cos(\theta t) + B \sin(\theta t)\\
-	y'(t)  &= -\theta A \sin(\theta t) + \theta B \cos(\theta t)\\
-	y''(t) &= -\theta^2 A \cos(\theta t) - \theta^2 B \sin(\theta t)
+    y(t)   &= A \cos(\theta t) + B \sin(\theta t) \\
+    y'(t)  &= -\theta A \sin(\theta t) + \theta B \cos(\theta t) \\
+    y''(t) &= -\theta^2 A \cos(\theta t) - \theta^2 B \sin(\theta t)
 \end{align*}
 
-Plugging this into the ODE, we get $$-\theta^2 A \cos(\theta t) - \theta^2 B \sin(\theta t) -\eta\theta A \sin(\theta t) + \eta\theta B \cos(\theta t) + bA \cos(\theta t) + bB \sin(\theta t) = f \cos(\theta t)$$
+Plugging this into the ODE, we get \[
+-\theta^2 A \cos(\theta t) - \theta^2 B \sin(\theta t) -\eta\theta A \sin(\theta t) + \eta\theta B \cos(\theta t) + bA \cos(\theta t) + bB \sin(\theta t) = f \cos(\theta t)
+\]
 
 We can compare coefficients of $\sin$ and $\cos$ and conclude that \begin{align*}
-	-\theta^2 B - \eta\theta A + bB &= 0\\
-	-\theta^2 A - \eta\theta B + bA &= f
+    -\theta^2 B - \eta\theta A + bB &= 0 \\
+    -\theta^2 A - \eta\theta B + bA &= f
 \end{align*}
 
-The first equation implies $B(b - \theta^2) = \eta\theta A$. We can use this to get $B$ in terms of $A$, so $B = \dfrac{\eta\theta A}{b - \theta^2}$. Then we can plug that into the second equation, which gives $$A \left(-\theta^2 + \frac{\eta^2 \theta^2}{b - \theta^2} + b\right) = f$$
+The first equation implies $B(b - \theta^2) = \eta\theta A$. We can use this to get $B$ in terms of $A$, so $B = \dfrac{\eta\theta A}{b - \theta^2}$. Then we can plug that into the second equation, which gives \[
+A \left(-\theta^2 + \frac{\eta^2 \theta^2}{b - \theta^2} + b\right) = f
+\]
 
-Therefore $$A = \frac{f (b - \theta^2)}{(b - \theta^2)^2 + \eta^2 \theta^2}$$
+Therefore \[ A = \frac{f (b - \theta^2)}{{(b - \theta^2)}^2 + \eta^2 \theta^2} \]
 
-And therefore $$B = \frac{\eta \theta f}{(b - \theta^2)^2 + \eta^2 \theta^2}$$
+And therefore \[ B = \frac{\eta \theta f}{{(b - \theta^2)}^2 + \eta^2 \theta^2} \]
 
-Therefore the particular integral is $$\frac{f (b - \theta^2)}{(b - \theta^2)^2 + \eta^2 \theta^2} \cos(\theta t) + \frac{\eta \theta f}{(b - \theta^2)^2 + \eta^2 \theta^2} \sin (\theta t)$$
+Therefore the particular integral is \[
+\frac{f (b - \theta^2)}{{(b - \theta^2)}^2 + \eta^2 \theta^2} \cos(\theta t) + \frac{\eta \theta f}{{(b - \theta^2)}^2 + \eta^2 \theta^2} \sin (\theta t)
+\]
 
-Alternatively written as $$\frac{f}{(b - \theta^2)^2 + \eta^2 \theta^2} \left( (b - \theta^2) \cos(\theta t) + \eta \theta \sin(\theta t) \right)$$
+Alternatively written as \[
+\frac{f}{{(b - \theta^2)}^2 + \eta^2 \theta^2} \left( (b - \theta^2) \cos(\theta t) + \eta \theta \sin(\theta t) \right)
+\]
 % }}}
 
 \end{document}

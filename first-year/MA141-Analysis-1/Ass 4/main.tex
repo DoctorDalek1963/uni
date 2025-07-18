@@ -32,10 +32,11 @@ We can use this process of generating a sequence for any real number to fill in 
 \question{7}
 
 \begin{questionbody}
-Let $f \colon (-\infty, 0] \to \R$ and $g \colon [0, \infty) \to \R$ both be continuous on their entire domain. Show that the function \[
+Let $f \colon (-\infty, 0] \to \R$ and $g \colon [0, \infty) \to \R$ both be continuous on their entire domain. % chktex 9
+Show that the function \[
 h(x) = \begin{cases}
-	f(x) & x \le 0\\
-	g(x) & x > 0
+    f(x) & x \le 0 \\
+    g(x) & x > 0
 \end{cases} \]
 is continuous at $x = 0$ (and hence on $\R$) if and only if $f(0) = g(0)$.
 \end{questionbody}
@@ -49,7 +50,7 @@ I just don't know what to do with this question, sorry.
 \newquestion{11}
 
 \begin{questionbody}
-Show that any continuous function $f \colon [a, b] \to [a, b]$ has a fixed point, i.e. there exists an $x^* \in [a, b]$ such that $f(x^*) = x^*$.
+Show that any continuous function $f \colon [a, b] \to [a, b]$ has a fixed point, i.e.\ there exists an $x^* \in [a, b]$ such that $f(x^*) = x^*$.
 
 Hint: consider the function $g(x) = f(x) - x$ and use the Intermediate Value Theorem.
 
@@ -71,13 +72,15 @@ Now let $f : (a, b) \to (a, b)$. The example $f(x) = x^2$ would have fixed point
 \question{19}
 
 \begin{questionbody}
-Suppose that $f \colon [0, \infty) \to \R$ is continuous and that $f(x) \to L$ as $x \to \infty$. Show that $f$ is bounded above and below on $[0, \infty)$. Show that $f$ need not attain both its upper and lower bound.
+Suppose that $f \colon [0, \infty) \to \R$ is continuous and that $f(x) \to L$ as $x \to \infty$. Show that $f$ is bounded above and below on $[0, \infty)$. % chktex 9
+Show that $f$ need not attain both its upper and lower bound.
 \end{questionbody}
 
 We know that any convergent sequence is bounded above and below, so we can just define the sequence $(a_n)$ as $a_n = f(n)$. Then $a_n \to L$ as $n \to \infty$ and since $(a_n)$ is bounded above and below, $f$ must also be bounded above and below.
 % FIXME: This proof is definitely wrong
 
-The function $f(x) = 1 - \df{1}{1+x}$ is defined on $[0, \infty)$ and its lower bound is $0$, which is achieves at $f(0) = 0$, but its upper bound is $1$, which it never reaches. $f(x) \to 1$ as $x \to \infty$, but $f$ never actually attains its upper bound.
+The function $f(x) = 1 - \df{1}{1+x}$ is defined on $[0, \infty)$ % chktex 9
+and its lower bound is $0$, which is achieves at $f(0) = 0$, but its upper bound is $1$, which it never reaches. $f(x) \to 1$ as $x \to \infty$, but $f$ never actually attains its upper bound.
 % }}}
 
-\end{document}
+\end{document} % chktex 17

@@ -10,7 +10,7 @@
 
 \fancyhead[L]{CS147 Assignment 1}
 \title{CS147 Discrete Maths and its Applications 2, Assignment 1}
-\author{Dyson Dyson (ID: 5503449)}
+\author{Dyson Dyson (ID: 5503449)} % chktex 13
 \colorlet{questionbodycolor}{orange!50}
 
 \begin{document}
@@ -68,7 +68,7 @@ This implies that $\exists\, c > 0, N > 0$ such that for all $n > N$, \begin{ali
 0 &\le \log(n^{cn}) - \log(n!)\\
 0 &\le \log\l(\f{n^{cn}}{n!}\r)
 \end{align*}
-We know that $n^n > n!$ for large $n$, so we see that $\df{(n^n)^c}{n!} > 1$, therefore the logarithm is greater than $0$, so $\log(n!)$ is indeed $\cal O(n \log n)$.
+We know that $n^n > n! $ for large $n$, so we see that $\df{{(n^n)}^c}{n!} > 1$, therefore the logarithm is greater than $0$, so $\log(n!)$ is indeed $\cal O(n \log n)$.
 % }}}
 
 % {{{ Q2
@@ -129,7 +129,7 @@ Suppose that $X$ and $Y$ are two discrete random variables uniformly distributed
 
 Let $X$ and $Y$ be discrete random variables distributed uniformly over $\{1,\ \ldots,\ n\}$. Either $X = Y$, $X > Y$, or $X < Y$, and $\bb P(X > Y \lor X < Y) = 1 - \bb P(X = Y)$. These are symmetric so $\bb P(X < Y) = \bb P(X > Y) = \f12 - \f12 \bb P(X = Y)$.
 
-So $\bb P(X \le Y) = \bb P(X < Y) + \bb P(X = Y) = \f12  + \f12 \bb P(X = Y)$ and $\bb P(X = Y) = \f1n$. Therefore $$\bb P(X \le Y) = \f12 + \f1{2n} = \f{n + 1}{2n}$$
+So $\bb P(X \le Y) = \bb P(X < Y) + \bb P(X = Y) = \f12  + \f12 \bb P(X = Y)$ and $\bb P(X = Y) = \f1n$. Therefore \[ \bb P(X \le Y) = \f12 + \f1{2n} = \f{n + 1}{2n} \]
 % }}}
 
 % {{{ Q5

@@ -33,21 +33,25 @@ Consider the polar curve with equation $r = f(\theta)$, where $\theta \in [a, b]
 
 \begin{questionbody}
 Using the arc-length formula for parametric curves (in the lecture notes), show that the arc length of the polar curve is given by the integral \[
-\intlim a b {\sqrt{\l( \dd f \theta \r)^2 + f^2}} \theta .
+\intlim a b {\sqrt{{\l( \dd f \theta \r)}^2 + f^2}} \theta .
 \]
 \end{questionbody}
 
-The polar curve with equation $r = f(\theta)$ can be parametrised as $\ul r (\theta) = (f(\theta) \cos \theta, f(\theta) \sin \theta)$. Then $$\dd{\ul r}\theta = \l(\dd f\theta (\theta) \cos \theta - f(\theta) \sin \theta, \dd f\theta (\theta) \sin \theta + f(\theta) \cos \theta\r)$$
+The polar curve with equation $r = f(\theta)$ can be parametrised as $\ul r (\theta) = (f(\theta) \cos \theta, f(\theta) \sin \theta)$. Then \[
+\dd{\ul r}\theta = \l(\dd f\theta (\theta) \cos \theta - f(\theta) \sin \theta, \dd f\theta (\theta) \sin \theta + f(\theta) \cos \theta\r)
+\]
 Therefore \begin{align*}
-\| \ul r\,'(\theta) \| &= \sqrt{\l( f'(\theta) \cos \theta - f(\theta) \sin \theta \r)^2 + \l( f'(\theta) \sin \theta + f(\theta) \cos \theta \r)^2}\\[1ex]
-&= \sqrt{f'(\theta)^2 \cos^2 \theta - 2 f(\theta) f'(\theta) \cos\theta \sin\theta + f(\theta)^2 \sin^2 \theta}\\[1ex]
-&\phantom{=} \overline{+ f'(\theta)^2 \sin^2 + 2 f(\theta) f'(\theta) \cos\theta \sin\theta + f(\theta)^2 \cos^2 \theta}\\[1ex]
-&= \sqrt{f'(\theta)^2 (\cos^2 \theta + \sin^2 \theta) + f(\theta)^2 (\cos^2 \theta + \sin^2 \theta)}\\[1ex]
-&= \sqrt{f'(\theta)^2 + f(\theta)^2}\\[1ex]
-&= \sqrt{\l(\dd f\theta\r)^2 + f^2}\\[1ex]
+\| \ul r\,'(\theta) \| &= \sqrt{{\l( f'(\theta) \cos \theta - f(\theta) \sin \theta \r)}^2 + {\l( f'(\theta) \sin \theta + f(\theta) \cos \theta \r)}^2} \\[1ex]
+&= \sqrt{{f'(\theta)}^2 \cos^2 \theta - 2 f(\theta) f'(\theta) \cos\theta \sin\theta + {f(\theta)}^2 \sin^2 \theta} \\[1ex]
+&\phantom{=} \overline{+ {f'(\theta)}^2 \sin^2 + 2 f(\theta) f'(\theta) \cos\theta \sin\theta + {f(\theta)}^2 \cos^2 \theta} \\[1ex]
+&= \sqrt{{f'(\theta)}^2 (\cos^2 \theta + \sin^2 \theta) + {f(\theta)}^2 (\cos^2 \theta + \sin^2 \theta)} \\[1ex]
+&= \sqrt{{f'(\theta)}^2 + {f(\theta)}^2} \\[1ex]
+&= \sqrt{{\l(\dd f\theta\r)}^2 + f^2}
 \end{align*}
 
-Therefore the arc length of the curve is $$s = \intlim ab {\sqrt{\l(\dd f\theta\r)^2 + f^2}}\theta$$ as required.
+Therefore the arc length of the curve is \[
+s = \intlim ab {\sqrt{{\l(\dd f\theta\r)}^2 + f^2}}\theta
+\] as required.
 
 \subsection{~} % 1.b
 
@@ -56,13 +60,13 @@ Sketch the closed curve with polar equation $r = 1 + \cos \theta$. Find its arc 
 \end{questionbody}
 
 \begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.3]{Q1b}
-	\caption{A sketch of $r = 1 + \cos\theta$}
+    \centering
+    \includegraphics[scale=0.3]{Q1b}
+    \caption{A sketch of $r = 1 + \cos\theta$}
 \end{figure}
 
 $\ds\dd r\theta = -\sin\theta$ so the arc length is \begin{align*}
-s &= \intlim 0{2\pi} {\sqrt{\sin^2 \theta + (1 + \cos\theta)^2}} \theta\\[1ex]
+s &= \intlim 0{2\pi} {\sqrt{\sin^2 \theta + {(1 + \cos\theta)}^2}} \theta\\[1ex]
 &= \intlim 0{2\pi} {\sqrt{\sin^2 \theta + 1 + 2\cos\theta + \cos^2 \theta}} \theta\\[1ex]
 &= \intlim 0{2\pi} {\sqrt{2 + 2\cos\theta}} \theta
 \end{align*}
@@ -106,9 +110,9 @@ Sketch the curve described by your parametrisation (include an arrow to indicate
 \end{questionbody}
 
 \begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.3]{Q2b}
-	\caption{A sketch of $\ul r(t) = \l( \f13 \sinh t, \f12 \cosh t \r)$}
+    \centering
+    \includegraphics[scale=0.3]{Q2b}
+    \caption{A sketch of $\ul r(t) = \l( \f13 \sinh t, \f12 \cosh t \r)$}
 \end{figure}
 
 There is a turning point at $\l(0, \f12\r)$ and asymptotes are $y = \f32 x$ and $y = -\f32 x$.
@@ -124,9 +128,13 @@ To reparametrise with $u$ such that the bounds on the parametrisation are $u \in
 
 Let $u = \df{1 + \tanh t}2$. Then $u = \f12$ when $t = 0$, $u \to 1$ as $t \to \infty$, and $u \to 0$ as $t \to \infty$, as required. We rearrange to get $t = \artanh(2u - 1)$ and plug this into the old parametrisation.
 
-Therefore $\cal C$ can also be parametrised as $$\l( \f13 \sinh\l(\artanh(2u - 1)\r), \f12 \cosh\l(\artanh(2u - 1)\r) \r) \quad u \in (0, 1)$$
+Therefore $\cal C$ can also be parametrised as \[
+\l( \f13 \sinh\l(\artanh(2u - 1)\r), \f12 \cosh\l(\artanh(2u - 1)\r) \r) \quad u \in (0, 1)
+\]
 
-We can also remove the hyperbolic functions and write it as $$\l( \f{2u-1}{6\sqrt{u - u^2}}, \f1{4\sqrt{u - u^2}} \r) \quad u \in (0, 1)$$
+We can also remove the hyperbolic functions and write it as \[
+\l( \f{2u-1}{6\sqrt{u - u^2}}, \f1{4\sqrt{u - u^2}} \r) \quad u \in (0, 1)
+\]
 % }}}
 
 % {{{ Q3
@@ -148,19 +156,19 @@ Use Python to plot the curves corresponding to $r = \f12, \f14, \f23$, and $\f1{
 \end{questionbody}
 
 \begin{figure}[hbtp]
-	\centering
-	\begin{tabular}{cc}
-		\includegraphics[scale=0.4]{Q3a-1} & \includegraphics[scale=0.4]{Q3a-2}\\
-		\includegraphics[scale=0.4]{Q3a-3} & \includegraphics[scale=0.4]{Q3a-4}
-	\end{tabular}
-	\caption{Plots of hypocycloids for various values of $r$}
-	\label{fig:hypocycloid-plots}
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[scale=0.4]{Q3a-1} & \includegraphics[scale=0.4]{Q3a-2}\\
+        \includegraphics[scale=0.4]{Q3a-3} & \includegraphics[scale=0.4]{Q3a-4}
+    \end{tabular}
+    \caption{Plots of hypocycloids for various values of $r$}%
+    \label{fig:hypocycloid-plots}
 \end{figure}
 
 \begin{figure}[hbtp]
-	\centering
-	\inputminted{python}{./code/generate_plots.py}
-	\caption{The code used to generate the plots in Figure~\ref{fig:hypocycloid-plots}. The code can also be found \href{https://github.com/DoctorDalek1963/uni/blob/fe244f6880c7df0d801d426ca7ef9149b585ec2f/first-year/MA144-Methods-of-Mathematical-Modelling-2/Ass 1/code/generate_plots.py}{on GitHub}}
+    \centering
+    \inputminted{python}{./code/generate_plots.py}
+    \caption{The code used to generate the plots in Figure~\ref{fig:hypocycloid-plots}. The code can also be found \href{https://github.com/DoctorDalek1963/uni/blob/fe244f6880c7df0d801d426ca7ef9149b585ec2f/first-year/MA144-Methods-of-Mathematical-Modelling-2/Ass 1/code/generate_plots.py}{on GitHub}}
 \end{figure}
 
 \subsection{~} % 3.b

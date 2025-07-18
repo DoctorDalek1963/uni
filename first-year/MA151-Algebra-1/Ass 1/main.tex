@@ -63,10 +63,10 @@ Let $S$ be a set and $\star$ a binary operation on $S$ which is associative. Sta
 
 Associativity means that $(a \star b) \star c = a \star (b \star c)$. For the sake of explanation, I shall call the middle term the \textit{pivot term}. So in the case of the example just given, the pivot term was $b$. In the case of $(f \circ (g \circ h)) \circ t = f \circ ((g \circ h) \circ t)$, the pivot term is $(g \circ h)$.
 \begin{align*}
-	((a \star b) \star (c \star d)) \star e &= (a \star b) \star ((c \star d) \star e) &&\text{pivoting around } (c \star d) \\[1ex]
-											&= a \star (b \star ((c \star d) \star e)) &&\text{pivoting around } b \\[1ex]
-											&= a \star ((b \star (c \star d)) \star e) &&\text{pivoting around } (c \star d) \\[1ex]
-											&= a \star (((b \star c) \star d) \star e) &&\text{pivoting around } c
+    ((a \star b) \star (c \star d)) \star e &= (a \star b) \star ((c \star d) \star e) &&\text{pivoting around } (c \star d) \\[1ex]
+                                            &= a \star (b \star ((c \star d) \star e)) &&\text{pivoting around } b \\[1ex]
+                                            &= a \star ((b \star (c \star d)) \star e) &&\text{pivoting around } (c \star d) \\[1ex]
+                                            &= a \star (((b \star c) \star d) \star e) &&\text{pivoting around } c
 \end{align*}
 % }}}
 
@@ -99,10 +99,10 @@ $\left( \left\{ 3^n : n \in \mathbb Z \right\}, \times \right)$
 \end{questionbody}
 
 \begin{enumerate}
-	\item A power of 3 multiplied by a power of 3 is always another power of 3, so the group is closed.
-	\item Multiplication of integers is associative.
-	\item The identity element is $3^0 = 1$.
-	\item For some element $3^n$, its inverse is $3^{-n}$, which is also in the set, so inverses exist.
+    \item A power of 3 multiplied by a power of 3 is always another power of 3, so the group is closed.
+    \item Multiplication of integers is associative.
+    \item The identity element is $3^0 = 1$.
+    \item For some element $3^n$, its inverse is $3^{-n}$, which is also in the set, so inverses exist.
 \end{enumerate}
 
 Therefore this is a group.
@@ -110,14 +110,14 @@ Therefore this is a group.
 \subsection{~} % 4.ii
 
 \begin{questionbody}
-$\left( \left\{ \begin{pmatrix}a & b\\ 0 & c\end{pmatrix} : a, b, c \in \mathbb R \text{ and } ac \ne 0 \right\}, \times \right)$
+$\l( \l\{ \begin{pmatrix}a & b \\ 0 & c\end{pmatrix} : a, b, c \in \R \text{ and } ac \ne 0 \r\}, \times \r)$
 \end{questionbody}
 
 \begin{enumerate}
-	\item Some matrix $\begin{pmatrix}a & b\\ 0 & c\end{pmatrix}$ multiplied by another matrix $\begin{pmatrix}x & y\\ 0 & z\end{pmatrix}$ equals $\begin{pmatrix}ax & ay + bz\\ 0 & cz\end{pmatrix}$. We note that $ac \ne 0$ and $xz \ne 0$, so $acxz \ne 0$, so this result is in the set and the group is closed under matrix multiplication.
-	\item Matrix multiplication is associative.
-	\item The identity element is $\begin{pmatrix}1 & 0\\ 0 & 1\end{pmatrix}$, which is definitely in the set, since $1 \times 1 \ne 0$.
-	\item The inverse of an element $\begin{pmatrix}a & b\\ 0 & c\end{pmatrix}$ is $\dfrac1{ac} \begin{pmatrix}c & -b\\ 0 & a\end{pmatrix}$. Since $ac \ne 0$, this inverse is well-defined and in the set, so inverses exists in the group.
+    \item Some matrix $\begin{pmatrix}a & b \\ 0 & c\end{pmatrix}$ multiplied by another matrix $\begin{pmatrix}x & y \\ 0 & z\end{pmatrix}$ equals \linebreak $\begin{pmatrix}ax & ay + bz \\ 0 & cz\end{pmatrix}$. We note that $ac \ne 0$ and $xz \ne 0$, so $acxz \ne 0$, so this result is in the set and the group is closed under matrix multiplication.
+    \item Matrix multiplication is associative.
+    \item The identity element is $\begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}$, which is definitely in the set, since $1 \times 1 \ne 0$.
+    \item The inverse of an element $\begin{pmatrix}a & b \\ 0 & c\end{pmatrix}$ is $\dfrac1{ac} \begin{pmatrix}c & -b \\ 0 & a\end{pmatrix}$. Since $ac \ne 0$, this inverse is well-defined and in the set, so inverses exists in the group.
 \end{enumerate}
 
 Therefore this is a group.
@@ -139,26 +139,26 @@ $X$ is an isosceles triangle which is not equilateral.
 For the non-equilateral isosceles triangle, the only symmetries are the $0\degree$ rotation (the identity), called $\rho_0$, and the reflection in the vertical line, called $\sigma_0$.
 
 \begin{center}
-	\begin{tikzpicture}[
-		scale=2,
-		every path/.style={thick}
-	]
-	\draw (0, 1) -- (2, 0) -- (-2, 0) -- cycle;
+    \begin{tikzpicture}[
+        scale=2,
+        every path/.style={thick}
+    ]
+    \draw (0, 1) -- (2, 0) -- (-2, 0) -- cycle;
 
-	\draw[dashed, semithick] (0, 1.2) -- (0, -0.2);
-	\node () at (0.2, 1.2) {$\sigma_0$};
+    \draw[dashed, semithick] (0, 1.2) -- (0, -0.2);
+    \node () at (0.2, 1.2) {$\sigma_0$};
 \end{tikzpicture}
 \end{center}
 
 And here's the table:
 \[
 \setlength{\extrarowheight}{3pt}% local setting
-\begin{array}{l|*{2}{l}}
+\begin{array}{l|*{2}{l}} % chktex 44
     & \rho_0 & \sigma_0 \\
-\hline
+\hline % chktex 44
 \rho_0 & \rho_0 & \sigma_0 \\
 \sigma_0 & \sigma_0 & \rho_0 \\
-\end{array} 
+\end{array}
 \]
 
 \subsection{~} % 5.ii
@@ -170,31 +170,31 @@ $X$ is a rectangle which is not a square.
 For the non-square rectangle, the only symmetries are the $0\degree$ rotation (the identity), called $\rho_0$, the $180\degree$ rotation, called $\rho_1$, the reflection in the vertical line, called $\sigma_0$, and the reflection in the horizontal line, called $\sigma_1$.
 
 \begin{center}
-	\begin{tikzpicture}[
-		scale=2,
-		every path/.style={thick}
-	]
-	\draw (2, 1) -- (2, 0) -- (-2, 0) -- (-2, 1) -- cycle;
+    \begin{tikzpicture}[
+        scale=2,
+        every path/.style={thick}
+    ]
+    \draw (2, 1) -- (2, 0) -- (-2, 0) -- (-2, 1) -- cycle;
 
-	\draw[dashed, semithick] (0, 1.2) -- (0, -0.2);
-	\node () at (0.2, 1.2) {$\sigma_0$};
+    \draw[dashed, semithick] (0, 1.2) -- (0, -0.2);
+    \node () at (0.2, 1.2) {$\sigma_0$};
 
-	\draw[dashed, semithick] (-2.2, 0.5) -- (2.2, 0.5);
-	\node () at (2.25, 0.65) {$\sigma_1$};
+    \draw[dashed, semithick] (-2.2, 0.5) -- (2.2, 0.5);
+    \node () at (2.25, 0.65) {$\sigma_1$};
 \end{tikzpicture}
 \end{center}
 
 And here's the table:
 \[
 \setlength{\extrarowheight}{3pt}% local setting
-\begin{array}{l|*{4}{l}}
-	& \rho_0 & \rho_1 & \sigma_0 & \sigma_1 \\
-\hline
+\begin{array}{l|*{4}{l}} % chktex 44
+    & \rho_0 & \rho_1 & \sigma_0 & \sigma_1 \\
+\hline % chktex 44
 \rho_0 & \rho_0 & \rho_1 & \sigma_0 & \sigma_1 \\
 \rho_1 & \rho_1 & \rho_0 & \sigma_1 & \sigma_0 \\
 \sigma_0 & \sigma_0 & \sigma_1 & \rho_0 & \rho_1 \\
 \sigma_1 & \sigma_1 & \sigma_0 & \rho_1 & \rho_0 \\
-\end{array} 
+\end{array}
 \]
 % }}}
 

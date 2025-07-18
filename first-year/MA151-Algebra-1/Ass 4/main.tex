@@ -46,7 +46,7 @@ Therefore this is an equivalence relation.
 Describe the equivalence classes in the case $R = \Z$.
 \end{questionbody}
 
-The only units in $\Z$ are $\{1, -1\}$, so $a \sim b$ if and only if $a = b$ or $a = -b$. Therefore $0$ is equivalent to nothing, and every positive integer $x$ gets the equivalence class $[x]_\sim = \{x, -x\}$.
+The only units in $\Z$ are $\{1, -1\}$, so $a \sim b$ if and only if $a = b$ or $a = -b$. Therefore $0$ is equivalent to nothing, and every positive integer $x$ gets the equivalence class ${[x]}_\sim = \{x, -x\}$.
 % }}}
 
 % {{{ Q2
@@ -74,7 +74,7 @@ Now consider an arbitrary element $ar \in aR$ and an arbitrary element $x \in R$
 Show by an example that this may be false if $R$ is not commutative.
 \end{questionbody}
 
-Choose $R = GL_2(\R)$ and $a = \begin{pmatrix}1 & 1\\ 1 & 0\end{pmatrix}$. Then right-multiplying an element of $aR$ by an element of $R$ would keep the result in $aR$, but left-multiplying wouldn't necessarily. Therefore $aR$ is not an ideal of $R$ in this case.
+Choose $R = GL_2(\R)$ and $a = \begin{pmatrix}1 & 1 \\ 1 & 0\end{pmatrix}$. Then right-multiplying an element of $aR$ by an element of $R$ would keep the result in $aR$, but left-multiplying wouldn't necessarily. Therefore $aR$ is not an ideal of $R$ in this case.
 % }}}
 
 % {{{ Q3
@@ -83,56 +83,56 @@ Choose $R = GL_2(\R)$ and $a = \begin{pmatrix}1 & 1\\ 1 & 0\end{pmatrix}$. Then 
 \subsection{~} % 3.a
 
 \begin{questionbody}
-List the elements of $(\Z / 7\Z)^*$, the group of units in the ring $\Z / 7\Z$.
+List the elements of ${(\Z / 7\Z)}^*$, the group of units in the ring $\Z / 7\Z$.
 \end{questionbody}
 
-$$(\Z / 7\Z)^* = \{1, 2, 3, 4, 5, 6\}$$
+\[ {(\Z / 7\Z)}^* = \{1, 2, 3, 4, 5, 6\} \]
 
 \subsection{~} % 3.b
 
 \begin{questionbody}
-List the elements of $(\Z / 8\Z)^*$, the group of units in the ring $\Z / 8\Z$.
+List the elements of ${(\Z / 8\Z)}^*$, the group of units in the ring $\Z / 8\Z$.
 \end{questionbody}
 
-$$(\Z / 8\Z)^* = \{1, 3, 5, 7\}$$
+\[ {(\Z / 8\Z)}^* = \{1, 3, 5, 7\} \]
 
 \subsection{~} % 3.c
 
 \begin{questionbody}
-Show that $\l( (\Z / 7\Z)^*, \times_7 \r)$ is a cyclic group but $\l( (\Z / 8\Z)^*, \times_8 \r)$ is not a cyclic group.
+Show that $\l( {(\Z / 7\Z)}^*, \times_7 \r)$ is a cyclic group but $\l( {(\Z / 8\Z)}^*, \times_8 \r)$ is not a cyclic group.
 \end{questionbody}
 
 We shall just draw the Cayley tables for these groups.
 
-First, $\l(\Z / 7\Z\r)^*$,
+First, ${\l(\Z / 7\Z\r)}^*$,
 \[
 \setlength{\extrarowheight}{3pt}% local setting
-\begin{array}{l|*{6}{l}}
-	\times_7 & 1 & 2 & 3 & 4 & 5 & 6 \\
-\hline
-	1 & 1 & 2 & 3 & 4 & 5 & 6 \\
-	2 & 2 & 4 & 6 & 1 & 3 & 5 \\
-	3 & 3 & 6 & 2 & 5 & 1 & 4 \\
-	4 & 4 & 1 & 5 & 2 & 6 & 3 \\
-	5 & 5 & 3 & 1 & 6 & 4 & 2 \\
-	6 & 6 & 5 & 4 & 3 & 2 & 1
+\begin{array}{l|*{6}{l}} % chktex 44
+    \times_7 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline % chktex 44
+    1 & 1 & 2 & 3 & 4 & 5 & 6 \\
+    2 & 2 & 4 & 6 & 1 & 3 & 5 \\
+    3 & 3 & 6 & 2 & 5 & 1 & 4 \\
+    4 & 4 & 1 & 5 & 2 & 6 & 3 \\
+    5 & 5 & 3 & 1 & 6 & 4 & 2 \\
+    6 & 6 & 5 & 4 & 3 & 2 & 1
 \end{array}
 \]
 
-And then, $\l(\Z / 8\Z\r)^*$,
+And then, ${(\Z / 8\Z)}^*$,
 \[
 \setlength{\extrarowheight}{3pt}% local setting
-\begin{array}{l|*{7}{l}}
-	\times_8 & 1 & 3 & 5 & 7 \\
-\hline
-	1 & 1 & 3 & 5 & 7 \\
-	3 & 3 & 1 & 7 & 5 \\
-	5 & 5 & 7 & 1 & 3 \\
-	7 & 7 & 5 & 3 & 1 \\
+\begin{array}{l|*{7}{l}} % chktex 44
+    \times_8 & 1 & 3 & 5 & 7 \\
+\hline % chktex 44
+    1 & 1 & 3 & 5 & 7 \\
+    3 & 3 & 1 & 7 & 5 \\
+    5 & 5 & 7 & 1 & 3 \\
+    7 & 7 & 5 & 3 & 1 \\
 \end{array}
 \]
 
-Just from looking at these tables, we can deduce that $\l( \l(\Z / 7 \Z\r)^*, \times_7 \r) \cong C_6$ and $\l( \l(\Z / 8 \Z\r)^*, \times_8 \r) \cong K_4$. But $K_4$ is not cyclic, so $\l( \l(\Z / 8 \Z\r)^*, \times_8 \r)$ is not cyclic.
+Just from looking at these tables, we can deduce that $\l( {(\Z / 7 \Z)}^*, \times_7 \r) \cong C_6$ and $\l( {(\Z / 8 \Z)}^*, \times_8 \r) \cong K_4$. But $K_4$ is not cyclic, so $\l( {(\Z / 8 \Z)}^*, \times_8 \r)$ is not cyclic.
 % }}}
 
 % {{{ Q4
@@ -142,16 +142,16 @@ Just from looking at these tables, we can deduce that $\l( \l(\Z / 7 \Z\r)^*, \t
 Let $R = M_{2 \times 2}(\Q)$, the ring of $2 \times 2$ matrices with rational entries under matrix addition and multiplication. Show that the only ideals of $R$ are $\{\bf 0\}$ and $R$.
 \end{questionbody}
 
-Let $\bf 0 = \begin{pmatrix}0 & 0\\ 0 & 0\end{pmatrix}$. If an ideal of $R$ did not contain $\bf 0$, then it wouldn't be a subgroup under addition because it wouldn't have an additive identity. Therefore every ideal needs $\bf 0$. Also note that $\{ \bf 0 \}$ is itself an ideal of $R$, since multiplying by anything from $R$ just results in $\bf 0$ again.
+Let $\bf 0 = \begin{pmatrix}0 & 0 \\ 0 & 0\end{pmatrix}$. If an ideal of $R$ did not contain $\bf 0$, then it wouldn't be a subgroup under addition because it wouldn't have an additive identity. Therefore every ideal needs $\bf 0$. Also note that $\{ \bf 0 \}$ is itself an ideal of $R$, since multiplying by anything from $R$ just results in $\bf 0$ again.
 
 Now suppose we have some ideal $I$ containing $\bf 0$ and some $X \ne \bf 0$. Since $(I, +)$ is a group, it must also contain all integer multiples of $X$. And since $mX \in I$ and $Xm \in I$ for all $m \in R$, $I$ must expand to include all of $R$.
 
-To see this, we can imagine an arbitrary "target" matrix $t \in R$, then find the matrix $m$ such that $Xm = t$. Let $X = \begin{pmatrix}x & y\\ z & w\end{pmatrix}$, $m = \begin{pmatrix}p & q\\ r & s\end{pmatrix}$, and $t = \begin{pmatrix}a & b\\ c & d\end{pmatrix}$. Then \begin{align*}
-	\begin{pmatrix}x & y\\ z & w\end{pmatrix} \begin{pmatrix}p & q\\ r & s\end{pmatrix} &= \begin{pmatrix}a & b\\ c & d\end{pmatrix}\\[1ex]
-	px + ry &= a\\
-	qx + sy &= b\\
-	pz + rw &= c\\
-	qz + sw &= d
+To see this, we can imagine an arbitrary \enquote*{target} matrix $t \in R$, then find the matrix $m$ such that $Xm = t$. Let $X = \begin{pmatrix}x & y \\ z & w\end{pmatrix}$, $m = \begin{pmatrix}p & q \\ r & s\end{pmatrix}$, and $t = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$. Then \begin{align*}
+    \begin{pmatrix}x & y \\ z & w\end{pmatrix} \begin{pmatrix}p & q \\ r & s\end{pmatrix} &= \begin{pmatrix}a & b \\ c & d\end{pmatrix} \\[1ex]
+    px + ry &= a \\
+    qx + sy &= b \\
+    pz + rw &= c \\
+    qz + sw &= d
 \end{align*}
 Since $x, y, z, w, a, b, c, d$ are all known, these equations can always be solved for $p, q, r, s$. Therefore $\forall\, t \in R$, $\exists\, m \in R$ such that $Xm = t$. Therefore $I$ must contain all elements of $R$, so $I = R$.
 
@@ -225,9 +225,9 @@ Show that $x^2 + x + 4$ is irreducible over $\Z / 11\Z$. Here any coefficients s
 \end{questionbody}
 
 Let $f(x) = x^2 + x + 4$. If $f(x)$ were not irreducible over $\Z / 11 \Z$, then we could write $x^2 + x + 4 = (ax + b) (cx + d) = acx^2 + (ad + bc)x + bd$, which gives the following system of equations, \begin{align*}
-	ac &\stackrel{11}{\ \equiv\ } 1\\
-	ad + bc &\stackrel{11}{\ \equiv\ } 1\\
-	bd &\stackrel{11}{\ \equiv\ } 4\\
+    ac &\stackrel{11}{\ \equiv\ } 1 \\
+    ad + bc &\stackrel{11}{\ \equiv\ } 1 \\
+    bd &\stackrel{11}{\ \equiv\ } 4
 \end{align*}
 
 And then I get stuck.
