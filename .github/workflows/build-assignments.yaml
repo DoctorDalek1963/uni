@@ -32,5 +32,13 @@ jobs:
           mkdir -p "${XDG_CONFIG_HOME}/direnv/lib"
           cp "$(nix-build --expr "(import <nixpkgs> {}).nix-direnv")"/share/nix-direnv/direnvrc "${XDG_CONFIG_HOME}/direnv/lib/nix-direnv.sh"
 
+      - name: Setup build cache
+        uses: actions/cache@v4
+        with:
+          key: build-cache-${{ github.sha }}
+          restore-keys: |
+            build-cache-
+          path: build-cache.pickle
+
       - name: Build every assignment
-        run: nix develop .#ci --command just ci-build-all
+        run: nix develop .#ci --command just ci-build-changed
