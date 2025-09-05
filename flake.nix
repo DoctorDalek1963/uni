@@ -8,12 +8,13 @@
     };
   };
 
-  outputs = inputs @ {
-    flake-parts,
-    nixpkgs,
-    ...
-  }:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    inputs@{
+      flake-parts,
+      nixpkgs,
+      ...
+    }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.pre-commit-hooks.flakeModule
       ];
@@ -23,92 +24,97 @@
         "aarch64-linux"
       ];
 
-      perSystem = {
-        config,
-        system,
-        ...
-      }: let
-        pkgs = nixpkgs.legacyPackages.${system};
+      perSystem =
+        {
+          config,
+          system,
+          ...
+        }:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
 
-        texlive = pkgs.texlive.withPackages (p:
-          with p; [
-            scheme-medium
+          texlive = pkgs.texlive.withPackages (
+            p: with p; [
+              scheme-medium
 
-            gensymb
-            cancel
-            csquotes
-            enumitem
+              gensymb
+              cancel
+              csquotes
+              enumitem
 
-            minted
-            upquote
+              minted
+              upquote
 
-            # For questionbody environment
-            mdframed
-            needspace
-            zref
-          ]);
+              # For questionbody environment
+              mdframed
+              needspace
+              zref
+            ]
+          );
 
-        python = pkgs.python3.withPackages (p: [p.rich]);
+          python = pkgs.python3.withPackages (p: [ p.rich ]);
 
-        # Include Catppuccin styles
-        latexminted = pkgs.latexminted.overridePythonAttrs (oldAttrs: {
-          dependencies =
-            (oldAttrs.dependencies or [])
-            ++ [
+          # Include Catppuccin styles
+          latexminted = pkgs.latexminted.overridePythonAttrs (oldAttrs: {
+            dependencies = (oldAttrs.dependencies or [ ]) ++ [
               pkgs.python3Packages.catppuccin
             ];
-        });
+          });
 
-        nativeBuildInputs = [
-          texlive
-          python
-          latexminted
+          nativeBuildInputs = [
+            texlive
+            python
+            latexminted
 
-          pkgs.fd
-          pkgs.inotify-tools
-          pkgs.just
-        ];
-      in {
-        devShells = {
-          default = pkgs.mkShell {
-            inherit nativeBuildInputs;
+            pkgs.fd
+            pkgs.inotify-tools
+            pkgs.just
+          ];
+        in
+        {
+          devShells = {
+            default = pkgs.mkShell {
+              inherit nativeBuildInputs;
 
-            env.OSFONTDIR = "${pkgs.hack-font}/share/fonts";
+              env.OSFONTDIR = "${pkgs.hack-font}/share/fonts";
 
-            shellHook = ''
-              ${config.pre-commit.installationScript}
-            '';
+              shellHook = ''
+                ${config.pre-commit.installationScript}
+              '';
+            };
+
+            ci = pkgs.mkShell {
+              nativeBuildInputs = nativeBuildInputs ++ [ pkgs.direnv ];
+            };
           };
 
-          ci = pkgs.mkShell {
-            nativeBuildInputs = nativeBuildInputs ++ [pkgs.direnv];
-          };
-        };
+          # See https://flake.parts/options/git-hooks-nix and
+          # https://github.com/cachix/git-hooks.nix/blob/master/modules/hooks.nix
+          # for all the available hooks and options
+          pre-commit = {
+            settings.hooks = {
+              check-added-large-files.enable = true;
+              check-merge-conflicts.enable = true;
+              check-toml.enable = true;
+              check-vcs-permalinks.enable = true;
+              check-yaml.enable = true;
+              end-of-file-fixer.enable = true;
+              trim-trailing-whitespace.enable = true;
 
-        # See https://flake.parts/options/git-hooks-nix and
-        # https://github.com/cachix/git-hooks.nix/blob/master/modules/hooks.nix
-        # for all the available hooks and options
-        pre-commit = {
-          settings.hooks = {
-            check-added-large-files.enable = true;
-            check-merge-conflicts.enable = true;
-            check-toml.enable = true;
-            check-vcs-permalinks.enable = true;
-            check-yaml.enable = true;
-            end-of-file-fixer.enable = true;
-            trim-trailing-whitespace.enable = true;
+              nixfmt-rfc-style = {
+                enable = true;
+                package = pkgs.nixfmt;
+              };
 
-            alejandra.enable = true;
-
-            chktex = {
-              enable = true;
-              name = "chktex";
-              description = "Run chktex";
-              files = "\\.(tex)$";
-              entry = "${texlive}/bin/chktex";
+              chktex = {
+                enable = true;
+                name = "chktex";
+                description = "Run chktex";
+                files = "\\.(tex)$";
+                entry = "${texlive}/bin/chktex";
+              };
             };
           };
         };
-      };
     };
 }
