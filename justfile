@@ -192,12 +192,12 @@ _ci-build build_type:
 
         cache_file = Path("build-cache.pickle")
 
-        # Read cache from file or make new one
+        # Read cache from file
         if os.path.exists(cache_file) and not build_all:
             with open(cache_file, "rb") as f:
-                cache = pickle.load(f)
+                old_cache = pickle.load(f)
         else:
-            cache = dict()
+            old_cache = dict()
 
         ass_dirs = [
             dir
@@ -215,13 +215,15 @@ _ci-build build_type:
         failed_dirs = []
 
         cache_hits = 0
+        new_cache = dict()
 
         for dir in sorted(ass_dirs):
             hash = get_hash(dir)
             stripped_dir = dir.replace("{{ source_directory() }}/", "")
 
-            if cache.get(stripped_dir) == hash:
+            if old_cache.get(stripped_dir) == hash:
                 cache_hits += 1
+                new_cache[stripped_dir] = hash
                 continue
 
             rich.print(
@@ -239,11 +241,11 @@ _ci-build build_type:
             if child.returncode != 0:
                 failed_dirs.append(stripped_dir)
             else:
-                cache[stripped_dir] = hash
+                new_cache[stripped_dir] = hash
 
         # Write new cache file
         with open(cache_file, "wb") as f:
-            pickle.dump(cache, f)
+            pickle.dump(new_cache, f)
 
         if len(failed_dirs) > 0:
             rich.print(
