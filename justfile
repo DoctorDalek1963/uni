@@ -151,48 +151,112 @@ new-justfile:
 
 # build every assignment for CI
 [group("ci")]
-ci-build-all:
+ci-build-all: (_ci-build "all")
+
+# build only the assignments that have changed since the last time this was run
+[group("ci")]
+ci-build-changed: (_ci-build "changed")
+
+# build assignments according to build_type, either "all" or "changed"
+[group("ci")]
+_ci-build build_type:
     #!/usr/bin/env python3
 
     import os
+    import pickle
     import subprocess
     import sys
+    from pathlib import Path
 
     import rich
 
-    ass_dirs = [
-        dir
-        for (dir, _dirs, files) in os.walk("{{ source_directory() }}")
-        if "main.tex" in files and "templates" not in dir
-    ] + [
-        os.path.join("{{ source_directory() }}", p)
-        for p in [
-            "first-year/MA146-Methods-of-Mathematical-Modelling-1/Ass 1",
-            "first-year/MA117-Programming-for-Scientists/projects/Project0",
-            "first-year/MA117-Programming-for-Scientists/projects/Project1",
-            "first-year/MA117-Programming-for-Scientists/projects/Project3",
-        ]
-    ]
 
-    failed_dirs = []
-
-    for dir in sorted(ass_dirs):
-        rich.print(f"\n\n[bold]===== [magenta]Building {dir}[/magenta] =====[/bold]\n\n")
-        sys.stdout.flush()
-
-        child = subprocess.run(
-            ["direnv allow && direnv exec . just clean build"],
-            cwd=dir,
-            shell=True,
-            env=(os.environ | {"_nix_direnv_force_reload": "1"}),
+    def get_hash(dir: str) -> int:
+        """Compute the deterministic SHA-256 hash of all non-ignored files in the given directory."""
+        cmd = " | ".join(
+            [
+                f'fd -t f -H -E *.pdf . "{dir}"',
+                "sort",
+                'xargs -I {} sha256sum "{}"',
+                "sha256sum",
+            ]
         )
 
-        if child.returncode != 0:
-            failed_dirs.append(dir)
+        hash_bytes = subprocess.run([cmd], shell=True, stdout=subprocess.PIPE).stdout
 
-    if len(failed_dirs) > 0:
-        rich.print(f"\n\n[bold]===== [red]FAILED {len(failed_dirs)}/{len(ass_dirs)} DIRECTORIES[/red]: =====[/bold]\n")
-        print(*failed_dirs, sep="\n")
-        exit(1)
-    else:
-        rich.print(f"\n\n[bold]===== [green]All {len(ass_dirs)} builds successful![/green] =====[/bold]")
+        return int(hash_bytes.decode().split()[0], 16)
+
+
+    def main() -> None:
+        build_all = "{{ build_type }}" == "all"
+
+        cache_file = Path("build-cache.pickle")
+
+        # Read cache from file or make new one
+        if os.path.exists(cache_file) and not build_all:
+            with open(cache_file, "rb") as f:
+                cache = pickle.load(f)
+        else:
+            cache = dict()
+
+        ass_dirs = [
+            dir
+            for (dir, _dirs, files) in os.walk("{{ source_directory() }}")
+            if "main.tex" in files and "templates" not in dir
+        ] + [
+            os.path.join("{{ source_directory() }}", p)
+            for p in [
+                "first-year/MA146-Methods-of-Mathematical-Modelling-1/Ass 1",
+                "first-year/MA117-Programming-for-Scientists/projects/Project0",
+                "first-year/MA117-Programming-for-Scientists/projects/Project1",
+                "first-year/MA117-Programming-for-Scientists/projects/Project3",
+            ]
+        ]
+
+        failed_dirs = []
+
+        cache_hits = 0
+
+        for dir in sorted(ass_dirs):
+            hash = get_hash(dir)
+            stripped_dir = dir.replace("{{ source_directory() }}/", "")
+
+            if cache.get(stripped_dir) == hash:
+                cache_hits += 1
+                continue
+
+            rich.print(
+                f"\n\n[bold]===== [magenta]Building {stripped_dir}[/magenta] =====[/bold]\n\n"
+            )
+            sys.stdout.flush()
+
+            child = subprocess.run(
+                ["direnv allow && direnv exec . just clean build"],
+                cwd=dir,
+                shell=True,
+                env=(os.environ | {"_nix_direnv_force_reload": "1"}),
+            )
+
+            if child.returncode != 0:
+                failed_dirs.append(stripped_dir)
+            else:
+                cache[stripped_dir] = hash
+
+        # Write new cache file
+        with open(cache_file, "wb") as f:
+            pickle.dump(cache, f)
+
+        if len(failed_dirs) > 0:
+            rich.print(
+                f"\n\n[bold]===== [red]FAILED {len(failed_dirs)}/{len(ass_dirs)} DIRECTORIES[/red]: =====[/bold]\n"
+            )
+            print(*failed_dirs, sep="\n")
+            exit(1)
+        else:
+            rich.print(
+                f"\n\n[bold]===== [green]All {len(ass_dirs)} builds successful! ({cache_hits} cached)[/green] =====[/bold]"
+            )
+
+
+    if __name__ == "__main__":
+        main()

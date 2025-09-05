@@ -3,6 +3,8 @@
 /.pre-commit-config.yaml
 /flake.lock
 
+build-cache.pickle
+
 # LaTeX stuff
 *.aux
 *.dvi
