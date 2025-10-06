@@ -96,13 +96,13 @@ new-ass:
     from rich import print
 
     QUESTION_BODY_COLOR_MAP = {
-        "CS147": "orange!50",
-        "MA139": "cyan!50",
-        "MA141": "blue!50",
-        "MA144": "green!50",
-        "MA146": "green!50!teal!50",
-        "MA150": "magenta!50",
-        "MA151": "violet!50",
+        "CS147": "orange!50", # DIMAP 2
+        "MA139": "cyan!50", # Analysis 2
+        "MA141": "blue!50", # Analysis 1
+        "MA144": "green!50", # Methods 2
+        "MA146": "green!50!teal!50", # Methods 1
+        "MA150": "magenta!50", # Algebra 2
+        "MA151": "violet!50", # Algebra 1
     }
 
     with open("{{ source_directory() }}/templates/ass/main.tex", "r") as f:
