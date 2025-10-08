@@ -103,6 +103,7 @@ new-ass:
         "MA146": "green!50!teal!50", # Methods 1
         "MA150": "magenta!50", # Algebra 2
         "MA151": "violet!50", # Algebra 1
+        "MA268": "violet!50", # Algebra 3
     }
 
     with open("{{ source_directory() }}/templates/ass/main.tex", "r") as f:

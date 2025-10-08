@@ -1,0 +1,129 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\fancyhead[L]{MA268 Homework 1}
+\title{MA268 Algebra 3, Homework 1}
+\colorlet{questionbodycolor}{violet!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+With the help of Euclid's algorithm, compute the multiplicative inverse of $\overline{11}$ in $\Z / 101\Z$. (Note that $\overline{11} = [11]_{101}$ in the notation of Algebra 1).
+\end{questionbody}
+
+TODO
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\begin{questionbody}
+Let $\rho$ and $\tau$ be the following permutations: \[
+\rho = \begin{pmatrix}
+1 & 2 & 3 & 4 & 5 \\
+2 & 3 & 5 & 1 & 4
+\end{pmatrix}, \qquad \tau = \begin{pmatrix}
+1 & 2 & 3 & 4 & 5 \\
+3 & 1 & 2 & 5 & 4
+\end{pmatrix}
+\]
+\begin{enumerate}[(i)]
+\item Write $\rho$ and $\tau$ as products of disjoint cycles.
+\item Write $\rho$ and $\tau$ as products of transpositions and state if they're even or odd.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 2.i
+
+\[ \rho = (1, 2, 3, 5, 4), \qquad \tau = (1, 3, 2) (4, 5) \]
+
+\subsection{~} % 2.ii
+
+\[ \rho = (3, 4) (4, 5) (2, 3) (1, 2), \qquad \tau = (1, 2) (2, 3) (4, 5) \]
+
+So $\rho$ is even and $\tau$ is odd.
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Let $\rho = (1, 2, 3) (4, 5)$ and $\tau = (1, 2, 3, 4)$. Write the following in cycle notation (i.e. as a product of disjoint cycles): $\rho^{-1}, \tau^{-1}, \rho \tau, \tau \rho^2$.
+\end{questionbody}
+
+% We will first write $\rho$ and $\tau$ in cycle notation: \[ \rho = (2, 3) (1, 2) (4, 5), \qquad \tau = () \]
+\begin{align*}
+\rho^{-1} &= (3, 2, 1) (4, 5) \\
+\tau^{-1} &= (4, 3, 2, 1) \\
+\rho \tau &= (1, 3, 5, 4, 2) \\
+\tau \rho^2 &= (1, 4)
+\end{align*}
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\alph{subsection})}
+
+\begin{questionbody}
+\[ H = \l\{ \begin{pmatrix} 1 & r \\ 0 & s \end{pmatrix} \colon r \in \R, s \in \R^* \r\} \]
+\begin{enumerate}[(a)]
+\item Show that $(H, \cdot)$ is a group. (\textbf{Hint}: show that it's a subgroup of $\mathrm{GL}_2(\R)$).
+\item Show that $H$ is non-abelian by giving a non-commuting pair of elements.
+\item How many elements of order 2 does $H$ have? Explain your answer.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 4.a
+
+TODO: Show that $(H, \cdot)$ is a subgroup of $\mathrm{GL}_2(\R)$.
+
+\subsection{~} % 4.b
+
+TODO: Show that $H$ is non-abelian.
+
+\subsection{~} % 4.c
+
+Elements of order 2 are self-inverse elements. TODO
+
+% }}}
+
+% {{{ Q5
+\newquestion{5}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\begin{questionbody}
+Recall that $\Z[x]$ is the ring of polynomials in variable $x$ wit coefficient in $\Z$. Which of the following subsets are subrings of $\Z[x]$? Which of the following subsets are ideals of $\Z[x]$? Give justification for your answers.
+\begin{enumerate}[(i)]
+\item $\Z$.
+\item $\l\{ f \in \Z[x] \colon f(5) = 1 \r\}$.
+\item $\l\{ f \in \Z[x] \colon f(5) = 0 \r\}$.
+\item $\l\{ f^2 \colon f \in \Z[x] \r\}$.
+\item $\l\{ (x^2 + 1) g(x) \colon g \in \Z[x] \r\}$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 5.i
+\subsection{~} % 5.ii
+\subsection{~} % 5.iii
+\subsection{~} % 5.iv
+\subsection{~} % 5.v
+% }}}
+
+\end{document}
