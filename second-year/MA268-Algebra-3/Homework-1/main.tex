@@ -60,7 +60,7 @@ So $\rho$ is even and $\tau$ is odd.
 % }}}
 
 % {{{ Q3
-\newquestion{3}
+\question{3}
 
 \begin{questionbody}
 Let $\rho = (1, 2, 3) (4, 5)$ and $\tau = (1, 2, 3, 4)$. Write the following in cycle notation (i.e. as a product of disjoint cycles): $\rho^{-1}, \tau^{-1}, \rho \tau, \tau \rho^2$.
@@ -91,16 +91,46 @@ Let $\rho = (1, 2, 3) (4, 5)$ and $\tau = (1, 2, 3, 4)$. Write the following in 
 
 \subsection{~} % 4.a
 
-TODO: Show that $(H, \cdot)$ is a subgroup of $\mathrm{GL}_2(\R)$.
+Let $G = \mathrm{GL}_2(\R)$. We need to show three things to show that $H$ is a subgroup of $G$:
+\begin{enumerate}[1)]
+\item $1_G \in H$.
+\item Whenever $a, b \in H$, $ab \in H$ using multiplication in $G$.
+\item Whenever $a \in H$, $a^{-1} \in H$ using inverses from $G$.
+\end{enumerate}
+
+Let $r=0$ and $s=1$. Thus $1_G \in H$.
+
+Consider $\begin{pmatrix} 1 & r_1 \\ 0 & s_1 \end{pmatrix}, \begin{pmatrix} 1 & r_2 \\ 0 & s_2 \end{pmatrix} \in H$. Then \[
+\begin{pmatrix} 1 & r_1 \\ 0 & s_1 \end{pmatrix} \begin{pmatrix} 1 & r_2 \\ 0 & s_2 \end{pmatrix} = \begin{pmatrix} 1 & r_2 + r_1 s_2 \\ 0 & s_1 s_2 \end{pmatrix}
+\] Clearly $r_2 + r_1 s_2 \in \R$ and since $s_1, s_2 \in \R^*$, we know $s_1 s_2 \in \R^*$. Therefore the product is in $H$.
+
+Consider $\begin{pmatrix} 1 & r \\ 0 & s \end{pmatrix} \in H$. The inverse is \[
+\f1s \begin{pmatrix} s & -r \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & -\f rs \\ 0 & \f1s \end{pmatrix}
+\] Since $r \in \R$ and $s \in \R^*$, we know $-\f rs \in \R$ and $\f1s \in \R^*$ so the inverse is in $H$.
+
+Therefore $H$ is a subgroup of $\mathrm{GL}_2(\R)$ and therefore a group.
 
 \subsection{~} % 4.b
 
-TODO: Show that $H$ is non-abelian.
+\begin{align*}
+\begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} 1 & 3 \\ 0 & 2 \end{pmatrix} &= \begin{pmatrix} 1 & 7 \\ 0 & 6 \end{pmatrix} \\[1ex]
+\begin{pmatrix} 1 & 3 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix} &= \begin{pmatrix} 1 & 8 \\ 0 & 6 \end{pmatrix}
+\end{align*}
+Notably these are not the same result, so by counterexample, $H$ is non-abelian.
 
 \subsection{~} % 4.c
 
-Elements of order 2 are self-inverse elements. TODO
+Elements of order 2 are self-inverse elements. That is, any $h \in H$ will have $h^2 = 1_H$. We can use the general $h$ and see that \begin{align*}
+\begin{pmatrix} 1 & r \\ 0 & s \end{pmatrix}^2 &= \begin{pmatrix} 1 & r \\ 0 & s \end{pmatrix} \begin{pmatrix} 1 & r \\ 0 & s \end{pmatrix} \\[1ex]
+&= \begin{pmatrix} 1 & r + sr \\ 0 & s^2 \end{pmatrix} \\[1ex]
+&= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+\end{align*}
 
+So we require that $s^2 = 1$ and $r + sr = 0$. Therefore $s = \pm 1$ and $r(1+s) = 0$, so either $r=0$, or $s = -1$. That means the self-inverse elements are \[
+\l\{ \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \r\}
+\cup \l\{ \begin{pmatrix} 1 & r \\ 0 & -1 \end{pmatrix} \colon r \in \R \r\}
+\]
+This set is infinite, so $H$ has infinitely many elements of order 2.
 % }}}
 
 % {{{ Q5
