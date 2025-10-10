@@ -49,6 +49,10 @@
               mdframed
               needspace
               zref
+
+              # For citations
+              biber
+              biblatex
             ]
           );
 

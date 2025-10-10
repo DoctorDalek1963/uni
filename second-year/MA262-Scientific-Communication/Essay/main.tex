@@ -1,0 +1,67 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+% Parts of preamble inlined for source portability
+\usepackage{amsmath, amssymb, amsgen}
+\usepackage{gensymb}
+\usepackage{mathtools}
+\usepackage{csquotes}
+\usepackage{cancel}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage[
+    backend=biber,
+    natbib=true
+]{biblatex}
+\addbibresource{main.bib}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{minted}
+\setminted{
+	linenos,
+	breaklines,
+	fontsize=\footnotesize,
+	encoding=utf8,
+	style=catppuccin-latte, % Style provided by https://github.com/catppuccin/python
+}
+
+\usepackage[quiet]{fontspec}
+\setmonofont[Scale=MatchLowercase]{Hack}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[R]{Dyson Dyson 5503449}
+\fancyhead[L]{MA262 Essay}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+\title{MA262 Scientific Communication Essay}
+\author{Dyson Dyson}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\tableofcontents
+\newpage
+
+\section{Things}
+
+See \citep{knuth-1989-mathematical-writing}.
+
+\section{Stuff}
+
+\subsection{Stuff and things}
+
+\newpage
+\printbibliography[]
+
+\end{document}

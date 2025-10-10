@@ -16,6 +16,8 @@ build-cache.pickle
 *.toc
 *.bbl
 *.blg
+*.bcf
+*.run.xml
 *.minted
 _minted/
 
