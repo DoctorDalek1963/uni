@@ -8,4 +8,3 @@ _default:
 [group("pdf")]
 _pre-build:
     nix-shell code/shell.nix --run ./code/plot_surface.py
-    @just _build

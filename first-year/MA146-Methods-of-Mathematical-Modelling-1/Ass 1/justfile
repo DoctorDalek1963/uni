@@ -19,10 +19,6 @@ build-original:
     magick imgs/Q2-f.png .tmp_pdfs/Q2-f.pdf
     pdftk A="Original scan.pdf" B=.tmp_pdfs/Q2-e.pdf C=.tmp_pdfs/Q2-f.pdf cat A1-3 B C A4-6 output main.pdf
 
-[group("pdf")]
-_pre-build:
-    @just _build
-
 # remove all build artifacts
 [group("pdf")]
 clean:

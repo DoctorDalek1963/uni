@@ -25,7 +25,7 @@ _default:
 [group("pdf")]
 [no-cd]
 _build:
-    lualatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -recorder -synctex=1 --jobname="main" "main.tex"
+    latexmk -lualatex -lualatex="lualatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -synctex=1 %O %S" -recorder main
 
 # run commands before the build
 [group("pdf")]
