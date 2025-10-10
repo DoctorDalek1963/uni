@@ -1,0 +1,115 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\usepackage{tikz}
+
+\fancyhead[L]{MA243 Assignment 1}
+\title{MA243 Geometry, Assignment 1}
+\colorlet{questionbodycolor}{orange!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Write down all the symmetries of the rectangle $X$ in $\R^2$ with vertices at \[
+(1, 0), (1, 4), (3, 0), (3, 4)
+\] That is, \[
+X = \l\{ (x, y) \in \R^2 \colon 1 \le x \le 3, 0 \le y \le 4 \r\}
+\]
+
+Write all your symmetries as affine transformations of the form \[
+T(\mathbf v) = A \mathbf v + \mathbf b
+\] where $A$ is a $2 \times 2$ matrix and $\mathbf b$ is a vector in $\R^2$.
+\end{questionbody}
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw (1, 0) -- (1, 4) -- (3, 4) -- (3, 0) -- cycle;
+
+        \node at (1, 0) [label={225:$(1, 0)$}] {};
+        \node at (3, 0) [label={315:$(3, 0)$}] {};
+        \node at (1, 4) [label={135:$(1, 4)$}] {};
+        \node at (3, 4) [label={45:$(3, 4)$}] {};
+
+        \draw[dashed] (2, -0.2) -- (2, 4.2);
+        \draw[dashed] (0.8, 2) -- (3.2, 2);
+    \end{tikzpicture}
+\end{center}
+
+The rectangle $X$ has 4 symmetries, the identity, a rotation by $\pi$ followed by a translation, a reflection in $y=2$, and a reflection in $x=2$. We shall write these as affine transformations with matrices.
+
+The identity is of course \[ T(\mathbf v) = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \mathbf v + \begin{pmatrix} 0 \\ 0 \end{pmatrix} \]
+
+The rotation and translation is \[ T(\mathbf v) = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \mathbf v + \begin{pmatrix} 4 \\ 4 \end{pmatrix} \]
+
+The reflection in $y=2$ is \[ T(\mathbf v) = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \mathbf v + \begin{pmatrix} 0 \\ 4 \end{pmatrix} \]
+
+And the reflection in $x=2$ is \[ T(\mathbf v) = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \mathbf v + \begin{pmatrix} 4 \\ 0 \end{pmatrix} \]
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Suppose that a function $f \colon X \times X \to \R$ is non-degenerate, symmetric, and satisfies the triangle inequality. Then \begin{enumerate}[(a)]
+\item Prove that the image of $f$ is in $[0, \infty)$ (hence $f$ is a metric). % chktex 9
+\item When is $f$ injective? Explain.
+\item Suppose $X = \R$. Does $f$ have to be surjective onto $[0, \infty)$? Either prove this or give a counterexample. % chktex 9
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 2.a
+
+Since the codomain of $f$ is $\R$, we know the image of $f$ will be a subset of $\R$, so we only need to prove $f \ge 0$. TODO
+
+\subsection{~} % 2.b
+
+\subsection{~} % 2.c
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Let $\delta : \R^2 \times \R^2 \to [0, \infty)$ be a function defined by \[ % chktex 9
+\delta\big( (x_1, y_1), (x_2, y_2) \big) = \sqrt{{(x_1 - x_2)}^2 + 2{(y_1 - y_2)}^2}
+\] Is $(\R^2, \delta)$ a metric space? Prove it is, or explain why it isn't.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Let $L$ be the line in $\R^2$ given by \[
+L = \big\{ (x, y) \in \R^2 \colon y - 2x = 1 \big\}
+\]
+
+Define a metric $d$ on $L$ given by the restriction of the Euclidean metric on $\R^2$ to $L$. That is, for points $(x_1, y_2)$, $(x_2, y_2)$, we set \[
+d\big( (x_1, y_1), (x_2, y_2) \big) = \sqrt{{(x_1 - x_2)}^2 + {(y_1 - y_2)}^2}
+\]
+
+Find an isometry $f \colon L \to \R$, where $\R$ has the usual Euclidean metric, $d_1(x, y) = |x - y|$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document}
