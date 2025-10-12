@@ -13,7 +13,9 @@
 
 \usepackage[
     backend=biber,
-    natbib=true
+    citestyle=numeric,
+    bibstyle=numeric,
+    sorting=nty,
 ]{biblatex}
 \addbibresource{main.bib}
 
@@ -50,18 +52,22 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
+\pagenumbering{roman}
 \tableofcontents
 \newpage
 
+\pagenumbering{arabic}
+
 \section{Things}
 
-See \citep{knuth-1989-mathematical-writing}.
+See \parencite[pp.~7--10]{barendregt-1981-lambda-calculus} and \citeauthor{church-1965-calculi-lambda-conversion}.
 
 \section{Stuff}
 
 \subsection{Stuff and things}
 
 \newpage
+\nocite{*} % TODO: Trim bib file before submitting
 \printbibliography[]
 
 \end{document}
