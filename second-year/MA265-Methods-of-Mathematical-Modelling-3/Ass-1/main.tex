@@ -1,0 +1,108 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+% NOTE: hyperref has to come before preamble
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+\fancyhead[L]{MA265 Assignment 1}
+\title{MA265 Methods of Mathematical Modelling 3, Assignment 1}
+\colorlet{questionbodycolor}{green!50!teal!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+\textit{Characterisation of second order PDEs}: State the types of the following equations:
+\begin{enumerate}[(a)]
+\item $u_{tt} - 4 u_{xx} = 0$
+\item $u_t = 8 u_{xx}$
+\item $u_{xx} + u_{yy} = 0$
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+\textit{The fundamental solution to the heat equation}: Verify that the solution to the heat equation \begin{equation}
+u_t = k u_{xx} \quad x \in \R, t > 0
+\label{eqn:heat-equation}
+\end{equation}
+for $k > 0$ is given by \[
+u(x, t) = \f1{\sqrt{4 \pi kt}} \, \e^{-\f{x^2}{4 kt}}.
+\] Set $k = 0.5$ and sketch $u$ at different times. What happens as $t \to 0$?
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+\textit{Well-posedness}: Consider the elliptic problem \begin{align*}
+u_{xx}(x) &= f(x) \qquad\qquad x \in [0, 1] \tag{\dagger}\label{eqn:Q3-elliptic-system} \\
+u_x(0) &= u_x(1) = 0
+\end{align*}
+
+Let $u^*$ denote a solution to~\eqref{eqn:Q3-elliptic-system}.
+\begin{enumerate}[(a)]
+\item Are there any other solutions to~\eqref{eqn:Q3-elliptic-system}? If yes, state them.
+\item Show that \[ \intlim 0 1 {f(x)} x = 0 \] is a necessary condition to have a solution. \textbf{Hint}: Integrate~\eqref{eqn:Q3-elliptic-system} and use the boundary conditions.
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+\textit{Method of characteristics}: Use the method of characteristics to solve the transport equation \[
+u_t + v(x, t) u_x = 0
+\] in $\R \times (0, \infty)$ with initial condition $u(x, 0) = \Phi_0(x) = 1 - 2x$ for the velocity field \[
+v(x, t) = \f{1 + t^2}2.
+\]
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q5
+\newquestion{5}
+
+\begin{questionbody}
+\textit{Classification of PDEs}: Reduce the elliptic equation \[
+u_{xx} + 3 u_{yy} - 2 u_x + 24 u_y + 5u = 0
+\] to the equation \[
+v_{xx} + v_{yy} + cv = 0
+\] by changing the dependant variable to $u(x, y) = v(x, y) \e^{\alpha x + \beta y}$ and then using the scaling $y' = \gamma y$. What are the values of $\alpha$, $\beta$, $\gamma$, and $c$?
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document}

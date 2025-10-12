@@ -104,6 +104,7 @@ new-ass:
         "MA150": "magenta!50", # Algebra 2
         "MA151": "violet!50", # Algebra 1
         "MA243": "orange!50", # Geometry
+        "MA265": "green!50!teal!50", # Methods 3
         "MA268": "violet!50", # Algebra 3
     }
 
