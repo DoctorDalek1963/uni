@@ -4,3 +4,7 @@ set allow-duplicate-recipes := true
 
 _default:
     @just --list
+
+[group("pdf")]
+rename: build
+    cp main.pdf Dyson_Dyson_MA262_Essay.pdf
