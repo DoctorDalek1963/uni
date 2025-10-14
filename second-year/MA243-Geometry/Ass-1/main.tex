@@ -72,11 +72,23 @@ Suppose that a function $f \colon X \times X \to \R$ is non-degenerate, symmetri
 
 \subsection{~} % 2.a
 
-Since the codomain of $f$ is $\R$, we know the image of $f$ will be a subset of $\R$, so we only need to prove $f \ge 0$. TODO
+Since the codomain of $f$ is $\R$, we know the image of $f$ will be a subset of $\R$, so we only need to prove $f \ge 0$.
+
+Suppose there exist $a, b, c \in X$ with $a \ne b \ne c$ and $f(a, b) < 0$. Since $f$ satisfies the triangle inequality, we know three things: \begin{align*}
+f(a, b) \le f(a, c) + f(b, c) \\
+f(b, c) \le f(a, b) + f(a, c) \\
+f(a, c) \le f(a, b) + f(b, c)
+\end{align*}
+
+TODO
 
 \subsection{~} % 2.b
 
+TODO
+
 \subsection{~} % 2.c
+
+TODO
 
 % }}}
 
@@ -89,7 +101,28 @@ Let $\delta : \R^2 \times \R^2 \to [0, \infty)$ be a function defined by \[ % ch
 \] Is $(\R^2, \delta)$ a metric space? Prove it is, or explain why it isn't.
 \end{questionbody}
 
-Answer
+For $(\R^2, \delta)$ to be a metric space, $\delta$ must be a metric. This means is must be non-degenerate, symmetric, and satisfy the triangle inequality.
+
+The only way to make $\delta = 0$ is to make everything under the square root equal to 0, which means making $x_1 - x_2 = 0$ and $y_1 - y_2 = 0$. That means $x_1 = x_2$ and $y_1 = y_2$, so $\delta(\ul u, \ul v) = 0$ only when $\ul u = \ul v$ and therefore $\delta$ is non-degenerate.
+
+Since the terms $x_1 - x_2$ and $y_1 - y_2$ are both squared, their order is unimportant, so $\delta$ is symmetric.
+
+For the triangle inequality, let $\ul x, \ul y, \ul z \in \R^n$. We can use translation invariance to move $\ul z$ to the origin, then let $\ul x' = \ul x - \ul z$, $\ul y' = \ul y - \ul z$, $\ul z' = \ul z - \ul z = \ul 0$.
+
+Now we want to show that $\delta(\ul x, \ul y) \le \delta(\ul x, \ul z) + \delta(\ul y, \ul z)$. By translation invariance again, this is equivalent to $\delta(\ul x', \ul y') \le \delta(\ul x', \ul 0) + \delta(\ul y', \ul 0)$, which is equivalent to $\| \ul x' - \ul y' \| \le \| \ul x' \| + \| \ul y' \|$. Since both sides are non-negative, it suffices to square both sides and show the resulting equation holds.
+\begin{align*}
+{\l( \| \ul x' \| + \| \ul y' \| \r)}^2 &=
+  {\| \ul x' \|}^2 + 2 {\| \ul x' \|} \, {\| \ul y' \|} + {\| \ul x' \|}^2 \\
+&\ge {\| \ul x' \|}^2 + 2 {| \ul x' \cdot \ul y' |} + {\| \ul x' \|}^2 \\
+&\ge {\| \ul x' \|}^2 - 2 (\ul x' \cdot \ul y') + {\| \ul x' \|}^2 \\
+&= \ul x' \cdot \ul x' - 2 (\ul x' \cdot \ul y') + \ul y' \cdot \ul y' \\
+&= (\ul x' - \ul y') \cdot (\ul x' - \ul y') \\
+&= {\| \ul x' - \ul y' \|}^2
+\end{align*}
+
+Since $\delta$ is non-degenerate, symmetric, and preserves the triangle inequality, it is a metric and therefore $(\R^2, \delta)$ is a metric space.
+
+\hfill $\square$
 
 % }}}
 
@@ -108,7 +141,33 @@ d\big( (x_1, y_1), (x_2, y_2) \big) = \sqrt{{(x_1 - x_2)}^2 + {(y_1 - y_2)}^2}
 Find an isometry $f \colon L \to \R$, where $\R$ has the usual Euclidean metric, $d_1(x, y) = |x - y|$.
 \end{questionbody}
 
-Answer
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->] (-1.5, 0) -- (1.5, 0);
+        \draw[->] (0, -1.5) -- (0, 3.5);
+
+        \node at (-1, -1) [label={135:$(-1, -1)$}] {};
+        \fill (-1, -1) circle[radius=0.05];
+        \node at (0, 1) [label={135:$(0, 1)$}] {};
+        \fill (0, 1) circle[radius=0.05];
+        \node at (1, 3) [label={315:$(1, 3)$}] {};
+        \fill (1, 3) circle[radius=0.05];
+
+        \draw (-1.25, -1.5) -- (1.25, 3.5);
+    \end{tikzpicture}
+\end{center}
+
+% On $L$, $d\big( (0, 1), (1, 3) \big) = \sqrt5$, so the isometry $f$ needs to preserve this distance. We can't just project the line $L$ down onto the $x$-axis, we need to also scale it by a factor of $\sqrt5$. Let \[ f(x, y) = x\sqrt5 \]
+
+Consider two points $(x_1, 2 x_1 + 1)$ and $(x_2, 2 x_2 + 1)$ on $L$. The distance between them is \begin{align*}
+d\big( (x_1, 2 x_1 + 1), (x_2, 2 x_2 + 1) \big) &= \sqrt{{(x_1 - x_2)}^2 + {(2 x_1 + 1 - 2 x_2 - 1)}^2} \\
+&= \sqrt{{(x_1 - x_2)}^2 + {(2 (x_1 - x_2))}^2} \\
+&= \sqrt{{(x_1 - x_2)}^2 + 4 {(x_1 - x_2)}^2} \\
+&= \sqrt{5 {(x_1 - x_2)}^2} \\
+&= \sqrt5\; |x_1 - x_2|
+\end{align*}
+
+This is the normal Euclidean metric scaled by $\sqrt5$, so we just project $L$ down onto the $x$-axis and apply this scaling factor. So let $f(x, y) = x \sqrt5$.
 
 % }}}
 
