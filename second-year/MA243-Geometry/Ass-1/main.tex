@@ -75,20 +75,29 @@ Suppose that a function $f \colon X \times X \to \R$ is non-degenerate, symmetri
 Since the codomain of $f$ is $\R$, we know the image of $f$ will be a subset of $\R$, so we only need to prove $f \ge 0$.
 
 Suppose there exist $a, b, c \in X$ with $a \ne b \ne c$ and $f(a, b) < 0$. Since $f$ satisfies the triangle inequality, we know three things: \begin{align*}
-f(a, b) \le f(a, c) + f(b, c) \\
-f(b, c) \le f(a, b) + f(a, c) \\
-f(a, c) \le f(a, b) + f(b, c)
+f(a, b) &\le f(a, c) + f(b, c) \\
+f(b, c) &\le f(a, b) + f(a, c) \\
+f(a, c) &\le f(a, b) + f(b, c)
 \end{align*}
 
-TODO
+We can apply the fact that $f(a, b) < 0$ to the last two lines and observe \begin{align*}
+f(b, c) &< f(a, c) \\
+f(a, c) &< f(b, c)
+\end{align*}
+This, however, is a contradiction. Therefore our initial assumption must be false, so in fact, there does not exist $a, b \in X$ with $f(a, b) < 0$. Therefore $f \ge 0$.
 
 \subsection{~} % 2.b
 
-TODO
+$f$ can only be injective if $X$ is finite, or a 1-dimensional Euclidean space, but it is not guaranteed to be injective. If $X$ were any higher dimension, then rotations would prevent injectivity.
 
 \subsection{~} % 2.c
 
-TODO
+A counterexample is the function $f_b : X \to \R$ defined by \[
+f_b(x, y) = \begin{cases}
+0 & \text{if } x = y \\
+1 & \text{if } x \ne y
+\end{cases}
+\]
 
 % }}}
 
@@ -171,4 +180,4 @@ This is the normal Euclidean metric scaled by $\sqrt5$, so we just project $L$ d
 
 % }}}
 
-\end{document}
+\end{document} % chktex 17
