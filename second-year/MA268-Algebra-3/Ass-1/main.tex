@@ -1,0 +1,80 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\fancyhead[L]{MA268 Assignment 1}
+\title{MA268 Algebra 3, Assignment 1}
+\colorlet{questionbodycolor}{violet!50}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% This is questions 1 & 2 from homework 3, as requested
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Let \[
+    G = \l\{ \begin{pmatrix}
+        1 & x & z \\
+        0 & 1 & y \\
+        0 & 0 & 1
+    \end{pmatrix} : x, y, z \in \R \r\}, \qquad
+    H = \l\{ \begin{pmatrix}
+        1 & 0 & z \\
+        0 & 1 & 0 \\
+        0 & 0 & 1
+    \end{pmatrix} : z \in \R \r\}.
+\] Note that $G$ is a subgroup of $\mathrm{GL}_3(\R)$.
+%
+\begin{enumerate}[(i)]
+\item Let \[
+    \phi : G \to \R^2, \qquad \phi \begin{pmatrix}
+        1 & x & z \\
+        0 & 1 & y \\
+        0 & 0 & 1
+    \end{pmatrix} = (x, y).
+\] Show that $\phi$ is a homomorphism.
+
+\item Show that $H$ is a normal subgroup of $G$.
+
+\item Show that the only element of $G$ of finite order is $I_3$, the identity matrix. \textbf{Hint}: This is easier if you user $\phi$.
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Let \[
+V_4 = \l\{ \mathrm{id}, (1,2)(3,4), (1,3)(2,4), (1,4)(2,3) \r\}.
+\] You may assume $V_4$ is a normal subgroup of $S_4$.
+%
+\begin{enumerate}[(i)]
+\item Explain why $V_4$ must be a normal subgroup of $A_4$.
+
+\item Let $\sigma$ be a 3-cycle. Show that \[ A_4 / V_4 = \langle \sigma V_4 \rangle . \]
+
+\item Show that $S_4 / V_4$ is a non-cyclic group of order 6.
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document}
