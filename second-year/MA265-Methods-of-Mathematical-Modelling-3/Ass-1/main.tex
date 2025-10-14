@@ -34,7 +34,17 @@
 \end{enumerate}
 \end{questionbody}
 
-Answer
+\subsection{~} % 1.a
+
+Linear, second order, hyperbolic, homogeneous PDE.
+
+\subsection{~} % 1.b
+
+Linear, second order, parabolic, homogeneous PDE.
+
+\subsection{~} % 1.c
+
+Linear, second order, elliptic, homogeneous PDE.
 
 % }}}
 
@@ -51,7 +61,51 @@ u(x, t) = \f1{\sqrt{4 \pi kt}} \, \e^{-\f{x^2}{4 kt}}.
 \] Set $k = 0.5$ and sketch $u$ at different times. What happens as $t \to 0$?
 \end{questionbody}
 
-Answer
+We will differentiate the $u$ given in the question.
+\begin{align*}
+u &= {(4\pi kt)}^{-\f12} \e^{-x^2 {(4kt)}^{-1}} \\[1.5ex]
+%
+\partial_t u &= {(4\pi kt)}^{-\f12} \l( x^2 {(4k t^2)}^{-1} \e^{-x^2 {(4kt)}^{-1}} \r)
+    - \f12 {(4\pi k t^3)}^{-\f12} \e^{-x^2 {(4kt)}^{-1}} \\[0.5ex]
+&= {(4\pi kt)}^{-\f12} \e^{-x^2 {(4kt)}^{-1}} \l(
+    x^2 {(4k t^2)}^{-1} - \f1{2t}
+\r) \\[1.5ex]
+%
+\partial_x u &= {(4\pi kt)}^{-\f12} \l( -2x {(4kt)}^{-1} \r) \e^{-x^2 {(4kt)}^{-1}} \\[0.5ex]
+&= -2x {(4\pi kt)}^{-\f12} {(4kt)}^{-1} \e^{-x^2 {(4kt)}^{-1}} \\[1.5ex]
+%
+\partial_{xx} u &= \partial_x \l( -2x {(4\pi kt)}^{-\f12} {(4kt)}^{-1} \e^{-x^2 {(4kt)}^{-1}} \r) \\[0.5ex]
+&= -2 {(4\pi kt)}^{-\f12} {(4kt)}^{-1} \partial_x \l( x \e^{-x^2 {(4kt)}^{-1}} \r) \\[0.5ex]
+&= -2 {(4\pi kt)}^{-\f12} {(4kt)}^{-1} \l(
+    x \l( -2x {(4kt)}^{-1} \r) \e^{-x^2 {(4kt)}^{-1}}
+    + \e^{-x^2 {(4kt)}^{-1}}
+\r) \\[0.5ex]
+&= -2 {(4\pi kt)}^{-\f12} {(4kt)}^{-1} \e^{-x^2 {(4kt)}^{-1}} \l( -2x^2 {(4kt)}^{-1} + 1 \r) \\[0.5ex]
+&= 4 {(4\pi kt)}^{-\f12} {(4kt)}^{-1} \e^{-x^2 {(4kt)}^{-1}} \l( x^2 {(4kt)}^{-1} - \f12 \r)
+\end{align*}
+
+We want to have $\partial_t u = k \partial_{xx} u$, so let's look at each side and manipulate them to see if they're equal.
+\begin{align*}
+\partial_t u &= {(4\pi kt)}^{-\f12} \e^{-x^2 {(4kt)}^{-1}} \l(
+    x^2 {(4k t^2)}^{-1} - \f1{2t}
+\r) \\[0.5ex]
+&= {(4\pi kt)}^{-\f12} \e^{-x^2 {(4kt)}^{-1}} \l(
+    \f{x^2}{4k t^2} - \f1{2t}
+\r) \\[1.5ex]
+%
+k \partial_{xx} u &= k {(4\pi kt)}^{-\f12} \e^{-x^2 {(4kt)}^{-1}} 4 {(4kt)}^{-1} \l(
+    x^2 {(4kt)}^{-1} - \f12
+\r) \\[0.5ex]
+&= {(4\pi kt)}^{-\f12} \e^{-x^2 {(4kt)}^{-1}} \f{4k}{4kt} \l(
+    \f{x^2}{4kt} - \f12
+\r) \\[0.5ex]
+&= {(4\pi kt)}^{-\f12} \e^{-x^2 {(4kt)}^{-1}} \l(
+    \f{x^2}{4kt^2} - \f1{2t}
+\r)
+\end{align*}
+Therefore this $u$ gives satisfies~\eqref{eqn:heat-equation}.
+
+TODO: Sketch
 
 % }}}
 
@@ -71,7 +125,17 @@ Let $u^*$ denote a solution to~\eqref{eqn:Q3-elliptic-system}.
 \end{enumerate}
 \end{questionbody}
 
-Answer
+\subsection{~} % 3.a
+
+TODO
+
+\subsection{~} % 3.b
+
+We integrate both sides of~\eqref{eqn:Q3-elliptic-system} and get \begin{align*}
+\intlim 01 {u_{xx}} x &= \intlim 01 {f(x)} x \\
+u_x(1) - u_x(0) &= \intlim 01 {f(x)} x \\
+0 &= \intlim 01 {f(x)} x
+\end{align*}
 
 % }}}
 
