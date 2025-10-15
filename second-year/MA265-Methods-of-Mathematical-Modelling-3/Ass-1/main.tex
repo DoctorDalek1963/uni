@@ -8,8 +8,8 @@
 
 \usepackage{preamble}
 
-% \usepackage{graphicx}
-% \graphicspath{ {./imgs/} }
+\usepackage{graphicx}
+\graphicspath{ {./imgs/} }
 
 \fancyhead[L]{MA265 Assignment 1}
 \title{MA265 Methods of Mathematical Modelling 3, Assignment 1}
@@ -34,17 +34,19 @@
 \end{enumerate}
 \end{questionbody}
 
+% We use \@ before the full stop here because of the way LaTeX deals with interword and intersentence spacing in English. See https://tex.stackexchange.com/a/55112
+
 \subsection{~} % 1.a
 
-Linear, second order, hyperbolic, homogeneous PDE.
+Linear, second order, hyperbolic, homogeneous PDE\@.
 
 \subsection{~} % 1.b
 
-Linear, second order, parabolic, homogeneous PDE.
+Linear, second order, parabolic, homogeneous PDE\@.
 
 \subsection{~} % 1.c
 
-Linear, second order, elliptic, homogeneous PDE.
+Linear, second order, elliptic, homogeneous PDE\@.
 
 % }}}
 
@@ -103,9 +105,13 @@ k \partial_{xx} u &= k {(4\pi kt)}^{-\f12} \e^{-x^2 {(4kt)}^{-1}} 4 {(4kt)}^{-1}
     \f{x^2}{4kt^2} - \f1{2t}
 \r)
 \end{align*}
-Therefore this $u$ gives satisfies~\eqref{eqn:heat-equation}.
+Therefore this $u$ satisfies~\eqref{eqn:heat-equation}.
 
-TODO: Sketch
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.8]{Q2}
+    \caption{A plot of $u(x, t)$ with $k=0.5$}
+\end{figure}
 
 % }}}
 
@@ -127,7 +133,7 @@ Let $u^*$ denote a solution to~\eqref{eqn:Q3-elliptic-system}.
 
 \subsection{~} % 3.a
 
-TODO
+Yes. Any function $v(x) = u^*(x) + C$, where $C \ne 0$ is any constant, is also a solution to~\eqref{eqn:Q3-elliptic-system}.
 
 \subsection{~} % 3.b
 
@@ -150,6 +156,7 @@ v(x, t) = \f{1 + t^2}2.
 \]
 \end{questionbody}
 
+% TODO(2025-10-15): Not yet covered in lectures
 Answer
 
 % }}}
@@ -165,7 +172,58 @@ v_{xx} + v_{yy} + cv = 0
 \] by changing the dependant variable to $u(x, y) = v(x, y) \e^{\alpha x + \beta y}$ and then using the scaling $y' = \gamma y$. What are the values of $\alpha$, $\beta$, $\gamma$, and $c$?
 \end{questionbody}
 
-Answer
+We will begin by calculating the derivatives of $u$.
+\begin{align*}
+u(x, y) &= v(x, y) \e^{\alpha x + \beta y} \\[1.5ex]
+%
+u_x &= \alpha v \e^{\alpha x + \beta y} + v_x \e^{\alpha x + \beta y} \\[0.5ex]
+&= \e^{\alpha x + \beta y} \l( \alpha v + v_x \r) \\[1.5ex]
+%
+u_{xx} &= \e^{\alpha x + \beta y} \l( \alpha v_x + v_{xx} \r) + \alpha \e^{\alpha x + \beta y} \l( \alpha v + v_x \r) \\[0.5ex]
+&= \e^{\alpha x + \beta y} \l( v_{xx} + 2\alpha v_x + \alpha^2 v \r) \\[1.5ex]
+%
+u_y &= \e^{\alpha x + \beta y} \l( \beta v + v_y \r) \\[1.5ex]
+%
+u_{yy} &= \e^{\alpha x + \beta y} \l( v_{yy} + 2\beta v_y + \beta^2 v \r)
+\end{align*}
+
+We plug these into the equation and get \[ \begin{split}
+0 &= u_{xx} + 3 u_{yy} - 2 u_x + 24 u_y + 5u \\[1.5ex]
+&= \e^{\alpha x + \beta y} \Big(
+    v_{xx} + 2\alpha v_x + \alpha^2 v \\
+    &\quad + 3 \l( v_{yy} + 2\beta v_y + \beta^2 v \r) \\
+    &\quad - 2 \l( \alpha v + v_x \r) \\
+    &\quad + 24 \l( \beta v + v_y \r) \\
+    &\quad + 5v
+\Big) \\[1.5ex]
+&= \e^{\alpha x + \beta y} \Big(
+    v_{xx} + 2 \alpha v_x + \alpha^2 v \\
+    &\quad + 3 v_{yy} + 6 \beta v_y + 3 \beta^2 v \\
+    &\quad - 2 \alpha v - 2 v_x \\
+    &\quad + 24 \beta v + 24 v_y \\
+    &\quad + 5v
+\Big) \\[1.5ex]
+&= \e^{\alpha x + \beta y} \Big(
+    v_{xx} + 3 v_{yy} \\
+    &\quad + \l( 2\alpha - 2 \r) v_x + \l( 6\beta + 24 \r) v_y \\
+    &\quad + \l( \alpha^2 + 3\beta^2 - 2\alpha + 24\beta + 5 \r) v
+\Big)
+\end{split} \]
+
+The coefficients of $v_x$ and $v_y$ are 0, so we need $2\alpha - 2 = 0$ and $6\beta + 24 = 0$, which implies $\alpha = 1$ and $\beta = -4$. Therefore the equation becomes
+\begin{align*}
+0 &= \e^{x - 4y} \l(
+    v_{xx} + 3 v_{yy}
+    + \l( 1 + 12 - 2 - 96 + 5 \r) v
+\r) \\[0.5ex]
+&= \e^{x - 4y} \l(
+    v_{xx} + 3 v_{yy}
+    - 78 v
+\r) \\[0.5ex]
+\implies 0 &= v_{xx} + 3 v_{yy} - 78 v
+\end{align*}
+
+We can divide out the $\e^{x - 4y}$ because it is never 0. Then we conclude that $\alpha = 1$, $\beta = -4$, $\gamma = 3$, $c = -78$.
 
 % }}}
 
