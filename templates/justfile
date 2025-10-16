@@ -7,7 +7,7 @@ _default:
 
 [group("pdf")]
 _pre-build:
-    nix-shell code/shell.nix --run ./code/SCRIPT_NAME.py
+    make
 
 # remove all build artifacts
 [group("pdf")]

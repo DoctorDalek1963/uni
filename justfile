@@ -11,6 +11,7 @@ alias r := rename
 alias f := finish
 alias na := new-ass
 alias nj := new-justfile
+alias np := new-plot
 
 _default:
     @just --list
@@ -153,6 +154,13 @@ new-justfile:
 
     with open("justfile", "w") as f:
         f.write(text.replace("#REL_PATH_TO_ROOT#", str(rel_path)))
+
+# create the skeleton for an assignment that requires a generated plot (doesn't create main.tex)
+[group("create")]
+[no-cd]
+new-plot: new-justfile
+    cp -rv "{{ source_directory() }}/templates/plot"/* .
+    mkdir imgs
 
 # build every assignment for CI
 [group("ci")]
