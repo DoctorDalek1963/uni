@@ -194,7 +194,7 @@ u(x, t) &= 1 - 2x_0 \\
 \textit{Classification of PDEs}: Reduce the elliptic equation \[
 u_{xx} + 3 u_{yy} - 2 u_x + 24 u_y + 5u = 0
 \] to the equation \[
-v_{xx} + v_{yy} + cv = 0
+v_{xx} + v_{y' y'} + cv = 0
 \] by changing the dependant variable to $u(x, y) = v(x, y) \e^{\alpha x + \beta y}$ and then using the scaling $y' = \gamma y$. What are the values of $\alpha$, $\beta$, $\gamma$, and $c$?
 \end{questionbody}
 
@@ -249,7 +249,9 @@ The coefficients of $v_x$ and $v_y$ are 0, so we need $2\alpha - 2 = 0$ and $6\b
 \implies 0 &= v_{xx} + 3 v_{yy} - 78 v
 \end{align*}
 
-We can divide out the $\e^{x - 4y}$ because it is never 0. Then we conclude that $\alpha = 1$, $\beta = -4$, $\gamma = 3$, $c = -78$.
+We can divide out the $\e^{x - 4y}$ because it is never 0. We can also observe that if $y' = \gamma y$, then $\gamma^2 v_{y' y'} = v_{yy}$ so $v_{y' y'} = \f1{\gamma^2} v_{yy}$.
+
+Then we conclude that $\alpha = 1$, $\beta = -4$, $\gamma = \f1{\sqrt3}$, $c = -78$.
 
 % }}}
 
