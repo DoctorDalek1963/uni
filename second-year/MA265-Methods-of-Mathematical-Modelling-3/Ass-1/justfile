@@ -7,4 +7,4 @@ _default:
 
 [group("pdf")]
 _pre-build:
-    nix-shell code/shell.nix --run ./code/plot_heat_equation.py
+    make
