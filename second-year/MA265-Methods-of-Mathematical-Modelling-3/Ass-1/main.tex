@@ -156,8 +156,32 @@ v(x, t) = \f{1 + t^2}2.
 \]
 \end{questionbody}
 
-% TODO(2025-10-15): Not yet covered in lectures
-Answer
+We first have to solve the associated ODE to use the method characteristics.
+\begin{align*}
+\xi'(t) &= v(\xi(t), t) = \f{1 + t^2}2 \\
+\xi(0) &= x_0
+\end{align*}
+
+We can solve this with separation of variables.
+\begin{align*}
+\dd \xi t &= \f{1 + t^2}2 \\[0.5ex]
+\inte {} \xi &= \f12 \inte {1 + t^2} t \\[0.5ex]
+\xi(t) &= \f12 t + \f16 t^3 + C
+% \xi(0) &= 0 + 0 + C = x_0
+\end{align*}
+
+We use the initial value to find that \[ \xi(t) = \f12 t + \f16 t^3 + x_0. \]
+
+% Then $x = \xi(t)$ equals something with $x_0$, so solve for $x_0$ in terms of $x$ and $t$. Then $u(x, t) = \Phi_0(x_0)$, which should contain both $x$ and $t$.
+
+We know that $x = \xi(t)$, so we can solve for $x_0$ and find that \[ x_0 = x - \f12 t - \f16 t^3. \]
+
+Now we apply the fact that $u(x, t) = \Phi_0(x_0)$ to find that
+\begin{align*}
+u(x, t) &= 1 - 2x_0 \\
+&= 1 - 2 \l( x - \f12 t - \f16 t^3 \r) \\
+&= 1 - 2x + t + \f13 t^3.
+\end{align*}
 
 % }}}
 
