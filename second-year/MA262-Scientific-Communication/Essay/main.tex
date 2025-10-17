@@ -1,9 +1,15 @@
 % vim: set foldmethod=marker foldlevel=0:
 
-\documentclass[a4paper]{article}
+% TODO: Before submitting:
+% - Fully anonymise essay
+% - Should be approximately 10-12 pages of content (not including contents,
+%   bibliography, etc.)
+% - Maximum of 15 pages
+% - Remove unneeded packages from preamble
+
+\documentclass[a4paper, 11pt]{article}
 \usepackage[UKenglish]{babel}
 
-% Parts of preamble inlined for source portability
 \usepackage{amsmath, amssymb, amsgen}
 \usepackage{gensymb}
 \usepackage{mathtools}
@@ -35,14 +41,15 @@
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhead[R]{Dyson Dyson 5503449}
-\fancyhead[L]{MA262 Essay}
+% TODO: Decide what to do with these
+% \fancyhead[R]{Dyson Dyson 5503449}
+% \fancyhead[L]{MA262 Essay}
+\fancyhead[C]{Essay Title}
 
 % \usepackage{graphicx}
 % \graphicspath{ {./imgs/} }
 
 \title{MA262 Scientific Communication Essay}
-\author{Dyson Dyson}
 \date{\today}
 
 \begin{document}
@@ -64,7 +71,9 @@ See \parencite[pp.~7--10]{barendregt-1981-lambda-calculus} and \citeauthor{churc
 
 \section{Stuff}
 
-\subsection{Stuff and things}
+\subsection{Ideas}
+
+We need to define the syntax and semantics. We should talk about Currying and its $\lambda x y . \cdots$ shorthand. We should define Church numerals, addition, subtraction (how?), and multiplication. Maybe conclude with a function to generate the $n$th Fibonacci number. Will we need the Y combinator for recursion for Fibonacci? Probably.
 
 \newpage
 \nocite{*} % TODO: Trim bib file before submitting
