@@ -1,10 +1,13 @@
-{pkgs ? import <nixpkgs> {}}: let
-  python = pkgs.python3.withPackages (p: with p; [scipy]);
+{
+  pkgs ? import <nixpkgs> { },
+}:
+let
+  python = pkgs.python3.withPackages (p: with p; [ scipy ]);
 in
-  pkgs.mkShell {
-    buildInputs = [python];
+pkgs.mkShell {
+  buildInputs = [ python ];
 
-    shellHook = ''
-      export PYTHONPATH="${python}/${python.sitePackages}"
-    '';
-  }
+  shellHook = ''
+    export PYTHONPATH="${python}/${python.sitePackages}"
+  '';
+}
