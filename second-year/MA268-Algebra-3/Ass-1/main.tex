@@ -104,8 +104,42 @@ h = \begin{pmatrix}
 \]
 Then
 \begin{align*}
-g^{-1} &= \cdots \\[1ex]
-% TODO: Invert this by hand
+M_g &= \begin{pmatrix}
+\begin{vmatrix} 1 & y \\ 0 & 1 \end{vmatrix} &
+\begin{vmatrix} 0 & y \\ 0 & 1 \end{vmatrix} &
+\begin{vmatrix} 0 & 1 \\ 0 & 0 \end{vmatrix} \\[2.5ex]
+\begin{vmatrix} x & z \\ 0 & 1 \end{vmatrix} &
+\begin{vmatrix} 1 & z \\ 0 & 1 \end{vmatrix} &
+\begin{vmatrix} 1 & x \\ 0 & 0 \end{vmatrix} \\[2.5ex]
+\begin{vmatrix} x & z \\ 1 & y \end{vmatrix} &
+\begin{vmatrix} 1 & z \\ 0 & y \end{vmatrix} &
+\begin{vmatrix} 1 & x \\ 0 & 1 \end{vmatrix}
+\end{pmatrix} \\[1ex]
+&= \begin{pmatrix}
+1 & 0 & 0 \\
+x & 1 & 0 \\
+xy - z & y & 1
+\end{pmatrix} \\[1ex]
+%
+C_g &= \begin{pmatrix}
+1 & 0 & 0 \\
+-x & 1 & 0 \\
+xy - z & -y & 1
+\end{pmatrix} \\[1ex]
+%
+C_g^T &= \begin{pmatrix}
+1 & -x & xy - z \\
+0 & 1 & -y \\
+0 & 0 & 1
+\end{pmatrix} \\[1ex]
+%
+\det g &=
+1 \begin{vmatrix} 1 & y \\ 0 & 1 \end{vmatrix}
++ 0 \begin{vmatrix} x & z \\ 0 & 1 \end{vmatrix}
++ 0 \begin{vmatrix} x & z \\ 1 & y \end{vmatrix} \\[0.5ex]
+&= 1 \\[1ex]
+%
+\therefore g^{-1} &= \f1{\det g} C_g^T \\[1ex]
 &= \begin{pmatrix}
     1 & -x & xy - z \\
     0 & 1 & -y \\
