@@ -1,0 +1,71 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\fancyhead[L]{MA270 Assignment 1}
+\title{MA270 Analysis 3, Assignment 1}
+\colorlet{questionbodycolor}{blue!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Let $f : [0, \infty) \to \R$ be a function such that $\llim{x \to \infty} f(x) = 0$, $f(0) = 0$, and $f(1) = 1$. For each $n \in \N$, let $f_n(x) := f(nx)$ for every $x \in [0, \infty)$. % chktex 9
+\begin{enumerate}[(a)]
+    \item Show that the sequence $(f_n)$ converges to 0 pointwise but not uniformly.
+    \item Show that for any $a > 0$, we have $\sup\limits_{x \in [a, \infty)} |f_n(x)| \to 0$ as $n \to \infty$ (in such case, we say that $f_n$ converges uniformly to 0 on $[a, \infty)$). % chktex 9
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Study the pointwise and uniform convergence of the sequence $f_n : (0, \infty) \to \R$ defined by $f_n(x) = \df{\sin(nx)}{n \sqrt x}$.
+
+\textbf{Hint}: For uniform convergence, given $n \in \N$, one can analyse the behaviour of $f_n(x)$ separately for $x \in \l[ \f1n, \infty \r)$ and $x \in \l( 0, \f1n \r)$. For the analysis in the latter interval, one can consider the function $h : [0, \infty) \to \R$ defined by $h(x) = \df{\sin x}x$ for $x \ne 0$ and $h(0) = 1$, show that $h$ is bounded on $[0, \infty)$, and make use of this. % chktex 9
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+For each $n \in \N$, let $f_n : [0, 1] \to \R$ be a function. Suppose that the sequence $(f_n)$ converges uniformly to a function $f : [0, 1] \to \R$. Let $(g_n)$ be the sequence defined by $g_n = f_{n+3} - f_n$. Prove that the limit $\llim{n \to \infty} \int_0^1 g_n$ exists and calculate this limit.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Let $g : [0, 1] \to \R$ be a continuous function. For each $n \in \N$, let $g_n : [0, 1] \to \R$ be defined by $g_n(x) = \df x{1 + nx^2} \, g(x)$. Show that $\intlim 01 {g_n(x)} x \to 0$ as $n \to \infty$\dots
+
+\textbf{Hint}: One can start by showing that the sequence of functions $h_n : [0, 1] \to \R$ defined by $h_n(x) = \df x{1 + nx^2}$ converges uniformly to 0.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document} % chktex 17
