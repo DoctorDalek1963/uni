@@ -221,15 +221,22 @@ V_4 = \l\{ \mathrm{id}, (1,2)(3,4), (1,3)(2,4), (1,4)(2,3) \r\}.
 
 \subsection{~} % 1.i
 
-$A_4$ is a subgroup of $S_4$ and $V_4$ is a normal subgroup of $S_4$ which also fits the restrictions of $A_4$. Therefore $V_4$ is a subgroup of $A_4$. TODO\@: Show that it's normal.
+$A_4$ is a subgroup of $S_4$ and $V_4$ is a normal subgroup of $S_4$ which also fits the restrictions of $A_4$. Therefore $V_4$ is a subgroup of $A_4$.
+
+To show that $V_4$ is normal in $A_4$, we can show that $v a v^{-1} = a$ for all $v \in V_4$ and $a \in A_4$. This is clearly true for $v = \mathrm{id}$. Note that every other element of $V_4$ is an even permutation of two disjoint swaps. % TODO: Is that actually relevant?
+TODO\@: Articulate a relabelling argument, where $v^{-1}$ will relabel before applying $a$ and $v$ will reverse the relabelling afterwards.
 
 \subsection{~} % 1.ii
 
-TODO
+Any 3-cycle $\sigma$ has order 3 since $\sigma^3 = \mathrm{id}$, therefore $\langle \sigma V_4 \rangle$ has order 3. That means we should be able to divide $A_4$ into 3 classes, each of which can be mapped to a power of $\sigma$.
+
+Since the order of $A_4$ is $\f{4!}2 = 12$, is it safe to assume each class has 4 elements?
+% TODO: Finish
 
 \subsection{~} % 1.iii
 
-TODO
+Presumably $S_4 / V_4$ is bi-cyclic. So we have the cyclic subgroup $A_4 / V_4$ from the last part, and another cyclic almost-subgroup\footnote{It can't be a proper subgroup because it doesn't contain $\mathrm{id}$.} formed of the odd permutations from $S_4$.
+% TODO: Finish
 
 % }}}
 
