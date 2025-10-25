@@ -32,15 +32,19 @@ Let $f : [0, \infty) \to \R$ be a function such that $\llim{x \to \infty} f(x) =
 
 We will first show that $f_n \to 0$ pointwise. If $x = 0$ then $f_n(x) = 0$ for any $n$, so consider an arbitrary $x_0 \in (0, \infty)$. For any $\varepsilon > 0$, we want to choose an $N$ such that $\forall n \ge N$, $|f(n x_0)| < \varepsilon$.
 
-Since $\llim{x \to \infty} f(x) = 0$, we know that $\forall \varepsilon > 0$, $\exists N_0$ such that $\forall x \ge N_0$, $|f(x)| < \varepsilon$.
+Since $\llim{x \to \infty} f(x) = 0$, we know that $\forall \varepsilon > 0$, $\exists N_0 \in \N$ such that $\forall x \ge N_0$, $|f(x)| < \varepsilon$.
 
 To apply this above, we just want to choose $N$ such that $n x_0 \ge N_0$, so we choose $N = \lceil N_0 / x_0 \rceil$. Then $\forall n \ge N$, we have $|f_n(x_0)| = |f(n x_0)| < \varepsilon$ as required. Therefore $f_n \to 0$ pointwise.
 
-However, $f \not\rightrightarrows 0$ because no matter which $n$ we choose, we can find some $x$ such that $f_n(x) \ne 0$. In this case, $x = \f1n$, and $f_n(x) = f(n \f1n) = f(1) = 1$. Therefore $f$ does not converge uniformly to 0.
+However, $f \not\rightrightarrows 0$ because no matter which $n$ we choose, we can find some $x$ such that $f_n(x) \ne 0$. In this case, $x = \f1n$, and $f_n(x) = f\l(n \f1n\r) = f(1) = 1$. Therefore $f$ does not converge uniformly to 0.
+\hfill$\square$
 
 \subsection{~} % 1.b
 
-Fix some arbitrary $a > 0$.
+Fix some arbitrary $a > 0$. We want to show that $\forall \varepsilon > 0$, $\exists N \in \N$ such that $\forall x \in [a, \infty)$, $\forall n \ge N$, $| f(nx) | < \varepsilon$. Since $\llim{x \to \infty} f(x) = 0$, we know that $\forall \varepsilon > 0$, $\exists N_0 \in \N$ such that $\forall x \ge N_0$, $|f(x)| < \varepsilon$. % chktex 9
+
+So we just choose our $N$ such that when $n > N$, $nx \ge N_0$ for all $x \in [a, \infty)$. So we choose $N = \lceil N_0 / a \rceil$. Then the condition is met and therefore $f_n$ converges uniformly on $[a, \infty)$. % chktex 9
+\hfill$\square$
 
 % }}}
 
@@ -53,7 +57,11 @@ Study the pointwise and uniform convergence of the sequence $f_n : (0, \infty) \
 \textbf{Hint}: For uniform convergence, given $n \in \N$, one can analyse the behaviour of $f_n(x)$ separately for $x \in \l[ \f1n, \infty \r)$ and $x \in \l( 0, \f1n \r)$. For the analysis in the latter interval, one can consider the function $h : [0, \infty) \to \R$ defined by $h(x) = \df{\sin x}x$ for $x \ne 0$ and $h(0) = 1$, show that $h$ is bounded on $[0, \infty)$, and make use of this. % chktex 9
 \end{questionbody}
 
-Answer
+% TODO
+
+Yes pointwise to 0.
+
+Not uniform.
 
 % }}}
 
@@ -64,7 +72,17 @@ Answer
 For each $n \in \N$, let $f_n : [0, 1] \to \R$ be a Riemann integrable function. Suppose that the sequence $(f_n)$ converges uniformly to a function $f : [0, 1] \to \R$. Let $(g_n)$ be the sequence defined by $g_n = f_{n+3} - f_n$. Prove that the limit $\llim{n \to \infty} \int_0^1 g_n$ exists and calculate this limit.
 \end{questionbody}
 
-Answer
+% TODO: Do I need to prove that the limit exists?
+% Why does integrability matter? In my current answer, we could just omit the integral signs
+
+\begin{align*}
+\llim{n \to \infty} \int_0^1 g_n &= \llim{n \to \infty} \intlim 01 {( f_{n+3}(x) - f_n(x) )} x \\[0.5ex]
+&= \llim{n \to \infty} \intlim 01 {f_{n+3}(x)} x - \llim{n \to \infty} \intlim 01 {f_n(x)} x \\[0.5ex]
+&= \intlim 01 {\llim{n \to \infty} f_{n+3}(x)} x - \intlim 01 {\llim{n \to \infty} f_n(x)} x \tag{*}\label{eqn:Q3-lim-int-swap} \\[0.5ex]
+&= \intlim 01 {f(x)} x - \intlim 01 {f(x)} x \\[0.5ex]
+&= 0
+\end{align*}
+Note that we're only allowed to move the limits inside the integrals on line~\eqref{eqn:Q3-lim-int-swap} because $f_n$ converges to $f$ uniformly. A weaker notion of convergence would not allow for this.
 
 % }}}
 
@@ -72,12 +90,28 @@ Answer
 \newquestion{4}
 
 \begin{questionbody}
-Let $g : [0, 1] \to \R$ be a continuous function. For each $n \in \N$, let $g_n : [0, 1] \to \R$ be defined by $g_n(x) = \df x{1 + nx^2} \, g(x)$. Show that $\intlim 01 {g_n(x)} x \to 0$ as $n \to \infty$\dots
+Let $g : [0, 1] \to \R$ be a continuous function. For each $n \in \N$, let $g_n : [0, 1] \to \R$ be defined by $g_n(x) = \df x{1 + nx^2} \, g(x)$. Show that $\intlim 01 {g_n(x)} x \to 0$ as $n \to \infty$.
 
 \textbf{Hint}: One can start by showing that the sequence of functions $h_n : [0, 1] \to \R$ defined by $h_n(x) = \df x{1 + nx^2}$ converges uniformly to 0.
 \end{questionbody}
 
-Answer
+Consider the sequence of functions $h_n : [0, 1] \to \R$ defined by $h_n(x) = \df x{1 + nx^2}$. For $h_n$ to converge uniformly to 0, we need \[
+\forall \varepsilon > 0,\ \exists N \in \N \text{ such that } \forall n \ge N,\ \forall x \in [0, 1],\ |h_n(x)| < \varepsilon .
+\]
+
+A bit of simple manipulation tells us that \begin{align*}
+|h_n(x)| &< \varepsilon \\[0.5ex]
+\l| \f{x}{1 + nx^2} \r| &< \varepsilon \\[0.5ex]
+\f{|x|}{|1 + nx^2|} &< \varepsilon \\[0.5ex]
+\f{|x|}{1 + nx^2} &< \varepsilon \\[0.5ex]
+|x| &< \varepsilon (1 + nx^2) \\[0.5ex]
+|x| &< \varepsilon + \varepsilon nx^2 \\[0.5ex]
+% |x| - \varepsilon &< \varepsilon nx^2 \\[0.5ex]
+\f{|x| - \varepsilon}{\varepsilon x^2} &< n
+\end{align*}
+needs to hold for all $x$. Since $x \in [0, 1]$, the left hand side is maximised when $x=1$, so we need $n > \df{1-\varepsilon}{\varepsilon}$ and therefore we choose $N = \l\lceil \df{1 - \varepsilon}{\varepsilon} \r\rceil$. Therefore $h_n \rightrightarrows 0$.
+
+Now we want to consider $g_n$. % TODO
 
 % }}}
 
