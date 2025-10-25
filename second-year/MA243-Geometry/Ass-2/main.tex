@@ -1,0 +1,124 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+% NOTE: hyperref has to come before preamble
+% \usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+\fancyhead[L]{MA243 Assignment 2}
+\title{MA243 Geometry, Assignment 2}
+\colorlet{questionbodycolor}{orange!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+% This question is about geometry in the Euclidean plane, $\R^2$.
+%
+Let $R_L$ denote the reflection in the line $L$. Let $H_P$ be the rotation through $P$ by $180\degree$. Prove that \[
+R_L \circ H_P = H_P \circ R_L \iff P \in L
+\]
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Define the flat torus to be the metric space given by the set $T := [0, 1) \times [0, 1)$ together with the distance \[ % chktex 9
+d((x_1, y_1), (x_2, y_2)) = \min\l\{ d_{\R^2}((x_1, y_1), (x_2 + i, y_2 + j)) : i, j \in \Z \r\}.
+\] You can think of this as a square with the top and bottom edges identified, and the left and right sides identified. Here $d_{\R^2}$ is the usual Euclidean metric on $\R^2$. For example, on the flat torus, $(0.9, 0)$ is distance $0.2$ from the point $(0.1, 0)$.
+
+For $z = (x, y) \in \R^2$, define \[ \{z\} = (\{x\}, \{y\}) \] where $\{a\} \in [0, 1)$ is the fractional part of the real number $a$. This is the unique value in $[0, 1)$ such that $a - \{a\}$ is an integer. % chktex 9
+
+\begin{enumerate}[(a)]
+\item For any $(a, b) \in \R^2$, define a translation function \begin{align*}
+    f : T &\to T \\[0.5ex]
+    (x, y) &\mapsto \{(x + a, y + b)\}.
+\end{align*} Prove that $f$ is an isometry of $T$.
+%
+\item Define a \enquote*{rotation} function \begin{align*}
+    g : T &\to T \\[0.5ex]
+    \begin{pmatrix} x \\ y \end{pmatrix} &\mapsto \l\{ \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \r\}.
+\end{align*} Prove that $g$ is an isometry of $T$.
+%
+\item Define a \enquote*{rotation} function \begin{align*}
+    h : T &\to T \\[0.5ex]
+    \begin{pmatrix} x \\ y \end{pmatrix} &\mapsto \l\{ \begin{pmatrix} \cos(45\degree) & -\sin(45\degree) \\ \sin(45\degree) & \cos(45\degree) \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \r\}.
+\end{align*} Prove that $h$ is \textit{not} an isometry of $T$.
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+For a metric space $(X, d)$, the group of isometries is defined to be \[
+\mathrm{Isom}(X, d) = \{ f : f \text{ is an isometry of } (X, d) \}
+\] with group operation being composition of functions.
+
+Prove that $\mathrm{Isom}(X, d)$ is a group.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+For any field $k$, we define \begin{equation*}
+\begin{split}
+O(n, k) = \{ A : A \text{ is an invertible } n \times n \text{ matrix with coefficients in } k, \\
+\text{ and } A^T A = I_n \}.
+\end{split}
+\end{equation*} % TODO: Spacing
+
+Prove that $O(n, k)$ is a group.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q5
+\newquestion{5}
+
+\begin{questionbody}
+% In class, we show that all isometries of $\R^n$ can be given as a composition of $n + 1$ reflections. This is a related question about rotations.
+%
+Let $T = T_{I_2, (4, 0)}$ be the translation map \[
+T(\ul v) = \ul v + \begin{pmatrix} 4 \\ 0 \end{pmatrix}.
+\] Find two rotations, $R_1$ and $R_2$, so that \[
+T = R_1 \circ R_2.
+\] What are the centres of both these rotations? Write out both rotations in the form $\ul v \mapsto A \ul v + \ul b$.
+
+Is your solution unique?
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document} % chktex 17
