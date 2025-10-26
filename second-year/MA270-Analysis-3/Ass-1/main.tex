@@ -3,6 +3,8 @@
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
+\usepackage[hidelinks]{hyperref}
+
 \usepackage{preamble}
 
 \fancyhead[L]{MA270 Assignment 1}
@@ -57,11 +59,40 @@ Study the pointwise and uniform convergence of the sequence $f_n : (0, \infty) \
 \textbf{Hint}: For uniform convergence, given $n \in \N$, one can analyse the behaviour of $f_n(x)$ separately for $x \in \l[ \f1n, \infty \r)$ and $x \in \l( 0, \f1n \r)$. For the analysis in the latter interval, one can consider the function $h : [0, \infty) \to \R$ defined by $h(x) = \df{\sin x}x$ for $x \ne 0$ and $h(0) = 1$, show that $h$ is bounded on $[0, \infty)$, and make use of this. % chktex 9
 \end{questionbody}
 
-% TODO
+I shall conjecture that $f_n$ converges pointwise to 0. To show this, we need to show that \[
+\forall \varepsilon > 0,\ \forall x \in (0, \infty),\ \exists N \in \N \text{ such that } \forall n \ge N,\ |f_n(x)| < \varepsilon .
+\]
+So consider some arbitrary $\varepsilon$ and $x$. Then \begin{align*}
+|f_n(x)| &= \l| \f{\sin(nx)}{n \sqrt x} \r| \\[0.5ex]
+&= \f{|\sin(nx)|}{|n \sqrt x|} \\[0.5ex]
+&= \f{|\sin(nx)|}{n \sqrt x} \\[0.5ex]
+|f_n(x)| &< \varepsilon \\[0.5ex]
+\implies |\sin(nx)| &< \varepsilon n \sqrt x
+\end{align*}
 
-Yes pointwise to 0.
+The maximum value of $|\sin(nx)|$ is 1, so as long as $\varepsilon n \sqrt x > 1$, we have the desired inequality. That means we can just choose $N = \l\lceil \df1{\varepsilon \sqrt x} \r\rceil$.
 
-Not uniform.
+Since this value of $N$ depends on $x$, $f_n$ does not converge uniformly to 0 in general. We shall consider $f_n$ separately on the intervals $\l( 0, \f1n \r)$ and $\l[ \f1n, \infty \r)$. % chktex 9
+
+First, consider $f_n$ only on the interval $\l( 0, \f1n \r)$. We shall first consider $h : [0, \infty) \to \R$ defined by \[ % chktex 9
+h(x) = \begin{cases}
+1 & \text{if } x = 0 \\
+\df{\sin x}x & \text{otherwise}
+\end{cases}
+\]
+
+The function $h$ is bounded above and below by $\pm 1$. To show this, we want to show that $\forall x \in [0, \infty)$, % chktex 9
+\begin{align*}
+|h(x)| &\le 1 \\[0.5ex]
+\l| \f{\sin x}x \r| &\le 1 \\[0.5ex]
+\f{|\sin x|}{|x|} &\le 1 \\[0.5ex]
+|\sin x| &\le |x|
+\end{align*}
+This is a well-known fact for $x \ge 0$, which is exactly where $h$ is defined. Therefore $-1 \le h(x) \le 1$.
+
+This should help with studying the uniform convergence of $f_n$. We can note that \[ f_n(x) = h(nx) \f x{\sqrt x} \] but unfortunately, I don't know where to go from here.
+
+% TODO: Now we will consider $f_n$ on $\l[ \f1n, \infty \r)$.
 
 % }}}
 
@@ -90,7 +121,7 @@ Note that we're only allowed to move the limits inside the integrals on line~\eq
 \newquestion{4}
 
 \begin{questionbody}
-Let $g : [0, 1] \to \R$ be a continuous function. For each $n \in \N$, let $g_n : [0, 1] \to \R$ be defined by $g_n(x) = \df x{1 + nx^2} \, g(x)$. Show that $\intlim 01 {g_n(x)} x \to 0$ as $n \to \infty$.
+Let $g : [0, 1] \to \R$ be a continuous function. For each $n \in \N$, let $g_n : [0, 1] \to \R$ be defined by $g_n(x) = \df x{1 + nx^2} \, g(x)$. Show that $\ds \intlim 01 {g_n(x)} x \to 0$ as $n \to \infty$.
 
 \textbf{Hint}: One can start by showing that the sequence of functions $h_n : [0, 1] \to \R$ defined by $h_n(x) = \df x{1 + nx^2}$ converges uniformly to 0.
 \end{questionbody}
@@ -111,7 +142,12 @@ A bit of simple manipulation tells us that \begin{align*}
 \end{align*}
 needs to hold for all $x$. Since $x \in [0, 1]$, the left hand side is maximised when $x=1$, so we need $n > \df{1-\varepsilon}{\varepsilon}$ and therefore we choose $N = \l\lceil \df{1 - \varepsilon}{\varepsilon} \r\rceil$. Therefore $h_n \rightrightarrows 0$.
 
-Now we want to consider $g_n$. % TODO
+Now we want to consider $\ds \llim{n \to \infty} \intlim 01 {g_n(x)} x$. Since $h_n$ converges uniformly and $g$ is continuous, $g_n$ converges uniformly. Therefore we can move the limit inside the integral and instead consider \begin{align*}
+\intlim 01 {\llim{n \to \infty} g_n(x)} x &= \intlim 01 {\llim{n \to \infty} (h_n(x) g(x))} x \\[0.5ex]
+&= \intlim 01 {\l( \llim{n \to \infty} h_n(x) \r) g(x)} x \\[0.5ex]
+&= \intlim 01 {0 g(x)} x \\
+&= 0
+\end{align*}
 
 % }}}
 
