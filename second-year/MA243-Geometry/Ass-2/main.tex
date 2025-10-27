@@ -8,9 +8,6 @@
 
 \usepackage{preamble}
 
-% \usepackage{graphicx}
-% \graphicspath{ {./imgs/} }
-
 \fancyhead[L]{MA243 Assignment 2}
 \title{MA243 Geometry, Assignment 2}
 \colorlet{questionbodycolor}{orange!50}
@@ -65,7 +62,83 @@ For $z = (x, y) \in \R^2$, define \[ \{z\} = (\{x\}, \{y\}) \] where $\{a\} \in 
 \end{enumerate}
 \end{questionbody}
 
-Answer
+Isometries preserve distance, so in each case we want to show $d(\ul u, \ul v) = d(f(\ul u), f(\ul v))$ for all $\ul u, \ul v \in T$, or likewise with $g$ or $h$ for the other parts. Let $\ul u = \begin{pmatrix} x_1 \\ y_1 \end{pmatrix}$ and $\ul v = \begin{pmatrix} x_2 \\ y_2 \end{pmatrix}$.
+
+\subsection{~} % 2.a
+
+\begin{align*}
+d(\ul u, \ul v) &= \min\l\{ d_{\R^2} \l( \ul u, \ul v + \begin{pmatrix} i \\ j \end{pmatrix} \r)
+    : i, j \in \Z \r\} \\[0.5ex]
+%
+d(f(\ul u), f(\ul v)) &= d \l(
+    \ul u + \begin{pmatrix} a \\ b \end{pmatrix},
+    \ul v + \begin{pmatrix} a \\ b \end{pmatrix}
+\r) \\[0.5ex]
+%
+&= \min\l\{ d_{\R^2} \l(
+    \ul u + \begin{pmatrix} a \\ b \end{pmatrix},
+    \ul v + \begin{pmatrix} i \\ j \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}
+\r) : i, j \in \Z \r\}
+\end{align*}
+Since $d_{\R^2}(\ul x + \ul z, \ul y + \ul z) = d_{\R^2}(\ul x, \ul y)$, we get the desired result that $d(\ul u, \ul v) = d(f(\ul u), f(\ul v))$.
+
+\hfill $\square$
+
+\subsection{~} % 2.b
+
+\begin{align*}
+d(\ul u, \ul v) &= \min\l\{ d_{\R^2} \l( \ul u, \ul v + \begin{pmatrix} i \\ j \end{pmatrix} \r)
+    : i, j \in \Z \r\} \\[0.5ex]
+%
+d(g(\ul u), g(\ul v)) &= d \l(
+    \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \ul u,
+    \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \ul v
+\r) \\[0.5ex]
+%
+&= d \l(
+    \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ y_1 \end{pmatrix},
+    \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x_2 \\ y_2 \end{pmatrix}
+\r) \\[0.5ex]
+%
+&= d \l(
+    \begin{pmatrix} -y_1 \\ x_1 \end{pmatrix},
+    \begin{pmatrix} -y_2 \\ x_2 \end{pmatrix}
+\r) \\[0.5ex]
+%
+&= \min\l\{ d_{\R^2} \l(
+    \begin{pmatrix} -y_1 \\ x_1 \end{pmatrix},
+    \begin{pmatrix} -y_2 \\ x_2 \end{pmatrix} + \begin{pmatrix} i \\ j \end{pmatrix}
+\r) : i, j \in \Z \r\} \\[0.5ex]
+\end{align*}
+
+\subsection{~} % 2.c
+
+\begin{align*}
+d(\ul u, \ul v) &= \min\l\{ d_{\R^2} \l( \ul u, \ul v + \begin{pmatrix} i \\ j \end{pmatrix} \r)
+    : i, j \in \Z \r\} \\[0.5ex]
+%
+d(h(\ul u), h(\ul v)) &= d \l(
+    \begin{pmatrix} \f{\sqrt 2}2 & -\f{\sqrt 2}2 \\[0.5ex] \f{\sqrt 2}2 & \f{\sqrt 2}2 \end{pmatrix} \ul u,
+    \begin{pmatrix} \f{\sqrt 2}2 & -\f{\sqrt 2}2 \\[0.5ex] \f{\sqrt 2}2 & \f{\sqrt 2}2 \end{pmatrix} \ul v
+\r) \\[0.5ex]
+%
+&= d \l(
+    \begin{pmatrix} \f{\sqrt 2}2 & -\f{\sqrt 2}2 \\[0.5ex] \f{\sqrt 2}2 & \f{\sqrt 2}2 \end{pmatrix}
+    \begin{pmatrix} x_1 \\ y_1 \end{pmatrix},
+    \begin{pmatrix} \f{\sqrt 2}2 & -\f{\sqrt 2}2 \\[0.5ex] \f{\sqrt 2}2 & \f{\sqrt 2}2 \end{pmatrix}
+    \begin{pmatrix} x_2 \\ y_2 \end{pmatrix}
+\r) \\[0.5ex]
+%
+&= d \l(
+    \f{\sqrt 2}2 \begin{pmatrix} x_1 - y_1 \\ x_1 + y_1 \end{pmatrix},
+    \f{\sqrt 2}2 \begin{pmatrix} x_2 - y_2 \\ x_2 + y_2 \end{pmatrix}
+\r) \\[0.5ex]
+%
+&= \min\l\{ d_{\R^2} \l(
+    \f{\sqrt 2}2 \begin{pmatrix} x_1 - y_1 \\ x_1 + y_1 \end{pmatrix},
+    \f{\sqrt 2}2 \begin{pmatrix} x_2 - y_2 \\ x_2 + y_2 \end{pmatrix} + \begin{pmatrix} i \\ j \end{pmatrix}
+\r) : i, j \in \Z \r\} \\[0.5ex]
+\end{align*}
 
 % }}}
 
@@ -80,7 +153,25 @@ For a metric space $(X, d)$, the group of isometries is defined to be \[
 Prove that $\mathrm{Isom}(X, d)$ is a group.
 \end{questionbody}
 
-Answer
+For $\mathrm{Isom}(X, d)$ to be a group, it needs to satisfy the group rules:
+\begin{enumerate}[1.]
+\item Closure
+\item Associativity
+\item Existence of the identity
+\item Existence of inverses
+\end{enumerate}
+
+An isometry is, by definition, a distance-preserving bijective function. The composition of any two distance-preserving functions will of course also preserve distance, and thus be an isometry. So this group is closed.
+
+Function composition is always associative, so this group is associative.
+
+The identity in the group is the isometry that maps every point to itself.
+
+Isometries are bijective by definition, and so all have inverses.
+
+Since $\mathrm{Isom}(X, d)$ satisfies all the group rules, it is a group.
+
+\hfill $\square$
 
 % }}}
 
@@ -93,12 +184,43 @@ For any field $k$, we define \begin{equation*}
 O(n, k) = \{ A : A \text{ is an invertible } n \times n \text{ matrix with coefficients in } k, \\
 \text{ and } A^T A = I_n \}.
 \end{split}
-\end{equation*} % TODO: Spacing
+\end{equation*}
 
 Prove that $O(n, k)$ is a group.
 \end{questionbody}
 
-Answer
+For $O(n, k)$ to be a group, it needs to satisfy the group rules:
+\begin{enumerate}[1.]
+\item Closure
+\item Associativity
+\item Existence of the identity
+\item Existence of inverses
+\end{enumerate}
+
+Let $A, B \in O(n, k)$. To have closure, we need $AB \in O(n, k)$. Since $A$ and $B$ are both $n \times n$ matrices, so is their product. The inverse is ${(AB)}^{-1} = B^{-1} A^{-1}$. And for the orthogonality condition:
+\begin{align*}
+{(AB)}^T (AB) &= B^T A^T A B \\
+&= B^T (A^T A) B \\
+&= B^T I_n B \\
+&= B^T B \\
+&= I_n
+\end{align*}
+Therefore $AB$ satisfies all the requirements to be in $O(n, k)$, so $O(n, k)$ is closed.
+
+Matrix multiplication is associate, so $O(n, k)$ is associative.
+
+The identity in $O(n, k)$ is \[ \begin{pmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 & 1 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & 1
+\end{pmatrix} \] where 1 is the additive identity in $k$ and 0 is the multiplicative identity in $k$.
+
+The restriction on the set requires that every matrix is invertible, so inverses are given by the definition.
+
+Since $O(n, k)$ satisfies all the group rules, it is a group.
+
+\hfill $\square$
 
 % }}}
 
@@ -117,7 +239,27 @@ T = R_1 \circ R_2.
 Is your solution unique?
 \end{questionbody}
 
-Answer
+We will rotate $180\degree$ about $(0,0)$ and then $180\degree$ about $(2,0)$. So
+\begin{align*}
+R_2(\ul v) &= \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \ul v \\[0.5ex]
+R_1(\ul v) &= \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \ul v + \begin{pmatrix} 4 \\ 0 \end{pmatrix}
+\end{align*}
+
+As long as the second centre is offset by the first one by $(2,0)$, and both rotations are by $180\degree$, this will work, so this solution is not unique. Consider instead some arbitrary point $(a,b)$:
+\begin{align*}
+R_2(\ul v) &= \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \ul v + 2 \begin{pmatrix} a \\ b \end{pmatrix} \\[0.5ex]
+R_1(\ul v) &= \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \ul v + 2 \begin{pmatrix} a + 2 \\ b \end{pmatrix}
+\end{align*}
+Then we get
+\begin{align*}
+T(\ul v) &= T\l( \begin{pmatrix} x \\ y \end{pmatrix} \r) \\[0.5ex]
+&= R_1 \l( R_2 \l( \begin{pmatrix} x \\ y \end{pmatrix} \r) \r) \\[0.5ex]
+&= R_1 \l( \begin{pmatrix} -x \\ -y \end{pmatrix} + 2 \begin{pmatrix} a \\ b \end{pmatrix} \r) \\[0.5ex]
+&= R_1 \l( \begin{pmatrix} -x + 2a \\ -y + 2b \end{pmatrix} \r) \\[0.5ex]
+&= \begin{pmatrix} x - 2a \\ y - 2b \end{pmatrix} + 2 \begin{pmatrix} a + 2 \\ b \end{pmatrix} \\[0.5ex]
+&= \begin{pmatrix} x + 4 \\ y \end{pmatrix}
+\end{align*}
+which is exactly what we'd expect from the translation.
 
 % }}}
 
