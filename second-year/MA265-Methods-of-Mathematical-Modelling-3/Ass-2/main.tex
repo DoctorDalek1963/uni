@@ -1,0 +1,103 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+\fancyhead[L]{MA265 Assignment 2}
+\title{MA265 Methods of Mathematical Modelling 3, Assignment 2}
+\colorlet{questionbodycolor}{green!50!teal!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+\textit{Transport equation}: Solve the equation $\partial_t u + v(x, t) \partial_x u = 0$ for $(x, t) \in \R \times (0, \infty)$ with velocity field $v(x, t) = x {(t + 1)}^{-2}$ and initial data $u(x, 0) = \cos x$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+\textit{Wave equation}: Solve the equation $u_{tt}(x, t) = 9 u_{xx}(x, t)$ for $(x, t) \in \R \times (0, \infty)$ with initial conditions $u(x, 0) = \cos x$ and $u_t(x, 0) = 2 \cos x$. Verify that if $x_n = \df{2n+1}2 \pi$ for $n \in \Z$, then $u(x_n, t) = 0$ for all $n \in \Z$ and $t \ge 0$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+\textit{Burger's equation}: Consider Burger's equation $\partial_t u + u \partial_x u = 0$ for $(x, t) \in \R \times (0, \infty)$ with the initial conditions $u(x, 0) = \Phi(x)$ for all $x \in \R$. Use the method of characteristics to show that the solutions for the following initial data $\Phi$
+\begin{enumerate}[(i)]
+\item $\Phi(x) = \begin{cases}
+    0 & x \le 0 \\
+    \e^{-1 / x} & x > 0
+\end{cases}$
+\item $\Phi(x) = -x$
+\end{enumerate}
+are given by
+\begin{enumerate}[(i)]
+\item $u(x, t) = 0$ for $x \le 0$ and $u(x, t) = \e^{-1 / \xi}$ where $\xi > 0$ is such that $x - \xi = t \e^{-1 / \xi}$ for $x > 0$.
+\item $u(x, t) = \df{-x}{1 - t}$ for $x \in \R$ and times $t < 1$.
+\end{enumerate}
+Sketch the characteristics in the $xt$-plane in each case.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+\textit{Initial boundary value problems}: Consider the initial boundary value problem (IBVP):
+\begin{equation}
+\begin{cases}
+\partial_{tt} u(x, t) = c^2 \partial_{xx} u(x, t) & (x, t) \in (0, \infty) \times (0, \times) \\
+u(x, 0) = \Phi(x) & x \in (0, \infty) \\
+\partial_t u(x, 0) = V(x) & x \in (0, \infty) \\
+u(0, t) = 0 & t \in [0, \infty) % chktex 9
+\end{cases} \label{eqn:Q4-ivbp}
+\end{equation}
+for given smooth functions $\Phi(x)$ and $V(x)$. Extend the functions $\Phi(x)$ and $V(x)$ on $(0, \infty)$ to odd functions $\tilde \Phi(x)$ and $\tilde V(x)$ on $\R$ by \[
+\tilde \Phi(x) = \begin{cases}
+\Phi(x)   & x > 0 \\
+0         & x = 0 \\
+-\Phi(-x) & x > 0
+\end{cases}
+\quad \text{and} \quad
+\tilde V(x) = \begin{cases}
+V(x)   & x > 0 \\
+0      & x = 0 \\
+-V(-x) & x > 0
+\end{cases}
+\]
+Assume that $\tilde \Phi(x)$ and $\tilde V(x)$ are smooth functions. Show that d'Alembert's formula with data $\tilde \Phi(x)$ and $\tilde V(x)$ produces a solution of~\eqref{eqn:Q4-ivbp}.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document}
