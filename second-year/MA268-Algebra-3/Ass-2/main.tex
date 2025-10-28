@@ -1,0 +1,125 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\usepackage{array}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA268 Assignment 2}
+\title{MA268 Algebra 3, Assignment 2}
+\colorlet{questionbodycolor}{violet!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Let $n \ge 3$. Recall that $D_{2n} = \grpprs{r, s}{r^n = s^2 = \mathrm{id}, srs = r^{-1}}$. We follow the convention of writing elements of $D_{2n}$ as $r^k$ or $sr^k$ where $k$ only matters modulo~$n$.
+\begin{enumerate}[(i)]
+\item Show that $r^k \cdot s = sr^{-k}$.
+
+\item Complete the following multiplication rules for $D_{2n}$:
+\[
+\setlength{\extrarowheight}{3pt}% local setting
+\begin{array}{c||c|c} % chktex 44
+    & r^k & s r^k \\
+\hline \hline % chktex 44
+r^\ell && \\
+\hline % chktex 44
+s r^\ell  && \\
+\end{array}
+\]
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 1.i
+\subsection{~} % 1.ii
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Determine all homomorphisms $D_{2n} \to \mathbb{C}^*$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Recall the rotation matrix $R_\theta = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}$. This represents anti-clockwise rotation through angle $\theta$. It is obvious geoemetrically, and easy to check using trig identities that $R_\theta R_\phi = R_{\theta + \phi}$. Let $S = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$.
+\begin{enumerate}[(i)]
+\item What does multiplying a vector by $S$ do geoemetrically?
+
+\item Show that there is a unique homomorphism \[ \rho : D_{2n} \to \mathrm{GL}_2(\R), \qquad \rho(r) = R_{2\pi/n}, \qquad \rho(s) = S. \]
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 3.i
+\subsection{~} % 3.ii
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Let \[
+G = \grpprs{x, y}{x^4 = y^5 = 1, xy = y^2x}.
+\] It can be shown (you don't have to) that $\# G = 20$ and that every element of $G$ can be written uniquely as $y^b x^a$ where $b \in \{0,1,2,3,4\}$ and $a \in \{0,1,2,3\}$. Complete the following table of multiplication rules for $G$. \textbf{Hint}: Start by proving that $xy^b = y^{2b}x$.
+
+\[
+\setlength{\extrarowheight}{3pt}% local setting
+\begin{array}{c||*{3}{c|}c} % chktex 44
+    & y^k & y^k x & y^k x^2 & y^k x^3 \\
+\hline \hline % chktex 44
+y^\ell &&&& \\
+\hline % chktex 44
+y^\ell x &&&& \\
+\hline % chktex 44
+y^\ell x^2 &&&& \\
+\hline % chktex 44
+y^\ell x^3 &&&& \\
+\end{array}
+\]
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q5
+\newquestion{5}
+
+\begin{questionbody}
+\begin{enumerate}[(i)]
+\item Let $n \ge 3$. Determine the elements of order 2 in $D_{2n}$.
+
+\item Determine the elements of order 2 in $D_{2n}$.
+
+\item Show that $Q_8 \not\cong D_{2n}$ for all $n \ge 3$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 3.i
+\subsection{~} % 3.ii
+\subsection{~} % 3.iii
+
+% }}}
+
+\end{document}
