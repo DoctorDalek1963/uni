@@ -30,7 +30,11 @@ R_L \circ H_P = H_P \circ R_L \iff P \in L
 \]
 \end{questionbody}
 
-Answer
+For the $\Rightarrow$ direction, TODO\@.
+
+Conversely, for the $\Leftarrow$ direction, TODO\@.
+
+\hfill $\square$
 
 % }}}
 
@@ -108,8 +112,12 @@ d(g(\ul u), g(\ul v)) &= d \l(
 &= \min\l\{ d_{\R^2} \l(
     \begin{pmatrix} -y_1 \\ x_1 \end{pmatrix},
     \begin{pmatrix} -y_2 \\ x_2 \end{pmatrix} + \begin{pmatrix} i \\ j \end{pmatrix}
-\r) : i, j \in \Z \r\} \\[0.5ex]
+\r) : i, j \in \Z \r\}
 \end{align*}
+% These vectors are the result of multiplying by $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$. This is a rotation by $\pi/2$, which is an isometry. Therefore $d_{\R^2}$ respects the distance, so $g$ is an isometry.
+Since the components are kept separate, we can choose $i$ and $j$ independently for $x$ and $y$, which allows this to be an isometry.
+
+\hfill $\square$
 
 \subsection{~} % 2.c
 
@@ -137,8 +145,12 @@ d(h(\ul u), h(\ul v)) &= d \l(
 &= \min\l\{ d_{\R^2} \l(
     \f{\sqrt 2}2 \begin{pmatrix} x_1 - y_1 \\ x_1 + y_1 \end{pmatrix},
     \f{\sqrt 2}2 \begin{pmatrix} x_2 - y_2 \\ x_2 + y_2 \end{pmatrix} + \begin{pmatrix} i \\ j \end{pmatrix}
-\r) : i, j \in \Z \r\} \\[0.5ex]
+\r) : i, j \in \Z \r\}
 \end{align*}
+% These vectors are the result of multiplying by $\f{\sqrt 2} 2 \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}$. This is a rotation by $\pi/2$, which is an isometry. Therefore $d_{\R^2}$ respects the distance, so $g$ is an isometry.
+Since the components of these vectors are combinations of the original components, we cannot choose $i$ and $j$ independently for $x$ and $y$, so we can get stuck with some points which won't permit a good choice. Therefore there exist points $\ul r$ and $\ul s$ for which $d(\ul r, \ul s) \ne d(h(\ul r), h(\ul s))$, so $h$ is not an isometry.
+
+\hfill $\square$
 
 % }}}
 
