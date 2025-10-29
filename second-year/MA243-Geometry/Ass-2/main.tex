@@ -8,6 +8,8 @@
 
 \usepackage{preamble}
 
+\usepackage{tikz}
+
 \fancyhead[L]{MA243 Assignment 2}
 \title{MA243 Geometry, Assignment 2}
 \colorlet{questionbodycolor}{orange!50}
@@ -30,9 +32,55 @@ R_L \circ H_P = H_P \circ R_L \iff P \in L
 \]
 \end{questionbody}
 
-For the $\Rightarrow$ direction, TODO\@.
+For the $\Rightarrow$ direction, assume $R_L \circ H_P = H_P \circ R_L$ but suppose $P \notin L$. We can define $P'$ as the point in $L$ which minimises $d(P, P')$, so $P'$ is the perpendicular projection of $P$ onto $L$. Then consider a point $Q$ where $Q$ is closer to $L$ than $P$ is, but on the same side as $P$.
 
-Conversely, for the $\Leftarrow$ direction, TODO\@.
+Then $Q_{HR} := (H_P \circ R_L)(Q)$ will be on the same side of $L$ as $P$, but $Q_{RH} := (R_L \circ H_P)(Q)$ will be on the opposite side from $P$.
+
+\begin{figure}[tbph]
+\centering
+\begin{tikzpicture}[
+    scale=5,
+]
+    \clip (1.6, 0.7) rectangle (2.4, 1.4);
+    \begin{scope}[
+        every path/.style={thick},
+    ]
+        \draw (0, 5) -- (3, -1);
+
+        \node[label={[label distance=-2]0:$P$}] (P) at (2.1, 1.1) {};
+        \fill (P) circle[radius=0.01];
+
+        \node[label={[label distance=-5]120:$Q$}] (Q) at (2.05, 1.05) {};
+        \fill (Q) circle[radius=0.01];
+
+        \node[label=270:$Q_{RH}$] (QRH) at (1.79, 0.97) {};
+        \fill (QRH) circle[radius=0.01];
+
+        \node[label=90:$Q_{HR}$] (QHR) at (2.27, 1.21) {};
+        \fill (QHR) circle[radius=0.01];
+    \end{scope}
+\end{tikzpicture}
+\caption{A sketch of the situtation}
+\end{figure}
+
+Conversely, for the $\Leftarrow$ direction, assume $P \in L$. Without loss of generality, we can work in $\R^2$ and assume $P = (0, 0)$, using an isometry to get to and from any Euclidean space. Since we're in $\R^2$, we can choose a unit vector $\ul v$ in the direction of $L$ and an orthogonal unit vector $\ul u$ with $\ul v \cdot \ul u = 0$. Then $\ul v, \ul u$ is an orthonormal basis, and \[
+R_L = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix},
+\qquad H_P = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}
+\]
+
+An arbitrary point $Q$ can be written as $\lambda \ul v + \mu \ul u$. Then we can just compute
+\begin{align*}
+R_L \circ H_P &= R_L(H_P(Q)) \\
+&= R_L(H_P(\lambda \ul v + \mu \ul u)) \\
+&= R_L(- \lambda \ul v - \mu \ul u) \\
+&= - \lambda \ul v + \mu \ul u \\
+%
+H_P \circ R_L &= H_P(R_L(Q)) \\
+&= H_P(R_L(\lambda \ul v + \mu \ul u)) \\
+&= H_P(\lambda \ul v - \mu \ul u) \\
+&= - \lambda \ul v + \mu \ul u
+\end{align*}
+These are the same, so $R_L \circ H_P = H_P \circ R_L$.
 
 \hfill $\square$
 
