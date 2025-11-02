@@ -36,14 +36,44 @@ Let $n \ge 3$. Recall that $D_{2n} = \grpprs{r, s}{r^n = s^2 = \mathrm{id}, srs 
 \hline \hline % chktex 44
 r^\ell && \\
 \hline % chktex 44
-s r^\ell  && \\
+s r^\ell &&
 \end{array}
 \]
 \end{enumerate}
 \end{questionbody}
 
 \subsection{~} % 1.i
+
+We know that $srs = r^{-1}$, so we can derive that $rs = s^{-1} r^{-1} = sr^{-1}$, since $s$ is self-inverse. Then we have
+% \begin{align*}
+% r^k s &= \underbrace{r \dotsm r}_{k \text{ times}} s \\
+% &= \underbrace{r \dotsm r}_{k-1 \text{ times}} s r^{-1} \\
+% &= \underbrace{r \dotsm r}_{k-2 \text{ times}} s r^{-1} r^{-1} \\
+% % &\quad \vdots \\
+% &= s \underbrace{r^{-1} \dotsm r^{-1}}_{k \text{ times}} \\
+% &= sr^{-k}
+% \end{align*}
+\begin{align*}
+r^k s &= r^{k-1} r s \\
+&= r^{k-1} s r^{-1} \\
+&= r^{k-2} r s r^{-1} \\
+&= r^{k-2} s r^{-2} \\
+&\,\ \vdots \\
+&= s r^{-k}
+\end{align*}
+
 \subsection{~} % 1.ii
+
+\[
+\setlength{\extrarowheight}{3pt}% local setting
+\begin{array}{c||c|c} % chktex 44
+    & r^k & s r^k \\
+\hline \hline % chktex 44
+r^\ell & r^{\ell + k} & sr^{k - \ell} \\
+\hline % chktex 44
+s r^\ell & sr^{\ell + k} & r^{k - \ell}
+\end{array}
+\]
 
 % }}}
 
@@ -54,7 +84,8 @@ s r^\ell  && \\
 Determine all homomorphisms $D_{2n} \to \mathbb{C}^*$.
 \end{questionbody}
 
-Answer
+The obvious homomorphism is $\phi(r) = \e^{2 i \pi / n}$, $\phi(s) = -1$.
+No. How do we do reflection? I don't think $\C$ can be reflected.
 
 % }}}
 
@@ -62,16 +93,40 @@ Answer
 \newquestion{3}
 
 \begin{questionbody}
-Recall the rotation matrix $R_\theta = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}$. This represents anti-clockwise rotation through angle $\theta$. It is obvious geoemetrically, and easy to check using trig identities that $R_\theta R_\phi = R_{\theta + \phi}$. Let $S = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$.
+Recall the rotation matrix $R_\theta = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}$. This represents anti-clockwise rotation through angle $\theta$. It is obvious geometrically, and easy to check using trig identities that $R_\theta R_\phi = R_{\theta + \phi}$. Let $S = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$.
 \begin{enumerate}[(i)]
-\item What does multiplying a vector by $S$ do geoemetrically?
+\item What does multiplying a vector by $S$ do geometrically?
 
 \item Show that there is a unique homomorphism \[ \rho : D_{2n} \to \mathrm{GL}_2(\R), \qquad \rho(r) = R_{2\pi/n}, \qquad \rho(s) = S. \]
 \end{enumerate}
 \end{questionbody}
 
 \subsection{~} % 3.i
+
+Multiplying a vector by $S$ reflects it in the $x$-axis.
+
 \subsection{~} % 3.ii
+
+Clearly $\rho$ is a homomorphism since it preserves the relations that define $D_{2n}$: \[ r^n = s^2 = \mathrm{id}, srs = r^{-1} \]
+\begin{align*}
+\rho(r^n) &= \rho(\mathrm{id}) \\
+&= I \\
+&= {(R_{2\pi/n})}^n \\
+&= {\rho(r)}^n \\[1ex]
+%
+\rho(s^2) &= \rho(\mathrm{id}) \\
+&= I \\
+&= S^2 \\
+&= {\rho(s)}^2 \\[1ex]
+%
+\rho(srs) &= \rho(r^{-1}) \\
+&= {(R_{2\pi/n})}^{-1} \\
+&= R_{-2\pi/n} \\
+&= S R_{2\pi/n} S \\
+&= \rho(s) \rho(r) \rho(s)
+\end{align*}
+
+% TODO: Show unique
 
 % }}}
 
@@ -94,12 +149,39 @@ y^\ell x &&&& \\
 \hline % chktex 44
 y^\ell x^2 &&&& \\
 \hline % chktex 44
-y^\ell x^3 &&&& \\
+y^\ell x^3 &&&&
 \end{array}
 \]
 \end{questionbody}
 
-Answer
+We will start by proving that $xy^b = y^{2b}x$.
+
+\begin{align*}
+x y^b &= x y y^{b-1} \\
+&= y^2 x y^{b-1} \\
+&= y^2 x y y^{b-2} \\
+&= y^4 x y^{b-2} \\
+&\,\ \vdots \\
+&= y^{2b} x
+\end{align*}
+
+\hfill $\square$
+
+Thus the multiplication table is
+\[
+\setlength{\extrarowheight}{3pt}% local setting
+\begin{array}{c||*{3}{c|}c} % chktex 44
+    & y^k & y^k x & y^k x^2 & y^k x^3 \\
+\hline \hline % chktex 44
+y^\ell & y^{\ell + k} & y^{\ell + k}x & y^{\ell + k}x^2 & y^{\ell + k}x^3 \\
+\hline % chktex 44
+y^\ell x & y^{\ell + 2k}x & y^{\ell + 2k}x^2 & y^{\ell + 2k}x^3 & y^{\ell + 2k} \\
+\hline % chktex 44
+y^\ell x^2 & y^{\ell + 4k}x^2 & y^{\ell + 4k}x^3 & y^{\ell + 4k} & y^{\ell + 4k}x \\
+\hline % chktex 44
+y^\ell x^3 & y^{\ell + 8k}x^3 & y^{\ell + 8k} & y^{\ell + 8k}x & y^{\ell + 8k}x^2
+\end{array}
+\]
 
 % }}}
 
@@ -110,13 +192,16 @@ Answer
 \begin{enumerate}[(i)]
 \item Let $n \ge 3$. Determine the elements of order 2 in $D_{2n}$.
 
-\item Determine the elements of order 2 in $D_{2n}$.
+\item Determine the elements of order 2 in $Q_8$.
 
 \item Show that $Q_8 \not\cong D_{2n}$ for all $n \ge 3$.
 \end{enumerate}
 \end{questionbody}
 
 \subsection{~} % 3.i
+
+Clearly all reflections are order 2, and there are $n$ reflections. If $n$ is even, then $r^{n/2}$ is also of order 2. Therefore there are $n$ or $n+1$ elements of order 2 in $D_{2n}$.
+
 \subsection{~} % 3.ii
 \subsection{~} % 3.iii
 
