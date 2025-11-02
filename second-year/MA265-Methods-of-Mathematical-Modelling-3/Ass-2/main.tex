@@ -7,8 +7,10 @@
 
 \usepackage{preamble}
 
-% \usepackage{graphicx}
-% \graphicspath{ {./imgs/} }
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\usepackage{graphicx}
+\graphicspath{ {./imgs/} }
 
 \fancyhead[L]{MA265 Assignment 2}
 \title{MA265 Methods of Mathematical Modelling 3, Assignment 2}
@@ -28,7 +30,34 @@
 \textit{Transport equation}: Solve the equation $\partial_t u + v(x, t) \partial_x u = 0$ for $(x, t) \in \R \times (0, \infty)$ with velocity field $v(x, t) = x {(t + 1)}^{-2}$ and initial data $u(x, 0) = \cos x$.
 \end{questionbody}
 
-Answer
+We will use the method of characteristics. We first have to solve the associated ODE\@.
+\begin{align*}
+\xi'(t) &= v(\xi(t), t) = \xi(t) {(t + 1)}^{-2} \\
+\xi(0) &= x_0
+\end{align*}
+We can solve this with separation of variables.
+\begin{align*}
+\dd \xi t &= \xi(t) {(t + 1)}^{-2} \\
+\inte{\f1{\xi}} \xi &= \inte{{(t + 1)}^{-2}} t \\
+\ln \xi &= \f{-1}{t + 1} + C \\
+\xi(t) &= A \e^{-1/(t + 1)}
+\end{align*}
+We use the initial value to find that
+\begin{align*}
+x_0 &= A \e^{-1} \\
+x_0 \e &= A \\
+\xi(t) &= x_0 \e^{1 - \f1{t + 1}} \\
+\xi(t) &= x_0 \e^{\f{t + 1 - 1}{t + 1}} \\
+\xi(t) &= x_0 \e^{t / (t + 1)}
+\end{align*}
+We know that $x = \xi(t)$, so we can solve for $x_0$ and find that \[
+x_0 = x \e^{-t / (t + 1)}.
+\]
+Now we apply the fact that $u(x, t) = \cos x_0$ to find that \[
+u(x, t) = \cos \l( x \e^{-t / (t + 1)} \r).
+\]
+
+% TODO: I don't think this actually solves the PDE
 
 % }}}
 
@@ -39,7 +68,29 @@ Answer
 \textit{Wave equation}: Solve the equation $u_{tt}(x, t) = 9 u_{xx}(x, t)$ for $(x, t) \in \R \times (0, \infty)$ with initial conditions $u(x, 0) = \cos x$ and $u_t(x, 0) = 2 \cos x$. Verify that if $x_n = \df{2n+1}2 \pi$ for $n \in \Z$, then $u(x_n, t) = 0$ for all $n \in \Z$ and $t \ge 0$.
 \end{questionbody}
 
-Answer
+We can define
+\begin{align*}
+\phi(x) &= \cos x \\
+V(x) &= 2 \cos x \\
+c &= 3
+\end{align*}
+and use d'Alembert's Formula \[
+u(x, t) = \f12 \big( \phi(x + ct) + \phi(x - ct) \big) + \f1{2c} \intlim {x - ct} {x + ct} {V(r)} r
+\] to find the solution.
+
+\begin{align*}
+u(x, t) &= \f12 \big( \cos(x + 3t) + \cos(x - 3t) \big) + \f16 \intlim {x - 3t} {x + 3t} {2 \cos r} r \\
+&= \f12 \big( \cos(x + 3t) + \cos(x - 3t) \big) + \f16 {\big[ 2 \sin r \big]}_{x - 3t}^{x + 3t} \\
+&= \f12 \cos(x + 3t) + \f12 \cos(x - 3t) + \f13 \sin(x + 3t) - \f13 \sin(x - 3t)
+\end{align*}
+
+So if $x_n = \df{2n + 1}2 \pi$ then
+\begin{align*}
+u(x_n, t) &= \f12 \cos(x_n + 3t) + \f12 \cos(x_n - 3t) + \f13 \sin(x_n + 3t) - \f13 \sin(x_n - 3t) \\[0.5ex]
+&= \f12 \cos\l(\f{2n + 1}2 \pi + 3t\r) + \f12 \cos\l(\f{2n + 1}2 \pi - 3t\r) \\[0.5ex]
+    &\qquad + \f13 \sin\l(\f{2n + 1}2 \pi + 3t\r) - \f13 \sin\l(\f{2n + 1}2 \pi - 3t\r) \\[0.5ex]
+\end{align*}
+% TODO: This has to be wrong
 
 % }}}
 
@@ -63,7 +114,82 @@ are given by
 Sketch the characteristics in the $xt$-plane in each case.
 \end{questionbody}
 
-Answer
+\subsection{~} % 3.i
+
+For the first case of $\Phi(x) = \e^{-1/x}$ when $x > 0$ and $\Phi(x) = 0$ otherwise, we consider the ODE
+\begin{align*}
+\xi'(t) &= u(\xi(t), t) = \Phi(x) \\
+\xi(0) &= x_0
+\end{align*}
+
+We shall consider the cases of $x > 0$ and $x \le 0$ separately. First the simpler case of $x \le 0$.
+\begin{align*}
+\zeta'(t) &= u(\zeta(t), t) \\[0.5ex]
+\dd \zeta t &= 0 \\[0.5ex]
+\inte{}\zeta &= 0 \\[0.5ex]
+\zeta(t) &= C \\[0.5ex]
+\zeta(0) &= C = x_0 \\[0.5ex]
+\zeta(t) &= x_0 \\[0.5ex]
+x &= x_0
+\end{align*}
+So for $x \le 0$, $u(x, t) = 0$ as required.
+
+Now for the case of $x > 0$.
+\begin{align*}
+\xi'(t) &= u(\xi(t), t) \\[0.5ex]
+\dd \xi t &= \e^{-1 / \xi} \\[0.5ex]
+% \inte{\e^{1 / \xi}}\xi &= \inte{}t \\[0.5ex]
+% &= t + C \\[0.5ex]
+\inte{}\xi &= \inte{\e^{-1 / \xi}}t \\[0.5ex]
+\xi(t) &= t \e^{-1 / \xi} + C \\[0.5ex]
+\xi(0) &= C = x_0 \\[0.5ex]
+\xi(t) &= t \e^{-1 / \xi} + x_0 \\[0.5ex]
+\xi - x_0 &= t \e^{-1 / \xi}
+\end{align*}
+I'm not sure where to go from here. % TODO: Finish
+
+\begin{figure}[tbhp]
+\centering
+\includegraphics[width=0.95\textwidth]{Q3-i-characteristics}
+\caption{The characteristics for \textbf{Q3~(i)}}\label{fig:Q3-i-characteristics}
+\end{figure}
+
+\subsection{~} % 3.ii
+
+For the case of $\Phi(x) = -x$, we once again consider the ODE
+\begin{align*}
+\xi'(t) &= u(\xi(t), t) = \Phi(x_0) \\
+\xi(0) &= x_0
+\end{align*}
+
+We solve this like so,
+\begin{align*}
+\xi'(t) &= u(\xi(t), t) \\[0.5ex]
+\dd \xi t &= \f{-\xi(t)}{1 - t} \\[0.5ex]
+-\f1{\xi} \d \xi &= \f1{1 - t} \d t \\[0.5ex]
+\inte{-\f1{\xi}}\xi &= \inte{\f1{1 - t}}t \\[0.5ex]
+-\ln \xi &= -\ln (1 - t) + C \\[0.5ex]
+\xi(t) &= A \cdot (1 - t) \\[0.5ex]
+\xi(0) &= A = x_0 \\[0.5ex]
+\xi(t) &= x_0 (1 - t).
+\end{align*}
+Or more simply, without involving $u$,
+\begin{align*}
+\xi'(t) &= \Phi(x_0) \\[0.5ex]
+&= -x_0 \\[0.5ex]
+\xi(t) &= -x_0 t + C \\[0.5ex]
+\xi(0) &= C = x_0 \\[0.5ex]
+\xi(t) &= -x_0 t + x_0 \\[0.5ex]
+x &= x_0 (1 - t) \\[0.5ex]
+x_0 &= \f x{1 - t}.
+\end{align*}
+And then $u(x, t) = \Phi(x_0) = \df{-x}{1 - t}$ as required.
+
+\begin{figure}[tbhp]
+\centering
+\includegraphics[width=0.95\textwidth]{Q3-ii-characteristics}
+\caption{The characteristics for \textbf{Q3~(ii)}}\label{fig:Q3-ii-characteristics}
+\end{figure}
 
 % }}}
 
@@ -96,8 +222,92 @@ V(x)   & x > 0 \\
 Assume that $\tilde \Phi(x)$ and $\tilde V(x)$ are smooth functions. Show that d'Alembert's formula with data $\tilde \Phi(x)$ and $\tilde V(x)$ produces a solution of~\eqref{eqn:Q4-ivbp}.
 \end{questionbody}
 
-Answer
+D'Alembert's formula with $\tilde \Phi$ and $\tilde V$ is \[
+u(x, t) = \f12 \l(\tilde \Phi(x + ct) + \tilde \Phi(x - ct)\r) + \f1{2c} \intlim{x - ct}{x + ct}{\tilde V(r)}r
+\]
+
+% We will need some derivatives of this formula,
+% \begin{align*}
+% \partial_t u(x, t) &=
+% \end{align*}
+
+The wave equation is linear, so we can break this up into three functions and show that each one satisfies the equation. \[
+u(x, t) = \f12 \Big(
+    \underbrace{\tilde \Phi(x + ct)}_{\textbf{I}} +
+    \underbrace{\tilde \Phi(x - ct)}_{\textbf{II}}
+\Big) + \f1{2c}
+\underbrace{\intlim{x - ct}{x + ct}{\tilde V(r)}r}_{\textbf{III}}
+\]
+
+For part \textbf{I}, let $v(x, t) = \tilde \Phi(x + ct)$. Then
+\begin{align*}
+\partial_t v &= c\, \tilde \Phi'(x + ct)
+    & \partial_x v &= \tilde \Phi'(x + ct) \\[0.5ex]
+\partial_{tt} v &= c^2 \tilde \Phi''(x + ct)
+    & \partial_{xx} v &= \tilde \Phi''(x + ct)
+\end{align*}
+And of course by observation, $\partial_{tt} v = c^2 \partial_{xx} v$, so $v$ satisfies the wave equation.
+
+Part \textbf{II} is shown in the same way. Let $v(x, t) = \tilde \Phi(x - ct)$. Then
+\begin{align*}
+\partial_t v &= -c\, \tilde \Phi'(x + ct)
+    & \partial_x v &= \tilde \Phi'(x + ct) \\[0.5ex]
+\partial_{tt} v &= c^2 \tilde \Phi''(x + ct)
+    & \partial_{xx} v &= \tilde \Phi''(x + ct)
+\end{align*}
+And so $v$ satisfies the wave equation in this case also.
+
+For part \textbf{III}, let $\ds v(x, t) = \intlim{x-ct}{x+ct}{\tilde V(r)}r$. Then
+\begin{align*}
+\partial_t v(x, t) &= \f12 \l(c\, \tilde \Phi'(x + ct) - c\, \tilde \Phi'(x - ct)\r) + \partial_t \f1{2c} \intlim{x - ct}{x + ct}{\tilde V(r)}r \\[0.5ex]
+&= \f12 \l(c\, \tilde \Phi'(x + ct) - c\, \tilde \Phi'(x - ct)\r) + \f1{2c} \l( c \tilde V(x + ct) + c \tilde V(x - ct) \r) \\[0.5ex]
+&= \f12 \l(c\, \tilde \Phi'(x + ct) - c\, \tilde \Phi'(x - ct) + \tilde V(x + ct) + \tilde V(x - ct) \r) \\[0.5ex]
+%
+\partial_{tt} v(x, t) &= \f12 \l(c^2\, \tilde \Phi''(x + ct) - c^2\, \tilde \Phi''(x - ct) + c \tilde V'(x + ct) + c \tilde V'(x - ct) \r) \\[0.5ex]
+%
+\partial_x v(x, t) &= \f12 \l(\tilde \Phi'(x + ct) - \tilde \Phi'(x - ct)\r) + \partial_x \f1{2c} \intlim{x - ct}{x + ct}{\tilde V(r)}r \\[0.5ex]
+&= \f12 \l(\tilde \Phi'(x + ct) - \tilde \Phi'(x - ct)\r) + \f1{2c} \l( \tilde V(x + ct) - \tilde V(x - ct) \r) \\[0.5ex]
+&= \f12 \l(\tilde \Phi'(x + ct) - \tilde \Phi'(x - ct) + \f1c \tilde V(x + ct) - \f1c \tilde V(x - ct) \r) \\[0.5ex]
+%
+\partial_{xx} v(x, t) &= \f12 \l(\tilde \Phi''(x + ct) - \tilde \Phi''(x - ct) + \f1c \tilde V'(x + ct) - \f1c \tilde V'(x - ct) \r)
+\end{align*}
+We can see that $\partial_{tt} v = c^2 \partial_{xx} v$, and so $v$ satisfies the wave equation. Since \textbf{I}, \textbf{II}, and \textbf{III} all satisfy the wave equation, and the wave operator is linear, d'Alembert's formula with $\tilde \Phi$ and $\tilde V$ satisfies the wave equation.
+
+Now all that remains is to check the initial conditions. We first want $u(x, 0) = \tilde \Phi(x)$. D'Alembert's formula becomes
+\begin{align*}
+u(x, 0) &= \f12 \l(\tilde \Phi(x) + \tilde \Phi(x)\r) + \f1{2c} \intlim{x}{x}{\tilde V(r)}r \\[0.5ex]
+&= \f12 \l(2\tilde \Phi(x)\r) \\[0.5ex]
+&= \tilde \Phi(x)
+\end{align*}
+
+We also want $\partial_t u(x, 0) = \tilde V(x)$. D'Alembert's formula becomes
+\begin{align*}
+\partial_t u(x, t) &= \f12 \l(c\, \tilde \Phi'(x + ct) - c\, \tilde \Phi'(x - ct)\r) + \partial_t \f1{2c} \intlim{x - ct}{x + ct}{\tilde V(r)}r \\[0.5ex]
+&= \f12 \l(c\, \tilde \Phi'(x + ct) - c\, \tilde \Phi'(x - ct)\r) + \f1{2c} \l( c \tilde V(x + ct) + c \tilde V(x - ct) \r) \\[0.5ex]
+% \partial_t u(x, 0) &= \f12 \l(c\, \tilde \Phi'(x) - c\, \tilde \Phi'(x)\r) + \f1{2c} \intlim{x}{x}{\tilde V'(r)}r \\[0.5ex]
+&= \f12 \l(c\, \tilde \Phi'(x + ct) - c\, \tilde \Phi'(x - ct) + \tilde V(x + ct) + \tilde V(x - ct) \r) \\[0.5ex]
+\partial_t u(x, 0) &= \f12 \l(c\, \tilde \Phi'(x) - c\, \tilde \Phi'(x) + \tilde V(x) + \tilde V(x) \r) \\[0.5ex]
+&= \tilde V(x)
+\end{align*}
+
+And finally, we want $u(0, t) = 0$.
+\begin{align*}
+u(0, t) &= \f12 \l(\tilde \Phi(ct) + \tilde \Phi(-ct)\r) + \f1{2c} \intlim{-ct}{ct}{\tilde V(r)}r \\[0.5ex]
+&= \f12 \l(\tilde \Phi(ct) - \tilde \Phi(ct)\r) + \f1{2c} \intlim{-ct}{ct}{\tilde V(r)}r \\[0.5ex]
+    %+ \f1{2c} \l( \intlim{0}{ct}{\tilde V(r)}r + \intlim{-ct}{0}{\tilde V(r)}r \r) \\[0.5ex]
+&= \f12 \cdot 0 + \f1{2c} \cdot 0 \\
+&= 0
+% &= \f1{2c} \l( \intlim{0}{ct}{\tilde V(r)}r - \intlim{0}{-ct}{\tilde V(r)}r \r) \\[0.5ex]
+% &= \f1{2c} \l( \intlim{0}{ct}{\tilde V(r)}r - \intlim{0}{ct}{\tilde V(r)}r \r) \tag{*}\label{eqn:Q4-odd-integral-symmetry} \\[0.5ex]
+% &= 0
+\end{align*}
+% To justify~\eqref{eqn:Q4-odd-integral-symmetry}, we observe that $\tilde V$ is an odd function
+To justify the integral becoming 0, we observe that $\tilde V$ is an odd function by definition, so integrating it from $-ct$ to $ct$ will always be 0.
+
+And thus, we have a solution to~\eqref{eqn:Q4-ivbp}.
+
+\hfill $\square$
 
 % }}}
 
-\end{document}
+\end{document} % chktex 17
