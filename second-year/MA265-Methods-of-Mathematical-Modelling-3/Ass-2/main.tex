@@ -81,16 +81,16 @@ u(x, t) = \f12 \big( \phi(x + ct) + \phi(x - ct) \big) + \f1{2c} \intlim {x - ct
 \begin{align*}
 u(x, t) &= \f12 \big( \cos(x + 3t) + \cos(x - 3t) \big) + \f16 \intlim {x - 3t} {x + 3t} {2 \cos r} r \\
 &= \f12 \big( \cos(x + 3t) + \cos(x - 3t) \big) + \f16 {\big[ 2 \sin r \big]}_{x - 3t}^{x + 3t} \\
-&= \f12 \cos(x + 3t) + \f12 \cos(x - 3t) + \f13 \sin(x + 3t) - \f13 \sin(x - 3t)
+&= \f12 \big( \cos x \cos 3t - \sin x \sin 3t + \cos x \cos 3t + \sin x \sin 3t \big) \\
+    &\qquad + \f13 \sin(x + 3t) - \f13 \sin(x - 3t) \\[0.5ex]
+&= \cos x \cos 3t + \f13 \big( \sin x \cos 3t + \cos x \sin 3t - (\sin x \cos 3t - \cos x \sin 3t) \big) \\[0.5ex]
+&= \cos x \cos 3t + \f23 \cos x \sin 3t \\[0.5ex]
+&= \cos x \l( \cos 3t + \f23 \sin 3t \r)
 \end{align*}
 
-So if $x_n = \df{2n + 1}2 \pi$ then
-\begin{align*}
-u(x_n, t) &= \f12 \cos(x_n + 3t) + \f12 \cos(x_n - 3t) + \f13 \sin(x_n + 3t) - \f13 \sin(x_n - 3t) \\[0.5ex]
-&= \f12 \cos\l(\f{2n + 1}2 \pi + 3t\r) + \f12 \cos\l(\f{2n + 1}2 \pi - 3t\r) \\[0.5ex]
-    &\qquad + \f13 \sin\l(\f{2n + 1}2 \pi + 3t\r) - \f13 \sin\l(\f{2n + 1}2 \pi - 3t\r) \\[0.5ex]
-\end{align*}
-% TODO: This has to be wrong
+So if $x_n = \df{2n + 1}2 \pi$ then $\cos x_n = 0$ and so \[
+u(x_n, t) = \cos x_n \l( \cos 3t + \f23 \sin 3t \r) = 0
+\] as required.
 
 % }}}
 
