@@ -84,8 +84,9 @@ s r^\ell & sr^{\ell + k} & r^{k - \ell}
 Determine all homomorphisms $D_{2n} \to \mathbb{C}^*$.
 \end{questionbody}
 
-The obvious homomorphism is $\phi(r) = \e^{2 i \pi / n}$, $\phi(s) = -1$.
-No. How do we do reflection? I don't think $\C$ can be reflected.
+To preserve the cyclic nature of rotations, we need to have $\phi(r) = \e^{2 i \pi k / n}$ for some $k \in \{1, \dotsc, n\}$.
+
+However, we cannot preserve the relation that $srs = r^{-1}$, since it requires some sort of reflection. Since every element of $\C^*$ geometrically represents a rotation, we cannot preserve reflections. Thus, no homomorphisms exists from $D_{2n}$ to $\C^*$.
 
 % }}}
 
@@ -126,7 +127,7 @@ Clearly $\rho$ is a homomorphism since it preserves the relations that define $D
 &= \rho(s) \rho(r) \rho(s)
 \end{align*}
 
-% TODO: Show unique
+By the Fundamental Theorem of Group Presentations, this homomorphism is unique.
 
 % }}}
 
@@ -203,7 +204,71 @@ y^\ell x^3 & y^{\ell + 8k}x^3 & y^{\ell + 8k} & y^{\ell + 8k}x & y^{\ell + 8k}x^
 Clearly all reflections are order 2, and there are $n$ reflections. If $n$ is even, then $r^{n/2}$ is also of order 2. Therefore there are $n$ or $n+1$ elements of order 2 in $D_{2n}$.
 
 \subsection{~} % 3.ii
+
+We know that \[
+Q_8 = \grpprs{a, b}{a^4 = \mathrm{id}, a^2 = b^2, b a b^{-1} = a^{-1}}
+\] and we know from Lemma~V.5.2 in the lectures that every element of $Q_8$ can be written uniquely as $a^i b^j$ for some $0 \le i \le 3$ and $0 \le j \le 1$.
+
+Since $b a b^{-1} = a^{-1}$ and $a^4 = \mathrm{id}$, we get $ba = a^3 b$.
+
+% To have an element of order 2, we would need ${(a^i b^j)}^2 = 1$. Write $j = 2r + s$ where $s = 1$ or 0. Then we have
+% \begin{align*}
+% a^i b^j &= a^i b^j \\
+% &= a^i b^{2r + s} a^i b^{2r + s} \\
+% &= a^i b^{2r + s} \\
+% &= a^i {(b^2)}^r b^s \\
+% &= a^i a^r b^s \\
+% &= a^{i + r} b^s
+% \end{align*}
+% And so
+% \begin{align*}
+% % {(a^i b^j)}^2 &= a^i b^j a^i b^j \\
+% % &= a^i b^{2r + s} a^i b^{2r + s} \\
+% % &= a^i {(b^2)}^r b^s a^i {(b^2)}^r b^s \\
+% % &= a^i a^r b^s a^i a^r b^s \\
+% % &= a^{i + r} b^s a^{i + r} b^s \\
+% {(a^i b^j)}^2 &= {(a^{i + r} b^s)}^2 \\
+% &= a^{i + r} b^s a^{i + r} b^s
+% \end{align*}
+% In the case of $s=0$, we just have ${(a^{i+r})}^2$. In the case of $s=1$, we have
+% \begin{align*}
+% a^{i + r} b a^{i + r} b &= a^{i + r} a^3 b a^{i + r - 1} b \\
+% &= a^{i + r} a^6 b a^{i + r - 2} b \\
+% &\,\ \vdots \\
+% &= a^{i + r} a^{3(i + r)} b^2 \\
+% &= {(a^{i + r})}^4 b^2 \\
+% &= \mathrm{id}
+% \end{align*}
+
+Since there are only 8 elements of $Q_8$, we can just square all of them and see which ones have order 2. We will skip $a^0 b^0$ however, since we know this has order 1.
+\begin{align*}
+{(a^1 b^0)}^2 &= a^2 \\
+{(a^2 b^0)}^2 &= a^4 = \mathrm{id} \\
+{(a^3 b^0)}^2 &= a^6 = a^2 \\
+{(a^0 b^1)}^2 &= b^2 = a^2 \\
+{(a^1 b^1)}^2 &= abab \\
+&= a a^3 b b \\
+&= a^2 \\
+{(a^2 b^1)}^2 &= a^2 b a^2 b \\
+&= a^2 (b a) a b \\
+&= a^2 (a^3 b) a b \\
+&= a (b a) b \\
+&= a (a^3 b) b \\
+&= a^2 \displaybreak \\
+{(a^3 b^1)}^2 &= a^3 b a^3 b \\
+&= a^3 (b a) a^2 b \\
+&= a^3 (a^3 b) a^2 b \\
+&= a^2 (b a) a b \\
+&= a^2 (a^3 b) a b \\
+&= a (b a) b \\
+&= a (a^3 b) b \\
+&= a^2
+\end{align*}
+Thus the only element of order 2 is $a^2$.
+
 \subsection{~} % 3.iii
+
+Since $n \ge 3$, the number of elements in $D_{2n}$ of order two must be at least 3. But $Q_8$ only has one element of order 2, so $Q_8$ cannot be isomorphic to $D_{2n}$.
 
 % }}}
 
