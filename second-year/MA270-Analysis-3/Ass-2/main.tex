@@ -1,0 +1,91 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\fancyhead[L]{MA270 Assignment 2}
+\title{MA270 Analysis 3, Assignment 2}
+\colorlet{questionbodycolor}{blue!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+\begin{enumerate}[(a)]
+\item For each $n \in \N$, let $f_n : \R \to \R$ be a function and $|f_n|$ be the function $\R \to \R$ obtained by composing with absolute value (i.e. $|f_n| : x \mapsto |f_n(x)|$). Show that if the series $\sum |f_n|$ converges pointwise then $\sum f_n$ converges pointwise.
+% TODO: Remove next line
+(\textit{You may use this fact elsewhere in this assignment and this module.})
+
+\item Find an example of a sequence $(f_n)$ of functions $\R \to \R$ such that $\sum f_n$ converges pointwise but $\sum |f_n|$ does not converge pointwise.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 1.a
+\subsection{~} % 1.b
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+For each integer $n \ge 1$ and $x \in \R$, let $f_n(x) = \df{x}{x^2 + n^2}$.
+\begin{enumerate}[(a)]
+\item Show that the series $\sum_{n=1}^\infty f_n(x)$ converges pointwise. (\textbf{Hint}: You may use \textbf{Q1~(a)}.)
+
+\item Does the series $\sum_{n=1}^\infty f_n(x)$ converge uniformly? Justify your answer. (\textbf{Hint}: Try to give a lower bound to $\sum_{k=n+1}^{2n} f_k(x)$ evaluated at ${x = 2n}$.)
+
+\item Is the function $\sum_{n=1}^\infty f_n(x)$ continuous? (\textbf{Hint}: Fix $t > 0$ and restrict the functions $f_n$ to the interval $[-t, t]$ and analyse the convergence of associated series $\sum f_n$.)
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 2.a
+\subsection{~} % 2.b
+\subsection{~} % 2.c
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Let $f : \R^2 \setminus \{(x, y) \in \R^2 : x = y\} \to \R$ be the function defined by $f(x, y) = \df{\sin x - \sin y}{x - y}$. Show that $f$ extends by continuity to $\R^2$. (\textbf{Hint}: Use the Mean Value Theorem.)
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Do the following functions defined on $\R^2 \setminus \{(0, 0)\}$ admit a limit at $(0, 0)$? Justify your claims.
+\begin{enumerate}[(a)]
+\item $f(x, y) = \df{x^2 - y^2}{x^2 + y^2}$.
+
+\item $f(x, y) = \df{x^3 + y^3}{x^2 + y^2}$.
+
+\item $f(x, y) = \df{\sin x^2 + \sin y^2}{\| (x, y) \|}$. (\textbf{Hint}: Show that $|\!\sin x| \le |x|$ for all $x \in \R$.)
+
+\item $f(x, y) = (3x + 2y) \sin \l( \df 1{2x + 3y} \r)$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 4.a
+\subsection{~} % 4.b
+\subsection{~} % 4.c
+\subsection{~} % 4.d
+
+% }}}
+
+\end{document}
