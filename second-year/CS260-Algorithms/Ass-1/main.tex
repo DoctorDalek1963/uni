@@ -1,69 +1,114 @@
 % vim: set foldmethod=marker foldlevel=0:
 
-\documentclass[a4paper]{article}
+\documentclass[a4paper, 11pt]{article}
 \usepackage[UKenglish]{babel}
-
-% NOTE: hyperref has to come before preamble
-% \usepackage[hidelinks]{hyperref}
 
 \usepackage{preamble}
 
-% \usepackage{graphicx}
-% \graphicspath{ {./imgs/} }
-
-\renewcommand{\thesubsection}{(\alph{subsection})}
+\renewcommand{\thesubsection}{\hspace*{-2.75em} (\alph{subsection})}
 
 \fancyhead[L]{CS260 Assignment 1}
-\fancyhead[C]{}
-\title{CS260 Algorithms, Assignment 1}
+\fancyhead[C]{Page \thepage/\pageref*{last-page}}
+\title{\vspace{-12ex} CS260 Algorithms, Assignment 1}
 \colorlet{questionbodycolor}{yellow!50!pink}
 
 \begin{document}
 
-\maketitle
-
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
-% {{{ Q1
-\question{1}
-
-% TODO: Comment out questionbody before submitting
-
-\begin{questionbody}
-Daventry University has constructed a set of $n$ high-rise student accommodate towers, arranged in a straight line from west (left) to east (right).
-
-Each tower has a roof deck. The tower roof decks with an uninterrupted view of the local beauty spots---Daventry reservoir (to the east) and Drayton reservoir (to the west)---are particularly prized.
-\begin{enumerate}[(a)]
-\item A tower roof deck has an uninterrupted view of Daventry reservoir if there is no taller tower to its east (i.e., to the right).
-
-Suppose $n=8$ and the number of floors in each tower from west to east is $[12, 16, 4, 7, 12, 9, 5, 9]$. Which towers (labelling them $1, 2, \dotsc, 8$ from west to east) have an uninterrupted view of Daventry reservoir?
-
-\item Given an array of $n$ towers, present a linear time algorithm that computes, for each tower, the height of the tallest tower to its east (right).
-
-\item The most prized towers are those that have an uninterrupted view east to Daventry reservoir or an uninterrupted view west to Drayton reservoir. Design a linear time algorithm that reports which towers (if any) are either taller than all towers to the east (right) or taller than all towers to the west (left). Explain your solution. You may find it useful to build on your answer from part~\textbf{(b)}.
-\end{enumerate}
-
-Unfortunately, Daventry University does not have enough students to fill all the towers, and so must sell some of them. They decide to enforce the rule that if they sell a tower with $\ell$ floors, then they will also sell \textit{every} tower to its east (right) that has strictly fewer than $\ell$ floors. Define $D(i)$ as the total number of towers that will be sold off as a result of choosing to sell tower $i$.
-\begin{enumerate}[(a), start=4]
-\item Suppose $n=10$ and the number of floors in each tower from west to east is $[34, 57, 70, 19, 48, 2, 94, 7, 63, 75]$. Compute $D(i)$ for each tower $1, 2, \dotsc, 10$.
-
-\item What is the optimal time cost of an algorithm that computes $D(i)$ for a given $i$, given an array $A$ of $n$ towers? Justify your answer.
-
-\item A tower is said to be \textit{lower-value} if either it has no neighbour to the east, or the adjacent tower to the east has at least as many floors as it does. Give an $O(n)$ time algorithm to compute $D(i)$ for every tower listed in an array $A$ under the assumption that all but one of the towers are lower-value. Explain why your solution is correct.
-
-\item Given an array $A$ representing the number of floors in each of the $n$ towers, design an $O(n \log n)$-time divide and conquer algorithm that computes $D(i)$ for all the towers. Explain the correctness of your algorithm.
-\end{enumerate}
-\end{questionbody}
+% \begin{questionbody}
+% Daventry University has constructed a set of $n$ high-rise student accommodate towers, arranged in a straight line from west (left) to east (right).
+%
+% Each tower has a roof deck. The tower roof decks with an uninterrupted view of the local beauty spots---Daventry reservoir (to the east) and Drayton reservoir (to the west)---are particularly prized.
+% \begin{enumerate}[(a)]
+% \item A tower roof deck has an uninterrupted view of Daventry reservoir if there is no taller tower to its east (i.e., to the right).
+%
+% Suppose $n=8$ and the number of floors in each tower from west to east is $[12, 16, 4, 7, 12, 9, 5, 9]$. Which towers (labelling them $1, 2, \dotsc, 8$ from west to east) have an uninterrupted view of Daventry reservoir?
+%
+% \item Given an array of $n$ towers, present a linear time algorithm that computes, for each tower, the height of the tallest tower to its east (right).
+%
+% \item The most prized towers are those that have an uninterrupted view east to Daventry reservoir or an uninterrupted view west to Drayton reservoir. Design a linear time algorithm that reports which towers (if any) are either taller than all towers to the east (right) or taller than all towers to the west (left). Explain your solution. You may find it useful to build on your answer from part~\textbf{(b)}.
+% \end{enumerate}
+%
+% Unfortunately, Daventry University does not have enough students to fill all the towers, and so must sell some of them. They decide to enforce the rule that if they sell a tower with $\ell$ floors, then they will also sell \textit{every} tower to its east (right) that has strictly fewer than $\ell$ floors. Define $D(i)$ as the total number of towers that will be sold off as a result of choosing to sell tower $i$.
+% \begin{enumerate}[(a), start=4]
+% \item Suppose $n=10$ and the number of floors in each tower from west to east is $[34, 57, 70, 19, 48, 2, 94, 7, 63, 75]$. Compute $D(i)$ for each tower $1, 2, \dotsc, 10$.
+%
+% \item What is the optimal time cost of an algorithm that computes $D(i)$ for a given $i$, given an array $A$ of $n$ towers? Justify your answer.
+%
+% \item A tower is said to be \textit{lower-value} if either it has no neighbour to the east, or the adjacent tower to the east has at least as many floors as it does. Give an $O(n)$ time algorithm to compute $D(i)$ for every tower listed in an array $A$ under the assumption that all but one of the towers are lower-value. Explain why your solution is correct.
+%
+% \item Given an array $A$ representing the number of floors in each of the $n$ towers, design an $O(n \log n)$-time divide and conquer algorithm that computes $D(i)$ for all the towers. Explain the correctness of your algorithm.
+% \end{enumerate}
+% \end{questionbody}
 
 \subsection{~} % a
-\subsection{~} % b
-\subsection{~} % c
-\subsection{~} % d
-\subsection{~} % e
-\subsection{~} % f
-\subsection{~} % g
+\vspace*{-6.5ex}
 
-% }}}
+Towers 2, 5, 6, and 8 have an uninterrupted view to the right.
+
+\subsection{~} % b
+\vspace*{-6.5ex}
+
+\begin{verbatim}
+max_east_heights = [0] * n
+i = n
+max = 0
+
+while i >= 2
+    if towers[i] > max then
+        max = towers[i]
+
+    max_east_heights[i - 1] = max
+    i = i - 1
+\end{verbatim}
+
+\subsection{~} % c
+\vspace*{-6.5ex}
+
+\begin{verbatim}
+view_to_left = []
+view_to_right = []
+max = 0
+
+for i = 1 to n
+    if towers[i] > max then
+        max = towers[i]
+        view_to_left.push(i)
+
+max = 0
+i = n
+while i >= 1
+    if towers[i] > max then
+        max = towers[i]
+        view_to_right.push(i)
+
+    i = i - 1
+\end{verbatim}
+
+To find which towers have an uninterrupted view to the left, we scan the heights from left to right, keeping track of the maximum height so far. Any tower which is taller than the current maximum has an uninterrupted view, so we record its index and update the maximum. We do the same in reverse to find the towers with a view to the right.
+
+\subsection{~} % d
+\vspace*{-6.5ex}
+
+[4, 5, 6, 3, 3, 1, 4, 1, 1, 1]
+
+\subsection{~} % e
+\vspace*{-6.5ex}
+
+The optimal time cost to compute $D(i)$ is $O(n)$, since we only need to scan the towers array from $i+1$ to $n$ once and count how many towers are strictly shorter than the one we care about.
+
+\subsection{~} % f
+\vspace*{-6.5ex}
+
+Words
+
+\subsection{~} % g
+\vspace*{-6.5ex}
+
+Words
+
+\label{last-page} % chktex 24
 
 \end{document}
