@@ -3,6 +3,8 @@
 \documentclass[a4paper, 11pt]{article}
 \usepackage[UKenglish]{babel}
 
+\usepackage[margin=2.4cm]{geometry}
+
 \usepackage{preamble}
 
 \renewcommand{\thesubsection}{\hspace*{-2.75em} (\alph{subsection})}
@@ -149,7 +151,28 @@ We scan the left part from right to left and keep track of an index $j$, which a
 \subsection{~} % g
 \vspace*{-6.5ex}
 
-Words
+\begin{verbatim}
+d = [1] * n
+
+function populate_d(l, r)
+    if l == r then
+        return
+
+    m = (l + r) / 2
+    populate_d(l, m)
+    populate_d(m + 1, r)
+
+    right_half = copy_slice(A, m + 1, r + 1)
+    sort(right_half)
+
+    for i = l to m + 1
+        shorter = binary_search(right_half, A[i])
+        d[i] = d[i] + shorter
+
+populate_d(1, n)
+\end{verbatim}
+
+Recursively, we split the list into 2 parts at each step. When we merge, we sort the right half to find the index of the first shorter tower if it would exist (in Python this is \verb|bisect.bisect_left|). This index gives us the count of shorter towers.
 
 \label{last-page} % chktex 24
 
