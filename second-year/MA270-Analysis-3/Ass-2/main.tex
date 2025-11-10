@@ -58,11 +58,14 @@ For each integer $n \ge 1$ and $x \in \R$, let $f_n(x) = \df{x}{x^2 + n^2}$.
 
 \subsection{~} % 2.a
 
-We shall consider instead $\sum_{n=1}^\infty |f_n|$. % TODO
+% TODO: This is just waffle
+We shall consider instead $\sum_{n=1}^\infty |f_n|(x)$. This converges pointwise by the comparison test, so $\sum_{n=1}^\infty f_n(x)$ converges by \textbf{Q1~(a)}.
 
 \subsection{~} % 2.b
 
 We shall consider $\sum_{k = n+1}^{2n} f_k(2n)$. When $n=1$, this sum is $f_2(2) = \f28 = \f14$. As $n$ increases, the sum increases, so $\f14$ is a lower bound. % TODO: Prove
+
+The series $\sum_{n=1}^\infty f_n(x)$ does converge uniformly because $f_n(x)$ converges to 0.
 
 \subsection{~} % 2.c
 
@@ -106,7 +109,7 @@ We can use separate continuity. When we consider the line $y=0$, we get $f(x, 0)
 
 \subsection{~} % 4.b
 
-Yes, it converges to 0. We want to show that $\forall \varepsilon > 0$, $\exists \delta > 0$ such that $\| (x, y) - (0, 0) \| < \delta \implies | f(x, y) - 0 | < \varepsilon$. That is, we want $\sqrt{x^2 + y^2} < \delta \implies | f(x, y) | < \varepsilon$. Let us assume $\delta < 1$.
+The limit at $(0, 0)$ is 0. We want to show that $\forall \varepsilon > 0$, $\exists \delta > 0$ such that $\| (x, y) - (0, 0) \| < \delta \implies | f(x, y) - 0 | < \varepsilon$. That is, we want $\sqrt{x^2 + y^2} < \delta \implies | f(x, y) | < \varepsilon$. Let us assume $\delta < 1$.
 %
 \begin{align*}
 \sqrt{x^2 + y^2} &< \delta \\[0.5ex]
@@ -121,13 +124,13 @@ Therefore $f(x, y) \to 0$ as $(x, y) \to (0, 0)$.
 
 \subsection{~} % 4.c
 
-Idk. Probably not, as per question structure.
+The limit at $(0, 0)$ is 0. % TODO
 
-We will first show that $|\!\sin x| \le |x|$ for all $x \in \R$. Clearly $0 \le |\!\sin x| \le 1$ for all $x$, so we only need to consider $-1 \le x \le 1$ carefully. % TODO
+% We will first show that $|\!\sin x| \le |x|$ for all $x \in \R$. Clearly $0 \le |\!\sin x| \le 1$ for all $x$, so we only need to consider $-1 \le x \le 1$ carefully.
 
 \subsection{~} % 4.d
 
-It converges to 0. $\sin\l(\f1{2x+3y}\r)$ doesn't have a limit at the origin, but it will oscillate between $-1$ and $1$ with increasing frequency as $(x, y) \to (0, 0)$. However, $3x+2y$ converges linearly to 0 as $(x, y) \to (0, 0)$, and so this term will dominate $f$. Therefore $f(x, y) \to 0$ as $(x, y) \to (0, 0)$.
+The limit at $(0, 0)$ is 0. Clearly $\sin\l(\df1{2x+3y}\r)$ doesn't have a limit at the origin, but it will oscillate between $-1$ and $1$ with increasing frequency as $(x, y) \to (0, 0)$. However, $3x+2y$ converges linearly to 0 as $(x, y) \to (0, 0)$, and so this term will dominate $f$. Therefore $f(x, y) \to 0$ as $(x, y) \to (0, 0)$.
 % TODO: Explain better
 
 % }}}
