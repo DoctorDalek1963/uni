@@ -1,0 +1,107 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+\fancyhead[L]{MA243 Assignment 3}
+\title{MA243 Geometry, Assignment 3}
+\colorlet{questionbodycolor}{orange!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+\begin{enumerate}[(a)]
+\item Define, by analogy with Euclidean geometry, the notions of spherical circle and spherical disc with centre $P \in S^2$ and radius $\rho$.
+
+\item Prove that a spherical circle of radius $\rho < \pi$ has (Euclidean) circumference $2\pi \sin \rho$.
+
+\item Prove that a spherical disc of radius $\rho < \pi$ has are $2\pi (1 - \cos \rho)$. (\textbf{Hint}:~Integrate~\textbf{(b)}).
+
+\item Let $0 < \rho < \pi/2$. Show that the spherical circle with centre $P \in S^2$ and radius $\rho$ is not isometric to $S_r^1$ for any $r$.
+
+\item Show (e.g.\ using~\textbf{(d)}) that there is no isometry from any region in $S^2$ to any region in $\R^2$.\footnotemark{}
+\end{enumerate}
+\end{questionbody}
+\footnotetext{An ad-hoc definition of region here is a non-empty subset $U$ which, for any $P \in U$, contains the disc with centre $P$ and sufficiently small $\rho$.}
+
+\subsection{~} % 1.a
+
+Answer
+
+\subsection{~} % 1.b
+
+Answer
+
+\subsection{~} % 1.c
+
+Answer
+
+\subsection{~} % 1.d
+
+Answer
+
+\subsection{~} % 1.e
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Suppose $P$ and $Q$ are two distinct points in the hyperbolic plane $\cal H^2$ and let $U := P + Q$ be their vector sum. Show that the mid-point of the hyperbolic line between $P$ and $Q$ is the point \[
+R = \f{U}{\sqrt{-U \cdot_L U}}
+\] (where for a positive real number we take the positive square root).
+
+In other words, you need to prove:
+\begin{enumerate}[(a)]
+\item $-U \cdot_L U$ is a positive real number.
+
+\item $R \in \cal H^2$.
+
+\item $d_{\cal H^2}(R, P) = d_{\cal H^2}(R, Q)$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 2.a
+
+Answer
+
+\subsection{~} % 2.b
+
+Answer
+
+\subsection{~} % 2.c
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+A hyperbolic line $L \subset \cal H^2$ is the non-empty intersection $\cal H^2 \cap V$ with a plane $V$ through the origin in $\R^3$. Prove that any hyperbolic line on $\cal H^2$ that passes through the point $(1, 0, 0)$ projects to a straight line in $x_1 x_2$-plane. (Here, the projection is given by $(x_0, x_1, x_2) \mapsto (x_1, x_2)$).
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document}
