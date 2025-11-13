@@ -1,0 +1,130 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA265 Assignment 3}
+\title{MA265 Methods of Mathematical Modelling 3, Assignment 3}
+\colorlet{questionbodycolor}{green!50!teal!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+\textit{Fourier series}: For integers $m$ and $n$, show that
+\begin{align*}
+\intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x &= \begin{cases}
+\pi & \text{if } m = n \\
+0 & \text{otherwise}
+\end{cases}\\
+%
+\intlim {-\pi}{\pi} {\cos(mx) \cos(nx)} x &= \begin{cases}
+\pi & \text{if } m = n \\
+0 & \text{otherwise}
+\end{cases}\\
+%
+\intertext{and}
+\intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x &= 0 \quad \text{for all } m \text{ and } n.
+\end{align*}
+Consider the function $\phi(x) = x$ on $[-\pi, \pi]$. Assuming $\phi$ can be written in the form
+\begin{equation}
+\phi(x) = a_0 + \sum_{k=1}^\infty a_k \cos(kx) + b_k \sin(kx), \label{eqn:Q1-phi-as-sum}
+\end{equation}
+find the values of the coefficients $a_k$ and $b_k$.
+
+\textbf{Hint}: To find the coefficients $a_k$, multiply~\eqref{eqn:Q1-phi-as-sum} by $\cos(nx)$, integrate $[-\pi, \pi]$ and use the above relations. The coefficients $b_k$ can be computed following the same strategy, but multiplying by $\sin(nx)$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+\textit{Fourier series}: Let $\phi : [-\pi, \pi] \to \R$ be an even function. Prove that ${\hat \phi(k) = \hat \phi(-k)}$. Further, show that the Fourier~series of $\phi$ is a cosine series, in the sense that \[
+S_n[\phi](x) = \hat \phi(0) + 2 \sum_{k=1}^n \hat \phi(k) \cos(kx).
+\]
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+\textit{Wave equation with inhomogeneous boundary conditions}: Consider the boundary value problem:
+\begin{equation}
+\begin{cases}
+\partial_{tt} u(x, t) = \partial_{xx} u(x, t) & (x, t) \in (0, \pi) \times (0, \infty), \\
+u(0, t) = -2 & t \in [0, \infty), \\ % chktex 9
+u(\pi, t) = 1 & t \in [0, \infty). % chktex 9
+\end{cases} \label{eqn:Q3-boundary-value-problem}
+\end{equation}
+%
+\begin{enumerate}[(i)]
+\item Verify that \[
+\overline u(x) = -2 + \f3\pi x
+\] is a stationary solution of the problem (i.e.\ one that does not depend on $t$).
+
+\item Assume now the initial conditions
+\begin{align*}
+u(x, 0) &= \Phi(x) = \f3\pi x - 2 + 5 \sin(2x), \\[0.5ex]
+\partial_t u(x, 0) &= V(x) = \f12 \sin(4x) + \f13\sin(11x).
+\end{align*}
+Let $w(x, t)$ be the function such that $u(x, t) = \overline u(x) + w(x, t)$. State the initial boundary value problem satisfied by $w$.
+
+\item Solve the initial boundary value problem for $w$, using the general form of the solution \[
+w(x, t) = \sum_{j=0}^\infty \Big( A_j \cos(jt) + B_j \sin(jt) \Big) \sin(jx).
+\] Then, state the solution $u(x, t)$ of~\eqref{eqn:Q3-boundary-value-problem}.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 3.i
+
+Answer
+
+\subsection{~} % 3.ii
+
+Answer
+
+\subsection{~} % 3.iii
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+\textit{Fourier series}: Let $a \in \R \setminus \Z$. Compute the Fourier~series of \[
+\phi_a(x) = \f\pi{\sin(\pi a)} \e^{-iax}.
+\] Then, assuming that \[
+\llim{n \to \infty} \intlim {-\pi}{\pi} {{\big| \phi_a(x) - S_n[\phi_a](x) \big|}^2} x = 0,
+\] such that Parseval's~identity holds, deduce that \[
+\sum_{k \in \Z} \f1{{(k + a)}^2} = \f{\pi^2}{{(\sin(\pi a))}^2}.
+\]
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document} % chktex 17
