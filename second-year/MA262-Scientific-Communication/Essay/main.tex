@@ -49,6 +49,8 @@
 % \usepackage{graphicx}
 % \graphicspath{ {./imgs/} }
 
+% TODO: Declare some reduction relations like $\triangleright_\beta$ with \mathrel or similar to get consistent spacing
+
 \title{\vspace*{-5em} Numbers in the Lambda Calculus}
 \author{Dyson Dyson \\ 5503449}
 \date{}
@@ -84,6 +86,8 @@ Discuss $\alpha$ and $\beta$ reduction. Possibly also $\eta$ reduction. Also men
 \section{Numbers}
 
 This is the climax of the essay. Define Church numerals~\parencite[p.~28]{church-1965-calculi-lambda-conversion}\parencite[p.~136]{barendregt-1981-lambda-calculus} and their successor function. Possibly also their predecessor function if it's not too complicated (but I suspect it is). Define the first few Fibonacci numbers and point out the pattern for generating more.
+
+Alternatively, use the Church--Rosser Theorem to prove that addition of Church numerals commutes. % chktex 8
 
 \section{Further reading}
 
