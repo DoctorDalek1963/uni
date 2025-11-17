@@ -1,0 +1,156 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+% NOTE: hyperref has to come before preamble
+% \usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+% \renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\newcommand{\opnorm}[1]{{\ensuremath{} {\| #1 \|}_{\mathrm{op}}}}
+
+\fancyhead[L]{MA270 Assignment 3}
+\title{MA270 Analysis 3, Assignment 3}
+\colorlet{questionbodycolor}{blue!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% TODO: Comment out hints and remark from Q1 and Q2
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Let $n, k \ge 1$ be two integers. In the following, the vector space $L(\R^n, \R^k)$ of linear maps from $\R^n$ to $\R^k$ is endowed with the operator norm $\opnorm \cdot$. Let $(A_m)$ be a Cauchy~sequence in the normed vector space $L(\R^n, \R^k)$.
+\begin{enumerate}[(a)]
+\item Show that $(A_m)$ is a bounded sequence, i.e.\ $\exists M > 0$ such that $\forall m \ge 1$, $\opnorm{A_m} \le M$.
+
+\item Show that $\forall v \in \R^n$, the sequence $(A_m v)$ in $\R^k$ converges.
+
+\item Define a function $A : \R^n \to \R^k$ by setting $A v = \llim{m \to \infty} A_m v$. Show that $A \in L(\R^n, \R^k)$.
+
+\item Show that $\opnorm{A_m - A} \to 0$ as $m \to \infty$.
+
+\textbf{Hint}: Show that if this is not true then $\exists \varepsilon_0 > 0$ and a sequence $m_k$ in $\N$ and a sequence $x_k$ of elements of the unit sphere $\{ x \in \R^n : \| x \| = 1 \}$ such that $\| (A_{m_k} - A) x_k \| \ge \varepsilon_0$. Justify using~\textbf{(a)} that then $\exists M > 0$ such that
+\begin{align*}
+\varepsilon_0 &\le \| (A_{m_k} - A) x_k \| \\[0.5ex]
+&\le \| (A_{m_k} - A) (x_k - x) \| + \| (A_{m_k} - A) x \| \\[0.5ex]
+&\le M \| x - x_k \| + \| (A_{m_k} - A) x \|.
+\end{align*}
+Deduce a contradiction from this.
+
+\textit{Remark}: This problem gives an alternative proof of the fact that $L(\R^n, \R^k)$ endowed with the operator norm is a complete normed vector space. This was left as an exercise in lectures, and an alternative (easier) method was suggested: One can use the linear isomorphism $\mu : L(\R^n, \R^k) \to \R^{k,n}$ together with the inequalities between the Frobenius norm and the operator norm discussed in the lecture to prove the completeness. You do not need to include this proof in your assignment.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 1.a
+
+Answer
+
+\subsection{~} % 1.b
+
+Answer
+
+\subsection{~} % 1.c
+
+Answer
+
+\subsection{~} % 1.d
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Let $K \subset \R^n$ be a sequentially compact subset and $f : K \to K$ a continuous function such that $\| f(x) - f(y) \| < \| x - y \|$ for every $x, y \in K$ such that $x \ne y$.
+\begin{enumerate}[(a)]
+\item Show that the function $K \to \R$, defined by $x \mapsto \| f(x) - x \|$ attains a minimum in $K$ (i.e.\ $\exists x_* \in K$ such that $\| f(x_*) - x_* \| \le \| f(x) - x \|$ for every $x \in K$).
+
+\item Show that $f$ admits a unique fixed point in $K$ (i.e.\ a point $y_0 \in K$ such that $f(y_0) = y_0$).
+
+\item \textit{Optional challenge (not marked)}: Denote the unique fixed point of $f$ by $x_*$. Show that $\forall x \in K$, the sequence $(x_m)$ defined by induction $x_0 = x$ and $x_{m+1} = f(x_m)$ converges to the unique fixed point of $f$ in $K$.
+
+\textbf{Hint}: Note that $\| x_k - x_* \|$ is a non-negative monotonic decreasing sequence. Therefore it converges. Let $\ell \ge 0$ be its limit. If $\ell = 0$, we are done. Otherwise, $\ell > 0$. Now by sequential compactness, show that we can find a subsequence of $x_{m_k}$ that converges to some $y \ne x_*$ such that $\| y - x_8 \| = \ell$. Then consider the sequence $f(x_{m_k}) = x_{m_k + 1}$. It converges to $f(y)$ and we have $\| f(y) - x_* \| < \ell$. Deduce a contradiction.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 2.a
+
+Answer
+
+\subsection{~} % 2.b
+
+Answer
+
+\subsection{~} % 2.c
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Let $A$ and $B$ be two subsets of $\R^n$ such that $A$ is closed and $B$ is sequentially compact.
+\begin{enumerate}[(a)]
+\item Show that the set $A + B := \{ a + b : a \in A \text{ and } b \in B \}$ is closed.
+
+\item Find an example of $n \ge 1$, closed sets $A$ and $B$ in $\R^n$ such that $A + B$ is not closed.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 3.a
+
+Answer
+
+\subsection{~} % 3.b
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Let $n \ge 1$ be an integer and $A \in L(\R^n, \R^n)$ be a linear map. Suppose that $\opnorm A < 1$.
+\begin{enumerate}[(a)]
+\item Show that the sequence $\ds {\l( \sum_{k=0}^m A^k \r)}_m$ converges in the normed vector space $\big( L(\R^n, \R^n), \opnorm \cdot \big)$ (i.e.\ $\exists B \in L(\R^n, \R^n)$ such that \\
+${\ds {\l\| \sum_{k=0}^m A^k - B \r\|}_\mathrm{op} \to 0}$ as $m \to \infty$).
+
+\item Show that if $(C_m)$ is a sequence in $L(\R^n, \R^n)$ converging to $D \in L(\R^n, \R^n)$, then $\forall E \in L(\R^n, \R^n)$, we have $\opnorm{C_m E - D E} \to 0$ as $m \to \infty$.
+
+\item Let $\mathrm{Id} : \R^n \to \R^n$ denote the identity linear operator ($x \mapsto x$) and let $B \in L(\R^n, \R^n)$ denote the limit of the sequence $\ds {\l( \sum_{k=0}^m A^k \r)}_m$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 4.a
+
+Answer
+
+\subsection{~} % 4.b
+
+Answer
+
+\subsection{~} % 4.c
+
+Answer
+
+% }}}
+
+\end{document}
