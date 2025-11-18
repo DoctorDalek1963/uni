@@ -56,7 +56,19 @@ Deduce a contradiction from this.
 
 \subsection{~} % 1.a
 
-Answer
+By the definition of a Cauchy sequence, $\forall \varepsilon > 0$, $\exists N \in \N$ such that $\forall n, m \ge N$, $\opnorm{A_m - A_n} < \varepsilon$.
+
+Take $\varepsilon = 1$ and $n = N$ in this definition. Then we get that $\exists N \in \N$ such that $\forall m \ge N$, $\opnorm{A_m - A_N} < 1$.
+
+Since the operator norm satisfies the triangle inequality, we have that for $m \ge N$,
+\begin{align*}
+\opnorm{A_m} &\le \opnorm{A_m - A_N} + \opnorm{A_N} \\[0.5ex]
+&< 1 + \opnorm{A_N}.
+\end{align*}
+% TODO: Does this step need more justification?
+Therefore $\forall m \in \N$, $\opnorm{A_m} \le \max \{ \opnorm{A_1}, \dotsc, \opnorm{A_{N-1}}, \opnorm{A_N} + 1 \}$, so $(A_m)$ is bounded.
+
+\hfill $\square$
 
 \subsection{~} % 1.b
 
@@ -90,7 +102,7 @@ Let $K \subset \R^n$ be a sequentially compact subset and $f : K \to K$ a contin
 
 \subsection{~} % 2.a
 
-Answer
+Is it true that $f$ must have a constant second derivative? So it's strictly monotonic.
 
 \subsection{~} % 2.b
 
@@ -116,7 +128,20 @@ Let $A$ and $B$ be two subsets of $\R^n$ such that $A$ is closed and $B$ is sequ
 
 \subsection{~} % 3.a
 
-Answer
+% TODO:\ This proof is wrong. It must involve a subsequence somewhere to use the sequential compactness of $B$.
+Let $(a_i)$ be a sequence in $A$ converging to $a$, and $(b_j)$ be a sequence in $B$ converging to $b$. Since $A$ and $B$ are closed, $a \in A$ and $b \in B$, for any choice of sequences. Then define $c_k = a_k + b_k$ as a sequence in $A+B$ and let $c = a+b$.
+
+Since $(a_i)$ and $(b_j)$ converge, $\forall \varepsilon > 0$, $\exists N_i \in \N$ such that $\forall i \ge N_i$, $|a_i - a| < \varepsilon / 2$, and $\exists N_j \in \N$ such that $\forall j \ge N_j$, $|b_j - b| < \varepsilon / 2$. Let $N_k = \max \{ N_i, N_j \}$. Then $\forall k \ge N_k$, $|a_k - a| + |b_k - b| < \varepsilon$. By the triangle inequality,
+\begin{align*}
+|c_k - c| &= |a_k + b_k - a - b| \\[0.5ex]
+&= |a_k - a + b_k - b| \\[0.5ex]
+&\le |a_k - a| + |b - b_k| \\[0.5ex]
+&= |a_k - a| + |b_k - b| \\[0.5ex]
+&< \varepsilon
+\end{align*}
+Therefore $c_k \to c$, so $A+B$ is closed.
+
+\hfill $\square$
 
 \subsection{~} % 3.b
 
