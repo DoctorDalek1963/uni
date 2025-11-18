@@ -28,16 +28,16 @@
 \begin{align*}
 \intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x &= \begin{cases}
 \pi & \text{if } m = n \\
-0 & \text{otherwise}
+0 & \text{otherwise},
 \end{cases}\\
 %
 \intlim {-\pi}{\pi} {\cos(mx) \cos(nx)} x &= \begin{cases}
 \pi & \text{if } m = n \\
-0 & \text{otherwise}
+0 & \text{otherwise},
 \end{cases}\\
 %
 \intertext{and}
-\intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x &= 0 \quad \text{for all } m \text{ and } n.
+\intlim {-\pi}{\pi} {\sin(mx) \cos(nx)} x &= 0 \quad \text{for all } m \text{ and } n.
 \end{align*}
 Consider the function $\phi(x) = x$ on $[-\pi, \pi]$. Assuming $\phi$ can be written in the form
 \begin{equation}
@@ -48,7 +48,34 @@ find the values of the coefficients $a_k$ and $b_k$.
 \textbf{Hint}: To find the coefficients $a_k$, multiply~\eqref{eqn:Q1-phi-as-sum} by $\cos(nx)$, integrate $[-\pi, \pi]$ and use the above relations. The coefficients $b_k$ can be computed following the same strategy, but multiplying by $\sin(nx)$.
 \end{questionbody}
 
-Answer
+TODO:\ Do integrals
+
+By de~Moivre's~Theorem,
+\begin{align*}
+\sin(mx) \sin(nx) &= \f{\e^{imx} - \e^{-imx}}{2i} \, \f{\e^{inx} - \e^{-inx}}{2i} \\[0.5ex]
+&= -\f14 \l( \e^{imx} - \e^{-imx}\r) \l(\e^{inx} - \e^{-inx} \r) \\[0.5ex]
+&= -\f14 \l( \e^{i(m+n)x} - \e^{i(m-n)x} - \e^{i(-m+n)x} + \e^{i(-m-n)x} \r) %\\[0.5ex]
+% &= -\f14 \l(2 \e^{-mnx^2} - 2 \e^{mnx^2}\r) \\[0.5ex]
+% &= \f12 \l(\e^{mnx^2} - \e^{-mnx^2}\r)
+\end{align*}
+Therefore
+$\ds \intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x$ is
+\begin{align*}
+% \intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x &= \f12 \intlim {-\pi}{\pi} {\l(\e^{mnx^2} - \e^{-mnx^2}\r)} x \\[0.5ex]
+% \intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x
+&\quad -\f14 \intlim {-\pi}{\pi} {\l( \e^{i(m+n)x} - \e^{i(m-n)x} - \e^{i(-m+n)x} + \e^{i(-m-n)x} \r)} x \\[0.5ex]
+&= -\f1{4i} {\l[ \f{\e^{i(m+n)x}}{m+n} - \f{\e^{i(m-n)x}}{m-n} - \f{\e^{i(-m+n)x}}{-m+n} + \f{\e^{i(-m-n)x}}{-m-n} \r]}_{-\pi}^\pi \\[0.5ex]
+&= \f14 {\l[ \f{\e^{i(m+n)x}}{m+n} - \f{\e^{i(m-n)x}}{m-n} - \f{\e^{i(-m+n)x}}{-m+n} + \f{\e^{i(-m-n)x}}{-m-n} \r]}_{-\pi}^\pi
+\end{align*}
+Since $m$ and $n$ are integers, all $m+n$, $m-n$, $-m+n$, and $-m-n$ are integers, so all powers of $\e$ are of the form $\e^{ik\pi}$ for some $k \in \Z$. All of these are zero, so the integral is zero.
+
+THIS IS WRONG\@.
+
+To find $a_k$, we can do
+\begin{align*}
+x \cos(nx) &= a_0 \cos(nx) + \sum_{k=1}^\infty a_k \cos(kx) \cos(nx) + b_k \sin(kx) \cos(nx) \\[0.5ex]
+\intlim {-\pi}{\pi} {x \cos(nx)} x &= \intlim {-\pi}{\pi} {\l( a_0 \cos(nx) + \sum_{k=1}^\infty a_k \cos(kx) \cos(nx) + b_k \sin(kx) \cos(nx) \r)} x \\[0.5ex]
+\end{align*}
 
 % }}}
 
