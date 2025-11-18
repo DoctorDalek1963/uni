@@ -7,9 +7,6 @@
 
 \usepackage{preamble}
 
-% \usepackage{graphicx}
-% \graphicspath{ {./imgs/} }
-
 \usepackage{tikz}
 \usetikzlibrary{calc, math}
 
@@ -101,12 +98,15 @@ as required.
 
 \subsection{~} % 1.d
 
-It's isometric when $\rho = \f\pi2$ because that's a great circle.
-Shortest paths on non-great circles look like arcs going inside the circle.
+% It's isometric when $\rho = \f\pi2$ because that's a great circle.
+% Shortest paths on non-great circles look like arcs going inside the circle.
+
+% TODO: This is a bad explanation
+The shortest path between any two points in $S_r^1$ is an arc of the circle. But the shortest path between any two points in $C$ is an arc going inside $C$. This is because the shortest path between two points in $S^2$ is a great circle, which will always pass through the interior of $C$ since $\rho < \f\pi2$. Because distances are measured in completely different ways in the two spaces, they cannot be isometric.
 
 \subsection{~} % 1.e
 
-Answer
+If there were such an isometry, then
 
 % }}}
 
@@ -128,22 +128,32 @@ In other words, you need to prove:
 \end{enumerate}
 \end{questionbody}
 
-Let $P = (x_0, x_1, x_2)$ and $Q = (y_0, y_1, y_2)$. Therefore $U = ({x_0 + y_0}, {x_1 + y_1}, {x_2 + y_2})$. Since $P, Q \in \cal H^2$, we know that
+Let $P = (x_0, x_1, x_2)$ and $Q = (y_0, y_1, y_2)$. Therefore $U = ({x_0 + y_0}, {x_1 + y_1}, {x_2 + y_2})$. Since $P, Q \in \cal H^2$, we know that $x_0 > 0$, $y_0 > 0$, and
 \begin{align*}
--x_0^2 + x_1^2 + x_2^2 &= -1, \\[0.5ex]
--y_0^2 + y_1^2 + y_2^2 &= -1.
+P \cdot_L P = -x_0^2 + x_1^2 + x_2^2 &= -1, \\[0.5ex]
+Q \cdot_L Q = -y_0^2 + y_1^2 + y_2^2 &= -1.
 \end{align*}
 
 \subsection{~} % 2.a
 
+% \begin{align*}
+% -U \cdot_L U &= -(-1){(x_0 + y_0)}^2 + (-1){(x_1 + y_1)}^2 + (-1){(x_2 + y_2)}^2 \\[0.5ex]
+% &= {(x_0 + y_0)}^2 - {(x_1 + y_1)}^2 - {(x_2 + y_2)}^2 \\[0.5ex]
+% &= x_0^2 + 2 x_0 y_0 + y_0^2 - x_1^2 - 2 x_1 y_1 - y_1^2 - x_2^2 - 2 x_2 y_2 - y_2^2 \\[0.5ex]
+% &= -(-x_0^2 + x_1^2 + x_2^2) - (-y_0^2 + y_1^2 + y_2^2) + 2 x_0 y_0 - 2 x_1 y_1 - 2 x_2 y_2 \\[0.5ex]
+% &= 2 + 2 x_0 y_0 - 2 x_1 y_1 - 2 x_2 y_2 \\[0.5ex]
+% &= 2(1 + x_0 y_0 - x_1 y_1 - x_2 y_2) \\[0.5ex]
+% \end{align*}
+
 \begin{align*}
--U \cdot_L U &= -(-1){(x_0 + y_0)}^2 + (-1){(x_1 + y_1)}^2 + (-1){(x_2 + y_2)}^2 \\[0.5ex]
-&= {(x_0 + y_0)}^2 - {(x_1 + y_1)}^2 - {(x_2 + y_2)}^2 \\[0.5ex]
-&= x_0^2 + 2 x_0 y_0 + y_0^2 - x_1^2 - 2 x_1 y_1 - y_1^2 - x_2^2 - 2 x_2 y_2 - y_2^2 \\[0.5ex]
-&= -(-x_0^2 + x_1^2 + x_2^2) - (-y_0^2 + y_1^2 + y_2^2) + 2 x_0 y_0 - 2 x_1 y_1 - 2 x_2 y_2 \\[0.5ex]
-&= 2 + 2 x_0 y_0 - 2 x_1 y_1 - 2 x_2 y_2 \\[0.5ex]
-&= 2(1 + x_0 y_0 - x_1 y_1 - x_2 y_2) \\[0.5ex]
+-U \cdot_L U &= -(P + Q) \cdot_L (P + Q) \\[0.5ex]
+&= (-P - Q) \cdot_L (P + Q) \\[0.5ex]
+&= -P \cdot_L P - P \cdot_L Q - Q \cdot_L P - Q \cdot_L Q \\[0.5ex]
+&= 1 - P \cdot_L Q - Q \cdot_L P + 1 \\[0.5ex]
+&= 2 + \cosh\l( \cosh^{-1}(-P \cdot_L Q) \r) + \cosh\l( \cosh^{-1}(-Q \cdot_L P) \r) \\[0.5ex]
+&= 2 + \cosh( d_{\cal H^2}(P, Q) ) + \cosh( d_{\cal H^2}(Q, P) )
 \end{align*}
+Since distances are positive real numbers and $\cosh \ge 1$, $-U \cdot U \ge 4$.
 
 \subsection{~} % 2.b
 
@@ -158,7 +168,24 @@ Therefore $R \in \cal H^2$.
 
 \subsection{~} % 2.c
 
-Answer
+% \begin{align*}
+% d_{\cal H^2}(R, P) &= \cosh^{-1} \l( - R \cdot_L P \r) \\[0.5ex]
+% &= \cosh^{-1} \l( - \f{U}{\sqrt{-U \cdot_L U}} \cdot_L P \r) \\[0.5ex]
+% &= \cosh^{-1} \l( \f{- U \cdot_L P}{\sqrt{-U \cdot_L U}} \r) \\[0.5ex]
+% &= \cosh^{-1} \l( \f{x_0 (x_0 + y_0) - x_1 (x_1 + y_1) - x_2 (x_2 + y_2)}{\sqrt{-U \cdot_L U}} \r) \\[0.5ex]
+% \end{align*}
+
+$d_{\cal H^2}(R, P) = d_{\cal H^2}(R, Q)$ means $\cosh^{-1}(-R \cdot_L P) = \cosh^{-1}(-R \cdot_L Q)$. Since $\cosh^{-1}$ is a strictly increasing function, this is equivalent to saying that ${-R \cdot_L P} = {-R \cdot_L Q}$.
+
+\begin{align*}
+- R \cdot_L P &= - \f{U}{\sqrt{-U \cdot_L U}} \cdot_L P \\[0.5ex]
+&= \f{-U \cdot_L P}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+&= \f{x_0 (x_0 + y_0) - x_1 (x_1 + y_1) - x_2 (x_2 + y_2)}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+\\
+- R \cdot_L Q &= - \f{U}{\sqrt{-U \cdot_L U}} \cdot_L Q \\[0.5ex]
+&= \f{-U \cdot_L Q}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+&= \f{y_0 (x_0 + y_0) - y_1 (x_1 + y_1) - y_2 (x_2 + y_2)}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+\end{align*}
 
 % }}}
 
