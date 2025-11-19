@@ -30,14 +30,16 @@
 
 \item Prove that a spherical circle of radius $\rho < \pi$ has (Euclidean) circumference $2\pi \sin \rho$.
 
-\item Prove that a spherical disc of radius $\rho < \pi$ has area $2\pi (1 - \cos \rho)$. (\textbf{Hint}:~Integrate~\textbf{(b)}).
+\item Prove that a spherical disc of radius $\rho < \pi$ has area $2\pi (1 - \cos \rho)$.
+% (\textbf{Hint}:~Integrate~\textbf{(b)}).
 
 \item Let $0 < \rho < \f\pi2$ and let $C$ be the spherical circle with centre $P \in S^2$ and radius $\rho$. Show that $(C, d_{S^2})$ is not isometric to $(S_r^1, d_{S_r^1})$ for any $r$.
 
-\item Show (e.g.\ using ideas from~\textbf{(d)}) that there is no isometry from any region in $S^2$ to any region in $\R^2$.\footnotemark{}
+\item Show (e.g.\ using ideas from~\textbf{(d)}) that there is no isometry from any region in $S^2$ to any region in $\R^2$.%
+% \footnotemark{}
 \end{enumerate}
 \end{questionbody}
-\footnotetext{An ad-hoc definition of region here is a non-empty subset $U$ which, for any $P \in U$, contains the disc with centre $P$ and sufficiently small $\rho$.}
+% \footnotetext{An ad-hoc definition of region here is a non-empty subset $U$ which, for any $P \in U$, contains the disc with centre $P$ and sufficiently small $\rho$.}
 
 \subsection{~} % 1.a
 
@@ -98,15 +100,12 @@ as required.
 
 \subsection{~} % 1.d
 
-% It's isometric when $\rho = \f\pi2$ because that's a great circle.
-% Shortest paths on non-great circles look like arcs going inside the circle.
-
 % TODO: This is a bad explanation
 The shortest path between any two points in $S_r^1$ is an arc of the circle. But the shortest path between any two points in $C$ is an arc going inside $C$. This is because the shortest path between two points in $S^2$ is a great circle, which will always pass through the interior of $C$ since $\rho < \f\pi2$. Because distances are measured in completely different ways in the two spaces, they cannot be isometric.
 
 \subsection{~} % 1.e
 
-If there were such an isometry, then
+If there were such an isometry, then it would preserve the areas of spherical discs. Using the same logic as in part~\textbf{(d)}, this is not possible.
 
 % }}}
 
@@ -181,11 +180,25 @@ $d_{\cal H^2}(R, P) = d_{\cal H^2}(R, Q)$ means $\cosh^{-1}(-R \cdot_L P) = \cos
 - R \cdot_L P &= - \f{U}{\sqrt{-U \cdot_L U}} \cdot_L P \\[0.5ex]
 &= \f{-U \cdot_L P}{\sqrt{-U \cdot_L U}} \\[0.5ex]
 &= \f{x_0 (x_0 + y_0) - x_1 (x_1 + y_1) - x_2 (x_2 + y_2)}{\sqrt{-U \cdot_L U}} \\[0.5ex]
-\\
+&= \f{x_0^2 + x_0 y_0 - x_1^2 - x_1 y_1 - x_2^2 - x_2 y_2}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+&= \f{x_0^2 - x_1^2 - x_2^2}{\sqrt{-U \cdot_L U}} + \f{x_0 y_0 - x_1 y_1 - x_2 y_2}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+&= \f{-P \cdot_L P}{\sqrt{-U \cdot_L U}} + \f{-P \cdot_L Q}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+&= \f{1 - P \cdot_L Q}{\sqrt{-U \cdot_L U}} \\
+\displaybreak \\
 - R \cdot_L Q &= - \f{U}{\sqrt{-U \cdot_L U}} \cdot_L Q \\[0.5ex]
 &= \f{-U \cdot_L Q}{\sqrt{-U \cdot_L U}} \\[0.5ex]
 &= \f{y_0 (x_0 + y_0) - y_1 (x_1 + y_1) - y_2 (x_2 + y_2)}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+&= \f{y_0^2 + x_0 y_0 - y_1^2 - x_1 y_1 - y_2^2 - x_2 y_2}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+&= \f{y_0^2 - y_1^2 - y_2^2}{\sqrt{-U \cdot_L U}} + \f{x_0 y_0 - x_1 y_1 - x_2 y_2}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+&= \f{-Q \cdot_L Q}{\sqrt{-U \cdot_L U}} + \f{-P \cdot_L Q}{\sqrt{-U \cdot_L U}} \\[0.5ex]
+&= \f{1 - P \cdot_L Q}{\sqrt{-U \cdot_L U}}
 \end{align*}
+
+Therefore $-R \cdot_L P = -R \cdot_L Q$ and therefore $d_{\cal H^2}(R, P) = d_{\cal H^2}(R, Q)$.
+
+Therefore $R$ is the midpoint of $P$ and $Q$.
+
+\hfill $\square$
 
 % }}}
 
