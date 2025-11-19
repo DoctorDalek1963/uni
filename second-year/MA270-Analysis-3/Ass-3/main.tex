@@ -3,15 +3,7 @@
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
-% NOTE: hyperref has to come before preamble
-% \usepackage[hidelinks]{hyperref}
-
 \usepackage{preamble}
-
-% \usepackage{graphicx}
-% \graphicspath{ {./imgs/} }
-
-% \renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
 
 \newcommand{\opnorm}[1]{{\ensuremath{} {\| #1 \|}_{\mathrm{op}}}}
 
@@ -42,15 +34,15 @@ Let $n, k \ge 1$ be two integers. In the following, the vector space $L(\R^n, \R
 
 \item Show that $\opnorm{A_m - A} \to 0$ as $m \to \infty$.
 
-\textbf{Hint}: Show that if this is not true then $\exists \varepsilon_0 > 0$ and a sequence $m_k$ in $\N$ and a sequence $x_k$ of elements of the unit sphere $\{ x \in \R^n : \| x \| = 1 \}$ such that $\| (A_{m_k} - A) x_k \| \ge \varepsilon_0$. Justify using~\textbf{(a)} that then $\exists M > 0$ such that
-\begin{align*}
-\varepsilon_0 &\le \| (A_{m_k} - A) x_k \| \\[0.5ex]
-&\le \| (A_{m_k} - A) (x_k - x) \| + \| (A_{m_k} - A) x \| \\[0.5ex]
-&\le M \| x - x_k \| + \| (A_{m_k} - A) x \|.
-\end{align*}
-Deduce a contradiction from this.
+% \textbf{Hint}: Show that if this is not true then $\exists \varepsilon_0 > 0$ and a sequence $m_k$ in $\N$ and a sequence $x_k$ of elements of the unit sphere $\{ x \in \R^n : \| x \| = 1 \}$ such that $\| (A_{m_k} - A) x_k \| \ge \varepsilon_0$. Justify using~\textbf{(a)} that then $\exists M > 0$ such that
+% \begin{align*}
+% \varepsilon_0 &\le \| (A_{m_k} - A) x_k \| \\[0.5ex]
+% &\le \| (A_{m_k} - A) (x_k - x) \| + \| (A_{m_k} - A) x \| \\[0.5ex]
+% &\le M \| x - x_k \| + \| (A_{m_k} - A) x \|.
+% \end{align*}
+% Deduce a contradiction from this.
 
-\textit{Remark}: This problem gives an alternative proof of the fact that $L(\R^n, \R^k)$ endowed with the operator norm is a complete normed vector space. This was left as an exercise in lectures, and an alternative (easier) method was suggested: One can use the linear isomorphism $\mu : L(\R^n, \R^k) \to \R^{k,n}$ together with the inequalities between the Frobenius norm and the operator norm discussed in the lecture to prove the completeness. You do not need to include this proof in your assignment.
+% \textit{Remark}: This problem gives an alternative proof of the fact that $L(\R^n, \R^k)$ endowed with the operator norm is a complete normed vector space. This was left as an exercise in lectures, and an alternative (easier) method was suggested: One can use the linear isomorphism $\mu : L(\R^n, \R^k) \to \R^{k,n}$ together with the inequalities between the Frobenius norm and the operator norm discussed in the lecture to prove the completeness. You do not need to include this proof in your assignment.
 \end{enumerate}
 \end{questionbody}
 
@@ -72,15 +64,37 @@ Therefore $\forall m \in \N$, $\opnorm{A_m} \le \max \{ \opnorm{A_1}, \dotsc, \o
 
 \subsection{~} % 1.b
 
-Answer
+Consider an arbitrary $v \in \R^n$. Then ${(A_m v)}_m$ is a Cauchy sequence because $\forall m, n \in \N$, \[ \|A_m v - A_n v \| = \| (A_m - A_n) v \| \le \opnorm{A_m - A_n} \, \| v \|. \]
+Of course $A_m v \in \R^k$ and we know that $\R^k$ is complete for any $k$. That means that any Cauchy sequence in $\R^k$ converges to an element of $\R^k$. Since ${(A_m v)}_m$ is a Cauchy sequence in $\R^k$, it converges.
+
+\hfill $\square$
 
 \subsection{~} % 1.c
 
-Answer
+% TODO: Is this rigorous enough?
+Clearly $A$ must be a map $\R^n \to \R^k$, since no other domain and codomain would make sense for the limit, so we just have to show that it's linear. Since all $A_m$ are linear,
+\begin{align*}
+A(\lambda v + u) &= \llim{m \to \infty} A_m (\lambda v + u) \\[0.5ex]
+&= \llim{m \to \infty} \l( \lambda A_m v + A_m u \r) \\[0.5ex]
+&= \llim{m \to \infty} \lambda A_m v + \llim{m \to \infty} A_m u \\[0.5ex]
+&= \lambda \llim{m \to \infty} A_m v + \llim{m \to \infty} A_m u \\[0.5ex]
+&= \lambda A v + A u
+\end{align*}
+Therefore $A \in L(\R^n, \R^k)$.
+
+\hfill $\square$
 
 \subsection{~} % 1.d
 
-Answer
+\textbf{Hint}: Show that if this is not true then $\exists \varepsilon_0 > 0$ and a sequence $m_k$ in $\N$ and a sequence $x_k$ of elements of the unit sphere $\{ x \in \R^n : \| x \| = 1 \}$ such that $\| (A_{m_k} - A) x_k \| \ge \varepsilon_0$. Justify using~\textbf{(a)} that then $\exists M > 0$ such that
+\begin{align*}
+\varepsilon_0 &\le \| (A_{m_k} - A) x_k \| \\[0.5ex]
+&\le \| (A_{m_k} - A) (x_k - x) \| + \| (A_{m_k} - A) x \| \\[0.5ex]
+&\le M \| x - x_k \| + \| (A_{m_k} - A) x \|.
+\end{align*}
+Deduce a contradiction from this.
+
+Suppose $\opnorm{A_m - A} \not\to 0$ as $m \to \infty$. That means that $\exists \varepsilon_0 > 0$ and a sequence $m_k$ in $\N$ and a sequence $x_k$ of elements of the unit sphere $\{ x \in \R^n : \| x \| = 1 \}$ such that $\| (A_{m_k} - A) x_k \| \ge \varepsilon_0$.
 
 % }}}
 
@@ -94,9 +108,9 @@ Let $K \subset \R^n$ be a sequentially compact subset and $f : K \to K$ a contin
 
 \item Show that $f$ admits a unique fixed point in $K$ (i.e.\ a point $y_0 \in K$ such that $f(y_0) = y_0$).
 
-\item \textit{Optional challenge (not marked)}: Denote the unique fixed point of $f$ by $x_*$. Show that $\forall x \in K$, the sequence $(x_m)$ defined by induction $x_0 = x$ and $x_{m+1} = f(x_m)$ converges to the unique fixed point of $f$ in $K$.
+% \item \textit{Optional challenge (not marked)}: Denote the unique fixed point of $f$ by $x_*$. Show that $\forall x \in K$, the sequence $(x_m)$ defined by induction $x_0 = x$ and $x_{m+1} = f(x_m)$ converges to the unique fixed point of $f$ in $K$.
 
-\textbf{Hint}: Note that $\| x_k - x_* \|$ is a non-negative monotonic decreasing sequence. Therefore it converges. Let $\ell \ge 0$ be its limit. If $\ell = 0$, we are done. Otherwise, $\ell > 0$. Now by sequential compactness, show that we can find a subsequence of $x_{m_k}$ that converges to some $y \ne x_*$ such that $\| y - x_8 \| = \ell$. Then consider the sequence $f(x_{m_k}) = x_{m_k + 1}$. It converges to $f(y)$ and we have $\| f(y) - x_* \| < \ell$. Deduce a contradiction.
+% \textbf{Hint}: Note that $\| x_k - x_* \|$ is a non-negative monotonic decreasing sequence. Therefore it converges. Let $\ell \ge 0$ be its limit. If $\ell = 0$, we are done. Otherwise, $\ell > 0$. Now by sequential compactness, show that we can find a subsequence of $x_{m_k}$ that converges to some $y \ne x_*$ such that $\| y - x_8 \| = \ell$. Then consider the sequence $f(x_{m_k}) = x_{m_k + 1}$. It converges to $f(y)$ and we have $\| f(y) - x_* \| < \ell$. Deduce a contradiction.
 \end{enumerate}
 \end{questionbody}
 
@@ -108,9 +122,9 @@ Is it true that $f$ must have a constant second derivative? So it's strictly mon
 
 Answer
 
-\subsection{~} % 2.c
+% \subsection{~} % 2.c
 
-Answer
+% \textbf{Hint}: Note that $\| x_k - x_* \|$ is a non-negative monotonic decreasing sequence. Therefore it converges. Let $\ell \ge 0$ be its limit. If $\ell = 0$, we are done. Otherwise, $\ell > 0$. Now by sequential compactness, show that we can find a subsequence of $x_{m_k}$ that converges to some $y \ne x_*$ such that $\| y - x_8 \| = \ell$. Then consider the sequence $f(x_{m_k}) = x_{m_k + 1}$. It converges to $f(y)$ and we have $\| f(y) - x_* \| < \ell$. Deduce a contradiction.
 
 % }}}
 
@@ -161,12 +175,14 @@ ${\ds {\l\| \sum_{k=0}^m A^k - B \r\|}_\mathrm{op} \to 0}$ as $m \to \infty$).
 \item Show that if $(C_m)$ is a sequence in $L(\R^n, \R^n)$ converging to $D \in L(\R^n, \R^n)$, then $\forall E \in L(\R^n, \R^n)$, we have $\opnorm{C_m E - D E} \to 0$ as $m \to \infty$.
 
 \item Let $\mathrm{Id} : \R^n \to \R^n$ denote the identity linear operator ($x \mapsto x$) and let $B \in L(\R^n, \R^n)$ denote the limit of the sequence $\ds {\l( \sum_{k=0}^m A^k \r)}_m$.
+% TODO: Finish writing part c
 \end{enumerate}
 \end{questionbody}
 
 \subsection{~} % 4.a
 
-Answer
+We know $\opnorm A < 1$.
+\[ B = \mathrm{Id} + A + A^2 + A^3 + \dotsb + A^\infty \]
 
 \subsection{~} % 4.b
 
