@@ -19,11 +19,14 @@
 
 \usepackage[
     backend=biber,
-    citestyle=numeric,
-    bibstyle=numeric,
+    % citestyle=,
+    % bibstyle=,
+    style=alphabetic,
     sorting=nty,
 ]{biblatex}
 \addbibresource{main.bib}
+
+\renewcommand\multicitedelim{\addsemicolon\space}
 
 \usepackage[hidelinks]{hyperref}
 
@@ -71,13 +74,15 @@
 
 Recall set theoretic definition of natural numbers so we can draw parallels to them later, and to establish theme of abstract, fundamental definitions. Define the syntax of the lambda calculus, possibly with examples like $\overline \lambda x . x + 3$ but being careful not to conflate the standard lambda syntax\footnote{It is easy to give an example like the one above with the bare $\lambda$, but this can create confusion later when the rules become strict and readers might wonder why we were allowed addition and natural numbers previously.}.
 
+Motivation using Dana Scott's $D_\infty$~\parencites[\S16]{hindley-seldin-2008-lambda-calculus-and-combinators}[\S\S18--20]{barendregt-1981-lambda-calculus}.
+
 \section{Abstraction and application}
 
-Discuss the notions of abstraction and application. It is likely necessary to talk about free and bound variables and discuss the basics of well-formed formulas. Give examples. Also talk about currying conceptually as well as a syntactic shorthand. Possibly include humorous aside from Hindley about `sch\"onfinkeling'~\parencite[p.~3]{hindley-2008-lambda-calculus-and-combinators}.
+Discuss the notions of abstraction and application. It is likely necessary to talk about free and bound variables and discuss the basics of well-formed formulas. Give examples. Also talk about currying conceptually as well as a syntactic shorthand. Possibly include humorous aside from Hindley about `sch\"onfinkeling'~\parencite[p.~3]{hindley-seldin-2008-lambda-calculus-and-combinators}.
 
 \section{Reduction and conversion}
 
-Discuss $\alpha$ and $\beta$ reduction. Possibly also $\eta$ reduction. Also mention the Church--Rosser theorem~\parencite[p.~14]{hindley-2008-lambda-calculus-and-combinators}, which says that two terms are convertible if both reduce to a common term. I don't think it would be feasible to prove this theorem~\parencite[pp.~282--289]{hindley-2008-lambda-calculus-and-combinators}, but it would be good to mention. % chktex 8
+Discuss $\alpha$ and $\beta$ reduction. Possibly also $\eta$ reduction. Also mention the Church--Rosser theorem~\parencite[p.~14]{hindley-seldin-2008-lambda-calculus-and-combinators}, which says that two terms are convertible if both reduce to a common term. I don't think it would be feasible to prove this theorem~\parencite[pp.~282--289]{hindley-seldin-2008-lambda-calculus-and-combinators}, but it would be good to mention. % chktex 8
 
 % \subsection{Ideas}
 %
@@ -85,7 +90,7 @@ Discuss $\alpha$ and $\beta$ reduction. Possibly also $\eta$ reduction. Also men
 
 \section{Numbers}
 
-This is the climax of the essay. Define Church numerals~\parencite[p.~28]{church-1965-calculi-lambda-conversion}\parencite[p.~136]{barendregt-1981-lambda-calculus} and their successor function. Possibly also their predecessor function if it's not too complicated (but I suspect it is). Define the first few Fibonacci numbers and point out the pattern for generating more.
+This is the climax of the essay. Define Church numerals~\parencites[p.~347]{church-1936-unsolvable-problem-number-theory}[p.~28]{church-1965-calculi-lambda-conversion}[p.~136]{barendregt-1981-lambda-calculus} and their successor function. Possibly also their predecessor function if it's not too complicated (but I suspect it is). Define the first few Fibonacci numbers and point out the pattern for generating more.
 
 Alternatively, use the Church--Rosser Theorem to prove that addition of Church numerals commutes. % chktex 8
 
