@@ -18,8 +18,6 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
-% TODO: Comment out hints and remark from Q1 and Q2
-
 % {{{ Q1
 \question{1}
 
@@ -134,32 +132,27 @@ Answer
 \begin{questionbody}
 Let $A$ and $B$ be two subsets of $\R^n$ such that $A$ is closed and $B$ is sequentially compact.
 \begin{enumerate}[(a)]
-\item Show that the set $A + B := \{ a + b : a \in A \text{ and } b \in B \}$ is closed.
+\item Show that the set ${A + B} := \{ a + b : a \in A \text{ and } b \in B \}$ is closed.
 
-\item Find an example of $n \ge 1$, closed sets $A$ and $B$ in $\R^n$ such that $A + B$ is not closed.
+\item Find an example of $n \ge 1$, closed sets $A$ and $B$ in $\R^n$ such that ${A + B}$ is not closed.
 \end{enumerate}
 \end{questionbody}
 
 \subsection{~} % 3.a
 
-% TODO:\ This proof is wrong. It must involve a subsequence somewhere to use the sequential compactness of $B$.
-Let $(a_i)$ be a sequence in $A$ converging to $a$, and $(b_j)$ be a sequence in $B$ converging to $b$. Since $A$ and $B$ are closed, $a \in A$ and $b \in B$, for any choice of sequences. Then define $c_k = a_k + b_k$ as a sequence in $A+B$ and let $c = a+b$.
+% Adapted from https://math.stackexchange.com/a/3945602
+For ${A+B}$ to be closed, we need any sequence $(x_n)$ in ${A+B}$ to converge to some element $x \in {A+B}$.
 
-Since $(a_i)$ and $(b_j)$ converge, $\forall \varepsilon > 0$, $\exists N_i \in \N$ such that $\forall i \ge N_i$, $|a_i - a| < \varepsilon / 2$, and $\exists N_j \in \N$ such that $\forall j \ge N_j$, $|b_j - b| < \varepsilon / 2$. Let $N_k = \max \{ N_i, N_j \}$. Then $\forall k \ge N_k$, $|a_k - a| + |b_k - b| < \varepsilon$. By the triangle inequality,
-\begin{align*}
-|c_k - c| &= |a_k + b_k - a - b| \\[0.5ex]
-&= |a_k - a + b_k - b| \\[0.5ex]
-&\le |a_k - a| + |b - b_k| \\[0.5ex]
-&= |a_k - a| + |b_k - b| \\[0.5ex]
-&< \varepsilon
-\end{align*}
-Therefore $c_k \to c$, so $A+B$ is closed.
+The sequence $(x_n)$ must be the sum of two sequences $(a_n)$ in $A$ and $(b_n)$ in $B$. Since $B$ is sequentially compact, there exists a convergent subsequence $b_{n_k} \to b \in B$. Note that since $A$ is only known to be closed, we can't assume that $(a_n)$ converges.
+
+Since $b_{n_k} \to b$, we have $x_{n_k} \to x$, which means $a_{n_k}$ converges to $x - b$. Since $A$ is closed, this limit $a = x - b \in A$. Therefore $x = a + b \in {A+B}$, so ${A+B}$ is closed.
 
 \hfill $\square$
 
 \subsection{~} % 3.b
 
-Answer
+% Taken from https://math.stackexchange.com/a/137438
+Let $A = \N$ and $\ds B = \l\{ \f1{n+1} - n : n \in \N \r\}$. They are both closed but $A + B$ contains the sequence ${\l( \df1{n+1} \r)}_{n \in \N}$, whose limit is zero, but $0 \notin {A + B}$.
 
 % }}}
 
@@ -174,15 +167,14 @@ ${\ds {\l\| \sum_{k=0}^m A^k - B \r\|}_\mathrm{op} \to 0}$ as $m \to \infty$).
 
 \item Show that if $(C_m)$ is a sequence in $L(\R^n, \R^n)$ converging to $D \in L(\R^n, \R^n)$, then $\forall E \in L(\R^n, \R^n)$, we have $\opnorm{C_m E - D E} \to 0$ as $m \to \infty$.
 
-\item Let $\mathrm{Id} : \R^n \to \R^n$ denote the identity linear operator ($x \mapsto x$) and let $B \in L(\R^n, \R^n)$ denote the limit of the sequence $\ds {\l( \sum_{k=0}^m A^k \r)}_m$.
-% TODO: Finish writing part c
+\item Let $\mathrm{Id} : \R^n \to \R^n$ denote the identity linear operator ($x \mapsto x$) and let $B \in L(\R^n, \R^n)$ denote the limit of the sequence $\ds {\l( \sum_{k=0}^m A^k \r)}_m$. Show that $(\mathrm{Id} - A) B = \mathrm{Id}$.
 \end{enumerate}
 \end{questionbody}
 
 \subsection{~} % 4.a
 
-We know $\opnorm A < 1$.
-\[ B = \mathrm{Id} + A + A^2 + A^3 + \dotsb + A^\infty \]
+Since the operator norm is a norm, $\opnorm{A^{n+1}} = \opnorm A \opnorm{A^n}$ for any $n \in \N$. Therefore $\opnorm{A^n} = {\opnorm A}^n$. We know that $\opnorm A < 1$, so $\opnorm{A^n} \to 0$ as $n \to \infty$.
+% \[ B = \mathrm{Id} + A + A^2 + A^3 + \dotsb + A^\infty \]
 
 \subsection{~} % 4.b
 
