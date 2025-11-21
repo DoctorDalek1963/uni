@@ -88,7 +88,24 @@ S_n[\phi](x) = \hat \phi(0) + 2 \sum_{k=1}^n \hat \phi(k) \cos(kx).
 \]
 \end{questionbody}
 
-Answer
+With the substitution $y = -x$,
+\begin{align*}
+\hat\phi(k) &= \f1{2\pi} \intlim {-\pi}{\pi} {\phi(x) \e^{-ikx}} x \\[0.5ex]
+&= \f1{2\pi} \intlim {\pi}{-\pi} {\phi(-y) \e^{iky}(-\!\!} {y)} \\[0.5ex] % chktex 9
+&= \f1{2\pi} \intlim {-\pi}{\pi} {\phi(-y) \e^{iky}} y \\[0.5ex]
+&= \f1{2\pi} \intlim {-\pi}{\pi} {\phi(y) \e^{-i(-k)y}} y \\[0.5ex]
+&= \hat\phi(-k).
+\end{align*}
+Therefore, using de~Moivre's theorem,
+\begin{align*}
+S_n[\phi](x) &= \sum_{k = -n}^n \hat\phi(k) \e^{ikx} \\[0.5ex]
+&= \hat\phi(0) + \sum_{k=1}^n \l( \hat\phi(k) \e^{ikx} + \hat\phi(-k) \e^{-ikx} \r) \\[0.5ex]
+&= \hat\phi(0) + \sum_{k=1}^n \hat\phi(k) \l( \e^{ikx} + \e^{-ikx} \r) \\[0.5ex]
+&= \hat\phi(0) + \sum_{k=1}^n \hat\phi(k) 2 \cos(kx) \\[0.5ex]
+&= \hat\phi(0) + 2 \sum_{k=1}^n \hat\phi(k) \cos(kx).
+\end{align*}
+
+\hfill $\square$
 
 % }}}
 
@@ -113,7 +130,7 @@ u(\pi, t) = 1 & t \in [0, \infty). % chktex 9
 \item Assume now the initial conditions
 \begin{align*}
 u(x, 0) &= \Phi(x) = \f3\pi x - 2 + 5 \sin(2x), \\[0.5ex]
-\partial_t u(x, 0) &= V(x) = \f12 \sin(4x) + \f13\sin(11x).
+\partial_t u(x, 0) &= V(x) = \f12 \sin(4x) + \f13 \sin(11x).
 \end{align*}
 Let $w(x, t)$ be the function such that $u(x, t) = \overline u(x) + w(x, t)$. State the initial boundary value problem satisfied by $w$.
 
@@ -125,15 +142,60 @@ w(x, t) = \sum_{j=0}^\infty \Big( A_j \cos(jt) + B_j \sin(jt) \Big) \sin(jx).
 
 \subsection{~} % 3.i
 
-Answer
+Since $\overline u$ does not depend on $t$, $\partial_{tt} \overline u = \partial_t \overline u = 0$. It is trivial to check that $\overline u$ satisfies the initial boundary conditions $\overline u(0) = -2$ and $\overline u(\pi) = 1$. Also \[
+\partial_x \overline u(x) = \f3\pi, \qquad \partial_{xx} \overline u(x) = 0,
+\] and so $\partial_{tt} \overline u = \partial_{xx} \overline u$. Therefore $\overline u$ is a stationary solution to~\eqref{eqn:Q3-boundary-value-problem}.
 
 \subsection{~} % 3.ii
 
-Answer
+\begin{equation*}
+\begin{cases}
+\partial_{tt} w(x, t) = \partial_{xx} w(x, t) & (x, t) \in (0, \pi) \times (0, \infty), \\
+w(0, t) = 0 & t \in [0, \infty), \\ % chktex 9
+w(\pi, t) = 0 & t \in [0, \infty), \\ % chktex 9
+w(x, 0) = 5 \sin(2x) & x \in (0, \pi), \\
+\partial_t(x, 0) = \f12 \sin(4x) + \f13 \sin(11x) & x \in (0, \pi).
+\end{cases}
+\end{equation*}
 
 \subsection{~} % 3.iii
 
-Answer
+Let \[
+w(x, t) = \sum_{j=0}^\infty \Big( A_j \cos(jt) + B_j \sin(jt) \Big) \sin(jx).
+\]
+This satisfies the conditions $w(0, t) = 0$ and $w(\pi, t) = 0$ because ${\sin 0 = \sin \pi = 0}$, so the $\sin(jx)$ term annihilates the rest.
+
+For the condition $w(x, 0) = 5 \sin(2x)$, we have
+\begin{align*}
+w(x, 0) &= \sum_{j=0}^\infty \Big( A_j \cos(0) + B_j \sin(0) \Big) \sin(jx) \\[0.5ex]
+&= \sum_{j=0}^\infty A_j \sin(jx) \\[0.5ex]
+&= 5 \sin(2x)
+\end{align*}
+which means that $A_2 = 5$ and $A_j = 0$ for all $j \ne 2$.
+
+The derivatives are
+\begin{align*}
+\partial_t w(x, t) &= \sum_{j=0}^\infty \Big( -j A_j \sin(jt) + j B_j \cos(jt) \Big) \sin(jx) \\[1.5ex]
+%
+\partial_{tt} w(x, t) &= \sum_{j=0}^\infty \Big( -j^2 A_j \cos(jt) - j^2 B_j \sin(jt) \Big) \sin(jx) \\[1.5ex]
+%
+\partial_x w(x, t) &= \sum_{j=0}^\infty \Big( A_j \cos(jt) + B_j \sin(jt) \Big) j \cos(jx) \\[1.5ex]
+%
+\partial_{xx} w(x, t) &= \sum_{j=0}^\infty \Big( A_j \cos(jt) + B_j \sin(jt) \Big) (-j^2) \sin(jx)
+\end{align*}
+So clearly $\partial_{tt} w = \partial_{xx} w$. Also to satisfy the final condition, we need
+\begin{align*}
+\partial_t w(x, 0) &= \sum_{j=0}^\infty \Big( -j A_j \sin(0) + j B_j \cos(0) \Big) \sin(jx) \\[0.5ex]
+&= \sum_{j=0}^\infty j B_j \sin(jx) \\[0.5ex]
+&= \f12 \sin(4x) + \f13 \sin(11x)
+\end{align*}
+which means that $4 B_4 = \f12$ so $B_4 = 2$, and $11 B_{11} = \f13$ so $B_{11} = \f{11}3$, and $B_j = 0$ for all $b \notin \{4, 11\}$.
+
+Therefore \[
+w(x, t) = 5 \cos(2t) \sin(2x) + 2 \sin(4t) \sin(4x) + \f{11}3 \sin(11t) \sin(11x)
+\] and therefore \[
+u(x, t) = -2 + \f3\pi x + 5 \cos(2t) \sin(2x) + 2 \sin(4t) \sin(4x) + \f{11}3 \sin(11t) \sin(11x).
+\]
 
 % }}}
 
@@ -146,11 +208,28 @@ Answer
 \] Then, assuming that \[
 \llim{n \to \infty} \intlim {-\pi}{\pi} {{\big| \phi_a(x) - S_n[\phi_a](x) \big|}^2} x = 0,
 \] such that Parseval's~identity holds, deduce that \[
-\sum_{k \in \Z} \f1{{(k + a)}^2} = \f{\pi^2}{{(\sin(\pi a))}^2}.
+\sum_{k \in \Z} \f1{{(k + a)}^2} = \f{\pi^2}{\sin^2(\pi a)}.
 \]
 \end{questionbody}
 
-Answer
+\begin{align*}
+{\hat\phi}_a(k) &= \sum_{k = -\infty}^\infty \phi_a(k) \e^{ikx} \\[0.5ex]
+&= \sum_{k = -\infty}^\infty \f\pi{\sin(\pi a)} \e^{-iax} \e^{ikx} \\[0.5ex]
+&= \f\pi{\sin(\pi a)}  \sum_{k = -\infty}^\infty \e^{i(k - a)x} % \\[0.5ex]
+\end{align*}
+
+Parseval's identity says \[
+\intlim {-\pi}{\pi} {{| \phi_a(x) |}^2} x = 2\pi \sum_{k \in \Z} {\l| {\hat\phi}_a(k) \r|}^2.
+\]
+And so we get
+\begin{align*}
+\intlim {-\pi}{\pi} {{\l| \f\pi{\sin(\pi a)} \e^{-iax} \r|}^2} x
+    &= 2\pi \sum_{k \in \Z} {\l| \f\pi{\sin(\pi a)} \sum_{\ell = \infty}^\infty \e^{-i(\ell - a)k} \r|}^2 \\[0.5ex]
+\f{\pi^2}{\sin^2(\pi a)} \intlim {-\pi}{\pi} {{\l| \e^{-iax} \r|}^2} x
+    &= 2\pi \f{\pi^2}{\sin^2(\pi a)} \sum_{k \in \Z} {\l| \sum_{\ell = \infty}^\infty \e^{-i(\ell - a)k} \r|}^2 \\[0.5ex]
+\intlim {-\pi}{\pi} {{\l| \e^{-iax} \r|}^2} x
+    &= 2\pi \sum_{k \in \Z} {\l| \sum_{\ell = \infty}^\infty \e^{-i(\ell - a)k} \r|}^2 \\[0.5ex]
+\end{align*}
 
 % }}}
 
