@@ -84,20 +84,35 @@ Therefore $A \in L(\R^n, \R^k)$.
 
 \subsection{~} % 1.d
 
-\textbf{Hint}: Show that if this is not true then $\exists \varepsilon_0 > 0$ and a sequence $m_k$ in $\N$ and a sequence $x_k$ of elements of the unit sphere $\{ x \in \R^n : \| x \| = 1 \}$ such that $\| (A_{m_k} - A) x_k \| \ge \varepsilon_0$. Justify using~\textbf{(a)} that then $\exists M > 0$ such that
+% \textbf{Hint}: Show that if this is not true then $\exists \varepsilon_0 > 0$ and a sequence $m_k$ in $\N$ and a sequence $x_k$ of elements of the unit sphere $\{ x \in \R^n : \| x \| = 1 \}$ such that $\| (A_{m_k} - A) x_k \| \ge \varepsilon_0$. Justify using~\textbf{(a)} that then $\exists M > 0$ such that
+% \begin{align*}
+% \varepsilon_0 &\le \| (A_{m_k} - A) x_k \| \\[0.5ex]
+% &\le \| (A_{m_k} - A) (x_k - x) \| + \| (A_{m_k} - A) x \| \\[0.5ex]
+% &\le M \| x - x_k \| + \| (A_{m_k} - A) x \|.
+% \end{align*}
+% Deduce a contradiction from this.
+
+Suppose $\opnorm{A_m - A} \not\to 0$ as $m \to \infty$. That means that $\exists \varepsilon_0 > 0$ such that $\forall m$, $\opnorm{A_m - A} \ge \varepsilon_0$. Using the equivalent definition of the operator norm as $\opnorm A := \sup_{x = \| 1 \|} \| Ax \|$, we can deduce that there exists a sequence $m_k$ in $\N$ and a sequence $x_k$ of elements of the unit sphere $\{ x \in \R^n : \| x \| = 1 \}$ such that $\forall k$, $\| (A_{m_k} - A) x_k \| \ge \varepsilon_0$. Let $x$ be the limit of $(x_k)$.
+
+By part~\textbf{(a)}, we know that $(A_m)$ is bounded, so $\exists M > 0$ such that $\opnorm{A_m - A} \le M$. Then
 \begin{align*}
 \varepsilon_0 &\le \| (A_{m_k} - A) x_k \| \\[0.5ex]
 &\le \| (A_{m_k} - A) (x_k - x) \| + \| (A_{m_k} - A) x \| \\[0.5ex]
 &\le M \| x - x_k \| + \| (A_{m_k} - A) x \|.
 \end{align*}
-Deduce a contradiction from this.
 
-Suppose $\opnorm{A_m - A} \not\to 0$ as $m \to \infty$. That means that $\exists \varepsilon_0 > 0$ and a sequence $m_k$ in $\N$ and a sequence $x_k$ of elements of the unit sphere $\{ x \in \R^n : \| x \| = 1 \}$ such that $\| (A_{m_k} - A) x_k \| \ge \varepsilon_0$.
+% TODO: This doesn't use the hint properly, so it's almost certainly wrong.
+% It's probably not true (or at least not useful) that $A_{m_k} - A \to 0$,
+% since that observation makes the hint unnecessary
+As $k \to \infty$, $\| x - x_k \| \to 0$ and $A_{m_k} - A \to 0$. Therefore $\exists \varepsilon > 0$ such that $\varepsilon_0 \le \varepsilon$. But $\varepsilon_0$ is chosen first, so we can always choose a $k$ that makes $\varepsilon < \varepsilon_0$, which is a contradiction.
+Therefore $\opnorm{A_m - A} \to 0$ as $m \to \infty$.
+
+\hfill $\square$
 
 % }}}
 
 % {{{ Q2
-\newquestion{2}
+\question{2}
 
 \begin{questionbody}
 Let $K \subset \R^n$ be a sequentially compact subset and $f : K \to K$ a continuous function such that $\| f(x) - f(y) \| < \| x - y \|$ for every $x, y \in K$ such that $x \ne y$.
@@ -112,13 +127,21 @@ Let $K \subset \R^n$ be a sequentially compact subset and $f : K \to K$ a contin
 \end{enumerate}
 \end{questionbody}
 
+% If $f \in C^1$, then $\forall x \in K$, $|f'(x)| < 1 \forall x$.
+
 \subsection{~} % 2.a
 
-Is it true that $f$ must have a constant second derivative? So it's strictly monotonic.
+% Is it true that $f$ must have a constant second derivative? So it's strictly monotonic.
+
+Since $K$ is sequentially compact, it is bounded. Since $f$ is continuous, the function ${g : x \mapsto \| f(x) - x \|}$ is continuous. By the Extreme Value Theorem, $g$ is bounded and attains its bounds, so $\exists x_* \in K$ such that $g(x_*) = \inf_{x \in K} g(x)$. Therefore $\forall x \in K$, $\| f(x_*) - x_* \| \le \| f(x) - x \|$.
+
+\hfill $\square$
 
 \subsection{~} % 2.b
 
-Answer
+Clearly $y_0$ minimises $g$. We have to prove that $g(y_0) = 0$ and $y_0$ is unique.
+
+We know there must exist an $x_* \in K$ from part~\textbf{(a)}. Let $(x_j)$ be a sequence in $K$ which converges to $x_*$. % TODO: Finish
 
 % \subsection{~} % 2.c
 
