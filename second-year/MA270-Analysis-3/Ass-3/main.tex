@@ -173,16 +173,40 @@ ${\ds {\l\| \sum_{k=0}^m A^k - B \r\|}_\mathrm{op} \to 0}$ as $m \to \infty$).
 
 \subsection{~} % 4.a
 
-Since the operator norm is a norm, $\opnorm{A^{n+1}} = \opnorm A \opnorm{A^n}$ for any $n \in \N$. Therefore $\opnorm{A^n} = {\opnorm A}^n$. We know that $\opnorm A < 1$, so $\opnorm{A^n} \to 0$ as $n \to \infty$.
-% \[ B = \mathrm{Id} + A + A^2 + A^3 + \dotsb + A^\infty \]
+Since the operator norm is a norm, $\opnorm{A^{n+1}} = \opnorm A \opnorm{A^n}$ for any $n \in \N$. Therefore $\opnorm{A^n} = {\opnorm A}^n$. We know that $\opnorm A < 1$, so $\opnorm{A^n} \to 0$ as $n \to \infty$. We define $B$ as $\ds \sum_{k=0}^\infty A^k$ so that
+\begin{align*}
+{\l\| \sum_{k=0}^m A^k - B \r\|}_\mathrm{op} &= {\l\| \sum_{k=0}^m A^k - \sum_{k=0}^\infty A^k \r\|}_\mathrm{op} \\[0.5ex]
+&= {\l\| - \sum_{k = m+1}^\infty A^k \r\|}_\mathrm{op} \\[0.5ex]
+&= |-1| {\l\| \sum_{k = m+1}^\infty A^k \r\|}_\mathrm{op} \\[0.5ex]
+&= {\l\| \sum_{k = m+1}^\infty A^k \r\|}_\mathrm{op} \\
+\intertext{Then by the triangle inequality,} \\
+&\le \opnorm{A^{m+1}} + {\l\| \sum_{k = m+2}^\infty A^k \r\|}_\mathrm{op} \\[0.5ex]
+&\le \opnorm{A^{m+1}} + \opnorm{A^{m+2}} + {\l\| \sum_{k = m+3}^\infty A^k \r\|}_\mathrm{op} \\[0.5ex]
+&\le \sum_{k = m+1}^\infty {\l\| A^k \r\|}_\mathrm{op}
+\end{align*}
+And we know that $\opnorm{A^k} \to 0$ as $k \to \infty$, so the sum above goes to $0$ as $m \to \infty$. Therefore $\ds {\l\| \sum_{k=0}^m A^k - B \r\|}_\mathrm{op} \to 0$ as $m \to \infty$.
+
+\hfill $\square$
 
 \subsection{~} % 4.b
 
-Answer
+Since $C_m \to D$, we have $\opnorm{C_m - D} \to 0$ by definition. Since $L(\R^n, \R^n)$ can be represented by matrices, these linear maps are distributive, so $C_m E - D E = (C_m - D) E$. Therefore we have
+\begin{align*}
+\opnorm{C_m E - D E} &= \opnorm{(C_m - D) E} \\[0.5ex]
+&= \opnorm{C_m - D} \, \opnorm E \\[0.5ex]
+&= 0 \, \opnorm E \quad\qquad\text{as } m \to \infty \\[0.5ex]
+&= 0
+\end{align*}
 
 \subsection{~} % 4.c
 
-Answer
+\begin{align*}
+(\mathrm{Id} - A) B &= (\mathrm{Id} - A) \sum_{k=0}^\infty A^k \\[0.5ex]
+&= \sum_{k=0}^\infty A^k - A \sum_{k=0}^\infty A^k \\[0.5ex]
+&= \sum_{k=0}^\infty A^k - \sum_{k=1}^\infty A^k \\[0.5ex]
+&= A^0 \\[0.5ex]
+&= \mathrm{Id}
+\end{align*}
 
 % }}}
 
