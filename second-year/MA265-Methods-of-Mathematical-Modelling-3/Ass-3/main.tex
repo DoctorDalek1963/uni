@@ -45,37 +45,121 @@ Consider the function $\phi(x) = x$ on $[-\pi, \pi]$. Assuming $\phi$ can be wri
 \end{equation}
 find the values of the coefficients $a_k$ and $b_k$.
 
-\textbf{Hint}: To find the coefficients $a_k$, multiply~\eqref{eqn:Q1-phi-as-sum} by $\cos(nx)$, integrate $[-\pi, \pi]$ and use the above relations. The coefficients $b_k$ can be computed following the same strategy, but multiplying by $\sin(nx)$.
+% \textbf{Hint}: To find the coefficients $a_k$, multiply~\eqref{eqn:Q1-phi-as-sum} by $\cos(nx)$, integrate $[-\pi, \pi]$ and use the above relations. The coefficients $b_k$ can be computed following the same strategy, but multiplying by $\sin(nx)$.
 \end{questionbody}
 
-TODO:\ Do integrals
-
-By de~Moivre's~Theorem,
+We will first consider the integral of $\sin(mx) \sin(nx)$. If $m=n$, the integral becomes
+{\allowdisplaybreaks{}
 \begin{align*}
-\sin(mx) \sin(nx) &= \f{\e^{imx} - \e^{-imx}}{2i} \, \f{\e^{inx} - \e^{-inx}}{2i} \\[0.5ex]
-&= -\f14 \l( \e^{imx} - \e^{-imx}\r) \l(\e^{inx} - \e^{-inx} \r) \\[0.5ex]
-&= -\f14 \l( \e^{i(m+n)x} - \e^{i(m-n)x} - \e^{i(-m+n)x} + \e^{i(-m-n)x} \r) %\\[0.5ex]
-% &= -\f14 \l(2 \e^{-mnx^2} - 2 \e^{mnx^2}\r) \\[0.5ex]
-% &= \f12 \l(\e^{mnx^2} - \e^{-mnx^2}\r)
+\intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x &= \intlim {-\pi}{\pi} {\sin^2(nx)} x \\[0.5ex]
+&= \f12 \intlim {-\pi}{\pi} {(1 - \cos(2nx))} x \\[0.5ex]
+&= \f12 {\l[ x - \f1{2n} \sin(2nx) \r]}_{-\pi}^\pi \\[0.5ex]
+&= \f12 \l( \pi - \f1{2n} \sin(2n\pi) - \l( -\pi - \f1{2n} \sin(-2n\pi) \r) \r) \\[0.5ex]
+&= \f12 \l( \pi - \f1{2n} \sin(2n\pi) + \pi + \f1{2n} \sin(-2n\pi) \r) \\[0.5ex]
+&= \f12 \l( 2\pi - \f1{2n} \sin(2n\pi) - \f1{2n} \sin(2n\pi) \r) \\[0.5ex]
+&= \pi.
 \end{align*}
-Therefore
-$\ds \intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x$ is
-\begin{align*}
-% \intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x &= \f12 \intlim {-\pi}{\pi} {\l(\e^{mnx^2} - \e^{-mnx^2}\r)} x \\[0.5ex]
-% \intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x
-&\quad -\f14 \intlim {-\pi}{\pi} {\l( \e^{i(m+n)x} - \e^{i(m-n)x} - \e^{i(-m+n)x} + \e^{i(-m-n)x} \r)} x \\[0.5ex]
-&= -\f1{4i} {\l[ \f{\e^{i(m+n)x}}{m+n} - \f{\e^{i(m-n)x}}{m-n} - \f{\e^{i(-m+n)x}}{-m+n} + \f{\e^{i(-m-n)x}}{-m-n} \r]}_{-\pi}^\pi \\[0.5ex]
-&= \f14 {\l[ \f{\e^{i(m+n)x}}{m+n} - \f{\e^{i(m-n)x}}{m-n} - \f{\e^{i(-m+n)x}}{-m+n} + \f{\e^{i(-m-n)x}}{-m-n} \r]}_{-\pi}^\pi
-\end{align*}
-Since $m$ and $n$ are integers, all $m+n$, $m-n$, $-m+n$, and $-m-n$ are integers, so all powers of $\e$ are of the form $\e^{ik\pi}$ for some $k \in \Z$. All of these are zero, so the integral is zero.
+}
 
-THIS IS WRONG\@.
-
-To find $a_k$, we can do
+If instead $m \ne n$, we get
 \begin{align*}
-x \cos(nx) &= a_0 \cos(nx) + \sum_{k=1}^\infty a_k \cos(kx) \cos(nx) + b_k \sin(kx) \cos(nx) \\[0.5ex]
-\intlim {-\pi}{\pi} {x \cos(nx)} x &= \intlim {-\pi}{\pi} {\l( a_0 \cos(nx) + \sum_{k=1}^\infty a_k \cos(kx) \cos(nx) + b_k \sin(kx) \cos(nx) \r)} x \\[0.5ex]
+\intlim {-\pi}{\pi} {\sin(mx) \sin(nx)} x &= \intlim {-\pi}{\pi} {\f{-\cos(mx + nx) + \cos(mx - nx)}{2}} x \\[0.5ex]
+&= \f12 {\l[ \f{-1}{m+n} \sin(mx + nx) + \f1{m-n} \sin(mx - nx) \r]}_{-\pi}^\pi \\[0.5ex]
+&= \f12 \bigg( \f{-1}{m+n} \sin((m+n)\pi) + \f1{m-n} \sin((m-n)\pi)
+    \\ &\qquad + \f1{m+n} \sin(-(m+n)\pi) - \f1{m-n} \sin(-(m-n)\pi) \bigg) \\[0.5ex]
+&= 0
 \end{align*}
+since $m+n$ and $m-n$ are always integers, so $\sin((m+n)\pi)$ etc.\ are all 0.
+
+We will now consider the integral of $\cos(mx) \cos(nx)$. As before, if $m=n$, the integral becomes
+\begin{align*}
+\intlim {-\pi}{\pi} {\cos(mx) \cos(nx)} x &= \intlim {-\pi}{\pi} {\cos^2(nx)} x \\[0.5ex]
+&= \f12 \intlim {-\pi}{\pi} {(1 + \cos(2nx))} x \\[0.5ex]
+&= \f12 {\l[ x + \f1{2n} \sin(2nx) \r]}_{-\pi}^\pi \\[0.5ex]
+&= \f12 \l( \pi + \f1{2n} \sin(2n\pi) - \l( -\pi + \f1{2n} \sin(-2n\pi) \r) \r) \\[0.5ex]
+&= \f12 \l( \pi + \f1{2n} \sin(2n\pi) + \pi - \f1{2n} \sin(-2n\pi) \r) \\[0.5ex]
+&= \f12 \l( 2\pi + \f1{2n} \sin(2n\pi) + \f1{2n} \sin(2n\pi) \r) \\[0.5ex]
+&= \pi + \f1{2n} \sin(2n\pi) \\[0.5ex]
+&= \pi
+\end{align*}
+since $n \in \Z$, so $\sin(2n\pi)$ is always 0.
+
+If instead $m \ne n$, we get
+\begin{align*}
+\intlim {-\pi}{\pi} {\cos(mx) \cos(nx)} x &= \intlim {-\pi}{\pi} {\f{\cos(mx + nx) + \cos(mx - nx)}{2}} x \\[0.5ex]
+&= \f12 {\l[ \f1{m+n} \sin(mx + nx) + \f1{m-n} \sin(mx - nx) \r]}_{-\pi}^\pi \\[0.5ex]
+&= \f12 \bigg( \f1{m+n} \sin((m+n)\pi) + \f1{m-n} \sin((m-n)\pi)
+    \\ &\qquad - \f1{m+n} \sin(-(m+n)\pi) - \f1{m-n} \sin(-(m-n)\pi) \bigg) \\[0.5ex]
+&= 0
+\end{align*}
+since $m+n$ and $m-n$ are always integers, so $\sin((m+n)\pi)$ etc.\ are all 0.
+
+We will now consider the integral of $\sin(mx) \cos(nx)$. For any $m$ and $n$,
+\begin{align*}
+\intlim {-\pi}{\pi} {\sin(mx) \cos(nx)} x &= \intlim {-\pi}{\pi} {\f{\sin(mx + nx) + \sin(mx - nx)}{2}} x \\[0.5ex]
+&= \f12 {\l[ \f{-1}{m+n} \cos(mx + nx) - \f1{m-n} \cos(mx - nx) \r]}_{-\pi}^\pi \\[0.5ex]
+&= \f12 \bigg( \f{-1}{m+n} \cos((m + n)\pi) - \f1{m-n} \cos((m - n)\pi)
+    \\ &\qquad + \f1{m+n} \cos(-(m + n)\pi) + \f1{m-n} \cos(-(m - n)\pi) \bigg) \\[0.5ex]
+&= \f12 \bigg( \f{-1}{m+n} \cos((m + n)\pi) - \f1{m-n} \cos((m - n)\pi)
+    \\ &\qquad + \f1{m+n} \cos((m + n)\pi) + \f1{m-n} \cos((m - n)\pi) \bigg) \\[0.5ex]
+&=0.
+\end{align*}
+
+To find $a_k$ in the Fourier series for $\phi$, we can multiply both sides by $\cos(nx)$ and integrate. On the LHS, we get
+\begin{align*}
+\intlim {-\pi}{\pi} {x \cos(nx)} x &= {\l[ \f{nx \sin(nx) + \cos(nx)}{n^2} \r]}_{-\pi}^\pi \\[0.5ex]
+&= \f{n\pi \sin(n\pi) + \cos(n\pi) - \big( -n\pi \sin(-n\pi) + \cos(-n\pi) \big)}{n^2} \\[0.5ex]
+&= \f{n\pi \sin(n\pi) + n\pi \sin(-n\pi) + \cos(n\pi) - \cos(-n\pi)}{n^2} \\[0.5ex]
+&= \f{n\pi \sin(n\pi) - n\pi \sin(n\pi) + \cos(n\pi) - \cos(n\pi)}{n^2} \\[0.5ex]
+&= 0.
+\end{align*}
+On the RHS, we get
+\begin{align*}
+a_0 &\cos(nx) + \sum_{k=1}^\infty a_k \cos(kx) \cos(nx) + b_k \sin(kx) \cos(nx) \\[0.5ex]
+%
+&= \intlim {-\pi}{\pi} {\l(
+    a_0 \cos(nx)
+    + \sum_{k=1}^\infty a_k \cos(kx) \cos(nx)
+    + b_k \sin(kx) \cos(nx)
+\r)} x \\[0.5ex]
+%
+&= a_0 \intlim {-\pi}{\pi} {\cos(nx)} x + \sum_{k=1}^\infty \bigg(
+    a_k \intlim {-\pi}{\pi} {\cos(kx) \cos(nx)} x
+    \\ &\qquad + b_k \intlim {-\pi}{\pi} {\sin(kx) \cos(nx)} x
+\bigg) \\[0.5ex]
+%
+&= 0 + \sum_{k=1}^\infty a_k \intlim {-\pi}{\pi} {\cos(kx) \cos(nx)} x \\[0.5ex]
+&= 0 a_0 + 0 a_1 + \dotsb + 0 a_{n-1} + \pi a_n + 0 a_{n+1} \dotsb \\[0.5ex]
+&= \pi a_n.
+\end{align*}
+So $a_n = 0$.
+
+We can do the same to find $b_k$, but with $\sin(nx)$. On the LHS, we get
+\begin{align*}
+\intlim {-\pi}{\pi} {x \sin(nx)} x &= {\l[ \f{\sin(nx) - nx \cos(nx)}{n^2} \r]}_{-\pi}^\pi \\[0.5ex]
+&= \f{\sin(n\pi) - n\pi \cos(n\pi) - \big( \sin(-n\pi) - n(-\pi) \cos(-n\pi) \big)}{n^2} \\[0.5ex]
+&= \f{\sin(n\pi) - \sin(-n\pi) - n\pi \cos(n\pi) - n\pi \cos(-n\pi)}{n^2} \\[0.5ex]
+&= \f{\sin(n\pi) + \sin(n\pi) - n\pi \cos(n\pi) - n\pi \cos(n\pi)}{n^2} \\[0.5ex]
+&= \f{2\sin(n\pi) - 2n\pi \cos(n\pi)}{n^2}.
+\end{align*}
+On the RHS, we get
+\begin{align*}
+a_0 &\sin(nx) + \sum_{k=1}^\infty a_k \cos(kx) \sin(nx) + b_k \sin(kx) \sin(nx) \\[0.5ex]
+%
+&= \intlim {-\pi}{\pi} {\Bigg(
+    a_0 \sin(nx)
+    + \sum_{k=1}^\infty a_k \cos(kx) \sin(nx)
+    + b_k \sin(kx) \sin(nx)
+\Bigg)} x \\[0.5ex]
+%
+&= a_0 \intlim {-\pi}{\pi} {\sin(nx)} x + \sum_{k=1}^\infty \bigg( a_k \intlim {-\pi}{\pi} {\cos(kx) \sin(nx)} x
+    \\ &\qquad + b_k \intlim {-\pi}{\pi} {\sin(kx) \sin(nx)} x \bigg) \\[0.5ex]
+%
+&= 0 + \sum_{k=1}^\infty b_k \intlim {-\pi}{\pi} {\sin(kx) \sin(nx)} x\\[0.5ex]
+&= 0 b_0 + 0 b_1 + \dotsb + 0 b_{n-1} + \pi b_n + 0 b_{n+1} \dotsb \\[0.5ex]
+&= \pi b_n.
+\end{align*}
+So $b_n = \df{2\sin(n\pi) - 2n\pi \cos(n\pi)}{n^2 \pi}$.
 
 % }}}
 
