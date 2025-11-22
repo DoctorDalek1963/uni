@@ -212,10 +212,22 @@ u(x, t) = -2 + \f3\pi x + 5 \cos(2t) \sin(2x) + 2 \sin(4t) \sin(4x) + \f{11}3 \s
 \]
 \end{questionbody}
 
+The coefficients are
 \begin{align*}
-{\hat\phi}_a(k) &= \sum_{k = -\infty}^\infty \phi_a(k) \e^{ikx} \\[0.5ex]
-&= \sum_{k = -\infty}^\infty \f\pi{\sin(\pi a)} \e^{-iax} \e^{ikx} \\[0.5ex]
-&= \f\pi{\sin(\pi a)}  \sum_{k = -\infty}^\infty \e^{i(k - a)x} % \\[0.5ex]
+{\hat\phi}_a(k) &= \f1{2\pi} \intlim {-\pi}{\pi} {\phi_a(x) \e^{-ikx}} x \\[0.5ex]
+&= \f1{2\pi} \intlim {-\pi}{\pi} {\f\pi{\sin(\pi a)} \e^{-iax} \e^{-ikx}} x \\[0.5ex]
+&= \f1{2 \sin(\pi a)} \intlim {-\pi}{\pi} {\e^{-i(a+k)x}} x \\[0.5ex]
+&= \f1{2 \sin(\pi a)} {\l[ \f{\e^{-i(a+k)x}}{-i (a+k)} \r]}_{-\pi}^\pi \\[0.5ex]
+&= \f{i}{2 \sin(\pi a)} \, \f{\e^{-i(a+k)\pi} - \e^{i(a+k)\pi}}{(a+k)} \\[0.5ex]
+&= \f{i \l( \e^{-i(a+k)\pi} - \e^{i(a+k)\pi} \r)}{2 (a+k) \sin(\pi a)} \\[0.5ex]
+&= \f{i \big( -2i \sinh(i (a+k) \pi) \big)}{2 (a+k) \sin(\pi a)} \\[0.5ex]
+&= \f{\sinh(i (a+k) \pi)}{(a+k) \sin(\pi a)} \\[0.5ex]
+&= \f{\sin((a+k) \pi)}{(a+k) \sin(\pi a)}. % As per WolframAlpha
+\end{align*}
+Therefore
+\begin{align*}
+S_n[\phi_a](x) &= \sum_{k=-n}^n \hat\phi(k) \, \e^{-ikx} \\[0.5ex]
+&= \sum_{k=-n}^n \f{\sin((a+k) \pi) \, \e^{-ikx}}{(a+k) \sin(\pi a)}.
 \end{align*}
 
 Parseval's identity says \[
@@ -224,12 +236,18 @@ Parseval's identity says \[
 And so we get
 \begin{align*}
 \intlim {-\pi}{\pi} {{\l| \f\pi{\sin(\pi a)} \e^{-iax} \r|}^2} x
-    &= 2\pi \sum_{k \in \Z} {\l| \f\pi{\sin(\pi a)} \sum_{\ell = \infty}^\infty \e^{-i(\ell - a)k} \r|}^2 \\[0.5ex]
+    &= 2\pi \sum_{k \in \Z} {\l| \f{\sin((a+k) \pi)}{(a+k) \sin(\pi a)} \r|}^2 \\[0.5ex]
 \f{\pi^2}{\sin^2(\pi a)} \intlim {-\pi}{\pi} {{\l| \e^{-iax} \r|}^2} x
-    &= 2\pi \f{\pi^2}{\sin^2(\pi a)} \sum_{k \in \Z} {\l| \sum_{\ell = \infty}^\infty \e^{-i(\ell - a)k} \r|}^2 \\[0.5ex]
-\intlim {-\pi}{\pi} {{\l| \e^{-iax} \r|}^2} x
-    &= 2\pi \sum_{k \in \Z} {\l| \sum_{\ell = \infty}^\infty \e^{-i(\ell - a)k} \r|}^2 \\[0.5ex]
+    &= 2\pi \f1{\sin^2(\pi a)} \sum_{k \in \Z} \f{\sin^2((a+k) \pi)}{{(a+k)}^2} \\[0.5ex]
+\f{\pi^2}{\sin^2(\pi a)} \intlim {-\pi}{\pi} 1 x
+    &= \f{2\pi}{\sin^2(\pi a)} \sum_{k \in \Z} \f{{(\sin(a\pi + k\pi))}^2}{{(a+k)}^2} \\[0.5ex]
+\pi^2 (2\pi) &= 2\pi \sum_{k \in \Z} \f{{\big( \sin(a\pi) \cos(k\pi) + \cos(a\pi) \sin(k\pi) \big)}^2}{{(a+k)}^2} \\[0.5ex]
+\pi^2 &= \sum_{k \in \Z} \f{\sin^2(a\pi) \cos^2(k\pi)}{{(a+k)}^2} \\[0.5ex]
+\pi^2 &= \sum_{k \in \Z} \f{\sin^2(a\pi)}{{(a+k)}^2} \\[0.5ex]
+\f{\pi^2}{\sin^2(a\pi)} &= \sum_{k \in \Z} \f1{{(a+k)}^2}
 \end{align*}
+
+\hfill $\square$
 
 % }}}
 
