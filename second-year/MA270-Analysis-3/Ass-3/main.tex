@@ -123,7 +123,7 @@ Let $K \subset \R^n$ be a sequentially compact subset and $f : K \to K$ a contin
 
 % \item \textit{Optional challenge (not marked)}: Denote the unique fixed point of $f$ by $x_*$. Show that $\forall x \in K$, the sequence $(x_m)$ defined by induction $x_0 = x$ and $x_{m+1} = f(x_m)$ converges to the unique fixed point of $f$ in $K$.
 
-% \textbf{Hint}: Note that $\| x_k - x_* \|$ is a non-negative monotonic decreasing sequence. Therefore it converges. Let $\ell \ge 0$ be its limit. If $\ell = 0$, we are done. Otherwise, $\ell > 0$. Now by sequential compactness, show that we can find a subsequence of $x_{m_k}$ that converges to some $y \ne x_*$ such that $\| y - x_8 \| = \ell$. Then consider the sequence $f(x_{m_k}) = x_{m_k + 1}$. It converges to $f(y)$ and we have $\| f(y) - x_* \| < \ell$. Deduce a contradiction.
+% \textbf{Hint}: Note that $\| x_k - x_* \|$ is a non-negative monotonic decreasing sequence. Therefore it converges. Let $\ell \ge 0$ be its limit. If $\ell = 0$, we are done. Otherwise, $\ell > 0$. Now by sequential compactness, show that we can find a subsequence of $x_{m_k}$ that converges to some $y \ne x_*$ such that $\| y - x_* \| = \ell$. Then consider the sequence $f(x_{m_k}) = x_{m_k + 1}$. It converges to $f(y)$ and we have $\| f(y) - x_* \| < \ell$. Deduce a contradiction.
 \end{enumerate}
 \end{questionbody}
 
@@ -139,9 +139,11 @@ Since $K$ is sequentially compact, it is bounded. Since $f$ is continuous, the f
 
 \subsection{~} % 2.b
 
-Clearly $y_0$ minimises $g$. We have to prove that $g(y_0) = 0$ and $y_0$ is unique.
+Clearly $y_0$ minimises $g$. We have to prove that $g(y_0) = 0$ and $y_0$ is unique. Unfortunately I don't know how to do this.
 
-We know there must exist an $x_* \in K$ from part~\textbf{(a)}. Let $(x_j)$ be a sequence in $K$ which converges to $x_*$. % TODO: Finish
+% We know there must exist an $x_* \in K$ from part~\textbf{(a)}. Let $(x_j)$ be a sequence in $K$ which converges to $x_*$. % TODO: Finish
+
+% To prove uniqueness, suppose we have multiple minimising points, so $\exists y_1, y_2 \in K$ such that $y_1 \ne y_2$ and $f(y_1) = f(y_2) = f(x_*)$.
 
 % \subsection{~} % 2.c
 
