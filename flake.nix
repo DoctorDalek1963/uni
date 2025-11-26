@@ -41,6 +41,7 @@
               cancel
               csquotes
               enumitem
+              scalerel
 
               minted
               upquote

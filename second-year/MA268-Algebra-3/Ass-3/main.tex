@@ -11,6 +11,11 @@
 \title{MA268 Algebra 3, Assignment 3}
 \colorlet{questionbodycolor}{violet!50}
 
+% For long division in Q1, taken from https://tex.stackexchange.com/a/584377
+\usepackage{scalerel}
+\setcounter{MaxMatrixCols}{20}
+\newcommand{\longdiv}{\smash{\mkern-0.43mu\vstretch{1.31}{\hstretch{.7}{)}}\mkern-5.2mu\vstretch{1.31}{\hstretch{.7}{)}}}} % chktex 9 chktex 10
+
 \begin{document}
 
 \maketitle
@@ -27,18 +32,39 @@ f = X^3 + X + 1, \qquad g = X^5 + X^2 + 3
 \] in $\mathbb{F}_7[X]$. Determine the quotient and remainder you obtain on dividing $g$ by $f$.
 \end{questionbody}
 
-Answer
+\[
+\arraycolsep=1pt
+\renewcommand\arraystretch{1.2}
+\begin{array}{*1r @{\hskip\arraycolsep}c@{\hskip\arraycolsep} *{11}r}
+            &          &     &   &   &   &      &   & X^2 &   &    & + & 6 \\
+\cline{2-13}
+X^3 + X + 1 & \longdiv & X^5 &   &   &   &      & + & X^2 &   &    & + & 3 \\
+            &          & X^5 &   &   & + &  X^3 & + & X^2 &   &    &   &   \\
+\cline{3-9}
+            &          &     &   &   &   & 6X^3 &   &     &   &    & + & 3 \\
+            &          &     &   &   &   & 6X^3 &   &     & + & 6X & + & 6 \\
+\cline{7-13}
+            &          &     &   &   &   &      &   &     &   &  X & + & 4
+\end{array}
+\]
+
+% As per SageMath
+So the quotient is $X^2 + 6$ and the remainder is $X + 4$.
 
 % }}}
 
 % {{{ Q2
-\newquestion{2}
+\question{2}
 
 \begin{questionbody}
 Let $R$ be an integral domain. Show that $R[x]$ is an integral domain.
 \end{questionbody}
 
-Answer
+For $R[x]$ to be an integral domain, it needs to have no zero divisors. For some coefficients $a_i, b_i \in R$, where at least one $a_i \ne 0$ and at least one $b_i \ne 0$, we have $\sum_{i=0}^\infty a_i x^i, \sum_{i=0}^\infty b_i x^i \in R[x]$. Their product is some other polynomial in $R[x]$ whose coefficients are all of the form $a_i b_j$. For this product to be 0, we would need all the coefficients to be 0.
+
+But we know there exists at least one $a_k \ne 0$ and $b_\ell \ne 0$. Then $a_k b_\ell \ne 0$, so that term of the product is non-zero. That means the product must be non-zero, so $R[x]$ has no zero divisors and is thus an integral domain.
+
+\hfill $\square$
 
 % }}}
 
@@ -49,7 +75,17 @@ Answer
 Let $R$ be an integral domain. Show that ${R[x]}^* = R^*$.
 \end{questionbody}
 
-Answer
+Let $f \in R[x]$. Then $f \in {R[x]}^*$ if and only if there is some $g \in R[x]$ such that $fg = 1$. We shall suppose $f \ne 0$ and $g \ne 0$, and since $R$ is an integral domain, $fg \ne 0$.
+
+The degree of a product is the sum of the degrees, so $\deg fg = \deg f + \deg g$. So if $\deg f > 0$ or $\deg g > 0$ then $\deg fg > 0$. But $\deg 1 = 0$, so we need $\deg f = \deg g = 0$.
+
+Therefore all elements of ${R[x]}^*$ have degree 0, meaning they are just elements of $R$. Those elements must also all be units in $R$, so ${R[x]}^* \subset R^*$.
+
+Clearly any unit in $R$ is a unit in $R[x]$, so $R^* \subset {R[x]}^*$. Therefore ${R[x]}^* = R^*$.
+
+\hfill $\square$
+
+Note that if $R$ were not an integral domain, we might have $\deg fg = \deg 0$, which would break things.
 
 % }}}
 
@@ -67,11 +103,26 @@ Let $R$ be a ring. An element $a \in R$ is called \textit{nilpotent} if there is
 
 \subsection{~} % 4.i
 
-Answer
+Clearly $\ds \sum_{k=0}^{n-1} {(-1)}^k a^k \in R$. Then
+\begin{align*}
+\l( \sum_{k=0}^{n-1} {(-1)}^k a^k \r) (1 + a) &= \sum_{k=0}^{n-1} {(-1)}^k a^k + \l( \sum_{k=0}^{n-1} {(-1)}^k a^k \r) a \\[0.5ex]
+&= \sum_{k=0}^{n-1} {(-1)}^k a^k + \sum_{k=0}^{n-1} {(-1)}^k a^{k+1} \\[0.5ex]
+&= 1 + a^n \\[0.5ex]
+&= 1 + 0 \\[0.5ex]
+&= 1 \\
+%
+\intertext{Likewise,}
+(1 + a) \l( \sum_{k=0}^{n-1} {(-1)}^k a^k \r) &= \sum_{k=0}^{n-1} {(-1)}^k a^k + a \l( \sum_{k=0}^{n-1} {(-1)}^k a^k \r) \\[0.5ex]
+&= 1 + a^n \\[0.5ex]
+&= 1
+\end{align*}
+So $1 + a$ is a unit.
 
 \subsection{~} % 4.ii
 
-Answer
+${(\overline p X)}^r = {\overline p\,}^r X^r = 0$, so $\overline p X$ is nilpotent. Therefore $\overline 1 + \overline p X$ is a unit by part~\textbf{(a)}.
+
+This doesn't contradict~\textbf{Q3} because $\Z / p^r \Z$ is not an integral domain. If $s + t = r$ then ${\overline p\,}^s \, {\overline p\,}^t = {\overline p\,}^r = 0$, so ${\overline p\,}^s$ and ${\overline p\,}^t$ are zero divisors.
 
 % }}}
 
@@ -85,21 +136,21 @@ Often the easiest way to show that a subset of a ring is an ideal is to find a h
 
 \item Show that $I = (X - 1) \R[X]$.
 
-\item Show that ${\R[X] / I} \cong \R$.
+\item Show that $\R[X] / I \cong \R$.
 \end{enumerate}
 \end{questionbody}
 
 \subsection{~} % 5.i
 
-Answer
+Let $\phi : \R[X] \to \R$ be defined by $\phi(f) = f(1)$. It is easy to see that $\phi(f + g) = f(1) + g(1) = \phi(f) + \phi(g)$, that $\phi(fg) = f(1) g(1) = \phi(f) \phi(g)$, and that $\phi(1) = 1$. Therefore $\phi$ is a ring homomorphism. Clearly $\ker \phi = I$ by the definition of $I$. Therefore $I$ is an ideal.
 
 \subsection{~} % 5.ii
 
-Answer
+Suppose $f \in I$. Then $f(1) = 0$, so $X - 1$ is a factor of $f$. Therefore we can factor out $X - 1$ from any $f \in I$. Therefore $I = \ker \phi = (X - 1) \R[X]$.
 
 \subsection{~} % 5.iii
 
-Answer
+Clearly $\phi$ is surjective, so $\Im \phi = \R$. Then the First Isomorphism Theorem tells us that $\R[X] / I \cong \R$, where the isomorphism $\hat\phi$ is defined by $\hat\phi(f + I) = \phi(f) = f(1)$.
 
 % }}}
 
@@ -119,12 +170,21 @@ Let $I = (X^2 - X) \R[X] \subset \R[X]$ (i.e.\ $I$ is the principal ideal genera
 
 \subsection{~} % 6.i
 
-Answer
+By the rules of addition and multiplication in quotient rings,
+\begin{align*}
+\phi(a + b) &= (a + b)X + I \\[0.5ex]
+&= (aX + bX) + I \\[0.5ex]
+&= (aX + I) + (bX + I) \\[0.5ex]
+&= \phi(a) + \phi(b) \\[1.5ex]
+\phi(ab) &= abX + I \\[0.5ex]
+&= (aX + I) (bX + I) \\[0.5ex]
+&= \phi(a) \phi(b)
+\end{align*}
 
 \subsection{~} % 6.ii
 
-Answer
+To be a homomorphism, we would need $\phi(1) = 1 + I$. However, $\phi(1) = X + I$. For this to equal $1 + I$, we would need $X - 1 \in I$. This is impossible since the lowest-degree term of any polynomial in $I$ is $X$, so $X - 1 \notin I$. Therefore $\phi$ is not a homomorphism.
 
 % }}}
 
-\end{document}
+\end{document} % chktex 17
