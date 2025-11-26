@@ -1,0 +1,133 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\fancyhead[L]{MA243 Assignment 4}
+\title{MA243 Geometry, Assignment 4}
+\colorlet{questionbodycolor}{orange!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% TODO: ONLY SUBMIT ANSWERS TO (1 and 2) OR (2 and 3)
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+The goal of this exercise is to show that the isometry $\sigma : \cal H^2 \to \cal H^2_P$ from class takes hyperbolic lines to either, straight lines through the origin, or arcs of circles orthogonal to the unit circle. Establish this using the following steps:
+\begin{enumerate}[(a)]
+\item Let $\sigma_1 : \cal H^2 \to \{x_0 = 1\}$ be the projection from 0 to the plane $\{x_0 = 1\}$. Show that $\sigma_1$ sends hyperbolic lines to straight (Euclidean) lines.
+
+\item Let $\sigma_2 : \{x_0 = 1\} \to S^2$ be the vertical projection onto the upper hemisphere. Show that $\sigma_2$ sends straight lines to (arcs of) Euclidean circles perpendicular to the equator.
+
+\item Let $\sigma_3 : S^2 \to \{x_0 = 0\}$ be the stereographic projection from the south pole $S = (-1, 0, 0)$. Show that $\sigma_3$ sends great circles through $S$ to lines through the origin.
+
+\item Let $C = S^2 \cap \{x_1 = \rho\}$ be a circle as in~\textbf{(b)}, for some $0 < \rho < 1$, and assume that $\sigma_3(C) \subset \R^2$ is a circle $S^1(M, r)$ with radius $r$ and centre $M$, orthogonal to the unit circle. Find $r$ and $M$.
+
+\textbf{Hint}: Use that two circles $S^1(M, r)$ and $S^1(M', r')$ are orthogonal if and only if $r^2 + {(r')}^2 = {\l( d_{\R^2}(M, M') \r)}^2$.
+
+\item Show that $\sigma_3(C)$ is indeed the circle with radius $r$ and centre $M$.
+
+\item Show that $\sigma = \sigma_3 \circ \sigma_2 \circ \sigma_1$ and conclude.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 1.a
+
+Answer
+
+\subsection{~} % 1.b
+
+Answer
+
+\subsection{~} % 1.c
+
+Answer
+
+\subsection{~} % 1.d
+
+Answer
+
+\subsection{~} % 1.e
+
+Answer
+
+\subsection{~} % 1.f
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Which of the following sets of points in $\mathbb{P}^2(\R)$ are collinear (i.e.\ line on a projective line)? In the collinear case, give an equation in the homogeneous coordinates $(X_0 : X_1 : X_2)$ for the projective line.
+\begin{enumerate}[1.]
+\item $(2 : 3 : 1), (1 : 3 : 2), (2 : 4 : 2)$
+\item $(1 : 2 : 3), (3 : 2 : 1), (2 : 4 : 2)$
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Let $\ell_1, \ell_2$ be lines in $\R^2$ defined by $x_0 = -1$ and $x_1 = 3$, respectively. Let $F : \ell_1 \to \ell_2$ be the perspectivity associated with some point $O \in \R^2$ of which we know $O \ne 0, O \notin \ell_1 \cup \ell_2$ (i.e.\ $F$ is given by projection from $O$). We may then write $F(-1, x_1) = (f(x_1), 3)$ for some undetermined function $f : \R \to \R$.
+\begin{enumerate}[(a)]
+\item Assume we know that $f(1) = 3$ and $f(2) = 0$. Determine $O$.
+
+\item Determine $f(3)$.
+
+\item Consider the (injective) map
+\begin{align*}
+\ell_1 &\to \mathbb{P}^1, \\
+(-1, x_1) &\mapsto (x_1 : 1).
+\end{align*}
+Find a point in $\mathbb{P} \setminus \ell_1$. Similarly, in the following we will also use the (injective) map
+\begin{align*}
+\ell_2 &\to \mathbb{P}^1, \\
+(x_0, 3) &\mapsto (x_0 : 1).
+\end{align*}
+
+\item Let $A$ be an invertible $2 \times 2$ matrix. Then multiplication by $A$ sends lines in $\R^2$ to lines in $\R^2$, thus a map $T_A : \mathbb{P}^1 \to \mathbb{P}^1$. Find $A$ such that $T_A$ restricts to $f : \ell_1 \to \ell_2$.
+
+\item Use the matrix $A$ to determine an expression for $f$ as a ratio of two polynomials.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 3.a
+
+Answer
+
+\subsection{~} % 3.b
+
+Answer
+
+\subsection{~} % 3.c
+
+Answer
+
+\subsection{~} % 3.d
+
+Answer
+
+\subsection{~} % 3.e
+
+Answer
+
+% }}}
+
+\end{document}
