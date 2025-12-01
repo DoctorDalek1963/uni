@@ -108,6 +108,12 @@ The Zermelo--Fraenkel system of axioms formalises the foundations of mathematics
 
 Talk about history.
 
+% See https://cruzgodar.com/applets/lambda-calculus/
+% This is iterative Fibonacci for some number k:
+% (λn.n(λg.λa.λb.g(+ab)a)(λa.λb.b)1 0)k
+% And expanded:
+% (λn.n(λg.λa.λb.g((λa.λb.λf.λx.(af)(bfx))ab)a)(λa.λb.b)(λf.λx.f(x))(λf.λx.x))k
+
 \newpage
 \nocite{*} % TODO: Trim bib file before submitting
 \printbibliography[]
