@@ -1,0 +1,126 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+% NOTE: hyperref has to come before preamble
+% \usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+\fancyhead[L]{MA270 Assignment 4}
+\title{MA270 Analysis 3, Assignment 4}
+\colorlet{questionbodycolor}{blue!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+A function $f : \R^2 \to \R$ is said to admit a global minimum at $(x_0, y_0)$ if $f(x_0, y_0) \le f(x_1, y_1)$ for every $(x_1, y_1) \in \R^2$. It is said to admit  unique global minimum if there exists $(x_0, y_0) \in \R^2$ such that $f$ admits a global minimum at $(x_0, y_0)$ and for every $(x_1, y_1) \in \R^2$, $f(x_0, y_0) = f(x_1, y_1)$ implies $x_0 = x_1$ and $y_0 = y_1$.
+
+Let $f : \R^2 \to R$ be defined by $f(x, y) = x^2 + y^2 - 2x - 4y$. Show that this function admits a unique global minimum on $\R^2$ and calculate the minimum of $f$.
+
+\textbf{Hint}: One may use Exercise~4 of the Week~9 Exercise Sheet.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Let $f: \R^2 \to \R$ be defined by $f(0, 0) = 0$ and $f(x, y) = \df{\sin(xy)}{|x| + |y|}$ if ${(x, y) \ne (0, 0)}$.
+\begin{enumerate}[(a)]
+\item Show that $f$ is continuous on $\R^2$.
+
+\textbf{Hint}: To show continuity at zero, we can show $|f(x, y)| \le \min\{ |x|, |y| \}$ for every $(x, y) \in \R^2$ and to show this we can use the inequality $|\sin(x)| \le |x|$ valid for every $x \in \R$.
+
+\item Show that for any $x \ge 0$, $\partial_2 f(x, 0)$ exists.
+
+\item Show that $f$ is not continuously differentiable at $(0, 0)$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 2.a
+
+Answer
+
+\subsection{~} % 2.b
+
+Answer
+
+\subsection{~} % 2.c
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Let $A : \R^n \to \R^m$ be a fixed linear map, and define \[
+f : \R^n \to \R, \qquad f(x) = {\| Ax \|}^2.
+\]
+\begin{enumerate}[(a)]
+\item For any $h \in \R^n$, compute $D f(x) (h)$ in terms of $A$, $h$, and $x$.
+
+\item Let $\gamma : \R \to \R^n$ be a $C^1$ curve. Use the chain rule to compute $\ds \diff t f(\gamma(t))$ in terms of $\gamma(t)$, $\gamma'(t)$, $A$ and $A^T$, where $A^T$ is by definition the unique linear map $\R^m \to \R^n$ satisfying $A^T x \cdot y = x \cdot A y$ for every $x \in \R^m$ and $y \in \R^n$.
+
+\item Show that the critical points of $f$ (points where $\nabla f(x) = 0$) are precisely those $x$ with $Ax = 0$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 3.a
+
+Answer
+
+\subsection{~} % 3.b
+
+Answer
+
+\subsection{~} % 3.c
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+\textit{Definition}: A function $f : \R^n \to \R^k$ is said to be $L$-Lipschitz for a constant $L \ge 0$ if for every $x, y \in \R^n$, $\| f(x) - f(y) \| \le L \| x - y \|$.
+
+Let $f : \R^n \to \R$ be a $C^1$ function (i.e.\ continuously differentiable). Suppose that there exists a constant $L \ge 0$ such that for every $x \in \R^n$, we have $\| \nabla f(x) \| \le L$.
+\begin{enumerate}[(a)]
+\item Let $x, y \in \R^n$. Show that \[
+\intlim 01 {\nabla f(x + t(y - x)) \cdot (y - x)} t = f(y) - f(x).
+\]
+
+\item Deduce that $f$ is $L$-Lipschitz.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 4.a
+
+Answer
+
+\subsection{~} % 4.b
+
+Answer
+
+% }}}
+
+\end{document}
