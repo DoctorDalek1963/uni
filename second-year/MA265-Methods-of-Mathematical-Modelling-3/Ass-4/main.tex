@@ -1,0 +1,115 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+% NOTE: hyperref has to come before preamble
+% \usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA265 Assignment 4}
+\title{MA265 Methods of Mathematical Modelling 3, Assignment 4}
+\colorlet{questionbodycolor}{green!50!teal!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+\textit{Convergence of Fourier series}: Let $f$ be a $2\pi$ periodic function on $\R$. Furthermore, let it be H\"older continuous, that is, there exists a constant $L > 0$ and an exponent $\alpha \in (0, 1]$ such that $\forall x \in [0, 2\pi]$, \[ % chktex 9
+|f(x) - f(y)| \le L {|x - y|}^\alpha.
+\]
+\begin{enumerate}[(i)]
+\item Show that the Fourier series of $f$ converges pointwise to itself.
+
+\textbf{Hint}: Use the so-called Dini-criterium: let $f$ be a $2\pi$ periodic function and assume there exists a $\delta > 0$ such that \[
+\intlim 0 \delta {\f{|f(x+h) + f(x-h) - 2f(x)|}{h}} h < \infty.
+\] Then the Fourier series of $f$ converges pointwise to itself.
+
+\item Give an example of a H\"older continuous function on $\R$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 1.i
+
+Answer
+
+\subsection{~} % 1.ii
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+\textit{Fourier series solutions}: Write the solution to the initial boundary value problem \[
+\begin{cases}
+\partial_t u(x, t) = \partial_{xx} u(x, t) & (x, t) \in (0, \pi) \times (0, \infty), \\[0.5ex]
+u(x, 0) = x(\pi - x) & x \in (0, \pi), \\[0.5ex]
+u(0, t) = 0 & t \in [0, \infty), \\[0.5ex] % chktex 9
+u(\pi, t) = 0 & t \in [0, \infty) % chktex 9
+\end{cases}
+\] as a sine series.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+\textit{Duhamel's principle}: Use Duhamel's principle to solve \[
+\begin{cases}
+\partial_t u(x, t) - \partial_{xx} u(x, t) = t \e^{-t} \sin(5x) & (x, t) \in (0, \pi) \times (0, \infty), \\[0.5ex]
+u(x, 0) = 0 & x \in (0, \pi), \\[0.5ex]
+u(0, t) = 0 & t \in [0, \infty), \\[0.5ex] % chktex 9
+u(\pi, t) = 0 & t \in [0, \infty). % chktex 9
+\end{cases}
+\] You may use the fact that the general solution of $\partial_t v = \partial_{xx} v$ with homogeneous Dirichlet boundary conditions and initial condition imposed at a time $\tau > 0$ is given by \[
+v(x, t; \tau) = \sum_{j \in \N} D_j \e^{-j^2 (t - \tau)} \sin(jx).
+\]
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+% \newquestion{4}
+
+% \begin{questionbody}
+% \textit{Inhomogeneous Neumann BCs (not marked)}: Consider the initial boundary value problem with Neumann boundary conditions \[
+% \begin{cases}
+% \partial_t u(x, t) = k \partial_{xx} u(x, t) & (x, t) \in (0, L) \times (0, \infty), \\[0.5ex]
+% u(x, 0) = \Phi(x) & x \in (0, L), \\[0.5ex]
+% \partial_x u(0, t) = h_0(t) & t \in [0, \infty), \\[0.5ex] % chktex 9
+% \partial_x u(L, t) = h_L(t) & t \in [0, \infty) % chktex 9
+% \end{cases}
+% \] where $\Phi$, $h_0$, and $h_L$ are given smooth functions satisfying the compatibility conditions $h_0(0) = \Phi'(0)$ and $h_L(0) = \Phi'(L)$. Find the solution $u(x, t)$ by decomposing it into the sum of three terms: \[
+% u = u^{(B)} + u^{(I)} + w,
+% \] where $u^{(B)}$ is chosen to account for the Neumann boundary conditions, $u^{(I)}$ is chosen to incorporate the initial conditions, and $w$ is chosen such that the heat equation is satisfied. You do not need to solve for $w$ explicitly, simply state the PDE problem of which it is the solution.
+
+% \textbf{Hint}: Construct an appropriate $u^{(B)}$ then follow the same logic as in the lectures. The problem for $w$ should be an inhomogeneous heat equation with homogeneous initial and boundary conditions.
+% \end{questionbody}
+
+% Answer
+
+% }}}
+
+\end{document} % chktex 17
