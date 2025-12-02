@@ -75,6 +75,9 @@
 % \usepackage{graphicx}
 % \graphicspath{ {./imgs/} }
 
+\newcommand\bred{\twoheadrightarrow_\beta}
+\newcommand\doublelambda{\lambda\mkern-7.5mu\lambda}
+
 % TODO: Declare some reduction relations like $\triangleright_\beta$ with \mathrel or similar to get consistent spacing
 
 \title{\vspace*{-5em} Numbers in the Lambda-Calculus}
@@ -130,6 +133,14 @@
 The Zermelo--Fraenkel system of axioms formalises the foundations of mathematics using the language of sets. It is natural to ask which other languages we could use. What about functions? The Zermelo--Fraenkel system defines functions as sets of ordered pairs~\parencite[\S\S2.1--2.2]{ciesielski-1997-set-theory} but we can't do that because we don't have sets, so we need a more broad definition of functions. % chktex 8
 
 Talk about history.
+
+\[ (\doublelambda x . x^2 + 3) 2 \bred 2^2 + 3 \]
+
+% ===== NOTES
+
+This expression $\lambda x . xx$ is normally called the $\mathbf{M}$ combinator. In \citeauthor*{smullyan-1985-to-mock-a-mockingbird}'s language of birds~\parencite[p.~244]{smullyan-1985-to-mock-a-mockingbird}, this is the mockingbird since it applies its argument to itself, effectively `mocking' the argument~\parencite[p.~73]{smullyan-1985-to-mock-a-mockingbird}. % TODO: Cite Smullyan page number
+If we apply $\mathbf{M}$ to itself, we have a problem $\beta$-reducing it: \[ \mathbf{MM} \bred \mathbf{MM} \bred \mathbf{MM} \bred \dotsb \]
+Clearly we can continue this indefinitely, so $\mathbf{MM}$ has no $\beta$-nf.
 
 % See https://cruzgodar.com/applets/lambda-calculus/
 % This is iterative Fibonacci for some number k:
