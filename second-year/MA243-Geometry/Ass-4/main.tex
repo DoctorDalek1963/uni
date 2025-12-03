@@ -3,7 +3,11 @@
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
+\usepackage[hidelinks]{hyperref}
+
 \usepackage{preamble}
+
+\usepackage{tikz}
 
 \fancyhead[L]{MA243 Assignment 4}
 \title{MA243 Geometry, Assignment 4}
@@ -16,68 +20,151 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
-% TODO: ONLY SUBMIT ANSWERS TO (1 and 2) OR (2 and 3)
-
 % {{{ Q1
-\question{1}
+% \question{1}
 
-\begin{questionbody}
-The goal of this exercise is to show that the isometry $\sigma : \cal H^2 \to \cal H^2_P$ from class takes hyperbolic lines to either, straight lines through the origin, or arcs of circles orthogonal to the unit circle. Establish this using the following steps:
-\begin{enumerate}[(a)]
-\item Let $\sigma_1 : \cal H^2 \to \{x_0 = 1\}$ be the projection from 0 to the plane $\{x_0 = 1\}$. Show that $\sigma_1$ sends hyperbolic lines to straight (Euclidean) lines.
+% \begin{questionbody}
+% The goal of this exercise is to show that the isometry $\sigma : \cal H^2 \to \cal H^2_P$ from class takes hyperbolic lines to either, straight lines through the origin, or arcs of circles orthogonal to the unit circle. Establish this using the following steps:
+% \begin{enumerate}[(a)]
+% \item Let $\sigma_1 : \cal H^2 \to \{x_0 = 1\}$ be the projection from 0 to the plane $\{x_0 = 1\}$. Show that $\sigma_1$ sends hyperbolic lines to straight (Euclidean) lines.
 
-\item Let $\sigma_2 : \{x_0 = 1\} \to S^2$ be the vertical projection onto the upper hemisphere. Show that $\sigma_2$ sends straight lines to (arcs of) Euclidean circles perpendicular to the equator.
+% \item Let $\sigma_2 : \{x_0 = 1\} \to S^2$ be the vertical projection onto the upper hemisphere. Show that $\sigma_2$ sends straight lines to (arcs of) Euclidean circles perpendicular to the equator.
 
-\item Let $\sigma_3 : S^2 \to \{x_0 = 0\}$ be the stereographic projection from the south pole $S = (-1, 0, 0)$. Show that $\sigma_3$ sends great circles through $S$ to lines through the origin.
+% \item Let $\sigma_3 : S^2 \to \{x_0 = 0\}$ be the stereographic projection from the south pole $S = (-1, 0, 0)$. Show that $\sigma_3$ sends great circles through $S$ to lines through the origin.
 
-\item Let $C = S^2 \cap \{x_1 = \rho\}$ be a circle as in~\textbf{(b)}, for some $0 < \rho < 1$, and assume that $\sigma_3(C) \subset \R^2$ is a circle $S^1(M, r)$ with radius $r$ and centre $M$, orthogonal to the unit circle. Find $r$ and $M$.
+% \item Let $C = S^2 \cap \{x_1 = \rho\}$ be a circle as in~\textbf{(b)}, for some $0 < \rho < 1$, and assume that $\sigma_3(C) \subset \R^2$ is a circle $S^1(M, r)$ with radius $r$ and centre $M$, orthogonal to the unit circle. Find $r$ and $M$.
 
-\textbf{Hint}: Use that two circles $S^1(M, r)$ and $S^1(M', r')$ are orthogonal if and only if $r^2 + {(r')}^2 = {\l( d_{\R^2}(M, M') \r)}^2$.
+% \textbf{Hint}: Use that two circles $S^1(M, r)$ and $S^1(M', r')$ are orthogonal if and only if $r^2 + {(r')}^2 = {\l( d_{\R^2}(M, M') \r)}^2$.
 
-\item Show that $\sigma_3(C)$ is indeed the circle with radius $r$ and centre $M$.
+% \item Show that $\sigma_3(C)$ is indeed the circle with radius $r$ and centre $M$.
 
-\item Show that $\sigma = \sigma_3 \circ \sigma_2 \circ \sigma_1$ and conclude.
-\end{enumerate}
-\end{questionbody}
+% \item Show that $\sigma = \sigma_3 \circ \sigma_2 \circ \sigma_1$ and conclude.
+% \end{enumerate}
+% \end{questionbody}
 
-\subsection{~} % 1.a
+% \subsection{~} % 1.a
 
-Answer
+% TODO: Finish
+% A hyperbolic line is the intersection of $\cal H^2$ with a time-like plane $V$ through the origin.
 
-\subsection{~} % 1.b
+% Note that since the hyperboloid $\cal H^2$ is contained within the cone $x_0^2 = x_1^2 + x_2^2$, every point in $\cal H^2$ will get projected to a point in the open disk \[ \{ (1, a, b) : a, b \in \R, a^2 + b^2 < 1 \}. \]
 
-Answer
+% \subsection{~} % 1.b
 
-\subsection{~} % 1.c
+% Answer
 
-Answer
+% \subsection{~} % 1.c
 
-\subsection{~} % 1.d
+% Answer
 
-Answer
+% \subsection{~} % 1.d
 
-\subsection{~} % 1.e
+% Answer
 
-Answer
+% \subsection{~} % 1.e
 
-\subsection{~} % 1.f
+% Answer
 
-Answer
+% \subsection{~} % 1.f
+
+% Answer
 
 % }}}
 
 % {{{ Q2
-\newquestion{2}
+\question{2}
 
 \begin{questionbody}
-Which of the following sets of points in $\mathbb{P}^2(\R)$ are collinear (i.e.\ line on a projective line)? In the collinear case, give an equation in the homogeneous coordinates $(X_0 : X_1 : X_2)$ for the projective line.
+Which of the following sets of points in $\mathbb{P}^2(\R)$ are collinear (i.e.\ lie on a projective line)? In the collinear case, give an equation in the homogeneous coordinates $(X_0 : X_1 : X_2)$ for the projective line.
 \begin{enumerate}[1.]
 \item $(2 : 3 : 1), (1 : 3 : 2), (2 : 4 : 2)$
 \item $(1 : 2 : 3), (3 : 2 : 1), (2 : 4 : 2)$
 \end{enumerate}
 \end{questionbody}
 
-Answer
+% The first set of points are collinear since they form a plane through the origin ($x - y + z = 0$ by GeoGebra).
+
+For the first set of points to form a plane through the origin, we want to find $a, b, c \in \R$ such that $ax + by + cz = 0$, so
+\begin{align*}
+2a + 3b + c &= 0 \\
+a + 3b + 2c &= 0 \\
+2a + 4b + 2c &= 0
+\end{align*}
+Solving this system of linear equations gives $a + b = 0$ and $b + c = 0$, so $a = c$ and $b = -a$. Therefore the plane $x - y + z = 0$ contains these three points, so they are collinear in $\mathbb P^2(\R)$.
+
+The points $(2 : 3 : 1)$ and $(1 : 3 : 2)$ each correspond to a 1-dimensional subspace of $\R^3$. Their span is a 2-dimensional subspace in $\R^3$ and hence a line in $\mathbb P^2(\R)$. This line has equation \[
+\angb{\big\{ (2 : 3 : 1), (1 : 3 : 2) \big\}}.
+\]
+
+% The second set of points are not collinear since they form a plane that does not include the origin ($x + z =  4$ by GeoGebra).
+
+For the second set of points to form a plane through the origin, we again want to find $a, b, c \in \R$ such that $ax + by + cz = 0$, so
+\begin{align*}
+a + 2b + 3c &= 0 \\
+3a + 2b +  c &= 0 \\
+2a + 4b + 2c &= 0
+\end{align*}
+
+That means we need \begin{equation}
+\begin{pmatrix}
+1 & 2 & 3 \\
+3 & 2 & 1 \\
+2 & 4 & 2
+\end{pmatrix}
+\begin{pmatrix}
+a \\ b \\ c
+\end{pmatrix}
+= \ul 0 \label{eqn:Q2-2-matrix}
+\end{equation}
+where at least one of $a, b, c$ are non-zero. That means we need the determinant of this matrix to equal 0 but
+\begin{align*}
+\begin{vmatrix}
+1 & 2 & 3 \\
+3 & 2 & 1 \\
+2 & 4 & 2
+\end{vmatrix} &=
+\begin{vmatrix}
+2 & 1 \\
+4 & 2
+\end{vmatrix}
+- 2 \begin{vmatrix}
+3 & 1 \\
+2 & 2
+\end{vmatrix}
++ 3 \begin{vmatrix}
+3 & 2 \\
+2 & 4
+\end{vmatrix} \\[0.5ex]
+&= 0 - 2 \cdot 4 + 3 \cdot 8 \\
+% &= 24 - 8 \\
+&= 16 \\
+&\ne 0
+\end{align*}
+Therefore the only $a, b, c$ that satisfy~\eqref{eqn:Q2-2-matrix} are $a = b = c = 0$. Therefore the three points $(1 : 2 : 3), (3 : 2 : 1), (2 : 4 : 2)$ are not collinear in $\mathbb P^2(\R)$.
+
+In contrast, the determinant of the matrix for the first three points would be
+\begin{align*}
+\begin{vmatrix}
+2 & 3 & 1 \\
+1 & 3 & 2 \\
+2 & 4 & 2
+\end{vmatrix} &=
+2 \begin{vmatrix}
+3 & 2 \\
+4 & 2
+\end{vmatrix}
+-3 \begin{vmatrix}
+1 & 2 \\
+2 & 2
+\end{vmatrix}
++ \begin{vmatrix}
+1 & 3 \\
+2 & 4
+\end{vmatrix} \\[0.5ex]
+&= 2 (-2) - 3 (-2) + (-2) \\
+&= -4 + 6 -2 \\
+&= 0
+\end{align*}
 
 % }}}
 
@@ -96,37 +183,158 @@ Let $\ell_1, \ell_2$ be lines in $\R^2$ defined by $x_0 = -1$ and $x_1 = 3$, res
 \ell_1 &\to \mathbb{P}^1, \\
 (-1, x_1) &\mapsto (x_1 : 1).
 \end{align*}
-Find a point in $\mathbb{P} \setminus \ell_1$. Similarly, in the following we will also use the (injective) map
+Find a point in $\mathbb{P}^1 \setminus \ell_1$. Similarly, in the following we will also use the (injective) map
 \begin{align*}
 \ell_2 &\to \mathbb{P}^1, \\
 (x_0, 3) &\mapsto (x_0 : 1).
 \end{align*}
 
-\item Let $A$ be an invertible $2 \times 2$ matrix. Then multiplication by $A$ sends lines in $\R^2$ to lines in $\R^2$, thus a map $T_A : \mathbb{P}^1 \to \mathbb{P}^1$. Find $A$ such that $T_A$ restricts to $f : \ell_1 \to \ell_2$.
+\item Let $A$ be an invertible $2 \times 2$ matrix. Then multiplication by $A$ sends lines in $\R^2$ to lines in $\R^2$, thus a map $T_A : \mathbb{P}^1 \to \mathbb{P}^1$. Find $A$ such that $T_A$ restricts to $F : \ell_1 \to \ell_2$.
 
 \item Use the matrix $A$ to determine an expression for $f$ as a ratio of two polynomials.
 \end{enumerate}
 \end{questionbody}
 
+\begin{figure}[tbhp]
+\centering
+\begin{tikzpicture}[scale=1.4]
+    \draw[->] (-3.5, 0) -- (3.5, 0);
+    \foreach \i in {-3, -2, ..., 3} \draw (\i, -0.1) -- (\i, 0.1);
+    \draw[->] (0, -0.5) -- (0, 3.5);
+    \foreach \i in {1, 2, 3} \draw (-0.1, \i) -- (0.1, \i);
+
+    \draw (-1, -0.5) -- (-1, 3.5);
+    \node () at (-1, 3.8) {$\ell_1$};
+    \draw (-3.5, 3) -- (3.5, 3);
+    \node () at (3.8, 3) {$\ell_2$};
+
+    \node () at (-2.85, -0.2) {$O$};
+
+    \begin{scope}
+        \clip (-3.5, -0.5) rectangle (3.5, 3.5);
+
+        \draw (-5, -1) -- (5, 4);
+        \draw (-4, -1) -- (1, 4);
+        \draw (-4, -1.5) -- (0, 4.5);
+    \end{scope}
+\end{tikzpicture}
+\caption{A diagram of the situation}
+\end{figure}
+
 \subsection{~} % 3.a
 
-Answer
+Since $f(1) = 3$ and $f(2) = 0$, we have $F(-1, 1) = (3, 3)$ and $F(-1, 2) = (0, 3)$. Therefore we can draw lines through these pairs of points, and $O$ will be their intersection. The lines are
+\begin{align*}
+x_1 &= \f12 x_0 + \f32 \\
+x_1 &= x_0 + 3
+\end{align*}
+or written more nicely,
+\begin{align*}
+-x_0 + 2 x_1 &= 3 \\
+-x_0 + x_1 &= 3
+\end{align*}
+
+The intersection of these lines is $x_0 = -3$ and $x_1 = 0$, so $O = (-3, 0)$.
 
 \subsection{~} % 3.b
 
-Answer
+We know $F(-1, 3) = (f(3), 3)$, so we draw a line through $O$ and $(-1, 3)$ and see where it intersects $\ell_2$. The equation of this line is \[
+x_1 = \f32 x_0 + \f92.
+\] We plug in $x_1 = 3$ and find $x_0 = -1$, so $f(3) = -1$.
 
 \subsection{~} % 3.c
 
-Answer
+The point $(0 : 1)$ is in $\mathbb P^1 \setminus \ell_1$ because it is parallel to $\ell_1$ in $\R^2$. Any other line in $\R^2$ would intersect $\ell_1$ at one point.
 
 \subsection{~} % 3.d
 
-Answer
+The standard frame of reference for $\mathbb P^1(\R)$ is $(1 : 0), (0 : 1), (1 : 1)$. We want to find matrices $B$ and $C$ such that $B$ sends the standard frame of reference to points on $\ell_1$ and $C$ sends the standard frame of reference to points on $\ell_2$. Then $A = CB^{-1}$.
+
+Let's say we want $B$ to map $(1 : 0)$ to $(-1 : 2)$ and $(0 : 1)$ to $(-1 : 1)$. Then using Proposition~6.40 in the lecture notes, we get \[
+B = \begin{pmatrix}
+-\lambda & -\mu \\
+2\lambda & \mu
+\end{pmatrix}
+\] for some $\lambda, \mu \in \R$. We also need $B$ to map $(1 : 1)$ to $(-1 : 3)$, so we get
+\begin{align*}
+-\lambda - \mu &= -1 \\
+2\lambda + \mu &= 3
+\end{align*}
+and we conclude that $\lambda = 2$ and $\mu = -1$. Therefore \[
+B = \begin{pmatrix}
+-2 & 1 \\
+4 & -1
+\end{pmatrix}.
+\]
+
+We do the same thing for $C$, but being careful to map points in the correct pairings. $B(1 : 0) = (-1 : 2)$ so we want $C(1 : 0) = (0 : 3)$ and $B(0 : 1) = {(-1 : 1)}$ so we want $C(0 : 1) = (3 : 3)$, so we get \[
+C = \begin{pmatrix}
+0 & 3\mu \\
+3\lambda & 3\mu
+\end{pmatrix}
+\] for some $\lambda, \mu \in \R$. We also need $C(1 : 1) = (-1 : 3)$, so we get
+\begin{align*}
+3\mu &= -1 \\
+3\lambda + 3\mu &= 3 \\
+\end{align*}
+and we conclude that $\lambda = \df43$ and $\mu = -\df13$. Therefore \[
+C = \begin{pmatrix}
+0 & -1 \\
+4 & -1
+\end{pmatrix}.
+\]
+
+Now we just need to find $A$.
+\begin{align*}
+\det B &= 2 - 4 \\
+&= -2 \\
+B^{-1} &= \f1{-2} \begin{pmatrix}
+-1 & -1 \\
+-4 & -2
+\end{pmatrix} \\[0.5ex]
+&= \begin{pmatrix}
+\f12 & \f12 \\[0.25ex]
+2 & 1
+\end{pmatrix} \\[0.5ex]
+A &= CB^{-1} \\
+&= \begin{pmatrix}
+0 & -1 \\
+4 & -1
+\end{pmatrix}
+\begin{pmatrix}
+\f12 & \f12 \\[0.25ex]
+2 & 1
+\end{pmatrix} \\[0.5ex]
+&= \begin{pmatrix}
+-2 & -1 \\
+0 & 1
+\end{pmatrix}.
+\end{align*}
 
 \subsection{~} % 3.e
 
-Answer
+We know that $F(-1, x) = (f(x), 3)$, we can use $A$ to find $f$.
+\begin{align*}
+\begin{pmatrix}
+-2 & -1 \\
+0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+-1 \\ x
+\end{pmatrix}
+&= \lambda \begin{pmatrix}
+2 - x \\ x
+\end{pmatrix}
+= \begin{pmatrix}
+f(x) \\ 3
+\end{pmatrix} \\[0.5ex]
+\lambda (2 - x) &= f(x) \\
+\lambda x &= 3
+\end{align*}
+We find $\lambda = \df x3$ and so \[
+f(x) = \f{6 - 3x}x.
+\]
+Indeed, this satisfies the three values we already know: $f(1) = 3$, $f(2) = 0$, and $f(3) = -1$.
 
 % }}}
 
