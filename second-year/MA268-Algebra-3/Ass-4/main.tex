@@ -1,0 +1,138 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA268 Assignment 4}
+\title{MA268 Algebra 3, Assignment 4}
+\colorlet{questionbodycolor}{violet!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% TODO: Only submit Q6
+
+% {{{ Q1
+% \question{1}
+
+% \begin{questionbody}
+% \[
+% A = \begin{pmatrix}
+% 6 & 21 \\
+% 4 & 14
+% \end{pmatrix}.
+% \] Determine the Smith Normal Form of $A$.
+% \end{questionbody}
+
+% Answer
+
+% }}}
+
+% {{{ Q2
+% \newquestion{2}
+
+% \begin{questionbody}
+% Let $R = \mathbb F_2(X)$ and recall that this is a Euclidean ring where the Euclidean function is the degree: $\partial(f) = \deg(f)$. Compute the Smith Normal Form of the matrix \[
+% A = \begin{pmatrix}
+% X^3 + X + 1 & X^2 \\
+% X^2 + X & X^2 + X
+% \end{pmatrix}.
+% \]
+% \end{questionbody}
+
+% Answer
+
+% }}}
+
+% {{{ Q3
+% \newquestion{3}
+
+% \begin{questionbody}
+% Recall that $\R^2$ is an $M_2(\R)$-module. Show that $\op{Span}_{M_2(\R)}(\mathbf{e}_1) = \R^2$ where $\ds \mathbf{e}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$.
+% \end{questionbody}
+
+% Answer
+
+% }}}
+
+% {{{ Q4
+% \newquestion{4}
+
+% \begin{questionbody}
+% Let $R$ be a ring and $M$ an $R$-module. Show that a finite subset $\{ x_1, x_2, \dotsc, x_n \}$ of $M$ is an $R$-basis if and only if every element $x \in M$ can be written as a sum \[
+% x = a_1 x_1 + a_2 x_2 + \dotsb + a_n x_n
+% \] where the $a_i \in R$ are unique.
+% \end{questionbody}
+
+% Answer
+
+% }}}
+
+% {{{ Q5
+% \newquestion{5}
+
+% \begin{questionbody}
+% \begin{enumerate}[(i)]
+% \item Is $\Z[i]$ free as a $\Z$-module? If so, what is its rank?
+
+% \item Let $n \ge 2$. Is $\R^n$ free as an $M_n(\R)$-module? Prove or disprove.
+% \end{enumerate}
+% \end{questionbody}
+
+% \subsection{~} % 5.i
+
+% Answer
+
+% \subsection{~} % 5.ii
+
+% Answer
+
+% }}}
+
+% {{{ Q6
+\question{6}
+
+\begin{questionbody}
+Let $\R[X]$ be the $\R[T]$-module where multiplication is given by
+\begin{align*}
+(a_0 + a_1 & T + \dotsb + a_n T^n) \cdot f(X) \\
+&= a_0 f(X) + a_1 f'(X) + a_2 f''(X) + \dotsb + a_n f^{(n)}(X)
+\end{align*}
+where $f^{(n)}(X)$ denotes the $n$-th derivative of $f(X)$ with respect to $X$.
+\begin{enumerate}[(i)]
+\item Compute $(1 + T - T^2 - 3T^5) \cdot (X + 3X^2)$.
+
+\item Show that $\op{Span}_{\R[T]}(X^n) = \op{Span}_\R(1, X, \dotsc, X^n)$.
+
+\item Show that $\R[X]$ is not free as an $\R[T]$-module.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 6.i
+
+\begin{align*}
+(1 + T - T^2 - 3T^5) \cdot (X + 3X^2) &= (X + 3X^2) + \diff X (X + 3X^2) \\
+    & \qquad - \ddd 2{}X (X + 3X^2) - 3 \ddd 5{}X (X + 3X^2) \\[0.5ex]
+&= (X + 3X^2) + (1 + 6X) - 6 - 3(0) \\[0.5ex]
+&= -5 + 7X + 3X^2
+\end{align*}
+
+\subsection{~} % 6.ii
+
+Answer
+
+\subsection{~} % 6.iii
+
+Answer
+
+% }}}
+
+\end{document}
