@@ -3,13 +3,9 @@
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
-% NOTE: hyperref has to come before preamble
-% \usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks]{hyperref}
 
 \usepackage{preamble}
-
-% \usepackage{graphicx}
-% \graphicspath{ {./imgs/} }
 
 \renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
 
@@ -34,7 +30,7 @@
 \begin{enumerate}[(i)]
 \item Show that the Fourier series of $f$ converges pointwise to itself.
 
-\textbf{Hint}: Use the so-called Dini-criterium: let $f$ be a $2\pi$ periodic function and assume there exists a $\delta > 0$ such that \[
+\textbf{Hint}: Use Dini's~criterion: let $f$ be a $2\pi$ periodic function and assume there exists a $\delta > 0$ such that \[
 \intlim 0 \delta {\f{|f(x+h) + f(x-h) - 2f(x)|}{h}} h < \infty.
 \] Then the Fourier series of $f$ converges pointwise to itself.
 
@@ -44,11 +40,16 @@
 
 \subsection{~} % 1.i
 
-Answer
+Using Dini's~criterion, we just have to show that there exists a $\delta > 0$ such that \[
+\intlim 0 \delta {\f{|f(x+h) + f(x-h) - 2f(x)|}{h}} h < \infty.
+\] Then the Fourier series of $f$ converges pointwise to itself.
+
+% TODO
+This $\delta$ surely exists, but I don't know how to find it.
 
 \subsection{~} % 1.ii
 
-Answer
+The identity function $f(x) = x$ is H\"older continuous. Take $\alpha = 1$ and any $L > 0$.
 
 % }}}
 
@@ -56,17 +57,44 @@ Answer
 \newquestion{2}
 
 \begin{questionbody}
-\textit{Fourier series solutions}: Write the solution to the initial boundary value problem \[
+\textit{Fourier series solutions}: Write the solution to the initial boundary value problem
+\begin{equation}
 \begin{cases}
 \partial_t u(x, t) = \partial_{xx} u(x, t) & (x, t) \in (0, \pi) \times (0, \infty), \\[0.5ex]
 u(x, 0) = x(\pi - x) & x \in (0, \pi), \\[0.5ex]
 u(0, t) = 0 & t \in [0, \infty), \\[0.5ex] % chktex 9
 u(\pi, t) = 0 & t \in [0, \infty) % chktex 9
 \end{cases}
-\] as a sine series.
+\label{eqn:Q2:ivbp}
+\end{equation}
+as a sine series.
 \end{questionbody}
 
-Answer
+The solution will be of the form \[
+% u(x, t) = \sum_{k = -\infty}^\infty c_k \sin(kx) \e^{-k^2 t}.
+% u(x, t) = \sum_{k = 1}^\infty c_k \sin(kx).
+u(x, t) = \sum_{j \in \N} \e^{-j^2 t} D_j \sin(j x)
+\] where \[
+x(\pi - x) = \sum_{j \in \N} D_j \sin(j x).
+\]
+
+% Then the derivatives are
+% \begin{align*}
+% \partial_t u(x, t) &= \sum_{k = 1}^\infty (\partial_t c_k) \sin(kx) \\[1.5ex]
+% %
+% \partial_x u(x, t) &= \sum_{k = 1}^\infty \l( k c_k \cos(kx) + (\partial_x c_k) \sin(kx) \r) \\[0.5ex]
+% %
+% \partial_{xx} u(x, t) &= \\[0.5ex]
+% \end{align*}
+
+We need to calculate the Fourier series of $\phi(x) = x (\pi - x)$.
+\begin{align*}
+\hat\phi(x) &= \f1{2\pi} \intlim {-\pi}\pi {x (\pi - x) \e^{-ikx}} x \\[0.5ex]
+&= \f1{2\pi} \intlim {-\pi}\pi {\l( \pi x \e^{-ikx} - x^2 \e^{-ikx} \r)} x \\[0.5ex]
+% &= \f1{2\pi} {\l[ \f{\pi (1 + ikx) \e^{-ikx}}{k^2} - \f{\pi (i k^2 x^2 + 2kx - 2i) \e^{-ikx}}{k^3} \r]}_{-\pi}^\pi \\[0.5ex]
+\end{align*}
+% TODO
+I give up.
 
 % }}}
 
@@ -74,19 +102,81 @@ Answer
 \newquestion{3}
 
 \begin{questionbody}
-\textit{Duhamel's principle}: Use Duhamel's principle to solve \[
+\textit{Duhamel's principle}: Use Duhamel's principle to solve
+\begin{equation}
 \begin{cases}
 \partial_t u(x, t) - \partial_{xx} u(x, t) = t \e^{-t} \sin(5x) & (x, t) \in (0, \pi) \times (0, \infty), \\[0.5ex]
 u(x, 0) = 0 & x \in (0, \pi), \\[0.5ex]
 u(0, t) = 0 & t \in [0, \infty), \\[0.5ex] % chktex 9
 u(\pi, t) = 0 & t \in [0, \infty). % chktex 9
 \end{cases}
-\] You may use the fact that the general solution of $\partial_t v = \partial_{xx} v$ with homogeneous Dirichlet boundary conditions and initial condition imposed at a time $\tau > 0$ is given by \[
+\label{eqn:Q3:original-ibvp}
+\end{equation}
+You may use the fact that the general solution of $\partial_t v = \partial_{xx} v$ with homogeneous Dirichlet boundary conditions and homogeneous initial condition imposed at a time $\tau > 0$ is given by
+\begin{equation}
 v(x, t; \tau) = \sum_{j \in \N} D_j \e^{-j^2 (t - \tau)} \sin(jx).
-\]
+\label{eqn:Q3:given-identity}
+\end{equation}
 \end{questionbody}
 
-Answer
+Using Duhamel's principle, we get a new problem in $w$: \[
+\begin{cases}
+\partial_t w(x, t; \tau) = \partial_{xx} w(x, t; \tau) & (x, t) \in (0, \pi) \times (\tau, \infty), \\[0.5ex]
+w(x, \tau; \tau) = \tau \e^{-\tau} \sin(5x) & x \in (0, \pi), \\[0.5ex]
+w(0, t; \tau) = 0 & t \in [\tau, \infty), \\[0.5ex] % chktex 9
+w(\pi, t; \tau) = 0 & t \in [\tau, \infty). % chktex 9
+\end{cases}
+\]
+The desired solution will be \[ u(x, t) = \intlim 0t {w(x, t; \tau)} \tau. \]
+
+We know \[
+w(x, \tau; \tau) = \tau \e^{-\tau} \sin(5x) = \sum_{j \in \N} D_j \e^{-j^2 \tau} \sin(jx)
+\] which implies $j=5$ and is this case we get
+\begin{align*}
+\tau \e^{-\tau} &= D_5 \e^{-25 \tau} \\[0.5ex]
+\implies D_5 &= \tau \e^{24 \tau} \\[0.5ex]
+\end{align*}
+%
+We plug this into~\eqref{eqn:Q3:given-identity} and get
+\begin{align*}
+v(x, t; \tau) &= \tau \e^{24 \tau} \e^{-25(t - \tau)} \sin(5x) \\[0.5ex]
+&= \tau \e^{49 \tau - 25 t} \sin(5x)
+\end{align*}
+%
+Then we integrate to find
+\begin{align*}
+u(x, t) &= \intlim 01 {\tau \e^{49 \tau - 25t} \sin(5x)} \tau \\[0.5ex]
+&= \e^{-25t} \sin(5x) \intlim 01 {\tau \e^{49 \tau}} \tau \\[0.5ex]
+&= \e^{-25t} \sin(5x) {\l[ \f1{49^2} \e^{49 \tau} (49 \tau - 1) \r]}_0^t \\[0.5ex]
+&= \f1{49^2} \e^{-25t} \sin(5x) \l( \e^{49t} (49t - 1) + 1 \r) \\[0.5ex]
+&= \f{\sin(5x)}{49^2} \l( \e^{24t} (49t - 1) + \e^{-25t} \r)
+\end{align*}
+This clearly satisfies the initial conditions of~\eqref{eqn:Q3:original-ibvp}: when $t=0$, $x=0$, or $x=\pi$.
+
+To see that it satisfies the PDE itself, we just need to differentiate.
+\begin{align*}
+\partial_t u(x, t) &= \f{\sin(5x)}{49^2} \l( 24 \e^{24t} (49t - 1) + 49 \e^{24t} - 25 \e^{-25t} \r) \\[0.5ex]
+&= \f{\sin(5x)}{49^2} \l( \e^{24t} (24 \cdot 49t - 24 + 49) - 25 \e^{-25t} \r) \\[0.5ex]
+&= \f{\sin(5x)}{49^2} \l( \e^{24t} (1176 t + 25) - 25 \e^{-25t} \r) \\[0.5ex]
+%
+\partial_x u(x, t) &= \f{5 \cos(5x)}{49^2} \l( \e^{24t} (49t - 1) + \e^{-25t} \r) \\[0.5ex]
+%
+\partial_{xx} u(x, t) &= \f{-25 \sin(5x)}{49^2} \l( \e^{24t} (49t - 1) + \e^{-25t} \r)
+\end{align*}
+Then
+\begin{align*}
+\partial_t u(x, t) - \partial_{xx} u(x, t) &= \f{\sin(5x)}{49^2} \l( \e^{24t} (1176 t + 25) - 25 \e^{-25t} \r)
+    \\ &\qquad - \f{-25 \sin(5x)}{49^2} \l( \e^{24t} (49t - 1) + \e^{-25t} \r) \\[0.5ex]
+&= \f{\sin(5x)}{49^2} \l( \e^{24t} (1176 t + 25) - 25 \e^{-25t} + 25 \e^{24t} (49t - 1) + 25 \e^{-25t} \r) \\[0.5ex]
+&= \f{\sin(5x)}{49^2} \l( \e^{24t} (1176 t + 25) + 25 \e^{24t} (49t - 1) \r) \\[0.5ex]
+&= \f{\sin(5x)}{49^2} \l( \e^{24t} \l( 1176 t + 25 + 1225 t - 25 \r) \r) \\[0.5ex]
+&= \f{\sin(5x)}{49^2} \l( 2401 t \e^{24t} \r) \\[0.5ex]
+&= t \e^{24t} \sin(5x) \\[0.5ex]
+% TODO: Fix this
+&= t \e^{-t} \sin(5x)
+\end{align*}
+
+\hfill $\square$
 
 % }}}
 
