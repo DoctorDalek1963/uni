@@ -152,27 +152,32 @@ Let \textsc{Santa-Service} be the problem of determining, for a given map (provi
 \subsection{~} % a
 \vspace*{-6.5ex}
 
-Answer
+Yes: choose the route $d$, $e$, $f$, $g$, $i$, $a$, $b$ and the reversing loop $b$, $c$, $h$, $b$.
 
 \subsection{~} % b
 \vspace*{-6.5ex}
 
-Answer
+Given a graph $G$, find all 3-cycles in $G$. If there are no 3-cycles, return No. For each 3-cycle, conduct a depth-first search on each vertex in that cycle to find a Hamiltonian path through the rest of $G$ (not including the vertices in this 3-cycle). If a Hamiltonian path is found at any point, return Yes. If every vertex in every 3-cycle is checked without finding a Hamiltonian path, return No.
 
 \subsection{~} % c
 \vspace*{-6.5ex}
 
-Answer
+To show NP-membership, we need to construct a polynomial-time verifier. Given a graph $G$ and a proposed witness solution $w$, we first check that $w$ is connected and is a subgraph of $G$. If either is false, return No. Count all the 3-cycles in $w$. If this number is not 1, return No.
+
+Checking connectedness, subgraph-ness, and counting 3-cycles are all polynomial-time in the number of vertices, so this verifier is polynomial-time and $\textsc{Santa-Service} \in \text{NP}$.
+
+\textsc{Santa-Service} requires finding a Hamiltonian path, so if we can show that \textsc{Hamiltonian-Path} is NP-hard then \textsc{Santa-Service} is NP-hard as well.
+% TODO: Show NP-hardness using 3-SAT
 
 \subsection{~} % d
 \vspace*{-6.5ex}
 
-\textsc{Find-Santa-Service} is not a decision problem so cannot be in NP and therefore cannot be NP-complete.
-% TODO: Is it NP-hard?
+\textsc{Find-Santa-Service} is not a decision problem, so cannot be in NP and therefore cannot be NP-complete. However, it is NP-hard, using the same logic we used in part~\textbf{(c)}.
 
 \subsection{~} % e
 \vspace*{-6.5ex}
 
+% Give a restriction of the input under which \textsc{Santa-Service} is solvable in polynomial time, but not in constant time.
 Answer
 
 \label{last-page} % chktex 24
