@@ -132,15 +132,35 @@
 
 The Zermelo--Fraenkel system of axioms formalises the foundations of mathematics using the language of sets. It is natural to ask which other languages we could use. What about functions? The Zermelo--Fraenkel system defines functions as sets of ordered pairs~\parencite[\S\S2.1--2.2]{ciesielski-1997-set-theory} but we can't do that because we don't have sets, so we need a more broad definition of functions. % chktex 8
 
-Talk about history.
+% TODO: Talk about history
+
+\section{Syntax}
+
+In this new lambda calculus, we care primarily about functions, but the common way of writing functions becomes cumbersome for higher-order functions (functions from functions to functions).
+
+% TODO: Is $S$ actually an operator?
+% Properly explain this idea of only having functions? Maybe put this in the history section?
+% Why exactly can't we do it in ZFC? Can we do it in ZFC?
+
+Let's say we want to define a function $S$ which takes three functions $x, y, z$ as input, and returns the function $(x(z)) (y(z))$. Take a moment to parse that: $x, y, z$ are all functions; $x(z)$ is a function, call it $f$; $y(z)$ is a function, call it $g$, and then $S$ is $f(g)$, another function.
+
+This is called the $\mathbf{S}$ combinator and we will see its uses later.
+
+To describe $S$ in full generality in the ZFC system is actually impossible because we need to define a domain. We could say \[
+S : F \times F \times F \to F, \qquad (x, y, z) \mapsto (x(z)) (y(z))
+\] where $F$ denotes some space of functions $F \to F$. This recursive definition of $F$ is not allowed in ZFC\@. % TODO: Citation needed
+
+In the lambda calculus, we write this simply as \[
+\lambda x y z . xz(yz)
+\]
 
 \[ (\doublelambda x . x^2 + 3) 2 \bred 2^2 + 3 \]
 
 % ===== NOTES
 
-This expression $\lambda x . xx$ is normally called the $\mathbf{M}$ combinator. In \citeauthor*{smullyan-1985-to-mock-a-mockingbird}'s language of birds~\parencite[p.~244]{smullyan-1985-to-mock-a-mockingbird}, this is the mockingbird since it applies its argument to itself, effectively `mocking' the argument~\parencite[p.~73]{smullyan-1985-to-mock-a-mockingbird}. % TODO: Cite Smullyan page number
-If we apply $\mathbf{M}$ to itself, we have a problem $\beta$-reducing it: \[ \mathbf{MM} \bred \mathbf{MM} \bred \mathbf{MM} \bred \dotsb \]
-Clearly we can continue this indefinitely, so $\mathbf{MM}$ has no $\beta$-nf.
+% This expression $\lambda x . xx$ is normally called the $\mathbf{M}$ combinator. In \citeauthor*{smullyan-1985-to-mock-a-mockingbird}'s language of birds~\parencite[p.~244]{smullyan-1985-to-mock-a-mockingbird}, this is the mockingbird since it applies its argument to itself, effectively `mocking' the argument~\parencite[p.~73]{smullyan-1985-to-mock-a-mockingbird}. % TODO: Cite Smullyan page number
+% If we apply $\mathbf{M}$ to itself, we have a problem $\beta$-reducing it: \[ \mathbf{MM} \bred \mathbf{MM} \bred \mathbf{MM} \bred \dotsb \]
+% Clearly we can continue this indefinitely, so $\mathbf{MM}$ has no $\beta$-nf.
 
 % See https://cruzgodar.com/applets/lambda-calculus/
 % This is iterative Fibonacci for some number k:
