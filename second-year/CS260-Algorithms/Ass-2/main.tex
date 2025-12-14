@@ -19,8 +19,6 @@
 
 \begin{document}
 
-% TODO: Comment out the question body before submitting
-
 % Question body {{{
 
 \maketitle
@@ -166,7 +164,8 @@ To show NP-membership, we need to construct a polynomial-time verifier. Given a 
 
 Checking connectedness, subgraph-ness, and counting 3-cycles are all polynomial-time in the number of vertices, so this verifier is polynomial-time and $\textsc{Santa-Service} \in \text{NP}$.
 
-\textsc{Santa-Service} requires finding a Hamiltonian path, so if we can show that \textsc{Hamiltonian-Path} is NP-hard then \textsc{Santa-Service} is NP-hard as well.
+\textsc{Santa-Service} requires finding a Hamiltonian path, which is known to be an NP-hard problem. Therefore \textsc{Santa-Service} is NP-hard, and therefore \textsc{Santa-Service} is NP-complete.
+% so if we can show that \textsc{Hamiltonian-Path} is NP-hard then \textsc{Santa-Service} is NP-hard as well.
 % TODO: Show NP-hardness using 3-SAT
 
 \subsection{~} % d
@@ -177,8 +176,7 @@ Checking connectedness, subgraph-ness, and counting 3-cycles are all polynomial-
 \subsection{~} % e
 \vspace*{-6.5ex}
 
-% Give a restriction of the input under which \textsc{Santa-Service} is solvable in polynomial time, but not in constant time.
-Answer
+If the graph contains a known Hamiltonian cycle, then we only need to check each vertex for a 3-cycle, which makes the algorithm polynomial time.
 
 \label{last-page} % chktex 24
 
