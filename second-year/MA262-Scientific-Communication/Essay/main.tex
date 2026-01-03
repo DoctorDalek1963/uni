@@ -15,7 +15,15 @@
 \usepackage{mathtools}
 \usepackage{csquotes}
 \usepackage{cancel}
+
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
 \usepackage[shortlabels]{enumitem}
+% \setlist[enumerate]{topsep=0pt}
+% \setlist[itemize]{topsep=0pt}
 
 \usepackage[
     backend=biber,
@@ -40,13 +48,13 @@
 \def\@empty{}
 \def\first#1{\expandafter\@first#1 \@nil}
 \def\@first#1 #2\@nil{#1\addspace%
-  \if\relax\detokenize{#2}\relax\else\@initials#2\@nil\fi}
+    \if\relax\detokenize{#2}\relax\else\@initials#2\@nil\fi}
 \def\initials#1{\expandafter\@initials#1 \@nil}
 \def\@initials#1 #2\@nil{%
-  \initial{#1}%
-  \def\NextName{#2}%
-  \ifx\@empty\NextName\relax%
-  \else\bibinitdelim\@initials#2\@nil\fi}
+    \initial{#1}%
+    \def\NextName{#2}%
+    \ifx\@empty\NextName\relax%
+    \else\bibinitdelim\@initials#2\@nil\fi}
 \def\initial#1{\expandafter\@initial#1\@nil}
 \def\@initial#1#2\@nil{#1\bibinitperiod}
 \makeatother
@@ -75,7 +83,10 @@
 % \usepackage{graphicx}
 % \graphicspath{ {./imgs/} }
 
-\newcommand\bred{\twoheadrightarrow_\beta}
+\newcommand\acong{\equiv_\alpha}
+\newcommand\bcon{\mathrel{\triangleright_{1\beta}}}
+\newcommand\bred{\mathrel{\triangleright_\beta}}
+\newcommand\FV{\operatorname{FV}}
 \newcommand\doublelambda{\lambda\mkern-7.5mu\lambda}
 
 % TODO: Declare some reduction relations like $\triangleright_\beta$ with \mathrel or similar to get consistent spacing
@@ -88,8 +99,8 @@
 
 \maketitle
 
-\setlength{\parindent}{0em}
-\setlength{\parskip}{1em}
+% \setlength{\parindent}{0em}
+% \setlength{\parskip}{1em}
 
 % \pagenumbering{roman}
 % \tableofcontents
@@ -128,13 +139,13 @@
 
 % }}}
 
-\section{Introduction}
+\section{Introduction}\label{sec:introduction}
 
-The Zermelo--Fraenkel system of axioms formalises the foundations of mathematics using the language of sets. It is natural to ask which other languages we could use. What about functions? The Zermelo--Fraenkel system defines functions as sets of ordered pairs~\parencite[\S\S2.1--2.2]{ciesielski-1997-set-theory} but we can't do that because we don't have sets, so we need a more broad definition of functions. % chktex 8
+The Zermelo--Fraenkel system of axioms formalises the foundations of mathematics using the language of sets. It is natural to ask which other languages we could use. What about functions? The Zermelo--Fraenkel system defines functions as sets of ordered pairs~\parencite[\S\S2.1--2.2]{ciesielski-1997-set-theory} but we can't do that in a system where we don't have sets, so we need a more broad definition of functions. % chktex 8
 
 % TODO: Talk about history
 
-\section{Syntax}
+\section{Syntax}\label{sec:syntax}
 
 In this new lambda calculus, we care primarily about functions, but the common way of writing functions becomes cumbersome for higher-order functions (functions from functions to functions).
 
@@ -142,7 +153,7 @@ In this new lambda calculus, we care primarily about functions, but the common w
 % Properly explain this idea of only having functions? Maybe put this in the history section?
 % Why exactly can't we do it in ZFC? Can we do it in ZFC?
 
-Let's say we want to define a function $S$ which takes three functions $x, y, z$ as input, and returns the function $(x(z)) (y(z))$. Take a moment to parse that: $x, y, z$ are all functions; $x(z)$ is a function, call it $f$; $y(z)$ is a function, call it $g$, and then $S$ is $f(g)$, another function.
+Let's say we want to define a function $S$ which takes three functions $x, y, z$ as input, and returns the function $(x(z)) (y(z))$. Take a moment to parse that: $x, y, z$ are all functions; $x(z)$ is a function, call it $f$; $y(z)$ is a function, call it $g$, and then $S$ is $f(g)$, another function\footnote{We could write this with composition as $(x \circ z) \circ (y \circ z)$ but we want to stick the $\lambda$-calculus-style notation for consistency.}.
 
 This is called the $\mathbf{S}$ combinator and we will see its uses later.
 
@@ -154,19 +165,120 @@ In the lambda calculus, we write this simply as \[
 \lambda x y z . xz(yz)
 \]
 
-\[ (\doublelambda x . x^2 + 3) 2 \bred 2^2 + 3 \]
+More formally, $\lambda$-calculus consists of $\lambda$-terms, defined in the following recursive way \parencite[p.~3]{hindley-seldin-2008-lambda-calculus-and-combinators}:
+\begin{enumerate}[(1)]
+\item All variables (labelled $a, b, \dotsc, z, a_1, b_1, \dotsc$) are $\lambda$-terms, called \textit{atoms}.
+\item If $M$ and $N$ are any two $\lambda$-terms then $(MN)$ is a $\lambda$-term. This is called \textit{application}.
+\item If $M$ is any $\lambda$-term and $x$ is any variable then $(\lambda x . M)$ is a $\lambda$-term. This is called \textit{abstraction}.
+\end{enumerate}
+
+\section{Conversion and reduction}\label{sec:conversion-and-reduction}
+
+Given $\lambda$-terms $M$ and $N$ and a variable $x$, we write $M [x := N]$ to mean a new $\lambda$-term which is $M$ with all occurrences of $x$ replaced with $N$ \parencite[p.~27]{barendregt-1981-lambda-calculus}\footnote{Other notations include $\left. S_N^{\,x} M \right\vert$ \parencite[p.~9]{church-1965-calculi-lambda-conversion} and $[N / x] M$ \parencites[p.~7]{hindley-seldin-2008-lambda-calculus-and-combinators}[\S\textbf{2}C2]{curry-feys-1958-combinatory-logic-volume-1}.}. For example, \[ (\lambda x y . z x z) \l[ z := (\lambda a . a) \r] \rightarrow (\lambda x y . (\lambda a . a) x (\lambda a . a)). \]
+
+\begin{defn}[$\alpha$-conversion]\label{def:alpha-conversion}
+Let a $\lambda$-term $P$ contain an occurrence of $\lambda x . M$ and let $y \notin \FV(M)$. The act of replacing the $\lambda x . M$ with $\lambda y . M [x := y]$ is called \textit{$\alpha$-conversion}.
+
+If a $\lambda$-term $Q$ can be reached by a finite (possibly empty) sequence of $\alpha$-conversions, we say that \textit{$P$ $\alpha$-converts to $Q$} and write $P \acong Q$ \parencite[p.~9]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+\end{defn}
+
+\begin{defn}[$\beta$-reduction]\label{def:beta-reduction}
+Any term of the form $(\lambda x . M) N$ is called a \textit{$\beta$-redex} and the corresponding term $M [x := N]$ is called its \textit{contractum}.
+
+If a $\lambda$-term $P$ contains an occurrence of $(\lambda x . M) N$ then we can replace that occurrence by $M [x := N]$. We can call the result $P'$ and then we say that \textit{$P$ $\beta$-contracts to $P'$}, and we write $P \bcon P'$.
+
+If a $\lambda$-term $Q$ can be reached by a finite (possibly empty) sequence of $\beta$-contractions, we say that \textit{$P$ $\beta$-reduces to $Q$} and write $P \bred Q$ \parencite[pp.~11--12]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+\end{defn}
+
+\begin{defn}[$\beta$-normal form]\label{def:beta-normal-form}
+A $\lambda$-term $Q$ which contains no $\beta$-redexes is said to be in \textit{$\beta$-normal form}, sometimes written \textit{$\beta$-nf}. If $P \bred Q$ then $Q$ is called a \textit{$\beta$-normal form of $P$} \parencites[p.~12]{hindley-seldin-2008-lambda-calculus-and-combinators}[p.~34]{barendregt-1981-lambda-calculus}.
+\end{defn}
+
+\begin{example}[$\beta$-reduction]\label{ex:beta-reduction}
+Let $N$ be an arbitrary $\lambda$-term.
+\begin{enumerate}[(1)]
+\item $(\lambda x . x) N \bcon N$
+
+\item $(\lambda x . y) N \bcon y$
+
+\item $(\lambda xy . y) N \bcon \lambda y . y$
+
+\item $\begin{aligned}[t]
+\big( \lambda xy . x (\lambda z . xzy) \big) (\lambda ab . baa)
+    &\bcon \lambda y . (\lambda ab . baa) (\lambda z . (\lambda ab . baa) zy) \\
+    &\bcon \lambda y . (\lambda ab . baa) (\lambda z . (\lambda b . bzz) y) \\
+    &\bcon \lambda y . (\lambda ab . baa) (\lambda z . yzz) \\
+    &\bcon \lambda y . \big( \lambda b . b (\lambda z . yzz) (\lambda z . yzz) \big) \\
+    &\equiv \lambda yb . b (\lambda z . yzz) (\lambda z . yzz)
+\end{aligned}$
+
+% \item $(\lambda xy . y) N \bred \lambda y . y$
+
+\item $\begin{aligned}[t]
+\big( \lambda xyz . x (z y x) \big) (\lambda ab . b b a)
+    &\bcon \lambda yz . (\lambda ab . b b a) \big( z y (\lambda ab . b b a) \big) \\
+    &\bcon \lambda yz . \Big( \lambda b . b b \big( z y (\lambda cd . d d c) \big) \Big) \\
+    &\equiv \lambda yzb . b b \big( z y (\lambda cd . d d c) \big)
+\end{aligned}$
+
+This example uses the $\alpha$-conversion convention to rename $a$ to $c$ and $b$ to $d$ after the second $\beta$-contraction. Without this renaming, we would get confusing (but technically valid) variable bindings: \[
+\lambda yzb . b b \big( z y (\lambda ab . b b a) \big)
+\] In this case, the $b$ inside the innermost brackets is completely unrelated to the $b$ outside, so giving them different names makes the expression easier to understand.
+
+\item\label{ex:beta-reduction:Omega} $\begin{aligned}[t]
+(\lambda x . xx) (\lambda x . xx)
+    &\bcon (\lambda x . xx) (\lambda x . xx) \\
+    &\bcon (\lambda x . xx) (\lambda x . xx) \\
+    &\bcon \dotsb
+\end{aligned}$
+
+This example shows that the $\beta$-contraction process doesn't always simplify. This term is called $\Omega$ or $\mathbf{M}$. Since $\Omega$ contains $\beta$-redexes and $\Omega \bcon \Omega$, we see that $\Omega$ is an example of a $\lambda$-term with no $\beta$-normal form. But $\Omega$ is `minimal' in the sense that it cannot be reduced to any different term \parencite[p.~13]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+
+\item $\begin{aligned}[t]
+(\lambda x . xxy) (\lambda x . xxy)
+    &\bcon (\lambda x . xxy) (\lambda x . xxy) y \\
+    &\bcon (\lambda x . xxy) (\lambda x . xxy) yy \\
+    &\bcon \dotsb
+\end{aligned}$
+
+In this example, the $\beta$-contraction process actually makes the expression more `complicated' (in the sense of containing more terms). The initial term $(\lambda x . xxy) (\lambda x . xxy)$ is called $\mathbf{L}$, and it has no $\beta$-normal form.
+
+\item Let $P \equiv (\lambda a . b) \mathbf{L}$. Then $P$ can be reduced in multiple ways, by $\beta$-contracting either $(\lambda a . b)$ or $\mathbf{L}$:
+\begin{enumerate}[(i)]
+    \item $\begin{aligned}[t]
+    P &\equiv (\lambda a . b) \mathbf{L} \\
+        &\bcon b [a := \mathbf{L}] \\
+        &\equiv b
+    \end{aligned}$
+
+    \item $\begin{aligned}[t]
+    P &\equiv (\lambda a . b) \mathbf{L} \\
+        &\bcon (\lambda a . b) \mathbf{L} y \\
+        &\bcon (\lambda a . b) \mathbf{L} yy \\
+        &\bcon \dotsb
+    \end{aligned}$
+\end{enumerate}
+So $P$ has a $\beta$-normal form $b$, but it also has an infinite reduction.
+\end{enumerate}
+\end{example}
+
+
+
+% \[ (\doublelambda x . x^2 + 3) 2 \bred 2^2 + 3 \]
+
+% \[ \mathbf{Y} := \lambda f . \big( \lambda x . f (xx) \big) \big( \lambda x . f (xx) \big) \]
 
 % ===== NOTES
 
-% This expression $\lambda x . xx$ is normally called the $\mathbf{M}$ combinator. In \citeauthor*{smullyan-1985-to-mock-a-mockingbird}'s language of birds~\parencite[p.~244]{smullyan-1985-to-mock-a-mockingbird}, this is the mockingbird since it applies its argument to itself, effectively `mocking' the argument~\parencite[p.~73]{smullyan-1985-to-mock-a-mockingbird}. % TODO: Cite Smullyan page number
+% This expression $\lambda x . xx$ is normally called the $\mathbf{M}$ combinator. In \citeauthor*{smullyan-1985-to-mock-a-mockingbird}'s language of birds~\parencite[p.~244]{smullyan-1985-to-mock-a-mockingbird}, this is the mockingbird since it applies its argument to itself, effectively `mocking' the argument~\parencite[p.~73]{smullyan-1985-to-mock-a-mockingbird}.
 % If we apply $\mathbf{M}$ to itself, we have a problem $\beta$-reducing it: \[ \mathbf{MM} \bred \mathbf{MM} \bred \mathbf{MM} \bred \dotsb \]
 % Clearly we can continue this indefinitely, so $\mathbf{MM}$ has no $\beta$-nf.
 
 % See https://cruzgodar.com/applets/lambda-calculus/
 % This is iterative Fibonacci for some number k:
-% (λn.n(λg.λa.λb.g(+ab)a)(λa.λb.b)1 0)k
+% \[ \lambda n . n \big( \lambda g a b . g (+ a b) a \big) (\lambda a b . b) \overline 1 \, \overline 0 \]
 % And expanded:
-% (λn.n(λg.λa.λb.g((λa.λb.λf.λx.(af)(bfx))ab)a)(λa.λb.b)(λf.λx.f(x))(λf.λx.x))k
+% \[ \lambda n . n \bigg( \lambda g a b . g \Big( \big( \lambda a b f x . (af) (bfx) \big) ab \Big) a \bigg) (\lambda a b . b) (\lambda f x . fx) (\lambda f x . x) \]
 
 \newpage
 \nocite{*} % TODO: Trim bib file before submitting
