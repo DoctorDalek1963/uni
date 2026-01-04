@@ -1,14 +1,40 @@
 % vim :set et sw=4 ts=4:
 
+% Format is (skip fields that don't exist):
+% author
+% sortname
+% year
+% title
+%
+% edition
+% journal
+% volume
+% number
+% pages
+% publisher
+% address
+%
+% doi
+% isbn
+% issn
+% url
+%
+% note
+%
+% language
+
 % In Warwick library, print only
 @book{barendregt-1981-lambda-calculus,
     author = {given={Hendrik Pieter}, family=Barendregt},
     year = {1981},
     title = {The Lambda Calculus: Its Syntax and Semantics},
+
+    volume = {103},
     publisher = {North-Holland},
     address = {Amsterdam},
-    volume = {103},
+
     isbn = {9780444854902},
+
     language = {English},
 }
 
@@ -17,61 +43,75 @@
     sortname = {Bruijn},
     year = {1972},
     title = {Lambda calculus notation with nameless dummies, a tool for automatic formula manipulation, with application to the Church--Rosser theorem},
+
     journal = {Indagationes Mathematicae (Proceedings)},
     volume = {75},
     number = {5},
     pages = {381--392},
+
     isbn = {1385-7258},
     url = {https://www.sciencedirect.com/science/article/pii/1385725872900340},
+
     language = {English},
 }
 
 @inproceedings{cardone-hindley-2006-history-of-lambda-calculus,
-    title = {History of Lambda-calculus and Combinatory Logic},
     author = {given=Felice, family=Cardone and given=Roger, family=Hindley},
     year = {2006},
+    title = {History of Lambda-calculus and Combinatory Logic},
+
     url = {https://www.di.unito.it/~felice/pdf/lambdacomb.pdf},
+
     language = {English},
 }
 
 % I think this is the same as above, but actually published and harder to find online (thanks Elsevier)
 @article{cardone-hindley-2009-lambda-calculus-and-combinators-20th-century,
-    title = {Lambda-Calculus and Combinators in the 20th Century},
     author = {given=Felice, family=Cardone and given=Roger, family=Hindley},
     year = {2009},
+    title = {Lambda-Calculus and Combinators in the 20th Century},
+
     journal = {Handbook of the History of Logic},
     volume = {5},
+
     doi = {10.1016/S1874-5857(09)70018-4},
+
     pages = {723--817},
 }
 
 @article{church-1932-postulates-for-foundation-of-logic,
     author = {given=Alonzo, family=Church},
-    title = {A Set of Postulates for the Foundation of Logic},
     year = {1932},
+    title = {A Set of Postulates for the Foundation of Logic},
+
     journal = {Annals of Mathematics},
+    volume = {33},
     number = {2},
     pages = {346--366},
     publisher = {Annals of Mathematics, Trustees of Princeton University on Behalf of the Annals of Mathematics, Mathematics Department, Princeton University},
-    volume = {33},
-    issn = {0003486X, 19398980},
+
     doi = {10.2307/1968337},
+    issn = {0003-486X, 1939-8980},
     url = {https://www.jstor.org/stable/1968337},
+
     language = {English},
 }
 
 @article{church-1936-unsolvable-problem-number-theory,
     author = {given=Alonzo, family=Church},
-    title = {An Unsolvable Problem of Elementary Number Theory},
     year = {1936},
+    title = {An Unsolvable Problem of Elementary Number Theory},
+
     journal = {American Journal of Mathematics},
+    volume = {58},
     number = {2},
     pages = {345--363},
     publisher = {The Johns Hopkins University Press},
-    volume = {58},
-    issn = {00029327, 10806377},
+
     doi = {10.2307/2371045},
+    issn = {0002-9327, 1080-6377},
     url = {https://www.jstor.org/stable/2371045},
+
     language = {English},
 }
 
@@ -80,67 +120,84 @@
     author = {given=Alonzo, family=Church},
     year = {1965},
     title = {The Calculi of Lambda-Conversion},
+
+    volume = {6},
     publisher = {Kraus Reprint Corporation},
     address = {New York},
-    volume = {6},
+
     language = {English},
 }
 
 @book{ciesielski-1997-set-theory,
-    author={given=Krzysztof, family=Ciesielski},
-    year={1997},
-    title={Set Theory for the Working Mathematician},
-    publisher={Cambridge University Press},
-    address={Cambridge},
-    volume={39.},
-    isbn={9781139173131},
-    language={English},
+    author = {given=Krzysztof, family=Ciesielski},
+    year = {1997},
+    title = {Set Theory for the Working Mathematician},
+
+    volume = {39},
+    publisher = {Cambridge University Press},
+    address = {Cambridge},
+
     doi = {10.1017/CBO9781139173131},
+    isbn = {9781139173131},
+
+    language = {English},
 }
 
 @article{curry-1934-functionality-combinatory-logic,
     author = {given={Haskell Brooks}, family=Curry},
-    title = {Functionality in Combinatory Logic*},
     year = {1934},
+    title = {Functionality in Combinatory Logic*},
+
     journal = {Proceedings of the National Academy of Sciences},
     volume = {20},
     number = {11},
-    pages = {584-590},
+    pages = {584--590},
+
     doi = {10.1073/pnas.20.11.584},
+
     language = {English},
 }
 
 @book{curry-feys-1958-combinatory-logic-volume-1,
     author = {given={Haskell Brooks}, family=Curry and given=Robert, family=Feys},
-    title = {Combinatory Logic, Volume I},
     year = {1958},
+    title = {Combinatory Logic, Volume I},
+
     publisher = {North-Holland},
     address = {Amsterdam},
+
     isbn = {9780720422078},
     url = {https://archive.org/details/combinatorylogic0001curr},
+
     language = {English},
 }
 
 @book{curry-hindley-seldin-1972-combinatory-logic-volume-2,
     author = {given={Haskell Brooks}, family=Curry and given={J. Roger}, family=Hindley and given={Jonathan P.}, family=Seldin},
-    title = {Combinatory Logic, Volume II},
     year = {1972},
+    title = {Combinatory Logic, Volume II},
+
     publisher = {North-Holland},
     address = {Amsterdam},
+
     url = {https://archive.org/details/combinatorylogic0002curr},
+
     language = {English},
 }
 
 % In Warwick library, print only
 @book{van-heijenoort-1967-from-frege-to-gödel,
-    author={given={Jean Louis Maxime}, prefix=van, family=Heijenoort, useprefix=true},
+    author = {given={Jean Louis Maxime}, prefix=van, family=Heijenoort, useprefix=true},
     sortname = {Heijenoort},
-    year={1967},
-    title={From Frege to Gödel: a source book in mathematical logic, 1879--1931},
-    publisher={Harvard University Press},
-    address={Cambridge, Massachusetts},
-    isbn={9780674324497},
-    language={English},
+    year = {1967},
+    title = {From Frege to Gödel: a source book in mathematical logic, 1879--1931},
+
+    publisher = {Harvard University Press},
+    address = {Cambridge, Massachusetts},
+
+    isbn = {9780674324497},
+
+    language = {English},
 }
 
 % In Warwick library, print and ebook
@@ -148,47 +205,58 @@
     author = {given={J. Roger}, family=Hindley and given={Jonathan P.}, family=Seldin},
     year = {2008},
     title = {Lambda-Calculus and Combinators: An Introduction},
+
+    edition = {2},
     publisher = {Cambridge University Press},
     address = {Cambridge},
-    edition = {2},
-    isbn = {9780511809835},
+
     doi = {10.1017/CBO9780511809835},
+    isbn = {9780511809835},
+
     language = {English},
 }
 
 @unpublished{keenan-1996-to-dissect-a-mockingbird,
     author = {given={David C.}, family=Keenan},
-    title = {To Dissect A Mockingbird: A Graphical Notation for the Lambda Calculus with Animated Reduction},
     year = {1996},
+    title = {To Dissect A Mockingbird: A Graphical Notation for the Lambda Calculus with Animated Reduction},
+
     note = {Available on archive of author's website at \url{https://web.archive.org/web/20250814210125/https://dkeenan.com/Lambda/}},
+
     language = {English},
 }
 
 @article{kleene-rosser-1935-inconsistency-formal-logics,
     author = {given={Stephen Cole}, family=Kleene and given={John Barkley}, family=Rosser, suffix={Sr.}},
-    title = {The Inconsistency of Certain Formal Logics},
     year = {1935},
+    title = {The Inconsistency of Certain Formal Logics},
+
     journal = {Annals of Mathematics},
+    volume = {36},
     number = {3},
     pages = {630--636},
     publisher = {Annals of Mathematics, Trustees of Princeton University on Behalf of the Annals of Mathematics, Mathematics Department, Princeton University},
-    volume = {36},
-    issn = {0003486X, 19398980},
+
     doi = {10.2307/1968646},
+    issn = {0003-486X, 1939-8980},
     url = {https://www.jstor.org/stable/1968646},
+
     language = {English},
 }
 
-@article{schönfinkel-1924-uber-die-bausteine,
+@article{schönfinkel-1924-über-die-bausteine,
     author = {given=Moses, family={Schönfinkel}},
     year = {1924},
     title = {Über die Bausteine der mathematischen Logik},
+
     journal = {Mathematische annalen},
     volume = {92},
     number = {3--4},
     pages = {305--316},
-    isbn = {0025-5831},
+
     doi = {10.1007/bf01448013},
+    isbn = {0025-5831},
+
     language = {German},
 }
 
@@ -196,23 +264,29 @@
     author = {given={Raymond Merrill}, family=Smullyan},
     year = {1985},
     title = {To Mock a Mockingbird and Other Logic Puzzles: Including an Amazing Adventure in Combinatory Logic},
+
     publisher = {Knopf},
     address = {New York},
+
     isbn = {9780394534916},
+
     language = {English},
 }
 
 @article{turing-1937-computability-and-lambda-definability,
     author = {given={Alan Mathison}, family=Turing},
+    year = {1937},
+    title = {Computability and $\lambda$-Definability},
+
     journal = {The Journal of Symbolic Logic},
+    volume = {2},
     number = {4},
     pages = {153--163},
     publisher = {Association for Symbolic Logic, Cambridge University Press},
-    title = {Computability and $\lambda$-Definability},
-    volume = {2},
-    year = {1937},
-    issn = {00224812},
+
     doi = {10.2307/2268280},
+    issn = {0022-4812, 1943-5886},
     url = {https://www.jstor.org/stable/2268280},
+
     language = {English},
 }
