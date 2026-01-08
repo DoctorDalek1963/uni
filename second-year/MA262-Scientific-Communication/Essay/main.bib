@@ -6,6 +6,8 @@
 % year
 % title
 %
+% editor
+%
 % edition
 % journal
 % volume
@@ -29,11 +31,15 @@
     year = {1981},
     title = {The Lambda Calculus: Its Syntax and Semantics},
 
+    editor = {given={Kenneth Jon}, family=Barwise and given={David Benjamin}, family=Kaplan and given={Howard Jerome}, family=Keisler and given=Patrick, family=Suppes and given={Anne Sjerp}, family=Troelstra},
+
+    edition = {1},
+    series = {Studies in Logic and the Foundations of Mathematics},
     volume = {103},
     publisher = {North-Holland},
     address = {Amsterdam},
 
-    isbn = {9780444854902},
+    isbn = {0444854908},
 
     language = {English},
 }
@@ -115,15 +121,32 @@
     language = {English},
 }
 
+@article{church-rosser-1936-some-properties-of-conversion,
+    author = {given=Alonzo, family=Church and given={John Barkley}, family=Rosser, suffix={Sr.}},
+    year = {1936},
+    title = {Some Properties of Conversion},
+
+    journal = {Transactions of the American Mathematical Society},
+    volume = {39},
+    number = {3},
+    pages = {472--482},
+
+    doi = {10.2307/1989762},
+    issn = {0002-9947, 1088-6850},
+
+    language = {English},
+}
+
 % In Warwick library, print only
-@book{church-1965-calculi-lambda-conversion,
+@book{church-1941-calculi-lambda-conversion,
     author = {given=Alonzo, family=Church},
-    year = {1965},
+    year = {1941},
     title = {The Calculi of Lambda-Conversion},
 
-    volume = {6},
-    publisher = {Kraus Reprint Corporation},
-    address = {New York},
+    publisher = {Princeton University Press},
+    address = {Princeton},
+
+    note = {Reprinted in 1965 by Kraus Reprint Corporation},
 
     language = {English},
 }
@@ -146,7 +169,7 @@
 @article{curry-1934-functionality-combinatory-logic,
     author = {given={Haskell Brooks}, family=Curry},
     year = {1934},
-    title = {Functionality in Combinatory Logic*},
+    title = {Functionality in Combinatory Logic},
 
     journal = {Proceedings of the National Academy of Sciences},
     volume = {20},
@@ -244,6 +267,31 @@
     language = {English},
 }
 
+@article{komori-matsuda-yamakawa-2014-simplified-proof-of-church-rosser-theorem,
+    author = {given=Yuichi, family=Komori and given=Naosuke, family=Matsuda and given=Fumika, family=Yamakawa},
+    title = {A Simplified Proof of the Church--Rosser Theorem},
+    year = {2014},
+
+    journal = {Studia Logica: An International Journal for Symbolic Logic},
+    volume = {102},
+    number = {1},
+    pages = {175--183},
+    publisher = {Springer},
+
+    issn = {0039-3215, 1572-8730},
+    url = {http://www.jstor.org/stable/43651794},
+
+    language = {English},
+}
+
+@unpublished{pollack-1995-polishing-up-tait-martin-löf,
+    author = {Robert Pollack},
+    year = {1995},
+    title = {Polishing Up the Tait Martin-Löf Proof of the Church--Rosser Theorem},
+
+    url = {https://www.cs.cornell.edu/courses/cs6110/2014sp/Handouts/Pollack.pdf},
+}
+
 @article{schönfinkel-1924-über-die-bausteine,
     author = {given=Moses, family={Schönfinkel}},
     year = {1924},
@@ -251,11 +299,11 @@
 
     journal = {Mathematische annalen},
     volume = {92},
-    number = {3--4},
+    number = {3},
     pages = {305--316},
 
     doi = {10.1007/bf01448013},
-    isbn = {0025-5831},
+    issn = {0025-5831, 1432-1807},
 
     language = {German},
 }

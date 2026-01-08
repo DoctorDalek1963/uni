@@ -16,10 +16,19 @@
 \usepackage{csquotes}
 \usepackage{cancel}
 
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
 \usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lemma}[thm]{Lemma}
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}[section]
 \newtheorem{example}{Example}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{case}{Case}
 
 \usepackage[shortlabels]{enumitem}
 % \setlist[enumerate]{topsep=0pt}
@@ -31,6 +40,7 @@
     % bibstyle=,
     style=alphabetic,
     sorting=nty,
+    % maxbibnames=5,
 ]{biblatex}
 \addbibresource{main.bib}
 
@@ -84,8 +94,9 @@
 % \graphicspath{ {./imgs/} }
 
 \newcommand\acong{\equiv_\alpha}
-\newcommand\bcon{\mathrel{\triangleright_{1\beta}}}
-\newcommand\bred{\mathrel{\triangleright_\beta}}
+\newcommand\bcon{\mathrel{\rightarrow_\beta}}
+\newcommand\bred{\mathrel{\twoheadrightarrow_\beta}}
+\newcommand\pred{\mathrel{\twoheadrightarrow_\parallel}}
 \newcommand\FV{\operatorname{FV}}
 \newcommand\doublelambda{\lambda\mkern-7.5mu\lambda}
 
@@ -129,7 +140,7 @@
 
 % \section{Numbers}
 
-% This is the climax of the essay. Define Church numerals~\parencites[p.~347]{church-1936-unsolvable-problem-number-theory}[p.~28]{church-1965-calculi-lambda-conversion}[p.~136]{barendregt-1981-lambda-calculus} and their successor function. Possibly also their predecessor function if it's not too complicated (but I suspect it is). Define the first few Fibonacci numbers and point out the pattern for generating more.
+% This is the climax of the essay. Define Church numerals~\parencites[p.~347]{church-1936-unsolvable-problem-number-theory}[p.~28]{church-1941-calculi-lambda-conversion}[p.~136]{barendregt-1981-lambda-calculus} and their successor function. Possibly also their predecessor function if it's not too complicated (but I suspect it is). Define the first few Fibonacci numbers and point out the pattern for generating more.
 
 % Alternatively, use the Church--Rosser Theorem to prove that addition of Church numerals commutes. % chktex 8
 
@@ -139,11 +150,21 @@
 
 % }}}
 
+% Introduction {{{
+
 \section{Introduction}\label{sec:introduction}
 
 The Zermelo--Fraenkel system of axioms formalises the foundations of mathematics using the language of sets. It is natural to ask which other languages we could use. What about functions? The Zermelo--Fraenkel system defines functions as sets of ordered pairs~\parencite[\S\S2.1--2.2]{ciesielski-1997-set-theory} but we can't do that in a system where we don't have sets, so we need a more broad definition of functions. % chktex 8
 
 % TODO: Talk about history
+
+We want a purely functional universe---that is, a system in which everything is a `pure' function. A pure function, in this case, takes one pure function as input and returns one pure function. So in this world, it's functions all the way down.
+
+In this essay, we will study Alonzo Church's lambda calculus.
+
+% }}}
+
+% Syntax {{{
 
 \section{Syntax}\label{sec:syntax}
 
@@ -153,7 +174,7 @@ In this new lambda calculus, we care primarily about functions, but the common w
 % Properly explain this idea of only having functions? Maybe put this in the history section?
 % Why exactly can't we do it in ZFC? Can we do it in ZFC?
 
-Let's say we want to define a function $S$ which takes three functions $x, y, z$ as input, and returns the function $(x(z)) (y(z))$. Take a moment to parse that: $x, y, z$ are all functions; $x(z)$ is a function, call it $f$; $y(z)$ is a function, call it $g$, and then $S$ is $f(g)$, another function\footnote{We could write this with composition as $(x \circ z) \circ (y \circ z)$ but we want to stick the $\lambda$-calculus-style notation for consistency.}.
+Let's say we want to define a function $S$ which takes three functions $x, y, z$ as input, and returns the function $(x(z)) (y(z))$. Take a moment to parse that: $x, y, z$ are all functions; $x(z)$ is a function, call it $f$; $y(z)$ is a function, call it $g$, and then $S$ is $f(g)$, another function\footnote{We could write this with composition as $(x \circ z) \circ (y \circ z)$ but we want to stick the $\lambda$-calculus style notation for consistency.}.
 
 This is called the $\mathbf{S}$ combinator and we will see its uses later.
 
@@ -172,9 +193,37 @@ More formally, $\lambda$-calculus consists of $\lambda$-terms, defined in the fo
 \item If $M$ is any $\lambda$-term and $x$ is any variable then $(\lambda x . M)$ is a $\lambda$-term. This is called \textit{abstraction}.
 \end{enumerate}
 
+The reason that Church choose the symbol $\lambda$ has been lost to time. It is either derived from the notation $\hat x$ used by Whitehead and Russell, which became $\wedge x$ and then $\lambda x$ for ease of printing, or the symbol was chosen basically at random \parencite[p.~6]{cardone-hindley-2006-history-of-lambda-calculus}.
+
+\begin{defn}[Scope]\label{def:scope}
+In a $\lambda$-term $\lambda x . M$, the occurrence of $M$ is called the \textit{scope} of the occurrence of $\lambda x$.
+\end{defn}
+
+\begin{example}[Scope]\label{ex:scope}
+\end{example}
+
+\begin{defn}[Free and bound variables]\label{def:free-and-bound-variables}
+Let $M$ be an arbitrary $\lambda$-term. A variable $x$ is \textit{free} in $M$ if $x$ is not in the scope of any $\lambda x$; otherwise, $x$ is \textit{bound} \parencite[p.~24]{barendregt-1981-lambda-calculus}. If we're considering the $x$ immediately proceeding the $\lambda$ (that is, the first $x$ in $\lambda x . x$), it is called \textit{bound and binding} \parencite[p.~6--7]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+
+We define $\FV(M)$ as the set of all free variables in the expression $M$. A $\lambda$-term with no free variables is called \textit{closed}.
+\end{defn}
+
+\begin{example}[Free and bound variables]\label{ex:free-and-bound-variables}\leavevmode
+\begin{enumerate}[(1)]
+\item In $x (\lambda y . xy)$, $x$ occurs free twice and $y$ occurs bound once.
+
+\item In $y (\lambda y . y)$, $y$ occurs free once and bound twice. This is confusing and discouraged in practice, but allowed to keep the definitions simple.
+\end{enumerate}
+Notice that `$\lambda x$' binds in the same way as `$\forall x$' in familiar predicate logic.
+\end{example}
+
+% }}}
+
+% Conversion and reduction {{{
+
 \section{Conversion and reduction}\label{sec:conversion-and-reduction}
 
-Given $\lambda$-terms $M$ and $N$ and a variable $x$, we write $M [x := N]$ to mean a new $\lambda$-term which is $M$ with all occurrences of $x$ replaced with $N$ \parencite[p.~27]{barendregt-1981-lambda-calculus}\footnote{Other notations include $\left. S_N^{\,x} M \right\vert$ \parencite[p.~9]{church-1965-calculi-lambda-conversion} and $[N / x] M$ \parencites[p.~7]{hindley-seldin-2008-lambda-calculus-and-combinators}[\S\textbf{2}C2]{curry-feys-1958-combinatory-logic-volume-1}.}. For example, \[ (\lambda x y . z x z) \l[ z := (\lambda a . a) \r] \rightarrow (\lambda x y . (\lambda a . a) x (\lambda a . a)). \]
+Given $\lambda$-terms $M$ and $N$ and a variable $x$, we write $M [x := N]$ to mean a new $\lambda$-term which is $M$ with all occurrences of $x$ replaced with $N$ \parencite[p.~27]{barendregt-1981-lambda-calculus}\footnote{Other notations include `$\left. S_N^{\,x} M \right\vert$' \parencites[p.~9]{church-1941-calculi-lambda-conversion}{church-rosser-1936-some-properties-of-conversion} and `$[N / x] M$' \parencites[p.~7]{hindley-seldin-2008-lambda-calculus-and-combinators}[\S\textbf{2}C2]{curry-feys-1958-combinatory-logic-volume-1}.}. For example, \[ (\lambda x y . z x z) \l[ z := (\lambda a . a) \r] \rightarrow (\lambda x y . (\lambda a . a) x (\lambda a . a)). \]
 
 \begin{defn}[$\alpha$-conversion]\label{def:alpha-conversion}
 Let a $\lambda$-term $P$ contain an occurrence of $\lambda x . M$ and let $y \notin \FV(M)$. The act of replacing the $\lambda x . M$ with $\lambda y . M [x := y]$ is called \textit{$\alpha$-conversion}.
@@ -182,19 +231,40 @@ Let a $\lambda$-term $P$ contain an occurrence of $\lambda x . M$ and let $y \no
 If a $\lambda$-term $Q$ can be reached by a finite (possibly empty) sequence of $\alpha$-conversions, we say that \textit{$P$ $\alpha$-converts to $Q$} and write $P \acong Q$ \parencite[p.~9]{hindley-seldin-2008-lambda-calculus-and-combinators}.
 \end{defn}
 
-\begin{defn}[$\beta$-reduction]\label{def:beta-reduction}
+\begin{example}[$\alpha$-conversion]\label{ex:alpha-conversion}\leavevmode
+\begin{enumerate}[(1)]
+\item $\lambda x . x \acong \lambda y . y$
+
+\item $\lambda x . t \acong \lambda y . t$
+
+\item $\lambda x . y \not\acong \lambda y . y$ because $y \in \FV(y)$. The LHS in this case is the constant function that always returns $y$, and the RHS is the identity function. These are not the same, so it doesn't make sense to call them equivalent in the sense of $\alpha$-conversion.
+
+\item $\lambda a b c . bc (ab) c \big( a(cb) \big) \acong \lambda x y z . yz (xy) z \big( x(zy) \big)$
+
+\item $\lambda g_2 j a_{16} . a_{16} (j g_2) a_{16} \acong \lambda x y z . z (yx) z$
+\end{enumerate}
+\end{example}
+
+\begin{defn}[$\beta$-contraction]\label{def:beta-contraction}
 Any term of the form $(\lambda x . M) N$ is called a \textit{$\beta$-redex} and the corresponding term $M [x := N]$ is called its \textit{contractum}.
 
 If a $\lambda$-term $P$ contains an occurrence of $(\lambda x . M) N$ then we can replace that occurrence by $M [x := N]$. We can call the result $P'$ and then we say that \textit{$P$ $\beta$-contracts to $P'$}, and we write $P \bcon P'$.
+\end{defn}
 
-If a $\lambda$-term $Q$ can be reached by a finite (possibly empty) sequence of $\beta$-contractions, we say that \textit{$P$ $\beta$-reduces to $Q$} and write $P \bred Q$ \parencite[pp.~11--12]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+\begin{defn}[$\beta$-reduction]\label{def:beta-reduction}
+If a $\lambda$-term $Q$ can be reached by a finite (possibly empty) sequence of $\beta$-contractions, we say that \textit{$P$ $\beta$-reduces to $Q$} and write $P \bred Q$ \parencite[pp.~11--12]{hindley-seldin-2008-lambda-calculus-and-combinators}. Formally, $\bred$ is the \textit{reflexive, transitive closure} of $\bcon$ meaning:
+\begin{enumerate}[(1)]
+\item $M \bcon N$ implies $M \bred N$;
+\item $M \bred M$;
+\item if $M \bred N$ and $N \bred L$ then $M \bred L$ \parencite[p.~51]{barendregt-1981-lambda-calculus}.
+\end{enumerate}
 \end{defn}
 
 \begin{defn}[$\beta$-normal form]\label{def:beta-normal-form}
 A $\lambda$-term $Q$ which contains no $\beta$-redexes is said to be in \textit{$\beta$-normal form}, sometimes written \textit{$\beta$-nf}. If $P \bred Q$ then $Q$ is called a \textit{$\beta$-normal form of $P$} \parencites[p.~12]{hindley-seldin-2008-lambda-calculus-and-combinators}[p.~34]{barendregt-1981-lambda-calculus}.
 \end{defn}
 
-\begin{example}[$\beta$-reduction]\label{ex:beta-reduction}
+\begin{example}[$\beta$-contraction]\label{ex:beta-contraction}
 Let $N$ be an arbitrary $\lambda$-term.
 \begin{enumerate}[(1)]
 \item $(\lambda x . x) N \bcon N$
@@ -211,8 +281,6 @@ Let $N$ be an arbitrary $\lambda$-term.
     &\bcon \lambda y . \big( \lambda b . b (\lambda z . yzz) (\lambda z . yzz) \big) \\
     &\equiv \lambda yb . b (\lambda z . yzz) (\lambda z . yzz)
 \end{aligned}$
-
-% \item $(\lambda xy . y) N \bred \lambda y . y$
 
 \item $\begin{aligned}[t]
 \big( \lambda xyz . x (z y x) \big) (\lambda ab . b b a)
@@ -260,15 +328,220 @@ In this example, the $\beta$-contraction process actually makes the expression m
 \end{enumerate}
 So $P$ has a $\beta$-normal form $b$, but it also has an infinite reduction.
 \end{enumerate}
+
+It is important to note that all of the $\bcon$ in these examples could've been written with $\bred$. Note that
+% $\beta$-reduction is not a process that drives $\beta$-contraction to termination.
+$P \bred Q$ does not imply that $Q$ is a $\beta$-nf, nor even that $Q \not\equiv P$, as seen in the case of $\Omega \bred \Omega$.
 \end{example}
 
+% }}}
 
+% The Church--Rosser Theorem {{{
+
+\section{Confluence}
+
+Confluence, generally, is a property of rewriting systems in which the order of reductions is unimportant. For example, in normal arithmetic, we could evaluate the expression $(2 + 3) \times (5 + 1)$ by simplifying the left parenthetical and then the right, or right and then left. Either way, we get the same answer.
+
+We want lambda calculus to be confluent because we don't want one term able to produce different results.
+
+\begin{thm}[The Church--Rosser Theorem for $\beta$-reduction]\label{thm:church-rosser-beta-reduction} % chktex 8
+If $P \bred M$ and $P \bred N$, then $\exists T$ such that $M \bred T$ and $N \bred R$. See Figure~\ref{fig:church-rosser-diamond}.
+\end{thm}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+    \node[label=above:$P$] (P) at (0, 1.8) {};
+    \node[label=left:$M$] (M) at (-1.8, 0) {};
+    \node[label=right:$N$] (N) at (1.8, 0) {};
+    \node[label=below:$\exists T$] (T) at (0, -1.8) {};
+
+    \fill (P) circle[radius=0.15];
+    \fill (M) circle[radius=0.15];
+    \fill (N) circle[radius=0.15];
+    \draw (T) circle[radius=0.15];
+
+    \begin{scope}[
+        ultra thick,
+        ->>,
+        > = stealth,
+        shorten <= 4,
+        shorten >= 4
+    ]
+        \draw (P) -- (M);
+        \draw (P) -- (N);
+        \draw[loosely dashed] (M) -- (T);
+        \draw[loosely dashed] (N) -- (T);
+    \end{scope}
+\end{tikzpicture}
+\caption{The `diamond property' of confluence.}%
+\label{fig:church-rosser-diamond}
+\end{figure}
+
+This was first proved by \citeauthor{church-rosser-1936-some-properties-of-conversion} in \citeyear{church-rosser-1936-some-properties-of-conversion} \parencite{church-rosser-1936-some-properties-of-conversion} but the proof we will use is attributed to William Tait and Per Martin-L\"of \parencites[pp.~59--62]{barendregt-1981-lambda-calculus}[\S{}A2A]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+
+It would be nice if we could break this down into a series of $\beta$-contractions and do some diagram chasing, as seen in Figure~\ref{fig:beta-contraction-diagram-chasing}.
+
+\begin{figure}[htbp]
+\centering
+%
+\begin{minipage}{0.45\linewidth}
+\begin{tikzpicture}
+    \node[label=above:$P$] (P) at (0, 1) {};
+
+    \node[label=left:$M$] (M) at (-1, 0) {};
+
+    \node[label=right:$N_1$] (N1) at (1, 0) {};
+    \node[label=right:$N_2$] (N2) at (2, -1) {};
+    \node[label=right:$N$] (N) at (4, -3) {};
+
+    \node[label=below left:$\exists T'$] (T') at (0, -1) {};
+    \node[label=below left:$\exists T''$] (T'') at (1, -2) {};
+    \node[label=below left:$\exists T$] (T) at (3, -4) {};
+
+    \fill (P) circle[radius=0.12];
+    \fill (M) circle[radius=0.12];
+
+    \fill (N1) circle[radius=0.12];
+    \fill (N2) circle[radius=0.12];
+    \fill (N) circle[radius=0.12];
+
+    \draw (T') circle[radius=0.12];
+    \draw (T'') circle[radius=0.12];
+    \draw (T) circle[radius=0.12];
+
+    \begin{scope}[
+        very thick,
+        ->,
+        > = stealth,
+        shorten <= 3,
+        shorten >= 3
+    ]
+        \draw (P) -- (M);
+        \draw (P) -- (N1);
+        \draw (N1) -- (N2);
+        \draw (N2) -- (N);
+
+        \draw[loosely dashed] (M) -- (T');
+        \draw[loosely dashed] (T') -- (T'');
+        \draw[loosely dashed] (T'') -- (T);
+        \draw[loosely dashed] (N1) -- (T');
+        \draw[loosely dashed] (N2) -- (T'');
+        \draw[loosely dashed] (N) -- (T);
+
+        \draw[dashed, shorten <= 8, shorten >= 8] ($(N2) + (0.5, -0.5)$) -- ($(T'') + (0.5, -0.5)$);
+        \draw[dashed, shorten <= 12, shorten >= 12] ($(N2) + (1, -1)$) -- ($(T'') + (1, -1)$);
+        \draw[dashed, shorten <= 16, shorten >= 16] ($(N2) + (1.5, -1.5)$) -- ($(T'') + (1.5, -1.5)$);
+    \end{scope}
+
+    \draw[very thick, loosely dotted, shorten <= 25, shorten >= 5] ($(N2) + (0.3, 0.3)$) -- ($(N) + (0.3, 0.3)$);
+    \draw[very thick, loosely dotted, shorten <= 10, shorten >= 15] ($(T'') + (-0.5, -0.5)$) -- ($(T) + (-0.5, -0.5)$);
+\end{tikzpicture}
+\end{minipage}
+%
+\hfill\begin{minipage}{0.45\linewidth}
+\begin{tikzpicture}
+    \node[label=above:$P$] (P) at (0, 2) {};
+
+    \node[label=left:$M$] (M) at (-2, 0) {};
+    \node[label=above left:$M_1$] (M1) at (-0.6, 1.4) {};
+
+    \node[label=right:$N$] (N) at (2, 0) {};
+
+    \node[label=below right:$\exists T_1$] (T1) at (1.4, -0.6) {};
+    \node[label=below:$\exists T$] (T) at (0, -2) {};
+
+    \fill (P) circle[radius=0.12];
+    \fill (M) circle[radius=0.12];
+    \fill (M1) circle[radius=0.12];
+    \fill (N) circle[radius=0.12];
+    \draw (T) circle[radius=0.12];
+
+    \fill ($(P) + (0.6, -0.6)$) circle[radius=0.1];
+    \fill ($(P) + (1, -1)$) circle[radius=0.1];
+    \fill ($(P) + (1.4, -1.4)$) circle[radius=0.1];
+
+    \begin{scope}[
+        very thick,
+        ->,
+        > = stealth,
+        shorten <= 4,
+        shorten >= 4
+    ]
+        \draw (P) -- (M);
+        \draw (P) -- (N);
+        \draw[loosely dashed] (M) -- (T);
+        \draw[loosely dashed] (N) -- (T);
+
+        \draw[loosely dashed] (M1) -- (T1);
+
+        \draw[dashed, shorten <= 14, shorten >= 14] ($(M1) + (-0.45, -0.45)$) -- ($(T1) + (-0.45, -0.45)$);
+        \draw[dashed, shorten <= 20, shorten >= 20] ($(M1) + (-0.9, -0.9)$) -- ($(T1) + (-0.9, -0.9)$);
+    \end{scope}
+
+    % Needs to be on top of dashed line
+    \draw[fill=white] (T1) circle[radius=0.12];
+
+    \draw[very thick, loosely dotted, shorten <= 15, shorten >= 5] ($(M1) + (-0.3, 0.3)$) -- ($(M) + (-0.3, 0.3)$);
+    \draw[very thick, loosely dotted, shorten <= 10, shorten >= 5] ($(T1) + (0.3, -0.3)$) -- ($(T) + (0.3, -0.3)$);
+\end{tikzpicture}
+\end{minipage}
+%
+\caption{The desired diagram chase\protect\footnotemark.}%
+\label{fig:beta-contraction-diagram-chasing}
+\end{figure}
+\footnotetext{Reproduced from Fig.~A2:2 in \parencite[p.~283]{hindley-seldin-2008-lambda-calculus-and-combinators}.}
+
+The idea of the Tait--Martin-L\"of proof is to define a new relation $\pred$ (parallel reduction) whose transitive closure is the same as that of $\bred$. Then if $\pred$ satisfies the diamond property, then so does $\bred$ and we have proven the Church--Rosser Theorem. % chktex 8
+
+\begin{defn}
+We will define a new binary relation $\pred$ on $\lambda$-terms as follows:
+\begin{enumerate}[(1)]
+\item $M \pred M$;
+\item if $M \pred M'$ then $\lambda x . M \pred \lambda x . M'$;
+\item if $M \pred M'$ and $N \pred N'$ then $MN \pred M' N'$;
+\item if $M \pred M'$ and $N \pred N'$ then $(\lambda x . M) N \pred M' [x := N']$.
+\end{enumerate}
+\end{defn}
+
+\begin{lemma}
+If $M \pred M'$ and $N \pred N'$ then $M [x := N] \pred M' [x := N']$.
+\end{lemma}
+
+\begin{proof}
+By induction on the definition of $M \pred M'$. There are 4 cases to consider.
+
+\begin{case}
+$M \pred M'$ is $M \pred M$. % TODO
+\end{case}
+
+\begin{case}
+$M \pred M'$ is $\lambda y . P \pred \lambda y . P' \pred M$.
+\end{case}
+
+\begin{case}
+% TODO
+\end{case}
+
+\begin{case}
+% TODO
+\end{case}
+\end{proof}
+
+% Now we will prove Theorem~\ref{thm:church-rosser-beta-reduction}.
+% \begin{proof}
+% Trivial.
+% \end{proof}
+
+% }}}
+
+
+
+% Notes {{{
 
 % \[ (\doublelambda x . x^2 + 3) 2 \bred 2^2 + 3 \]
 
 % \[ \mathbf{Y} := \lambda f . \big( \lambda x . f (xx) \big) \big( \lambda x . f (xx) \big) \]
-
-% ===== NOTES
 
 % This expression $\lambda x . xx$ is normally called the $\mathbf{M}$ combinator. In \citeauthor*{smullyan-1985-to-mock-a-mockingbird}'s language of birds~\parencite[p.~244]{smullyan-1985-to-mock-a-mockingbird}, this is the mockingbird since it applies its argument to itself, effectively `mocking' the argument~\parencite[p.~73]{smullyan-1985-to-mock-a-mockingbird}.
 % If we apply $\mathbf{M}$ to itself, we have a problem $\beta$-reducing it: \[ \mathbf{MM} \bred \mathbf{MM} \bred \mathbf{MM} \bred \dotsb \]
@@ -279,6 +552,10 @@ So $P$ has a $\beta$-normal form $b$, but it also has an infinite reduction.
 % \[ \lambda n . n \big( \lambda g a b . g (+ a b) a \big) (\lambda a b . b) \overline 1 \, \overline 0 \]
 % And expanded:
 % \[ \lambda n . n \bigg( \lambda g a b . g \Big( \big( \lambda a b f x . (af) (bfx) \big) ab \Big) a \bigg) (\lambda a b . b) (\lambda f x . fx) (\lambda f x . x) \]
+
+% https://theory.stanford.edu/~blynn/lambda/diamond.html
+
+% }}}
 
 \newpage
 \nocite{*} % TODO: Trim bib file before submitting
