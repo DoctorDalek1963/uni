@@ -1,0 +1,23 @@
+import "../../justfile"
+
+set allow-duplicate-recipes := true
+
+alias j := jupyter
+
+_default:
+    @just --list
+
+# run a JupyterLab server
+[group("python")]
+jupyter:
+    python -m jupyter lab
+
+# run the notebook from scratch
+[group("python")]
+run:
+    python -m jupyter execute filename.ipynb --inplace
+
+# convert the notebook to a PDF
+[group("pdf")]
+build: run
+    python -m jupyter nbconvert filename.ipynb --to pdf
