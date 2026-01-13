@@ -351,15 +351,15 @@ If $P \bred M$ and $P \bred N$, then $\exists T$ such that $M \bred T$ and $N \b
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-    \node[label=above:$P$] (P) at (0, 1.8) {};
-    \node[label=left:$M$] (M) at (-1.8, 0) {};
-    \node[label=right:$N$] (N) at (1.8, 0) {};
-    \node[label=below:$\exists T$] (T) at (0, -1.8) {};
+    \node[label=above:$P$] (P) at (0, 1.5) {};
+    \node[label=left:$M$] (M) at (-1.5, 0) {};
+    \node[label=right:$N$] (N) at (1.5, 0) {};
+    \node[label=below:$\exists T$] (T) at (0, -1.5) {};
 
-    \fill (P) circle[radius=0.15];
-    \fill (M) circle[radius=0.15];
-    \fill (N) circle[radius=0.15];
-    \draw (T) circle[radius=0.15];
+    \fill (P) circle[radius=0.12];
+    \fill (M) circle[radius=0.12];
+    \fill (N) circle[radius=0.12];
+    \draw (T) circle[radius=0.12];
 
     \begin{scope}[
         ultra thick,
@@ -379,8 +379,6 @@ If $P \bred M$ and $P \bred N$, then $\exists T$ such that $M \bred T$ and $N \b
 \end{figure}
 
 This was first proved by \citeauthor{church-rosser-1936-some-properties-of-conversion} in \citeyear{church-rosser-1936-some-properties-of-conversion} \parencite{church-rosser-1936-some-properties-of-conversion} but the proof we will use is attributed to William Tait and Per Martin-L\"of \parencites[pp.~59--62]{barendregt-1981-lambda-calculus}[\S{}A2A]{hindley-seldin-2008-lambda-calculus-and-combinators}.
-
-It would be nice if we could break this down into a series of $\beta$-contractions and do some diagram chasing, as seen in Figure~\ref{fig:beta-contraction-diagram-chasing}.
 
 \begin{figure}[htbp]
 \centering
@@ -492,7 +490,11 @@ It would be nice if we could break this down into a series of $\beta$-contractio
 \end{figure}
 \footnotetext{Reproduced from Fig.~A2:2 in \parencite[p.~283]{hindley-seldin-2008-lambda-calculus-and-combinators}.}
 
-The idea of the Tait--Martin-L\"of proof is to define a new relation $\pred$ (parallel reduction) whose transitive closure is the same as that of $\bred$. Then if $\pred$ satisfies the diamond property, then so does $\bred$ and we have proven the Church--Rosser Theorem. % chktex 8
+Ideally, we want break this down into a series of $\beta$-contractions and do some diagram chasing, as seen in Figure~\ref{fig:beta-contraction-diagram-chasing}. If we could prove that $\beta$-contraction is confluent, that is \[ P \bcon M \text{ and } P \bcon N \implies \exists T \text{ such that } M \bcon T \text{ and } N \bcon T, \] then we could chain steps of single $\beta$-contractions together. We would first prove Theorem~\ref{thm:church-rosser-beta-reduction} in the special case that $P \bcon M$ by induction on the length of the reduction to $N$, as seen on the left of Figure~\ref{fig:beta-contraction-diagram-chasing}. Then we could deduce that general case by induction on the length of the reduction to $M$, as seen on the right side of the diagram.
+
+The problem is that this doesn't work. Consider for example ${P := (\lambda y . uyy) (\mathbf{I} z)}$ where $\mathbf{I} = \lambda x . x$. Then ${P \bcon u (\mathbf{I} z) (\mathbf{I} z)}$ and $P \bcon {(\lambda y . uyy) z} \bcon uzz$. In this case we have ${M := u (\mathbf{I} z) (\mathbf{I} z)}$ but $M$ cannot be reduced to $uzz$ in just one contraction. It can, however, be reduced using two non-overlapping, `parallel' contractions. It turns out that we can define a new relation $\pred$ (parallel reduction) whose transitive closure is the same as that of $\bred$. Then if $\pred$ satisfies the diamond property, then so does $\bred$ and we have proven the Church--Rosser Theorem.
+
+Unfortunately, the obvious definition of $\pred$ as simultaneous non-overlapping contractions doesn't work, but we can define parallel reduction in a more subtle way. % chktex 8
 
 \begin{defn}
 We will define a new binary relation $\pred$ on $\lambda$-terms as follows:
