@@ -1,0 +1,8 @@
+alias s := swipl
+
+_default:
+    @just --list
+
+[group("prolog")]
+swipl:
+    swipl --pldoc -l *.pl
