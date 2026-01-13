@@ -378,7 +378,7 @@ If $P \bred M$ and $P \bred N$, then $\exists T$ such that $M \bred T$ and $N \b
 \label{fig:church-rosser-diamond}
 \end{figure}
 
-This was first proved by \citeauthor{church-rosser-1936-some-properties-of-conversion} in \citeyear{church-rosser-1936-some-properties-of-conversion} \parencite{church-rosser-1936-some-properties-of-conversion} but the proof we will use is attributed to William Tait and Per Martin-L\"of \parencites[pp.~59--62]{barendregt-1981-lambda-calculus}[\S{}A2A]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+This was first proved by \citeauthor{church-rosser-1936-some-properties-of-conversion} in \citeyear{church-rosser-1936-some-properties-of-conversion} \parencite{church-rosser-1936-some-properties-of-conversion} but the proof we will use is attributed to William Tait and Per Martin-L\"of \parencites[pp.~59--62]{barendregt-1981-lambda-calculus}[\S{}A2A]{hindley-seldin-2008-lambda-calculus-and-combinators}\footnote{Apparently this proof was adapted by Martin-L\"of in 1981 from an earlier unpublished proof by Tait for weak reduction \parencite[p.~313]{hindley-seldin-1986-introduction-to-combinators-and-lambda-calculus}, but I can't find an original source from Martin-L\"of.}.
 
 \begin{figure}[htbp]
 \centering
@@ -492,43 +492,35 @@ This was first proved by \citeauthor{church-rosser-1936-some-properties-of-conve
 
 Ideally, we want break this down into a series of $\beta$-contractions and do some diagram chasing, as seen in Figure~\ref{fig:beta-contraction-diagram-chasing}. If we could prove that $\beta$-contraction is confluent, that is \[ P \bcon M \text{ and } P \bcon N \implies \exists T \text{ such that } M \bcon T \text{ and } N \bcon T, \] then we could chain steps of single $\beta$-contractions together. We would first prove Theorem~\ref{thm:church-rosser-beta-reduction} in the special case that $P \bcon M$ by induction on the length of the reduction to $N$, as seen on the left of Figure~\ref{fig:beta-contraction-diagram-chasing}. Then we could deduce that general case by induction on the length of the reduction to $M$, as seen on the right side of the diagram.
 
-The problem is that this doesn't work. Consider for example ${P := (\lambda y . uyy) (\mathbf{I} z)}$ where $\mathbf{I} = \lambda x . x$. Then ${P \bcon u (\mathbf{I} z) (\mathbf{I} z)}$ and $P \bcon {(\lambda y . uyy) z} \bcon uzz$. In this case we have ${M := u (\mathbf{I} z) (\mathbf{I} z)}$ but $M$ cannot be reduced to $uzz$ in just one contraction. It can, however, be reduced using two non-overlapping, `parallel' contractions. It turns out that we can define a new relation $\pred$ (parallel reduction) whose transitive closure is the same as that of $\bred$. Then if $\pred$ satisfies the diamond property, then so does $\bred$ and we have proven the Church--Rosser Theorem.
+The problem is that this doesn't work. Consider for example ${P := (\lambda y . uyy) (\mathbf{I} z)}$ where $\mathbf{I} = \lambda x . x$. Then ${P \bcon u (\mathbf{I} z) (\mathbf{I} z)}$ and $P \bcon {(\lambda y . uyy) z} \bcon uzz$. In this case we have ${M := u (\mathbf{I} z) (\mathbf{I} z)}$ but $M$ cannot be reduced to $uzz$ in just one contraction. It can, however, be reduced using two non-overlapping, `parallel' contractions. It turns out that we can define a new relation $\pred$ (parallel reduction) whose transitive closure is the same as that of $\bred$. Then if $\pred$ satisfies the diamond property, then so does $\bred$ and we have proven the Church--Rosser Theorem. % chktex 8
 
 Unfortunately, the obvious definition of $\pred$ as simultaneous non-overlapping contractions doesn't work, but we can define parallel reduction in a more subtle way. % chktex 8
 
-\begin{defn}
-We will define a new binary relation $\pred$ on $\lambda$-terms as follows:
-\begin{enumerate}[(1)]
-\item $M \pred M$;
-\item if $M \pred M'$ then $\lambda x . M \pred \lambda x . M'$;
-\item if $M \pred M'$ and $N \pred N'$ then $MN \pred M' N'$;
-\item if $M \pred M'$ and $N \pred N'$ then $(\lambda x . M) N \pred M' [x := N']$.
-\end{enumerate}
+\begin{defn}[Residuals]
+Let a $\lambda$-term $P$ contain $\beta$-redexes $R$ and $S$. Let $P'$ be the result of $\beta$-contracting $R$ in $P$, so $P \bcon P'$. The \textit{residuals} of $S$ with respect to $R$ are $\beta$-redexes in $P'$, defined as follows:
+%
+\begin{case}
+$R$ and $S$ are non-overlapping parts of $P$. Then $\beta$-contracting $R$ leaves $S$ unchanged. We call the unchanged $S$ in $P'$ the residual of $S$.
+\end{case}
+%
+\begin{case}
+\end{case}
+%
+\begin{case}
+\end{case}
+%
+\begin{case}
+% TODO: Define `proper part'
+$S$ is a proper part of $R$. Then $R$ has the form $(\lambda x . M) N$ and $S$ is in $M$ or in $N$. There are other subcases here \parencite[pp.~284--285]{hindley-seldin-2008-lambda-calculus-and-combinators} but case 4 is not needed for our confluence proof, so we shall ignore it from now on.
+\end{case}
 \end{defn}
 
-\begin{lemma}
-If $M \pred M'$ and $N \pred N'$ then $M [x := N] \pred M' [x := N']$.
-\end{lemma}
+\begin{defn}[Minimal residual]
+\end{defn}
 
-\begin{proof}
-By induction on the definition of $M \pred M'$. There are 4 cases to consider.
-
-\begin{case}
-$M \pred M'$ is $M \pred M$. % TODO
-\end{case}
-
-\begin{case}
-$M \pred M'$ is $\lambda y . P \pred \lambda y . P' \pred M$.
-\end{case}
-
-\begin{case}
-% TODO
-\end{case}
-
-\begin{case}
-% TODO
-\end{case}
-\end{proof}
+\begin{defn}[Parallel reduction]
+\footnote{Parallel reductions were sometimes called \textit{minimal complete reductions} \parencite[p.~315]{hindley-seldin-1986-introduction-to-combinators-and-lambda-calculus}.}
+\end{defn}
 
 % Now we will prove Theorem~\ref{thm:church-rosser-beta-reduction}.
 % \begin{proof}
