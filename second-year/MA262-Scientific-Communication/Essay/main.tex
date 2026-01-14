@@ -494,32 +494,36 @@ Ideally, we want break this down into a series of $\beta$-contractions and do so
 
 The problem is that this doesn't work. Consider for example ${P := (\lambda y . uyy) (\mathbf{I} z)}$ where $\mathbf{I} = \lambda x . x$. Then ${P \bcon u (\mathbf{I} z) (\mathbf{I} z)}$ and $P \bcon {(\lambda y . uyy) z} \bcon uzz$. In this case we have ${M := u (\mathbf{I} z) (\mathbf{I} z)}$ but $M$ cannot be reduced to $uzz$ in just one contraction. It can, however, be reduced using two non-overlapping, `parallel' contractions. It turns out that we can define a new relation $\pred$ (parallel reduction) whose transitive closure is the same as that of $\bred$. Then if $\pred$ satisfies the diamond property, then so does $\bred$ and we have proven the Church--Rosser Theorem. % chktex 8
 
-Unfortunately, the obvious definition of $\pred$ as simultaneous non-overlapping contractions doesn't work, but we can define parallel reduction in a more subtle way. % chktex 8
+Unfortunately, the obvious definition of $\pred$ as simultaneous non-overlapping contractions doesn't work, but we can define parallel reduction in a more subtle way.
 
 \begin{defn}[Residuals]
 Let a $\lambda$-term $P$ contain $\beta$-redexes $R$ and $S$. Let $P'$ be the result of $\beta$-contracting $R$ in $P$, so $P \bcon P'$. The \textit{residuals} of $S$ with respect to $R$ are $\beta$-redexes in $P'$, defined as follows:
 %
 \begin{case}
-$R$ and $S$ are non-overlapping parts of $P$. Then $\beta$-contracting $R$ leaves $S$ unchanged. We call the unchanged $S$ in $P'$ the residual of $S$.
+$R$ and $S$ are non-overlapping parts of $P$. Then $\beta$-contracting $R$ leaves $S$ unchanged. We call the unchanged $S$ in $P'$ the \textit{residual} of $S$.
 \end{case}
 %
 \begin{case}
+$R \equiv S$. Then $\beta$-contracting $R$ is the same as $\beta$-contracting $S$. We say that $S$ has \textit{no residual} in $P'$.
 \end{case}
 %
 \begin{case}
+$R$ is a proper part of $S$, meaning $R$ is a part of $S$ and $R \not\equiv S$. Then $S$ has form $(\lambda x . M) N$ and $R$ is in $M$ or in $N$. Then $\beta$-contracting $R$ changes $M$ to $M'$ or $N$ to $N'$. This changes $S$ to $(\lambda x . M') N$ or $(\lambda x . M) N'$ in $P'$. We call this the \textit{residual} of $S$.
 \end{case}
 %
 \begin{case}
-% TODO: Define `proper part'
-$S$ is a proper part of $R$. Then $R$ has the form $(\lambda x . M) N$ and $S$ is in $M$ or in $N$. There are other subcases here \parencite[pp.~284--285]{hindley-seldin-2008-lambda-calculus-and-combinators} but case 4 is not needed for our confluence proof, so we shall ignore it from now on.
+$S$ is a proper part of $R$. Then $R$ has the form $(\lambda x . M) N$ and $S$ is in $M$ or in $N$. There are subcases in this instance for whether $S$ is in $M$ or in $N$ \parencite[pp.~284--285]{hindley-seldin-2008-lambda-calculus-and-combinators} but case 4 is not needed for our confluence proof, so we shall ignore it from now on.
 \end{case}
 \end{defn}
 
 \begin{defn}[Minimal residual]
+Let $n \ge 0$ and let $R_1, \dotsc, R_n$ be $\beta$-redexes in a $\lambda$-term $P$. An $R_i$ is called \textit{minimal} in $\{R_1, \dotsc, R_n\}$ if and only if none of the other $R_1, \dotsc, R_n$ is a proper part of $R_i$.
 \end{defn}
 
 \begin{defn}[Parallel reduction]
-\footnote{Parallel reductions were sometimes called \textit{minimal complete reductions} \parencite[p.~315]{hindley-seldin-1986-introduction-to-combinators-and-lambda-calculus}.}
+Let $n \ge 0$ and let $R_1, \dotsc, R_n$ be $\beta$-redexes in a $\lambda$-term $P$. A \textit{parallel reduction}\footnote{Parallel reductions were sometimes called \textit{minimal complete reductions} \parencite[p.~315]{hindley-seldin-1986-introduction-to-combinators-and-lambda-calculus}.} of $\{R_1, \dotsc, R_n\}$ in $P$ is a $\beta$-reduction obtained by first $\beta$-contracting a minimal $R_i$, then a minimal residual of $R_1, \dotsc, R_n$, and continuing to $\beta$-contract minimal residuals until no residuals are left, and finally perhaps doing some $\alpha$-conversions.
+
+If a parallel reduction changes $P$ to a $\lambda$-term $Q$, we say $P \pred Q$.
 \end{defn}
 
 % Now we will prove Theorem~\ref{thm:church-rosser-beta-reduction}.
