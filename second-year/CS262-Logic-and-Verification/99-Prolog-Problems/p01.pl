@@ -1,5 +1,7 @@
 % vim :set ft=prolog:
 
+:- module(p01, [my_last/2]).
+
 %% my_last(-Elem, +List) is det.
 %
 % Finds the last element of a list.

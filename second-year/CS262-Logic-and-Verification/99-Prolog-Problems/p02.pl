@@ -1,5 +1,7 @@
 % vim :set ft=prolog:
 
+:- module(p02, [penultimate/2]).
+
 %% penultimate(-Elem, +List) is det.
 %
 % Finds the penultimate element of a list.

@@ -1,11 +1,15 @@
 % vim :set ft=prolog:
 
+:- module(p03, [element_at/3]).
+
 %% element_at(-Elem, +List, +Index) is det.
 %
 % Finds the element at the desired index of the given list. Indices start at 1.
 
 element_at(X, [X | _], 1) :- !.
-element_at(X, [_ | L], N) :- M is N - 1, element_at(X, L, M).
+element_at(X, [_ | L], N) :-
+	M is N - 1,
+	element_at(X, L, M).
 
 :- begin_tests(p03).
 
