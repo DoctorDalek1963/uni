@@ -1,0 +1,85 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+% NOTE: hyperref has to come before preamble
+% \usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA266 Assignment 1}
+\title{MA266 Multilinear Algebra, Assignment 1}
+\colorlet{questionbodycolor}{magenta!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q10
+\question{10}
+
+\begin{questionbody}
+Recall that a matrix $M \in M_n(\bb F)$ is invertible if there exists $N \in M_n(\bb F)$ such that $MN = NM = I_n$, where $I_n$ is the $n \times n$ identity matrix.
+\begin{enumerate}[(i)]
+\item Show that matrix multiplication is associative. That is, for $L, M, N \in M_n(\bb F)$, show that $(LM)N = L(MN)$. Deduce that if we set $\mathrm{GL}_n(\bb F) := {\{ M : M \in M_n(\bb F) \text{ is invertible} \}}$, then $(\mathrm{GL}_n(\bb F), \circ)$ is a group where $M \circ N := MN$.
+
+\item Suppose that there exists $L, R \in M_n(\bb F)$ with $LM = MR = I_n$. Prove that $L = R$.
+
+\item Deduce from~\textbf{(ii)} that if $M \in M_n(\bb F)$, then $M$ is invertible if and only if $M^k$ is invertible for all $k \in \N$.
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q11
+\newquestion{11}
+
+\begin{questionbody}
+Let $V$ be an $\bb F$-vector space and let $X$ be a subset of $V$.
+\begin{enumerate}[(i)]
+\item Prove that $\bb F \langle X \rangle$ is a subspace of $V$.
+
+\item Prove that $\bb F \langle X \rangle = \bigcap_{X \subseteq W \le V} W$. That is, $\bb F \langle X \rangle$ in the intersection of all subspaces of $V$ containing $X$.
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q12
+\newquestion{12}
+
+\begin{questionbody}
+% Recall that if $f \in \bb F[t]$ is a polynomial with $f(t) = \alpha_k t^k + \alpha_{k-1} t^{k-1} + \dotsb + \alpha_1 t + \alpha_0$, and $M$ is an $n \times n$ matrix, then $f(M)$ is defined to be the $n \times n$ matrix $f(M) = \alpha_k M^k + \alpha_{k-1} M^{k-1} + \dotsb + \alpha_1 M + \alpha_0 I_n$.
+
+Let $r, s$ be positive integers and let $X \in M_r(\bb F), Z \in M_s(\bb F)$. Also, let $Y$ be an $r \times s$ matrix over $\bb F$, and consider the matrix \[
+M := \begin{pmatrix}
+X & Y \\
+0_{s, r} & Z
+\end{pmatrix}.
+\] Let $f \in \bb F[x]$. Show that there exists an $r \times s$ matrix $Y_1$ such that \[
+f(M) = \begin{pmatrix}
+f(X) & Y_1 \\
+0_{s, r} & f(Z)
+\end{pmatrix}.
+\]
+\textit{Hint}: What does $M^d$ look like for a positive integer $d$?
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document}

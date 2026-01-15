@@ -108,6 +108,7 @@ new-ass:
         "CS260": "yellow!50!pink", # Algorithms
         "MA243": "orange!50", # Geometry
         "MA265": "green!50!teal!50", # Methods 3
+        "MA266": "magenta!50", # Multilinear Algebra
         "MA268": "violet!50", # Algebra 3
         "MA270": "blue!50", # Analysis 3
     }
