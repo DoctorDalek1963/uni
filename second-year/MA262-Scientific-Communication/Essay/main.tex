@@ -289,6 +289,20 @@ This example uses the $\alpha$-conversion convention to rename $a$ to $c$ and $b
 \lambda yzb . b b \big( z y (\lambda ab . b b a) \big)
 \] In this case, the $b$ inside the innermost brackets is completely unrelated to the $b$ outside, so giving them different names makes the expression easier to understand.
 
+\item $\begin{aligned}[t]
+\big( \lambda xyz . &xz (yz) \big) \big( (\lambda xy . yx) u \big) \big( (\lambda xy . yx) v \big) w \\
+    &\bcon \big( \lambda xyz . xz (yz) \big) (\lambda y . yu) \big( (\lambda xy . yx) v \big) w \\
+    &\bcon \big( \lambda xyz . xz (yz) \big) (\lambda y . yu) (\lambda y . yv) w \\
+    &\acong \big( \lambda xyz . xz (yz) \big) (\lambda a . au) (\lambda b . bv) w \\
+    &\bcon \big( \lambda yz . (\lambda a . au) z (yz) \big) (\lambda b . bv) w \\
+    &\bcon \Big( \lambda z . (\lambda a . au) z \big( (\lambda b . bv) z \big) \Big) w \\
+    &\bcon (\lambda a . au) w \big( (\lambda b . bv) w \big) \\
+    &\bcon wu \big( (\lambda b . bv) w \big) \\
+    &\bcon wu (wv)
+\end{aligned}$
+
+Note that this example, as well as the previous three, are all in $\beta$-normal form.
+
 \item\label{ex:beta-reduction:Omega} $\begin{aligned}[t]
 (\lambda x . xx) (\lambda x . xx)
     &\bcon (\lambda x . xx) (\lambda x . xx) \\
