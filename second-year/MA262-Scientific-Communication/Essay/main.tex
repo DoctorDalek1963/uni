@@ -191,6 +191,8 @@ More formally, $\lambda$-calculus consists of $\lambda$-terms, defined in the fo
 
 The reason that Church choose the symbol $\lambda$ has been lost to time. It is either derived from the notation $\hat x$ used by Whitehead and Russell, which became $\wedge x$ and then $\lambda x$ for ease of printing, or the symbol was chosen basically at random \parencite[p.~6]{cardone-hindley-2006-history-of-lambda-calculus}.
 
+In this essay we will use various sizes of parentheses to ease parsing for the reader, but these different sizes have no affect on the semantics.
+
 \begin{defn}[Scope]\label{def:scope}
 In a $\lambda$-term $\lambda x . M$, the occurrence of $M$ is called the \textit{scope} of the occurrence of $\lambda x$.
 \end{defn}
@@ -342,6 +344,98 @@ So $P$ has a $\beta$-normal form $b$, but it also has an infinite reduction.
 It is important to note that all of the $\bcon$ in these examples could've been written with $\bred$. Note that
 % $\beta$-reduction is not a process that drives $\beta$-contraction to termination.
 $P \bred Q$ does not imply that $Q$ is a $\beta$-nf, nor even that $Q \not\equiv P$, as seen in the case of $\Omega \bred \Omega$.
+\end{example}
+
+\begin{defn}[$\eta$-reduction]
+% TODO: Define eta reduction
+\end{defn}
+
+% }}}
+
+% Arithmetic {{{
+
+\section{Arithmetic}\label{sec:arithmetic}
+
+\begin{defn}[Church numerals]
+\parencites[p.~28]{church-1941-calculi-lambda-conversion}[p.~48]{hindley-seldin-2008-lambda-calculus-and-combinators}
+We define a system of \textit{Church numerals} as:
+\begin{align*}
+\overline 0 &:= \lambda fx . x, \\
+\overline 1 &:= \lambda fx . fx, \\
+\overline 2 &:= \lambda fx . f(fx), \\
+\overline 3 &:= \lambda fx . f(f(fx)),
+\end{align*}
+etc. We also define a successor function \[
+\overline \sigma := \lambda abc . b(abc).
+\]
+\end{defn}
+
+\begin{example}[Successor]
+\begin{align*}
+\overline \sigma \, \overline 2 &\equiv \big( \lambda abc . b(abc) \big) \big( \lambda fx . f(fx) \big) \\
+&\bcon \lambda bc . b \big( \big( \lambda fx . f(fx) \big) bc \big) \\
+&\bcon \lambda bc . b \big( \big( \lambda x . b(bx) \big) c \big) \\
+&\bcon \lambda bc . b \big( b(bc) \big) \\
+&\acong \lambda fx . f (f(fx)) \\
+&\equiv \overline 3
+\end{align*}
+\end{example}
+
+\begin{defn}[Arithmetic operations]
+\parencite[p.~10]{church-1941-calculi-lambda-conversion}
+We also define addition as \[
+\overline m + \overline n := \lambda ab . (\overline m a) (\overline n a b),
+\] multiplication as \[
+\overline m \times \overline n := \lambda a . \overline m (\overline n a),
+\] and exponentiation as \[
+{\overline m}^{\overline n} := \overline n \, \overline m.
+\]
+\end{defn}
+
+\begin{example}[Arithmetic]
+\item \begin{align*}
+\overline 2 + \overline 3 &\equiv \lambda ab . \big( \overline 2 a \big) \big( \overline 3 a b \big) \\
+&\equiv \lambda ab . \Big( \big( \lambda fx . f(fx) \big) a \Big) \Big( \big( \lambda fx . f(f(fx)) \big) a b \Big) \\
+&\bcon \lambda ab . \big( \lambda x . a(ax) \big) \Big( \big( \lambda fx . f(f(fx)) \big) a b \Big) \\
+&\bcon \lambda ab . \big( \lambda x . a(ax) \big) \big( a(a(ab)) \big) \\
+&\bcon \lambda ab . a(a(a(a(ab)))) \\
+&\acong \lambda fx . f(f(f(f(fx)))) \\
+&\equiv \overline 5
+\end{align*}
+
+\item \begin{align*}
+\overline 2 \times \overline 3 &\equiv \lambda a . \overline 2 \big( \overline 3 a \big) \\
+&\equiv \lambda a . \big( \lambda fx . f(fx) \big) \Big( \big( \lambda fx . f(f(fx)) \big) a \Big) \\
+&\bcon \lambda a . \big( \lambda fx . f(fx) \big) \big( \lambda x . a(a(ax)) \big) \\
+&\acong \lambda a . \big( \lambda fx . f(fx) \big) \big( \lambda y . a(a(ay)) \big) \\
+&\bcon \lambda a . \lambda x . \big( \lambda y . a(a(ay)) \big) \Big( \big( \lambda y . a(a(ay)) \big) x \Big) \\
+&\equiv \lambda ax . \big( \lambda y . a(a(ay)) \big) \Big( \big( \lambda y . a(a(ay)) \big) x \Big) \\
+&\bcon \lambda ax . \big( \lambda y . a(a(ay)) \big) \big( a(a(ax)) \big)\\
+&\bcon \lambda ax . a(a(a(a(a(ax))))) \\
+&\acong \lambda fx . f(f(f(f(f(fx))))) \\
+&\equiv \overline 6
+\end{align*}
+
+\item \begin{align*}
+{\overline 2}^{\overline 3} &\equiv \overline 3 \, \overline 2 \\
+&\equiv \big( \lambda fx . f(f(fx)) \big) \big( \lambda fx . f(fx) \big) \\
+&\acong \big( \lambda fx . f(f(fx)) \big) \big( \lambda gy . g(gy) \big) \\
+&\bcon \lambda x . \big( \lambda gy . g(gy) \big) \Big( \big( \lambda gy . g(gy) \big) \big( \big( \lambda gy . g(gy) \big) x \big) \Big) \\
+&\bcon \lambda x . \big( \lambda gy . g(gy) \big) \Big( \big( \lambda gy . g(gy) \big) \big( \lambda y . x(xy) \big) \Big) \\
+&\acong \lambda x . \big( \lambda gy . g(gy) \big) \Big( \big( \lambda gy . g(gy) \big) \big( \lambda z . x(xz) \big) \Big) \\
+&\bcon \lambda x . \big( \lambda gy . g(gy) \big) \bigg( \lambda y . \big( \lambda z . x(xz) \big) \Big( \big( \lambda z . x(xz) \big) y \Big) \bigg) \\
+&\bcon \lambda x . \big( \lambda gy . g(gy) \big) \Big( \lambda y . \big( \lambda z . x(xz) \big) \big( x(xy) \big) \Big) \\
+&\bcon \lambda x . \big( \lambda gy . g(gy) \big) \big( \lambda y . x(x(x(xy))) \big) \\
+&\acong \lambda x . \big( \lambda gy . g(gy) \big) \big( \lambda z . x(x(x(xz))) \big) \\
+&\bcon \lambda x . \lambda y . \big( \lambda z . x(x(x(xz))) \big) \Big( \big( \lambda z . x(x(x(xz))) \big) y \Big) \\
+&\equiv \lambda xy . \big( \lambda z . x(x(x(xz))) \big) \Big( \big( \lambda z . x(x(x(xz))) \big) y \Big) \\
+&\bcon \lambda xy . \big( \lambda z . x(x(x(xz))) \big) \big( x(x(x(xy))) \big)\\
+&\bcon \lambda xy . x(x(x(x(x(x(x(xy))))))) \\
+&\acong \lambda fx . f(f(f(f(f(f(f(fx))))))) \\
+&\equiv \overline 8
+\end{align*}
+% TODO: Explain this nicely
+% It's worth pondering on exponentiation for a moment. The number $\overline n$ in $\lambda$-calculus takes a function $f$ and a function $x$ and applies $f$ to $x$ $n$ times. So $\overline 3 \, \overline 2$ is
 \end{example}
 
 % }}}
@@ -540,15 +634,6 @@ If a parallel reduction changes $P$ to a $\lambda$-term $Q$, we say $P \pred Q$.
 % \begin{proof}
 % Trivial.
 % \end{proof}
-
-% }}}
-
-% Eta reduction {{{
-
-\section{$\eta$-reduction}\label{sec:eta-reduction}
-
-\begin{defn}[$\eta$-reduction]
-\end{defn}
 
 % }}}
 
