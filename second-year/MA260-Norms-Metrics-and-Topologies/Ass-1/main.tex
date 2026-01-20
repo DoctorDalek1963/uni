@@ -32,7 +32,37 @@ Give a reason why each of the following is \textbf{not} a norm on $\R^3$:
 \end{enumerate}
 \end{questionbody}
 
-Answer
+\subsection{~} % 1.i
+
+Let $v = (1, -2, 1)$. Then $v \ne \ul 0$ but $\|v\| = 1 - 2 + 1 = 0$, so this norm does not satisfy non-degeneracy.
+
+\subsection{~} % 1.ii
+
+Let $v = (x, y, z) \in \R^3$ and $\lambda \in \R$. Then
+\begin{align*}
+\| \lambda v \| &= {\l( |\lambda x|^2 + |\lambda y|^2 + |\lambda z|^2 \r)}^{1/3} \\
+&= {\l( |\lambda|^2 \l( |x|^2 + |y|^2 + |z|^2 \r) \r)}^{1/3} \\
+&= |\lambda|^{2/3} \|v\|.
+\end{align*}
+It this were a norm, we would expect to get $\|\lambda v\| = |\lambda| \|v\|$, but we don't, so this is not a norm.
+
+\subsection{~} % 1.iii
+
+If this were a norm, it should satisfy the triangle inequality, so we would have $\|v + w\| \le \|v\| + \|w\|$. Take $v = (1, 2, 3)$ and $w = (3, 2, 1)$. Then
+\begin{align*}
+\|v\| &= {\l( 1 - 16 + 162 \r)}^{1/4} \\
+&= 147^{1/4} \\
+&\approx 3.482 \\
+\|w\| &= {\l( 81 - 16 + 2 \r)}^{1/4} \\
+&= 67^{1/4} \\
+&\approx 2.861 \\
+\|v\| + \|w\| &\approx 6.343 \\
+\|v + w\| &= \|(4, 4, 4)\| \\
+&= {\l( 256 - 256 + 512 \r)}^{1/4} \\
+&= 512^{1/4} \\
+&\approx 4.757
+\end{align*}
+This counterexample shows that this `norm' doesn't satisfy the triangle inequality, so is not a norm.
 
 % }}}
 
@@ -45,7 +75,24 @@ g \big( {(x_j)}_{j=1}^\infty \big) = \sum_{j=1}^\infty {(-1)}^j x_j.
 \] Show that $g : \ell^1 \to \R$ is well-defined and continuous.
 \end{questionbody}
 
-Answer
+The space $\ell^1$ contains only sequences which are `1-summable', meaning $\sum_{j=1}^\infty x_j$ converges to a finite value. Therefore $\sum_{j=1}^\infty {(-1)}^j x_j$ also converges to a finite value. % TODO: Why?
+That means $g \big( (x_j) \big)$ is in $\ell^1$ and is therefore well-defined.
+
+For $g$ to be continuous, we want to show that $\forall \varepsilon > 0$, $\exists \delta > 0$ such that \[
+g \big( \bb B_\delta((x_j)) \big) \subset \bb B_\varepsilon \big( g((x_j)) \big).
+\]
+
+Every sequence in $\bb B_\delta((x_j))$ is the sequence $(x_j)$ with a perturbation of $\delta$. So if $(x_j) = (x_1, x_2, \dotsc)$, then an element of $\bb B_\delta((x_j))$, call it $(x_j) + \delta$, would look something like $(x_1, \dotsc, x_i + \delta, \dotsc)$ or $(x_1, \dotsc, x_i + \delta/3, \dotsc, x_k + 2\delta/3, \dotsc)$.
+
+Since $\ell^1$ uses the 1-norm, this perturbation of $\delta$ will be carried through the norm, so \[
+\|(x_j) + \delta\| = \|(x_j)\| + |\delta|.
+\]
+Then this $|\delta|$ will just get included in the sum in $g$, so \[
+g \big( (x_j) + \delta \big) = g \big( (x_j) \big) + |\delta|.
+\] Therefore \[
+g \big( \bb B_\delta((x_j)) \big) = \bb B_\delta \big( g((x_j)) \big)
+\]
+Then we just choose $\delta \le \varepsilon$ and see that $g$ is continuous.
 
 % }}}
 
