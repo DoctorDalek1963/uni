@@ -1,0 +1,52 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA260 Assignment 1}
+\title{MA260 Norms Metrics and Topologies, Assignment 1}
+\colorlet{questionbodycolor}{orange!50!violet}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Give a reason why each of the following is \textbf{not} a norm on $\R^3$:
+\begin{enumerate}[(i)]
+\item $\|(x, y, z)\| = x + y + z$
+
+\item $\|(x, y, z)\| = {\l( |x|^2 + |y|^2 + |z|^2 \r)}^{1/3}$
+
+\item $\|(x, y, z)\| = {\l( |x|^4 - |y|^4 + 2 |z|^4 \r)}^{1/4}$
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Consider the space $\ell^1$ with norm $\| \cdot \|_1$ and define $g : \ell^1 \to \R$ by \[
+g \big( {(x_j)}_{j=1}^\infty \big) = \sum_{j=1}^\infty {(-1)}^j x_j.
+\] Show that $g : \ell^1 \to \R$ is well-defined and continuous.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document}
