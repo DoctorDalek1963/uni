@@ -30,7 +30,9 @@
 \begin{questionbody}
 Recall that a matrix $M \in M_n(\bb F)$ is invertible if there exists $N \in M_n(\bb F)$ such that $MN = NM = I_n$, where $I_n$ is the $n \times n$ identity matrix.
 \begin{enumerate}[(i)]
-\item Show that matrix multiplication is associative. That is, for $L, M, N \in M_n(\bb F)$, show that $(LM)N = L(MN)$. Deduce that if we set $\mathrm{GL}_n(\bb F) := {\{ M : M \in M_n(\bb F) \text{ is invertible} \}}$, then $(\mathrm{GL}_n(\bb F), \circ)$ is a group where $M \circ N := MN$.
+\item Show that matrix multiplication is associative. That is, for $L, M, N \in M_n(\bb F)$, show that $(LM)N = L(MN)$. Deduce that if we set \[
+\mathrm{GL}_n(\bb F) := {\{ M : M \in M_n(\bb F) \text{ is invertible} \}},
+\] then $(\mathrm{GL}_n(\bb F), \circ)$ is a group where ${M \circ N := MN}$.
 
 \item Suppose that there exists $L, R \in M_n(\bb F)$ with $LM = MR = I_n$. Prove that $L = R$.
 
@@ -38,7 +40,36 @@ Recall that a matrix $M \in M_n(\bb F)$ is invertible if there exists $N \in M_n
 \end{enumerate}
 \end{questionbody}
 
-Answer
+\subsection{~} % 1.i
+
+% TODO: Show associativity
+
+The identity element of $\mathrm{GL}_n(\bb F)$ is $I_n$, whose inverse is $I_n$. Every element in $\mathrm{GL}_n(\bb F)$ has an inverse by definition. The product of two invertible matrices $M$ and $N$ is $MN$ and it has inverse $N^{-1} M^{-1}$, so $\mathrm{GL}_n(\bb F)$ is closed. We've already proven that matrix multiplication is associative, so $(\mathrm{GL}_n(\bb F), \circ)$ is a group.
+
+\subsection{~} % 1.ii
+
+\begin{align*}
+LM &= I_n \\
+LMR &= I_n R \\
+&= R \\
+MR &= I_n \\
+LMR &= L I_n \\
+&= L \\
+\therefore\ LMR &= R = L
+\end{align*}
+
+\subsection{~} % 1.iii
+
+Suppose $M$ is invertible. Then for all $k \in \N$, $M^k$ is invertible and has inverse $M^{-k}$ by induction on $k$.
+% \begin{align*}
+% M^k M^{-k} &= \underbrace{M \dotsm M}_{k \text{ times}} \, \underbrace{M^{-1} \dotsm M^{-1}}_{k \text{ times}} \\
+% &= \underbrace{M \dotsm M}_{k-1 \text{ times}} \, (M M^{-1}) \, \underbrace{M^{-1} \dotsm M^{-1}}_{k-1 \text{ times}} \\
+% &= \underbrace{M \dotsm M}_{k-1 \text{ times}} \, \underbrace{M^{-1} \dotsm M^{-1}}_{k-1 \text{ times}} \\
+% &\,\ \vdots \\
+% &= I_n.
+% \end{align*}
+
+For the converse, suppose $M^k$ is invertible for all $k \in \N$. Then we just choose $k=1$ and get that $M M^{-1} = I_n$, so $M$ is invertible.
 
 % }}}
 
@@ -53,6 +84,12 @@ Let $V$ be an $\bb F$-vector space and let $X$ be a subset of $V$.
 \item Prove that $\bb F \langle X \rangle = \bigcap_{X \subseteq W \le V} W$. That is, $\bb F \langle X \rangle$ in the intersection of all subspaces of $V$ containing $X$.
 \end{enumerate}
 \end{questionbody}
+
+\subsection{~} % 2.i
+
+Answer
+
+\subsection{~} % 2.ii
 
 Answer
 
