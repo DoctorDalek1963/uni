@@ -152,11 +152,14 @@
 
 \section{Introduction}\label{sec:introduction}
 
-The Zermelo--Fraenkel system of axioms formalises the foundations of mathematics using the language of sets. It is natural to ask which other languages we could use. What about functions? The Zermelo--Fraenkel system defines functions as sets of ordered pairs~\parencite[\S\S2.1--2.2]{ciesielski-1997-set-theory} but we can't do that in a system where we don't have sets, so we need a more broad definition of functions. % chktex 8
+The normal system of mathematics is based in set theory and recursively defines everything in terms of sets. In particular, the standard Zermelo--Fraenkel axioms of set theory define functions in terms of sets \parencite[\S\S2.1--2.2]{ciesielski-1997-set-theory}. It is natural to ask if we could define mathematics in another way, using something else as a basis. Could we, instead of considering collections of arbitrary objects, instead consider transformations of arbitrary objects\footnote{This essay is about \textit{untyped} $\lambda$-calculus. There are variations of the theory with types added on, where the objects are less `arbitrary'.}? The answer is yes, and there are two main frameworks for this approach. In this essay we will consider $\lambda$-calculus, instead of the closely-related combinatory logic.
+
+% The Zermelo--Fraenkel system of axioms formalises the foundations of mathematics using the language of sets. It is natural to ask which other languages we could use. What about functions? The Zermelo--Fraenkel system defines functions as sets of ordered pairs~ but we can't do that in a system where we don't have sets, so we need a more broad definition of functions. % chktex 8
 
 % TODO: Talk about history
 
-We want a purely functional universe---that is, a system in which everything is a `pure' function. A pure function, in this case, takes one pure function as input and returns one pure function. So in this world, it's functions all the way down. The language we will use to describe this world in this essay is Alonzo Church's $\lambda$-calculus.
+We want a purely functional universe---that is, a system in which everything is a `pure' function. A pure function, in this case, takes one pure function as input and returns one pure function. So in this world, it's functions all the way down.
+% The language we will use to describe this world in this essay is Alonzo Church's $\lambda$-calculus.
 
 The primary application of $\lambda$-calculus is in programming. The normal style of \textit{imperative programming} gives the compute a sequence of instructions to carry out in-order, whereas \textit{functional programming} (based on $\lambda$-calculus and the closely related field of combinatory logic) describes how a function should be computed abstractly. Imperative program describes how to reach the solution; functional programming describes what the solution is. And $\lambda$-calculus is \textit{Turing complete}, meaning it can do anything that an imperative computer program can do \parencite{turing-1937-computability-and-lambda-definability}.
 
