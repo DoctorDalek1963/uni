@@ -77,6 +77,8 @@
 \newcommand\acong{\equiv_\alpha}
 \newcommand\bcon{\mathrel{\rightarrow_\beta}}
 \newcommand\bred{\mathrel{\twoheadrightarrow_\beta}}
+\newcommand\econ{\mathrel{\rightarrow_\eta}}
+\newcommand\ered{\mathrel{\twoheadrightarrow_\eta}}
 \newcommand\pred{\mathrel{\twoheadrightarrow_\parallel}}
 \newcommand\FV{\operatorname{FV}}
 \newcommand\doublelambda{\lambda\mkern-7.5mu\lambda}
@@ -332,13 +334,58 @@ It is important to note that all of the $\bcon$ in these examples could've been 
 $P \bred Q$ does not imply that $Q$ is a $\beta$-nf, nor even that $Q \not\equiv P$, as seen in the case of $\Omega \bred \Omega$.
 \end{example}
 
-\begin{defn}[$\eta$-reduction]
-% TODO: Define eta reduction
+\begin{defn}[Rule $\xi$]\label{def:rule-xi}
+We now introduce a simple premise which is historically given the name \textit{rule $\xi$} \parencites[p.~23]{barendregt-1981-lambda-calculus}[p.~70]{hindley-seldin-2008-lambda-calculus-and-combinators}:
+\begin{equation}\label{eqn:rule-xi}
+M = N \implies \lambda x . M = \lambda x . N. \tag{\xi}
+\end{equation}
 \end{defn}
 
-% TODO: Give an algorithm to decide which $\beta$-redexes to contract and in what order. We obviously don't want $\Omega \bcon \Omega$
+In normal mathematics, function equality is `extensional', meaning it cares about what the function does, not how it is defined internally. In normal maths, if $\forall x, f(x) = g(x)$, we say that $f = g$.
 
-% TODO: Add margin notes for Tim
+Currently, our system of $\lambda$-calculus is `intensional', meaning it doesn't have this property. For example, Let $F = y$ and $G = \lambda x . y x$. Then $F X = G X$ for any $\lambda$-term $X$, but currently $F \ne G$ \parencite[p.~76]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+
+We can extend our theory of $\lambda$-calculus to make it extensional in two useful ways, which turn out to be equivalent.
+
+\begin{defn}[Weak extensionality]
+Let $M$ and $N$ be $\lambda$-terms and $x \notin \FV(MN)$. Then we say \parencite[p.~31]{barendregt-1981-lambda-calculus}
+\begin{equation}\label{eqn:weak-ext}
+Mx = Nx \implies M = N. \tag{\zeta}
+\end{equation}
+\end{defn}
+
+\begin{defn}[$\eta$-conversion]\label{def:eta-conversion}
+Let $M$ and $N$ be $\lambda$-terms and $x \notin \FV(M)$. Then we say \parencite[p.~32]{barendregt-1981-lambda-calculus}.
+\begin{equation}\label{eqn:eta-conversion}
+\lambda x . M x = M. \tag{\eta}
+\end{equation}
+\end{defn}
+
+\begin{thm}\label{thm:weak-ext-and-eta-conv-equiv}
+Weak extensionality and $\eta$-conversion are equivalent.
+\end{thm}
+
+\begin{proof}
+We want to show that if we add weak extensionality, we can derive the $\eta$-conversion rule, and vice versa\footnote{Proof taken from \parencite[p.~32]{barendregt-1981-lambda-calculus}.}.
+
+Consider $\lambda$-calculus with weak extensionality. The statement \[
+(\lambda x . M x) x = M x
+\] is of course true. If $x \notin \FV(M)$ then we can apply~\eqref{eqn:weak-ext} to get \[
+\lambda x . M x = M,
+\] which is~\eqref{eqn:eta-conversion}.
+
+Conversely, consider $\lambda$-calculus with $\eta$-conversion. Let $Mx = Nx$ with $x \notin \FV(MN)$. Then by rule~\ref{eqn:rule-xi}, \[
+\lambda x . Mx = \lambda x . Nx.
+\] Then we apply~\eqref{eqn:eta-conversion} and get $M = N$.
+\end{proof}
+
+It doesn't matter which of these extensionality axioms we choose to add, but most literature uses $\eta$-conversion, so we will do the same.
+
+\begin{defn}[$\eta$-reduction]
+Any term of the form $\lambda x . M x$ with ${x \notin \FV(M)}$ is called a \textit{$\eta$-redex} and its \textit{contractum} is $M$.
+
+The phrases \textit{$P$ $\eta$-contracts to $Q$} and \textit{$P$ $\eta$-reduces to $Q$} are defined in the same way as we defined the $\beta$ equivalents in Definitions~\ref{def:beta-contraction} and~\ref{def:beta-reduction}, and we instead write $P \econ Q$ and $P \ered Q$ respectively.
+\end{defn}
 
 % }}}
 
