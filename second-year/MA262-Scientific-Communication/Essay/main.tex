@@ -136,14 +136,12 @@
 
 The normal system of mathematics is based in set theory and recursively defines everything in terms of sets. In particular, the standard Zermelo--Fraenkel axioms of set theory define functions in terms of sets \parencite[\S\S2.1--2.2]{ciesielski-1997-set-theory}. It is natural to ask if we could define mathematics in another way, using something else as a basis. Could we, instead of considering collections of arbitrary objects, instead consider transformations of arbitrary objects\footnote{This essay is about \textit{untyped} $\lambda$-calculus. There are variations of the theory with types added on, where the objects are less `arbitrary'.}? The answer is yes, and there are two main frameworks for this approach. In this essay we will consider $\lambda$-calculus, instead of the closely-related combinatory logic. % chktex 8
 
-% The Zermelo--Fraenkel system of axioms formalises the foundations of mathematics using the language of sets. It is natural to ask which other languages we could use. What about functions? The Zermelo--Fraenkel system defines functions as sets of ordered pairs~ but we can't do that in a system where we don't have sets, so we need a more broad definition of functions. % chktex 8
-
-% TODO: Talk about history
-
 We want a purely functional universe---that is, a system in which everything is a `pure' function. A pure function, in this case, takes one pure function as input and returns one pure function. So in this world, it's functions all the way down.
 % The language we will use to describe this world in this essay is Alonzo Church's $\lambda$-calculus.
 
-The primary application of $\lambda$-calculus is in programming. The normal style of \textit{imperative programming} gives the compute a sequence of instructions to carry out in-order, whereas \textit{functional programming} (based on $\lambda$-calculus and the closely related field of combinatory logic) describes how a function should be computed abstractly. Imperative program describes how to reach the solution; functional programming describes what the solution is. And $\lambda$-calculus is \textit{Turing complete}, meaning it can do anything that an imperative computer program can do \parencite{turing-1937-computability-and-lambda-definability}.
+% The primary application of $\lambda$-calculus is in programming. The normal style of \textit{imperative programming} gives the compute a sequence of instructions to carry out in-order, whereas \textit{functional programming} (based on $\lambda$-calculus and the closely related field of combinatory logic) describes how a function should be computed abstractly. Imperative program describes how to reach the solution; functional programming describes what the solution is. And $\lambda$-calculus is \textit{Turing complete}, meaning it can do anything that an imperative computer program can do \parencite{turing-1937-computability-and-lambda-definability}.
+
+Modern computers are heavily based on the idea of a \textit{Turing machine}, which is a system for computing functions. Working with and programming a Turing machine\footnote{A `real' Turing machine has an infinitely long tape to store data, which is clearly impossible. By `working with a Turing machine', we mean working with the finite real-world analog, sometimes called a `von~Neumann machine' \parencite[p.~4]{appel-feferman-2012-alan-turings-systems-of-logic}.} is an arduous task, where the programmer has to keep the entire machine in their head and understand its inner workings. Lisp and ALGOL, programming languages invented in the late 1950s, revolutionised the act of programming a computer and turned it into something that a child could do. Most modern programming languages can trace their roots back to Lisp or ALGOL, and both take heavy inspiration from $\lambda$-calculus \parencite[p.~4]{appel-feferman-2012-alan-turings-systems-of-logic}.
 
 % }}}
 
@@ -151,32 +149,33 @@ The primary application of $\lambda$-calculus is in programming. The normal styl
 
 \section{Syntax}\label{sec:syntax}
 
-In this new lambda calculus, we care primarily about functions, but the common way of writing functions becomes cumbersome for higher-order functions (functions from functions to functions).
+% In this new lambda calculus, we care primarily about functions, but the common way of writing functions becomes cumbersome for higher-order functions (functions from functions to functions).
 
-% TODO: This shit sucks
+% % TODO: Is $S$ actually an operator?
+% % Properly explain this idea of only having functions? Maybe put this in the history section?
+% % Why exactly can't we do it in ZFC? Can we do it in ZFC?
 
-% TODO: Is $S$ actually an operator?
-% Properly explain this idea of only having functions? Maybe put this in the history section?
-% Why exactly can't we do it in ZFC? Can we do it in ZFC?
+% Let's say we want to define a function $S$ which takes three functions $x, y, z$ as input, and returns the function $(x(z)) (y(z))$. Take a moment to parse that: $x, y, z$ are all functions; $x(z)$ is a function, call it $f$; $y(z)$ is a function, call it $g$, and then $S$ is $f(g)$, another function\footnote{We could write this with composition as $(x \circ z) \circ (y \circ z)$ but we want to stick the $\lambda$-calculus style notation for consistency.}.
 
-Let's say we want to define a function $S$ which takes three functions $x, y, z$ as input, and returns the function $(x(z)) (y(z))$. Take a moment to parse that: $x, y, z$ are all functions; $x(z)$ is a function, call it $f$; $y(z)$ is a function, call it $g$, and then $S$ is $f(g)$, another function\footnote{We could write this with composition as $(x \circ z) \circ (y \circ z)$ but we want to stick the $\lambda$-calculus style notation for consistency.}.
+% This is called the $\mathbf{S}$ combinator and we will see its uses later.
 
-This is called the $\mathbf{S}$ combinator and we will see its uses later.
+% To describe $S$ in full generality in the ZFC system is actually impossible because we need to define a domain. We could say \[
+% S : F \times F \times F \to F, \qquad (x, y, z) \mapsto (x(z)) (y(z))
+% \] where $F$ denotes some space of functions $F \to F$. This recursive definition of $F$ is not allowed in ZFC\@. % TODO: Citation needed
 
-To describe $S$ in full generality in the ZFC system is actually impossible because we need to define a domain. We could say \[
-S : F \times F \times F \to F, \qquad (x, y, z) \mapsto (x(z)) (y(z))
-\] where $F$ denotes some space of functions $F \to F$. This recursive definition of $F$ is not allowed in ZFC\@. % TODO: Citation needed
+% In the lambda calculus, we write this simply as \[
+% \lambda x y z . xz(yz)
+% \]
 
-In the lambda calculus, we write this simply as \[
-\lambda x y z . xz(yz)
-\]
-
-More formally, $\lambda$-calculus consists of $\lambda$-terms, defined in the following recursive way \parencite[p.~3]{hindley-seldin-2008-lambda-calculus-and-combinators}:
+% More formally,
+\begin{defn}[$\lambda$-term]
+The $\lambda$-calculus consists of \textit{$\lambda$-terms}, defined in the following recursive way \parencite[p.~3]{hindley-seldin-2008-lambda-calculus-and-combinators}:
 \begin{enumerate}[(1)]
 \item All variables (labelled $a, b, \dotsc, z, a_1, b_1, \dotsc$) are $\lambda$-terms, called \textit{atoms}.
 \item If $M$ and $N$ are any two $\lambda$-terms then $(MN)$ is a $\lambda$-term. This is called \textit{application}.
 \item If $M$ is any $\lambda$-term and $x$ is any variable then $(\lambda x . M)$ is a $\lambda$-term. This is called \textit{abstraction}.
 \end{enumerate}
+\end{defn}
 
 The reason that Church choose the symbol $\lambda$ has been lost to time. It is either derived from the notation $\hat x$ used by Whitehead and Russell, which became $\wedge x$ and then $\lambda x$ for ease of printing, or the symbol was chosen basically at random \parencite[p.~6]{cardone-hindley-2006-history-of-lambda-calculus}.
 
@@ -186,9 +185,6 @@ In this essay we will use various sizes of parentheses to ease parsing for the r
 In a $\lambda$-term $\lambda x . M$, the occurrence of $M$ is called the \textit{scope} of the occurrence of $\lambda x$.
 \end{defn}
 
-\begin{example}[Scope]\label{ex:scope}
-\end{example}
-
 \begin{defn}[Free and bound variables]\label{def:free-and-bound-variables}
 Let $M$ be an arbitrary $\lambda$-term. A variable $x$ is \textit{free} in $M$ if $x$ is not in the scope of any $\lambda x$; otherwise, $x$ is \textit{bound} \parencite[p.~24]{barendregt-1981-lambda-calculus}. If we're considering the $x$ immediately proceeding the $\lambda$ (that is, the first $x$ in $\lambda x . x$), it is called \textit{bound and binding} \parencite[p.~6--7]{hindley-seldin-2008-lambda-calculus-and-combinators}.
 
@@ -197,9 +193,9 @@ We define $\FV(M)$ as the set of all free variables in the expression $M$. A $\l
 
 \begin{example}[Free and bound variables]\label{ex:free-and-bound-variables}\leavevmode
 \begin{enumerate}[(1)]
-\item In $x (\lambda y . xy)$, $x$ occurs free twice and $y$ occurs bound once.
+\item In $x (\lambda y . xy)$, $x$ occurs free twice and $y$ occurs bound twice, one of which is also binding.
 
-\item In $y (\lambda y . y)$, $y$ occurs free once and bound twice. This is confusing and discouraged in practice, but allowed to keep the definitions simple.
+\item In $y (\lambda y . y)$, $y$ occurs free once and bound twice. This is confusing and discouraged in practice, because the $y$ in the parentheses doesn't refer to the same thing as the $y$ outside, but we allow this syntax to keep the definitions simple.
 \end{enumerate}
 Notice that `$\lambda x$' binds in the same way as `$\forall x$' in familiar predicate logic.
 \end{example}
@@ -235,7 +231,7 @@ If a $\lambda$-term $Q$ can be reached by a finite (possibly empty) sequence of 
 \begin{defn}[$\beta$-contraction]\label{def:beta-contraction}
 Any term of the form $(\lambda x . M) N$ is called a \textit{$\beta$-redex} and the corresponding term $M [x := N]$ is called its \textit{contractum}.
 
-If a $\lambda$-term $P$ contains an occurrence of $(\lambda x . M) N$ then we can replace that occurrence by $M [x := N]$. We can call the result $P'$ and then we say that \textit{$P$ $\beta$-contracts to $P'$}, and we write $P \bcon P'$.
+If a $\lambda$-term $P$ contains an occurrence of $(\lambda x . M) N$ then we can replace that occurrence by $M [x := N]$. We can call the result $P'$ and then we say that \textit{$P$ $\beta$-contracts to $P'$}, and we write $P \bcon P'$ \parencites[pp.~11--12]{hindley-seldin-2008-lambda-calculus-and-combinators}[p.~23]{barendregt-1981-lambda-calculus}.
 \end{defn}
 
 \begin{defn}[$\beta$-reduction]\label{def:beta-reduction}
@@ -272,11 +268,12 @@ Let $N$ be an arbitrary $\lambda$-term.
 \item $\begin{aligned}[t]
 \big( \lambda xyz . x (z y x) \big) (\lambda ab . b b a)
     &\bcon \lambda yz . (\lambda ab . b b a) \big( z y (\lambda ab . b b a) \big) \\
+    &\acong \lambda yz . (\lambda ab . b b a) \big( z y (\lambda cd . d d c) \big) \\
     &\bcon \lambda yz . \Big( \lambda b . b b \big( z y (\lambda cd . d d c) \big) \Big) \\
     &\equiv \lambda yzb . b b \big( z y (\lambda cd . d d c) \big)
 \end{aligned}$
 
-This example uses the $\alpha$-conversion convention to rename $a$ to $c$ and $b$ to $d$ after the second $\beta$-contraction. Without this renaming, we would get confusing (but technically valid) variable bindings: \[
+This example uses $\alpha$-conversion to rename $a$ to $c$ and $b$ to $d$ after the first $\beta$-contraction. Without this renaming, we would get confusing (but technically valid) variable bindings: \[
 \lambda yzb . b b \big( z y (\lambda ab . b b a) \big)
 \] In this case, the $b$ inside the innermost brackets is completely unrelated to the $b$ outside, so giving them different names makes the expression easier to understand.
 
@@ -301,7 +298,7 @@ Note that this example, as well as the previous three, are all in $\beta$-normal
     &\bcon \dotsb
 \end{aligned}$
 
-This example shows that the $\beta$-contraction process doesn't always simplify. This term is called $\Omega$ or $\mathbf{M}$. Since $\Omega$ contains $\beta$-redexes and $\Omega \bcon \Omega$, we see that $\Omega$ is an example of a $\lambda$-term with no $\beta$-normal form. But $\Omega$ is `minimal' in the sense that it cannot be reduced to any different term \parencite[p.~13]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+This example shows that the $\beta$-contraction process doesn't always simplify. This term is called $\Omega$. Since $\Omega$ contains $\beta$-redexes and $\Omega \bcon \Omega$, we see that $\Omega$ is an example of a $\lambda$-term with no $\beta$-normal form. But $\Omega$ is `minimal' in the sense that it cannot be reduced to any different term \parencite[p.~13]{hindley-seldin-2008-lambda-calculus-and-combinators}.
 
 \item $\begin{aligned}[t]
 (\lambda x . xxy) (\lambda x . xxy)
@@ -310,9 +307,9 @@ This example shows that the $\beta$-contraction process doesn't always simplify.
     &\bcon \dotsb
 \end{aligned}$
 
-In this example, the $\beta$-contraction process actually makes the expression more `complicated' (in the sense of containing more terms). The initial term $(\lambda x . xxy) (\lambda x . xxy)$ is called $\mathbf{L}$, and it has no $\beta$-normal form.
+In this example, the $\beta$-contraction process actually makes the expression more `complicated' (in the sense of containing more terms). The initial term $(\lambda x . xxy) (\lambda x . xxy)$ is called $\mathbf{L}$, and it has no $\beta$-normal form \parencite[p.~12]{hindley-seldin-2008-lambda-calculus-and-combinators}.
 
-\item Let $P \equiv (\lambda a . b) \mathbf{L}$. Then $P$ can be reduced in multiple ways, by $\beta$-contracting either $(\lambda a . b)$ or $\mathbf{L}$:
+\item Let $P \equiv (\lambda a . b) \mathbf{L}$. Then $P$ can be reduced in multiple ways, by $\beta$-contracting either $(\lambda a . b)$ or $\mathbf{L}$ \parencite[pp.~11--12]{hindley-seldin-2008-lambda-calculus-and-combinators}:
 \begin{enumerate}[(i)]
     \item $\begin{aligned}[t]
     P &\equiv (\lambda a . b) \mathbf{L} \\
