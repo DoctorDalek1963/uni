@@ -172,6 +172,8 @@ The primary application of $\lambda$-calculus is in programming. The normal styl
 
 In this new lambda calculus, we care primarily about functions, but the common way of writing functions becomes cumbersome for higher-order functions (functions from functions to functions).
 
+% TODO: This shit sucks
+
 % TODO: Is $S$ actually an operator?
 % Properly explain this idea of only having functions? Maybe put this in the history section?
 % Why exactly can't we do it in ZFC? Can we do it in ZFC?
@@ -356,6 +358,10 @@ $P \bred Q$ does not imply that $Q$ is a $\beta$-nf, nor even that $Q \not\equiv
 % TODO: Define eta reduction
 \end{defn}
 
+% TODO: Give an algorithm to decide which $\beta$-redexes to contract and in what order. We obviously don't want $\Omega \bcon \Omega$
+
+% TODO: Add margin notes for Tim
+
 % }}}
 
 % Arithmetic {{{
@@ -450,9 +456,9 @@ We also define addition as \[
 
 \section{Confluence}
 
-Confluence, generally, is a property of rewriting systems in which the order of reductions is unimportant. For example, in normal arithmetic, we could evaluate the expression $(2 + 3) \times (5 + 1)$ by simplifying the left parenthetical and then the right, or right and then left. Either way, we get the same answer.
+\textit{Confluence}, generally, is a property of rewriting systems in which the order of reductions is unimportant. For example, in normal arithmetic, we could evaluate the expression $(2 + 3) \times (5 + 1)$ by simplifying the left parenthetical and then the right, or right and then left. Either way, we get the same answer.
 
-We want lambda calculus to be confluent because we don't want one term able to produce different results.
+We want $\lambda$-calculus to be confluent because we want one term to always produce the same result, no matter what order its $\beta$-redexes were contracted. $\overline 1 + \overline 1$ should always $\beta$-reduce to $\overline 2$, regardless of the inner workings of the reduction. If $\lambda$-calculus is confluent, it would allow us to ignore these inner workings for much of the theoretical work that we want to do with the system.
 
 \begin{thm}[The Church--Rosser Theorem for $\beta$-reduction]\label{thm:church-rosser-beta-reduction} % chktex 8
 If $P \bred M$ and $P \bred N$, then $\exists T$ such that $M \bred T$ and $N \bred R$. See Figure~\ref{fig:church-rosser-diamond}.
