@@ -7,6 +7,8 @@
 % - Maximum of 15 pages
 % - Remove unneeded packages from preamble
 
+% {{{ Preamble
+
 \documentclass[a4paper, 11pt]{article}
 \usepackage[UKenglish]{babel}
 
@@ -72,28 +74,6 @@
 
 \usepackage[hidelinks]{hyperref}
 
-\usepackage{minted}
-\setminted{
-	linenos,
-	breaklines,
-	fontsize=\footnotesize,
-	encoding=utf8,
-	style=catppuccin-latte, % Style provided by https://github.com/catppuccin/python
-}
-
-\usepackage[quiet]{fontspec}
-\setmonofont[Scale=MatchLowercase]{Hack}
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-% TODO: Decide what to do with these
-\fancyhead[L]{}
-\fancyhead[C]{}
-\fancyhead[R]{}
-
-% \usepackage{graphicx}
-% \graphicspath{ {./imgs/} }
-
 \newcommand\acong{\equiv_\alpha}
 \newcommand\bcon{\mathrel{\rightarrow_\beta}}
 \newcommand\bred{\mathrel{\twoheadrightarrow_\beta}}
@@ -101,16 +81,17 @@
 \newcommand\FV{\operatorname{FV}}
 \newcommand\doublelambda{\lambda\mkern-7.5mu\lambda}
 
-\title{\vspace*{-5em} The $\lambda$-Calculus}
+\newcommand\note[1]{{\color{red!80}\textit{Note}: #1}}
+
+\title{The $\lambda$-Calculus}
 \author{}
 \date{}
+
+% }}}
 
 \begin{document}
 
 \maketitle
-
-% \setlength{\parindent}{0em}
-% \setlength{\parskip}{1em}
 
 % \pagenumbering{roman}
 % \tableofcontents
