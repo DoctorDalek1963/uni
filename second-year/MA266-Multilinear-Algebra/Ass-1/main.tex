@@ -8,9 +8,6 @@
 
 \usepackage{preamble}
 
-% \usepackage{graphicx}
-% \graphicspath{ {./imgs/} }
-
 \renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
 
 \fancyhead[L]{MA266 Assignment 1}
@@ -42,7 +39,7 @@ Recall that a matrix $M \in M_n(\bb F)$ is invertible if there exists $N \in M_n
 
 \subsection{~} % 1.i
 
-% TODO: Show associativity
+Let $L, M, N \in M_n(\bb F)$. Then every entry of $LMN$ is a sum of products, all of which are in $\bb F$. Since addition and multiplication in $\bb F$ are associative, matrix multiplication in $M_n(\bb F)$ is associative.
 
 The identity element of $\mathrm{GL}_n(\bb F)$ is $I_n$, whose inverse is $I_n$. Every element in $\mathrm{GL}_n(\bb F)$ has an inverse by definition. The product of two invertible matrices $M$ and $N$ is $MN$ and it has inverse $N^{-1} M^{-1}$, so $\mathrm{GL}_n(\bb F)$ is closed. We've already proven that matrix multiplication is associative, so $(\mathrm{GL}_n(\bb F), \circ)$ is a group.
 
@@ -115,7 +112,88 @@ f(X) & Y_1 \\
 \textit{Hint}: What does $M^d$ look like for a positive integer $d$?
 \end{questionbody}
 
-Answer
+\begin{align*}
+M^2 &= \begin{pmatrix}
+X & Y \\
+0_{s, r} & Z
+\end{pmatrix}
+\begin{pmatrix}
+X & Y \\
+0_{s, r} & Z
+\end{pmatrix} \\
+&= \begin{pmatrix}
+X^2 & XY + YZ \\
+0_{s, r} & Z^2
+\end{pmatrix} \\[0.5ex]
+%
+M^3 &= \begin{pmatrix}
+X^2 & XY + YZ \\
+0_{s, r} & Z^2
+\end{pmatrix}
+\begin{pmatrix}
+X & Y \\
+0_{s, r} & Z
+\end{pmatrix} \\
+&= \begin{pmatrix}
+X^3 & X^2Y + XYZ + YZ^2 \\
+0_{s, r} & Z^3
+\end{pmatrix} \\[0.5ex]
+%
+M^4 &= \begin{pmatrix}
+X^3 & X^2Y + XYZ + YZ^2 \\
+0_{s, r} & Z^3
+\end{pmatrix}
+\begin{pmatrix}
+X & Y \\
+0_{s, r} & Z
+\end{pmatrix} \\
+&= \begin{pmatrix}
+X^4 & X^3Y + X^2YZ + XYZ^2 + YZ^3 \\
+0_{s, r} & Z^4
+\end{pmatrix}
+\end{align*}
+
+We conclude that \[
+M^d = \begin{pmatrix}
+X^d & \sum\limits_{i=0}^{d-1} X^{d-1-i} Y Z^i \\
+0_{s, r} & Z^d
+\end{pmatrix},
+\] which can be easily proven with induction. The base case of $d=0$ is just $M$ as given, and for the inductive step, assume the statement holds for $d$. Then
+\begin{align*}
+M^{d+1} &= \begin{pmatrix}
+X^d & \sum\limits_{i=0}^{d-1} X^{d-1-i} Y Z^i \\
+0_{s, r} & Z^d
+\end{pmatrix}
+\begin{pmatrix}
+X & Y \\
+0_{s, r} & Z
+\end{pmatrix} \\[0.5ex]
+&= \begin{pmatrix}
+X^{d+1} & X^d Y + Z \sum\limits_{i=0}^{d-1} X^{d-1-i} Y Z^i \\
+0_{s, r} & Z^{d+1}
+\end{pmatrix} \\[0.5ex]
+&= \begin{pmatrix}
+X^{d+1} & \sum\limits_{i=0}^d X^{d-1-i} Y Z^i \\
+0_{s, r} & Z^{d+1}
+\end{pmatrix}.
+\end{align*}
+
+Suppose \[
+f(x) = \alpha_n x^n + \alpha_{n-1} x^{n-1} + \dotsb + \alpha_1 x + \alpha_0.
+\] Then \[
+f(M) = \alpha_n M^n + \alpha_{n-1} M^{n-1} + \dotsb + \alpha_1 M + \alpha_0 I.
+\]
+
+For each term of $f$, the bottom left entry will always be $0_{s,r}$, so these sum to $0_{s,r}$ as desired. The top left entry of the $d$th term is $\alpha_d X^d$, so these sum to $f(X)$ as desired. Likewise with the bottom right entry being $f(Z)$.
+
+The top right entry of the $d$th term is $\sum\limits_{i=0}^{d-1} X^{d-1-i} Y Z^i$. These sum to
+\begin{align*}
+\sum_{d=0}^n \sum_{i=0}^{d-1} X^{d-1-i} Y Z^i &= Y \Big( 1 + (X + Z) + (X^2 + XZ + Z^2) + \dotsb \\
+    &\qquad + (X^{n-1} + X^{n-2} Z + \dotsb + X Z^{n-2} + Z^{n-1}) \Big) \\
+&= Y \sum_{t=0}^{n-1} \sum_{\substack{a,b \ge 0 \\ a + b = t}} X^a Z^b.
+\end{align*}
+
+I'm not sure this is any nicer, but however you want to write it, this is $Y_1$.
 
 % }}}
 
