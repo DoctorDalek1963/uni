@@ -1,0 +1,145 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\fancyhead[L]{MA263 Assignment 1}
+\title{MA263 Multivariable Analysis, Assignment 1}
+\colorlet{questionbodycolor}{cyan!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Show directly from the definition that matrix multiplication \begin{gather*}
+m : \R^{m,n} \times \R^{n,p} \to \R^{m, p} \\
+m(A, B) := AB
+\end{gather*} is Fr\'echet differentiable.
+
+(\textit{Suggestion}: Rather than compute all the partial derivatives, see if you can directly find the linear part of the `best linear approximation' to $m$.)
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Let $K \subset \R^n$ be compact. Let $\|\cdot\|$ be a norm on $\R^m$. For $f : K \to \R^m$, define \[
+\|f\|_\infty := \sup_{x \in K} \|f(x)\|.
+\]
+
+\begin{enumerate}[(a)]
+\item Show that this is finite and defines a norm on the vector space of continuous functions $f : K \to \R^m$.
+
+\item Suppose that a sequence of continuous functions $f_i : K \to \R^m$ is such that \[
+\forall \varepsilon > 0, \exists I \in \N \text{ such that } i, j \ge I \implies {\|f_i - f_j\|}_\infty < \varepsilon.
+\]
+Show that there exists a continuous function $f : K \to \R^m$ such that \[
+\forall \varepsilon > 0, \exists I \in \N \text{ such that } i \ge I \implies {\|f_i - f\|}_\infty < \varepsilon.
+\]
+
+(\textit{Suggestion}: This is a multivariable extension of the uniform convergence material from Analysis 3---see if you can adapt one of the proofs from your notes.)
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 2.a
+
+Answer
+
+\subsection{~} % 2.b
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Let $A \subset \R^n$, $f : A \subset \R^m$. Suppose $\|\cdot\|$ and $\|\cdot\|'$ are norms on $\R^n$ and $\R^m$ respectively.
+
+We say that $f$ is Lipschitz if there is a constant $L > 0$ so that \[
+\|f(x) - f(y)\|' \le L \|x - y\|.
+\]
+
+\begin{enumerate}[(a)]
+\item Show that a Lipschitz function is continuous.
+
+\item Let $U = \{x \in \R^n : \|x\|_\infty < 1\}$ and $f : U \to \R^m$ be differentiable. Suppose also that for some $L > 0$, $\|Df(x)\|_{\infty \to \infty} \le L$ for every $x \in U$. Show that $f$ is Lipschitz with the $\infty$-norms on $\R^n$ and $\R^m$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 3.a
+
+Answer
+
+\subsection{~} % 3.b
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Use the following strategy to show that all norms on $\R^n$ are equivalent:
+
+\begin{enumerate}[(a)]
+\item Explain why it suffices to prove that an arbitrary norm $\|\cdot\|$ on $\R^n$ is equivalent to $\|\cdot\|_\infty$.
+
+\item Show that $\exists C > 0$ so that $\|x\| \le C \|x\|_\infty$.
+
+(\textit{Hint}: Write $x = x_1 e_1 + \dotsb + x_n e_n$.)
+
+\item Show that $\|x\|$ is a continuous function on $\R^n$ with respect to the $\infty$-norm.
+
+(\textit{Suggestion}: Show that it is Lipschitz using the previous part.)
+
+\item Show that $S = \{x \in \R^n : \|x\|_\infty = 1\}$ is compact. You may use any of the equivalent formulations of compactness.
+
+\item Show that $\exists C' > 0$ such that $\|x\| \ge C'$ for $x \in S$.
+
+\item Conclude that $\|\cdot\|$ and $\|\cdot\|_\infty$ are equivalent.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 4.a
+
+Answer
+
+\subsection{~} % 4.b
+
+Answer
+
+\subsection{~} % 4.c
+
+Answer
+
+\subsection{~} % 4.d
+
+Answer
+
+\subsection{~} % 4.e
+
+Answer
+
+\subsection{~} % 4.f
+
+Answer
+
+% }}}
+
+\end{document}
