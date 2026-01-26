@@ -113,6 +113,7 @@ new-ass:
         "MA266": "magenta!50", # Multilinear Algebra
         "MA268": "violet!50", # Algebra 3
         "MA270": "blue!50", # Analysis 3
+        "MA2K4": "green!50", # Numerical Methods and Computation
     }
 
     with open("{{ source_directory() }}/templates/ass/main.tex", "r") as f:

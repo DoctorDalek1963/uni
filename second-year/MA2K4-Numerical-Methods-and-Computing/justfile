@@ -9,15 +9,14 @@ _default:
 
 # run a JupyterLab server
 [group("python")]
+[no-cd]
 jupyter:
     python -m jupyter lab
 
 # run the notebook from scratch
 [group("python")]
+[no-cd]
 run:
-    python -m jupyter execute filename.ipynb --inplace
+    python -m jupyter execute *.ipynb --inplace
 
-# convert the notebook to a PDF
-[group("pdf")]
-build: run
-    python -m jupyter nbconvert filename.ipynb --to pdf
+_pre-build: run

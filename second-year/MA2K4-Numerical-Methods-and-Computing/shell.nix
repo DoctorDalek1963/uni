@@ -9,30 +9,9 @@ let
       jupyter
     ]
   );
-
-  texlive = pkgs.texlive.withPackages (
-    p: with p; [
-      scheme-medium
-      adjustbox
-      amsmath
-      environ
-      enumitem
-      pdfcol
-      tcolorbox
-      titling
-      upquote
-    ]
-  );
 in
 pkgs.mkShell {
-  buildInputs = [
-    python
-    texlive
-  ]
-  ++ (with pkgs; [
-    just
-    pandoc
-  ]);
+  buildInputs = [ python ];
 
   shellHook = ''
     export PYTHONPATH="${python}/${python.sitePackages}"

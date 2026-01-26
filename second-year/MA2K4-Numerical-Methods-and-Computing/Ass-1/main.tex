@@ -1,0 +1,210 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+\fancyhead[L]{MA2K4 Assignment 1}
+\title{MA2K4 Numerical Methods and Computing, Assignment 1}
+\colorlet{questionbodycolor}{green!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+For a vector $x \in \R^m$ and a matrix $A \in \R^{n \times n}$, and any norm $\|\cdot\|$ on $\R^n$, show that \[
+\opnorm A = \sup_{x \ne 0} \f{\|Ax\|}{\|x\|}
+\] is a norm on $\R^{n \times n}$.
+\end{questionbody}
+
+We need to show three things:
+\begin{enumerate}[1)] % chktex 9 chktex 10
+\item $\opnorm A \ge 0$ for all $A \in \R^{n \times n}$, and $\opnorm A = 0$ if and only if $A = 0$;
+
+\item $\opnorm{\lambda A} = |\lambda| \, \opnorm A$ for all $A \in \R^{n \times n}$ and $\lambda \in \R$;
+
+\item $\opnorm{A + B} \le \opnorm A + \opnorm B$ for all $A, B \in \R^{n \times n}$.
+\end{enumerate}
+
+Since $\|\cdot\|$ on $\R^m$ has the first property and we take the supremum over $x \ne 0$, we see that $\|\cdot\|_\mathrm{op}$ has the first property.
+
+As before, $\|\cdot\|$ on $\R^m$ has the second property, so
+\begin{align*}
+\opnorm{\lambda A} &= \sup_{x \ne 0} \f{\|\lambda A x\|}{\|x\|} \\
+&= \sup_{x \ne 0} \f{|\lambda| \, \|Ax\|}{\|x\|} \\
+&= \sup_{x \ne 0} |\lambda| \f{\|Ax\|}{\|x\|} \\
+&= |\lambda| \sup_{x \ne 0} \f{\|Ax\|}{\|x\|} \\
+&= |\lambda| \opnorm A
+\end{align*}
+as required.
+
+Since $\|\cdot\|$ on $\R^m$ has the triangle inequality, and since $\|\cdot\|_\mathrm{op}$ has property 2,
+\begin{align*}
+\| (A + B) x \| &= \| Ax + Bx \| \\
+&\le \| Ax \| + \| Bx \| \\
+&\le \big( \opnorm A + \opnorm B \big) \| x \|,
+\end{align*}
+and therefore
+\begin{align*}
+\opnorm{A + B} &= \sup_{x \ne 0} \f{\| (A + B) x \|}{\| x \|} \\
+&\le \opnorm A + \opnorm B.
+\end{align*}
+
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Compute the condition number $K(d)$ in the $|\cdot|$-norm on $\R$ for the following problems:
+\begin{enumerate}[(a)]
+\item $x - a^d = 0$ with $a > 0$;
+
+\item the area of a triangle with all three sides having lengths $d$;
+\end{enumerate}
+where $d$ is the datum, and $x$ is the `unknown'. Comment on values of $d$ for which the problem is ill-posed. Compute the condition number via the derivative of the resolvent.
+\end{questionbody}
+
+\subsection{~} % 2.a
+
+% The problem is ill-posed when $d$ is an even integer, since there will be multiple solutions. Consider $d=2$.
+Since $a$ is a fixed constant, the problem is always well-posed.
+
+We want $x = a^d$ and so $x = G(d) = a^d$. Then $G'(d) = a^d \log a$. Then we have
+\begin{align*}
+K(d) &\approx |G'(d)| \f{|d|}{|G(d)|} \\[0.5ex]
+&= |a^d \log a| \f{|d|}{|a^d|} \\[0.5ex]
+&= |d \log a|.
+\end{align*}
+
+\subsection{~} % 2.b
+
+The problem is well-posed when $d > 0$.
+
+Any triangle with all three sides of equal length must be equilateral, so its area is $x = G(d) = \df{d^2 \sqrt 3}4$. Then $G'(d) = \df{d \sqrt 3}2$. Then we have
+\begin{align*}
+K(d) &\approx |G'(d)| \f{|d|}{|G(d)|} \\[0.5ex]
+&= \l| \f{d \sqrt 3}2 \r| \f{|d|}{\l| \f{d^2 \sqrt 3}4 \r|} \\[0.5ex]
+&= \f{|d| \sqrt 3}2 \f{4 |d|}{d^2 \sqrt 3} \\[0.5ex]
+&= \f{4 d^2 \sqrt 3}{2 d^2 \sqrt 3} \\[0.5ex]
+&= 2.
+\end{align*}
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+For the system of equations \begin{equation}\label{eqn:Q3-system}
+\begin{aligned}
+x + dy &= 0 \\
+dx + dy &= 1,
+\end{aligned}
+\end{equation}
+consider the following questions:
+
+\begin{enumerate}[(a)]
+\item Considering the vector $(x, y)$ as the unknown and $d$ as given datum, for what values of $d$ is the problem well-posed?
+
+\item Now, consider only $x$ the unknown. For what values of $d$ does a unique solution exist for this problem?
+
+\item Again, considering $x$ the unknown, what is the condition number $K(d)$ in the $|\cdot|$-norm on $\R$?
+
+\item For what values of $d$ is the problem well-conditioned? In this case, we demand the condition number to be smaller than 10.
+
+Compute the condition number via the derivative of the resolvent.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 3.a
+
+The problem is well-posed when the matrix $\begin{pmatrix}
+1 & d \\
+d & d
+\end{pmatrix}$ has non-zero determinant, so whenever $d - d^2 \ne 0$. We can factorised this into $d(1 - d) \ne 0$, so we only need to require that $d \ne 0$ and $d \ne 1$. Any other value of $d$ gives a well-posed problem.
+
+\subsection{~} % 3.b
+
+Answer
+
+\subsection{~} % 3.c
+
+Answer
+
+\subsection{~} % 3.d
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Consider the problem of finding the solution to a quadratic equation \[
+x^2 + 2px - q =0,
+\] which has the solutions \[
+x_\pm = -p \pm \sqrt{p^2 + q}.
+\] Consider each solution as a separate problem on $\R$. Study the conditioning of these two problems:
+
+\begin{enumerate}[(a)]
+\item Consider first $p$ as the datum to compute $K(p)$ in the $|\cdot|$-norm on $\R$. Simplify as much as possible to show that it does not depend on whether one considers $x_+$ or $x_-$.
+
+\item Now, consider instead $q$ as the datum to compute $K(q)$ in the $|\cdot|$-norm on $\R$. Compute the condition number via the derivative of the resolvent.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 4.a
+
+Answer
+
+\subsection{~} % 4.b
+
+Answer
+
+% }}}
+
+% {{{ Q5
+\newquestion{5}
+
+\begin{questionbody}
+Write down the linear interpolant $p_1(x)$ for the function $f(x) = x^3 - x$, using the nodes $x_0 = 0$ and $x_1 = a$.
+
+Denote by \[
+e(x) = f(x) - p_1(x)
+\] the error that we produced in the linear interpolation. Show that this error fulfils \[
+e(x) = \f12 f''(\xi) x (x-a)
+\] for the unique $\xi = \df13 (x+a)$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q6
+\newquestion{6}
+
+\begin{questionbody}
+Repeat this calculation for the function $f(x) = {(x-a)}^4$ for the same nodes, and show that in this case there are two possible values for $\xi$. Give their values.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document} % chktex 17
