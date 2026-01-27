@@ -78,17 +78,19 @@ Let $V$ be an $\bb F$-vector space and let $X$ be a subset of $V$.
 \begin{enumerate}[(i)]
 \item Prove that $\bb F \langle X \rangle$ is a subspace of $V$.
 
-\item Prove that $\bb F \langle X \rangle = \bigcap_{X \subseteq W \le V} W$. That is, $\bb F \langle X \rangle$ in the intersection of all subspaces of $V$ containing $X$.
+\item Prove that $\bb F \langle X \rangle = \bigcap_{X \subseteq W \le V} W$. That is, $\bb F \langle X \rangle$ is the intersection of all subspaces of $V$ containing $X$.
 \end{enumerate}
 \end{questionbody}
 
 \subsection{~} % 2.i
 
-Answer
+Recall that $\bb F \angb X$ is a subspace if and only if $\forall w_1, w_2 \in \bb F \angb X$, $\lambda \in \bb F$, we have $w_1 - \lambda w_2 \in \bb F \angb X$. By definition, $\bb F \angb X$ contains all linear combinations of elements of $X$, and therefore all linear combinations of elements of itself. Therefore $\bb F \angb X$ is a subspace of $V$.
 
 \subsection{~} % 2.ii
 
-Answer
+Let $x \in \bb F \angb X$ and call the intersection $I$. Then $W$ must contain $x$, since $X \subseteq W$ implies $\bb F \angb X \subseteq W$ because $W$ is a subspace of $V$. Hence, $x$ is in the intersection of all such $W$. Therefore $\bb F \angb X \subseteq I$.
+
+Conversely, $\bb F \angb X$ is a subspace containing $X$, and so will be one of the $W$ in the intersection. Since the taking repeated intersections can only shrink a set, $I \subseteq \bb F \angb X$. Therefore $\bb F \angb X = I$.
 
 % }}}
 
