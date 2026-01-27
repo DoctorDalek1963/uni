@@ -56,11 +56,26 @@ Show that there exists a continuous function $f : K \to \R^m$ such that \[
 
 \subsection{~} % 2.a
 
-Answer
+Since $K$ is compact, it is sequentially compact. % TODO: Finiteness
+
+To show that $\|\cdot\|_\infty$ is a norm, we need to show three things. Firstly, since $\|\cdot\|$ is a norm on $\R^m$, it is non-negative. So $\sup_{x \in K} \|f(x)\| \ge 0$, and the only way to get equality is when $f$ is the constant 0 function.
+
+Secondly, we require that for any $\lambda \in \R$, $\| \lambda f \|_\infty = |\lambda| \, \|f\|_\infty$. This is evident from the definition, again since $\|\cdot\|$ is a norm on $\R^m$: \[
+\| \lambda f \|_\infty = \sup_{x \in K} \|\lambda f(x)\| = \sup_{x \in K} |\lambda| \, \|f(x)\| = |\lambda| \, \|f\|_\infty.
+\]
+
+Finally, we require the triangle inequality. Let $f$ and $g$ be functions $K \to \R^m$. Since $\|\cdot\|$ is a norm on $\R^m$,
+\begin{align*}
+\|f + g\|_\infty &= \sup_{x \in K} \|f(x) + g(x)\| \\
+&\le \sup_{x \in K} \big( \|f(x)\| + \|g(x)\| \big) \\
+&\le \sup_{x \in K} \|f(x)\| + \sup_{x \in K} \|g(x)\| \\
+&= \|f\|_\infty + \|g\|_\infty.
+\end{align*}
+Therefore $\|\cdot\|_\infty$ is a norm.
 
 \subsection{~} % 2.b
 
-Answer
+Cf: A sequence of functions is uniformly convergent if and only if it is uniformly Cauchy
 
 % }}}
 
