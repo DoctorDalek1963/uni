@@ -63,7 +63,6 @@ and therefore
 &\le \opnorm A + \opnorm B.
 \end{align*}
 
-
 % }}}
 
 % {{{ Q2
@@ -140,11 +139,40 @@ d & d
 
 \subsection{~} % 3.b
 
-Answer
+If $x$ is the only unknown then we need $x = -dy$ to satisfy the first equation. Then we need $-d^2 y + dy = 1$ for the second equation, so we get
+\begin{align*}
+y d^2 - yd + 1 &= 0 \\
+d &= \f{y \pm \sqrt{y^2 - 4y}}{2y} \\
+&= \f{y \pm \sqrt{y (y - 4)}}{2y}
+\end{align*}
+as the only values of $d$ that admit a unique solution.
 
 \subsection{~} % 3.c
 
-Answer
+% TODO: This has got to be the wrong idea. Maybe it means $y$ is a known constant and not part of the given data?
+
+The resolvent map in this case is $x = G(d, y) = -dy$. We shall consider $G$ to be a function $\R^2 \to \R$, and denote the input space with $\begin{pmatrix} d \\ y \end{pmatrix}$ coordinates and endow it with the 1-norm. So \[
+\opnorm G = \sup_{\|v\|_1 = 1} \|G(v)\|_1.
+\] This clearly happens at $\begin{pmatrix} 1 \\ -1 \end{pmatrix}$ or $\begin{pmatrix} -1 \\ 1 \end{pmatrix}$, and so $\opnorm G = 1$.
+
+To find the Fr\'echet derivative of $G$, we note that $\partial_d G = -y$ and $\partial_y G = -d$. Since $G$ is trivially Fr\'echet differentiable, we see that it is the Jacobian, \[
+DG(d, y) = \partial G(d, y) = \begin{pmatrix} -y & -d \end{pmatrix}.
+\]
+
+Then we get \[
+\opnorm{DG} = \sup_{\|v\|_1 = 1} \|DG(d, y) (v)\|_1,
+\] which is $|1| + |1| = 2$.
+
+And simply \[
+\l\| \begin{pmatrix} d \\ y \end{pmatrix} \r\|_1 = |d| + |y|.
+\]
+
+Then we can compute the condition number as
+\begin{align*}
+K(d, y) &= \opnorm{DG} \f{\l\| \begin{pmatrix} d \\ y \end{pmatrix} \r\|_1}{\opnorm G} \\
+&= 2 \f{|d| + |y|}{1} \\
+&= 2(|d| + |y|).
+\end{align*}
 
 \subsection{~} % 3.d
 
