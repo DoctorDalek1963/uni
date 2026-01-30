@@ -82,9 +82,14 @@ rename: build
 
     shutil.copyfile("main.pdf", f"Dyson_Dyson_5503449_{course_code}_Assignment_{ass_num}.pdf")
 
+# run commands before finishing
+[group("pdf")]
+_pre-finish:
+    @true
+
 # build a fresh PDF from scratch and rename it
 [group("pdf")]
-finish: clean rename
+finish: clean _pre-finish rename
 
 # create a new main.tex for an assignment in the current directory
 [group("create")]

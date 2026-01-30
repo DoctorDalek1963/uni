@@ -19,4 +19,4 @@ jupyter:
 run:
     python -m jupyter execute *.ipynb --inplace
 
-_pre-build: run
+_pre-finish: run
