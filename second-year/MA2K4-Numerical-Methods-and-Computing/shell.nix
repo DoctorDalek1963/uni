@@ -7,11 +7,15 @@ let
       numpy
       matplotlib
       jupyter
+      jupyterlab-vim
     ]
   );
 in
 pkgs.mkShell {
-  buildInputs = [ python ];
+  buildInputs = [
+    python
+    pkgs.nodejs
+  ];
 
   shellHook = ''
     export PYTHONPATH="${python}/${python.sitePackages}"
