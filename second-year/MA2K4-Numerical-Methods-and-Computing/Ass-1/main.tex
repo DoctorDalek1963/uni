@@ -193,17 +193,53 @@ x_\pm = -p \pm \sqrt{p^2 + q}.
 \begin{enumerate}[(a)]
 \item Consider first $p$ as the datum to compute $K(p)$ in the $|\cdot|$-norm on $\R$. Simplify as much as possible to show that it does not depend on whether one considers $x_+$ or $x_-$.
 
-\item Now, consider instead $q$ as the datum to compute $K(q)$ in the $|\cdot|$-norm on $\R$. Compute the condition number via the derivative of the resolvent.
+\item Now, consider instead $q$ as the datum to compute $K(q)$ in the $|\cdot|$-norm on $\R$.
 \end{enumerate}
+Compute the condition number via the derivative of the resolvent.
 \end{questionbody}
 
 \subsection{~} % 4.a
 
-Answer
+We shall first consider $x_+$. Then \[
+G(p) = -p + \sqrt{p^2 + q}
+\] and \[
+G'(p) = -1 + \df p{\sqrt{p^2 + q}}.
+\] Therefore
+\begin{align*}
+K_+(p) &\approx \l| -1 + \df p{\sqrt{p^2 + q}} \r| \f{|p|}{\l| -p + \sqrt{p^2 + q} \r|} \\
+&= \f{\l| -1 + \df p{\sqrt{p^2 + q}} \r| |p|}{\l| -p + \sqrt{p^2 + q} \r|} \\
+&= \f{\l| -p + \df{p^2}{\sqrt{p^2 + q}} \r|}{\l| -p + \sqrt{p^2 + q} \r|} \\
+&= \l| \f{-p + \df{p^2}{\sqrt{p^2 + q}}}{-p + \sqrt{p^2 + q}} \r|
+\end{align*}
+
+And in the case of $x_-$, we get \[
+G(p) = -p - \sqrt{p^2 + q}
+\] and \[
+G'(p) = -1 - \df p{\sqrt{p^2 + q}}.
+\] Therefore
+\begin{align*}
+K_-(p) &\approx \l| -1 - \df p{\sqrt{p^2 + q}} \r| \f{|p|}{\l| -p - \sqrt{p^2 + q} \r|} \\
+\end{align*}
 
 \subsection{~} % 4.b
 
-Answer
+Again, we shall first consider $x_+$. Then \[
+G(q) = -p + \sqrt{p^2 + q}
+\] and \[
+G'(q) = \f{1}{2 \sqrt{p^2 + q}}.
+\] Therefore
+\begin{align*}
+K_+(q) &\approx \l| \f{1}{2 \sqrt{p^2 + q}} \r| \f{|q|}{\l|-p + \sqrt{p^2 + q}\r|}
+\end{align*}
+
+And in the case of $x_-$, we get \[
+G(q) = -p - \sqrt{p^2 + q}
+\] and \[
+G'(q) = - \f{1}{2 \sqrt{p^2 + q}}.
+\] Therefore
+\begin{align*}
+K_-(q) &\approx \l| - \f{1}{2 \sqrt{p^2 + q}} \r| \f{|q|}{\l|-p - \sqrt{p^2 + q}\r|}
+\end{align*}
 
 % }}}
 
