@@ -28,7 +28,9 @@ m(A, B) := AB
 (\textit{Suggestion}: Rather than compute all the partial derivatives, see if you can directly find the linear part of the `best linear approximation' to $m$.)
 \end{questionbody}
 
-Answer
+We want to find $L$ such that \[
+\llim{h \to (0, 0)} \f{\| m(x + h) - m(x) - L(h) \|}{\| h \|} = 0,
+\] where $x, h \in \R^{m,n} \times \R^{n,p}$.
 
 % }}}
 
@@ -56,7 +58,8 @@ Show that there exists a continuous function $f : K \to \R^m$ such that \[
 
 \subsection{~} % 2.a
 
-Since $K$ is compact, it is sequentially compact. % TODO: Finiteness
+% TODO: Explain this more
+Since $K$ is compact, it is sequentially compact. Since $f$ is continuous, $\|f\|_\infty$ must be finite.
 
 To show that $\|\cdot\|_\infty$ is a norm, we need to show three things. Firstly, since $\|\cdot\|$ is a norm on $\R^m$, it is non-negative. So $\sup_{x \in K} \|f(x)\| \ge 0$, and the only way to get equality is when $f$ is the constant 0 function.
 
@@ -75,7 +78,29 @@ Therefore $\|\cdot\|_\infty$ is a norm.
 
 \subsection{~} % 2.b
 
-Cf: A sequence of functions is uniformly convergent if and only if it is uniformly Cauchy
+Let $x \in K$ and define $x_i = f_i(x)$. Then $(x_i)$ is a Cauchy sequence and since $\R^m$ is complete, $(x_i)$ converges to some point in $\R^m$. We can do this for any $x$, so there must exist a function $f$ such that $f_i(x)$ converges to $f(x)$ at least pointwise. We want to show it converges uniformly.
+
+By the hypothesis, \[
+\forall \varepsilon > 0, \exists I \in \N \text{ such that } i, j \ge I \implies {\|f_i(x) - f_j(x)\|}_\infty < \varepsilon.
+\]
+
+That means that every component of the function is bounded by $\varepsilon$. So for all $k \in \{1, \dotsc, n\}$, \[
+|f_{k,i}(x) - f_{k,j}(x)| < \varepsilon,
+\] where $f_{k,i}(x)$ denotes the $k$th component of $f_i(x)$.
+
+Consider some $k \in \{1, \dotsc, n\}$. The previous inequality tells us that \[
+f_{k,j}(x) - \varepsilon < f_{k,i}(x) < f_{k,j}(x) + \varepsilon.
+\] Since this holds for all $j \ge I$, we can take limits as $j \to \infty$. We find \[
+f_k(x) - \varepsilon < f_{k,i}(x) < f_k(x) + \varepsilon,
+\] from which it follows that \[
+|f_k(x) - f_{k,i}(x)| < \varepsilon.
+\] which proves the result.
+
+We can apply the previous argument to all $k$ and convert back to the $\infty$-norm to see that \[
+\|f(x) - f_i(x)\|_\infty < \varepsilon,
+\] which proves the result.
+
+\hfill $\square$
 
 % }}}
 
@@ -83,7 +108,7 @@ Cf: A sequence of functions is uniformly convergent if and only if it is uniform
 \newquestion{3}
 
 \begin{questionbody}
-Let $A \subset \R^n$, $f : A \subset \R^m$. Suppose $\|\cdot\|$ and $\|\cdot\|'$ are norms on $\R^n$ and $\R^m$ respectively.
+Let $A \subset \R^n$, $f : A \to \R^m$. Suppose $\|\cdot\|$ and $\|\cdot\|'$ are norms on $\R^n$ and $\R^m$ respectively.
 
 We say that $f$ is Lipschitz if there is a constant $L > 0$ so that \[
 \|f(x) - f(y)\|' \le L \|x - y\|.
@@ -98,11 +123,21 @@ We say that $f$ is Lipschitz if there is a constant $L > 0$ so that \[
 
 \subsection{~} % 3.a
 
-Answer
+Suppose $f$ is Lipschitz. To show that $f$ is continuous, we want to show that for any $\varepsilon > 0$, we can find a $\delta > 0$ such that $\|x - y\| < \delta \implies \|f(x) - f(y)\|' < \varepsilon$.
+
+We know that $\|f(x) - f(y)\|' \le L \|x - y\|$ and so if $\|x - y\| < \delta$, then $\|f(x) - f(y)\|' < L \delta$. Now we can just set $L \delta = \varepsilon$ and see that our $\delta$ must be $\df \varepsilon L$. Therefore $f$ is continuous.
 
 \subsection{~} % 3.b
 
-Answer
+We know that for some $L > 0$, \[
+\|Df(x)\|_{\infty \to \infty} = \sup_{x \in U \setminus \{0\}} \f{\|Df(x)\|_\infty}{\|x\|_\infty} \le L
+\]
+
+Therefore \[
+\|f(x) - f(y)\|_\infty \le L \|x - y\|_\infty.
+\]
+
+\hfill $\square$
 
 % }}}
 
@@ -133,27 +168,62 @@ Use the following strategy to show that all norms on $\R^n$ are equivalent:
 
 \subsection{~} % 4.a
 
-Answer
+Equivalence of norms is transitive. Suppose $\|\cdot\|$ and $\|\cdot\|'$ are both equivalent to $\|\cdot\|_\infty$. Then for all $x \in \R^n$, there exists $c_1, c_2, c_1', c_2' > 0$ such that \[
+c_1 \|x\| \le \|x\|_\infty \le c_2 \|x\|
+\] and  \[
+c_1' \|x\|' \le \|x\|_\infty \le c_2' \|x\|'.
+\]
+
+Therefore \[
+c_1 \|x\| \le \|x\|_\infty \le c_2' \|x\|'
+\] and so \[
+c_1 \|x\| \le c_2' \|x\|'.
+\]
+Likewise, \[
+c_1' \|x\|' \le c_2 \|x\|.
+\]
+
+Therefore \[
+\f{c_1}{c_2'} \|x\| \le \|x\|' \le \f{c_2}{c_1'} \|x\|,
+\] and so $\|\cdot\|$ and $\|\cdot\|'$ are equivalent.
 
 \subsection{~} % 4.b
 
-Answer
+$\|x\|_\infty = \max\{x_1, \dotsc, x_n\}$, so without loss of generality, assume $\|x\|_\infty = x_1$. Then we just choose $C \ge \df{\|x\|}{x_1}$.
 
 \subsection{~} % 4.c
 
-Answer
+Let $x, y \in \R^n$. We want to show that $\|\cdot\|$ is Lipschitz with respect to the $\infty$-norm, so we want to show that \[
+\big\| \|x\| - \|y\| \big\|_\infty \le L \|x - y\|_\infty
+\] for some $L > 0$.
+
+We know there exists $C_x, C_y > 0$ such that \[
+\|x\| \le C_x \|x\|_\infty, \qquad \|y\| \le C_y \|y\|_\infty.
+\]
+% TODO: Finish
+
+Since $\|\cdot\|$ is Lipschitz, it is continuous, as per \textbf{Q3(a)}.
 
 \subsection{~} % 4.d
 
-Answer
+Consider a sequence $(x_i)$ in $S$ which converges to a point $x$.
+% Then $\forall \varepsilon > 0$, $\exists N \in \N$ such that $\forall n > N$, $\|x_n - x\|_\infty < \varepsilon$.
+Since all $\|x_i\|_\infty = 1$, $\|x\|_\infty = 1$. The limit of the sequence is in $S$, so $S$ is closed.
+Clearly $S$ is bounded since for all $x \in S$, $\|x\|_\infty \le 1$. Since $S$ is closed and bounded, it is compact.
 
 \subsection{~} % 4.e
 
-Answer
+We know $\|x\| = 0$ if and only if $x = 0$ but we require $x \in S$ and we know $0 \ne S$. Therefore we can set $C = \inf_{x \in S} \|x\|$ and we know that $C > 0$.
 
 \subsection{~} % 4.f
 
-Answer
+Since $x \in S$ in part \textbf{Q4(e)}, we can multiply by $\|x\|_\infty = 1$ and swap sides to get \[
+C' \|x\|_\infty \le \|x\|.
+\] We combine this with the result of \textbf{Q4(b)} to get \[
+C' \|x\|_\infty \le \|x\| \le C \|x\|_\infty.
+\] Therefore $\|\cdot\|$ is equivalent to $\|\cdot\|_\infty$, so all norms on $\R^n$ are equivalent.
+
+\hfill $\square$
 
 % }}}
 
