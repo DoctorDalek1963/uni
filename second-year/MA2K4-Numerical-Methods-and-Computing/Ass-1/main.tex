@@ -124,10 +124,9 @@ consider the following questions:
 
 \item Again, considering $x$ the unknown, what is the condition number $K(d)$ in the $|\cdot|$-norm on $\R$?
 
-\item For what values of $d$ is the problem well-conditioned? In this case, we demand the condition number to be smaller than 10.
-
-Compute the condition number via the derivative of the resolvent.
+\item Still considering $x$ the unknown, for what values of $d$ is the problem well-conditioned? In this case, we demand the condition number to be smaller than 10.
 \end{enumerate}
+Compute the condition number via the derivative of the resolvent.
 \end{questionbody}
 
 \subsection{~} % 3.a
@@ -185,7 +184,7 @@ Answer
 
 \begin{questionbody}
 Consider the problem of finding the solution to a quadratic equation \[
-x^2 + 2px - q =0,
+x^2 + 2px - q = 0,
 \] which has the solutions \[
 x_\pm = -p \pm \sqrt{p^2 + q}.
 \] Consider each solution as a separate problem on $\R$. Study the conditioning of these two problems:
@@ -209,7 +208,7 @@ G'(p) = -1 + \df p{\sqrt{p^2 + q}}.
 K_+(p) &\approx \l| -1 + \df p{\sqrt{p^2 + q}} \r| \f{|p|}{\l| -p + \sqrt{p^2 + q} \r|} \\
 &= \f{\l| -1 + \df p{\sqrt{p^2 + q}} \r| |p|}{\l| -p + \sqrt{p^2 + q} \r|} \\
 &= \f{\l| -p + \df{p^2}{\sqrt{p^2 + q}} \r|}{\l| -p + \sqrt{p^2 + q} \r|} \\
-&= \l| \f{-p + \df{p^2}{\sqrt{p^2 + q}}}{-p + \sqrt{p^2 + q}} \r|
+&= \l| \f{-p + \df{p^2}{\sqrt{p^2 + q}} }{-p + \sqrt{p^2 + q}} \r|
 \end{align*}
 
 And in the case of $x_-$, we get \[
@@ -256,7 +255,33 @@ e(x) = \f12 f''(\xi) x (x-a)
 \] for the unique $\xi = \df13 (x+a)$.
 \end{questionbody}
 
-Answer
+\begin{align*}
+p_1(x) &= f(x_0) + \l( \f{f(x_1) - f(x_0)}{x_1 - x_0} \r) (x - x_0) \\[0.5ex]
+&= f(0) + \l( \f{f(a) - f(0)}{a - 0} \r) (x - 0) \\[0.5ex]
+&= \l( \f{f(a)}{a} \r) x \\[0.5ex]
+&= \f{x (a^3 - a)}{a} \\[0.5ex]
+&= x (a^2 - 1)
+% &= x (a - 1) (a + 1)
+\end{align*}
+
+We will need the second derivative.
+\begin{align*}
+f'(x) &= 3x^2 - 1 \\[0.5ex]
+f''(x) &= 6x
+\end{align*}
+
+Then we get
+\begin{align*}
+e(x) &= f(x) - p_1(x) \\[0.5ex]
+&= x^3 - x - x(a^2 - 1) \\[0.5ex]
+&= x^3 - x - x a^2 + x \\[0.5ex]
+&= x^3 - x a^2 \\[0.5ex]
+&= x (x^2 - a^2) \\[0.5ex]
+&= x (x + a) (x - a) \\[0.5ex]
+&= \f12 f''(\xi) x (x - a) \\[0.5ex]
+&= 3 \xi x (x - a),
+\end{align*}
+which implies that $\xi = \df13 (x + a)$ as required.
 
 % }}}
 
@@ -267,7 +292,33 @@ Answer
 Repeat this calculation for the function $f(x) = {(x-a)}^4$ for the same nodes, and show that in this case there are two possible values for $\xi$. Give their values.
 \end{questionbody}
 
-Answer
+\begin{align*}
+p_1(x) &= f(x_0) + \l( \f{f(x_1) - f(x_0)}{x_1 - x_0} \r) (x - x_0) \\[0.5ex]
+&= f(0) + \l( \f{f(a) - f(0)}{a - 0} \r) (x - 0) \\[0.5ex]
+&= f(0) + \l( \f{- f(0)}{a} \r) x \\[0.5ex]
+&= {(-a)}^4 + \f{-x {(-a)}^4}a \\[0.5ex]
+&= a^4 - x a^3
+\end{align*}
+
+The second derivative is
+\begin{align*}
+f'(x) &= 4 {(x - a)}^3 \\[0.5ex]
+f''(x) &= 12 {(x - a)}^2
+\end{align*}
+
+And so the error is
+\begin{align*}
+e(x) &= f(x) - p_1(x) \\[0.5ex]
+&= {(x - a)}^4 - a^4 + x a^3 \\[0.5ex]
+&= x^4 - 4 x^3 a + 6 x^2 a^2 - 4 x a^3 + a^4 - a^4 + x a^3 \\[0.5ex]
+&= x^4 - 4 x^3 a + 6 x^2 a^2 - 3 x a^3 \\[0.5ex]
+&= x (x^3 - 4 x^2 a + 6 x^1 a^2 - 3 a^3) \\[0.5ex]
+%
+&= \f12 f''(\xi) x (x-a) \\[0.5ex]
+&= \f12 \cdot 12 {(\xi - a)}^2 x (x-a) \\[0.5ex]
+&= 6 {(\xi - a)}^2 x (x-a) \\[0.5ex]
+&= 6 (\xi^2 - 2\xi a + a^2) x (x-a) \\[0.5ex]
+\end{align*}
 
 % }}}
 
