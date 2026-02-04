@@ -202,7 +202,9 @@ G_+'(p) = -1 + \df p{\sqrt{p^2 + q}}.
 K_+(p) &\approx \l| -1 + \df p{\sqrt{p^2 + q}} \r| \f{|p|}{\l| -p + \sqrt{p^2 + q} \r|} \\
 &= \f{\l| -1 + \df p{\sqrt{p^2 + q}} \r| |p|}{\l| -p + \sqrt{p^2 + q} \r|} \\
 &= \f{\l| -p + \df{p^2}{\sqrt{p^2 + q}} \r|}{\l| -p + \sqrt{p^2 + q} \r|} \\
-&= \l| \f{-p + \df{p^2}{\sqrt{p^2 + q}} }{-p + \sqrt{p^2 + q}} \r|
+&= \l| \f{-p + \df{p^2}{\sqrt{p^2 + q}} }{-p + \sqrt{p^2 + q}} \r| \\
+% TODO: How?
+&= \l| \f{p}{\sqrt{p^2 + q}} \r|
 \end{align*}
 
 And in the case of $x_-$, we get \[
@@ -215,8 +217,12 @@ K_-(p) &\approx \l| -1 - \df p{\sqrt{p^2 + q}} \r| \f{|p|}{\l| -p - \sqrt{p^2 + 
 &= \f{\l| -1 - \df p{\sqrt{p^2 + q}} \r| |p|}{\l| -p - \sqrt{p^2 + q} \r|} \\
 &= \f{\l| -p - \df{p^2}{\sqrt{p^2 + q}} \r|}{\l| -p - \sqrt{p^2 + q} \r|} \\
 &= \f{\l| p + \df{p^2}{\sqrt{p^2 + q}} \r|}{\l| p + \sqrt{p^2 + q} \r|} \\
-&= \l| \f{p + \df{p^2}{\sqrt{p^2 + q}} }{p + \sqrt{p^2 + q}} \r|
+&= \l| \f{p + \df{p^2}{\sqrt{p^2 + q}} }{p + \sqrt{p^2 + q}} \r| \\
+% TODO: How?
+&= \l| \f{p}{\sqrt{p^2 + q}} \r|
 \end{align*}
+
+And therefore $K_+(p) = K_-(p)$.
 
 \subsection{~} % 4.b
 
@@ -242,8 +248,6 @@ K_-(q) &\approx \l| - \f{1}{2 \sqrt{p^2 + q}} \r| \f{|q|}{\l|-p - \sqrt{p^2 + q}
 &= \f{|q|}{\l| 2 \sqrt{p^2 + q} \l(p + \sqrt{p^2 + q}\r) \r|} \\
 &= \f{|q|}{2 \l| p \sqrt{p^2 + q} + p^2 + q \r|} \\
 \end{align*}
-
-% TODO: Oops these are different
 
 % }}}
 
@@ -317,7 +321,7 @@ e(x) &= f(x) - p_1(x) \\[0.5ex]
 &= {(x - a)}^4 - a^4 + x a^3 \\[0.5ex]
 &= x^4 - 4 x^3 a + 6 x^2 a^2 - 4 x a^3 + a^4 - a^4 + x a^3 \\[0.5ex]
 &= x^4 - 4 x^3 a + 6 x^2 a^2 - 3 x a^3 \\[0.5ex]
-&= x (x^3 - 4 x^2 a + 6 x^1 a^2 - 3 a^3) \\[0.5ex]
+&= x (x^3 - 4 x^2 a + 6 x a^2 - 3 a^3) \\[0.5ex]
 %
 &= \f12 f''(\xi) x (x-a) \\[0.5ex]
 &= \f12 \cdot 12 {(\xi - a)}^2 x (x-a) \\[0.5ex]
