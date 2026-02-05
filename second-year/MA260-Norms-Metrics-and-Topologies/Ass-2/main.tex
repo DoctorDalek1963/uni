@@ -1,0 +1,88 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA260 Assignment 2}
+\title{MA260 Norms Metrics and Topologies, Assignment 2}
+\colorlet{questionbodycolor}{orange!50!violet}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Let $(X, d)$ be a metric space and let $x \ne y$ be two elements of $X$. Show that $\exists \varepsilon_1, \varepsilon_2 > 0$ such that $\bb B(y, \varepsilon_1) \cap \bb B(y, \varepsilon_2) = \emptyset$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Let $(X, d)$ be a metric space and let $Y \subset X$. Show that $U$ is open in $Y$ if and only if $U = Y \cap V$, where $V$ is open in $X$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+In this exercise, we will consider $\R^2$ with two different metrics: the standard Euclidean metric $d$ and the \textit{sunflower metric} $d_\mathrm{sf}$ defined by \[
+d_\mathrm{sf}(x, y) = \begin{cases}
+\|x - y\| & \text{if $x$ and $y$ lie on the same line through the origin}, \\
+\|x\| + \|y\| & \text{otherwise}.
+\end{cases}
+\]
+%
+\begin{enumerate}[(i)]
+\item Let ${(x_n)}_{n=1}^\infty$ be a sequence in $\R^2$. Show that if $(x_n)$ converges to $x \in \R^2$ with respect to the sunflower metric then $(x_n)$ converges to $x$ with respect to the standard metric.
+
+\item By giving an example, show that it is possible for a sequence $(x_n)$ to converge to $x \in \R^2$ with respect to the standard metric but not to converge to $x$ with respect to the sunflower metric.
+
+\item Show that any sequence in $\R^2$ with the property described in part~\textbf{(ii)} does not converge to \underline{any} limit with respect to the sunflower metric.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 3.i
+
+Answer
+
+\subsection{~} % 3.ii
+
+Answer
+
+\subsection{~} % 3.iii
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Let $\cal T$ be a topology on $\R$. Suppose that for every pair of real numbers $a$ and $b$ with $a < b$, we have $[a, b] \in \cal T$. Show that $\cal T$ must be the discrete topology.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document}
