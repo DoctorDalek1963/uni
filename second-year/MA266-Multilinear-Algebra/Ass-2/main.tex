@@ -1,0 +1,66 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA266 Assignment 2}
+\title{MA266 Multilinear Algebra, Assignment 2}
+\colorlet{questionbodycolor}{magenta!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q11
+\question{11}
+
+\begin{questionbody}
+Let $V$ be a finite dimensional $\bb F$-vector space and let $B$ be a basis for $V$. Let \[
+M = {(V \otimes V)}_- := \bb F \angb{\{ v \otimes w - w \otimes v : v, w \in V \}}.
+\] Show that the set \[
+\{ b \otimes c + M : \{b, c\} \subset B \text{ of size at most 2} \}
+\] is a basis for the symmetric square $S^2(V) = (V \otimes V) / M$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q12
+\newquestion{12}
+
+\begin{questionbody}
+Let $V$ be an $\bb F$-vector space. Define \[
+{(V \otimes V)}_+ := \bb F \angb{\{ v \otimes w + w \otimes v : v, w \in V \}}.
+\]
+\begin{enumerate}[(i)]
+\item Prove that ${(V \otimes V)}_+ \subset \op{Diag}(V)$.
+
+\item Suppose that $1_{\bb F} \ne -1_{\bb F}$. Prove that ${(V \otimes V)}_+ = \op{Diag(V)}$.
+
+\item Let $V = \bb F_2^2$ be the space of 2-dimensional column vectors over the Galois field $\bb F_2 = \{0, 1\}$. Show that ${(V \otimes V)}_+ \ne \op{Diag}(V)$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 12.i
+
+Answer
+
+\subsection{~} % 12.ii
+
+Answer
+
+\subsection{~} % 12.iii
+
+Answer
+
+% }}}
+
+\end{document}
