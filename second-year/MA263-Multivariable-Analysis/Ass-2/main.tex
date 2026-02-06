@@ -1,0 +1,81 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+% \usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+% \renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA263 Assignment 2}
+\title{MA263 Multivariable Analysis, Assignment 2}
+\colorlet{questionbodycolor}{cyan!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Compute the second order Taylor polynomial of $f(x, y) = \arctan(x + y)$ at $(0, 0)$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Prove the following corollary.
+
+Let $U \subset \R^2$ and $f \in C^2(U; \R)$ have a critical point at $a \in U$. If the determinant of the Hessian is positive then $f$ is a strict local extremum, and if it is negative then $f$ is a saddle point.
+
+In the former case, it is a maximum if and only if the diagonal entries of $\nabla^2 f(a)$ are negative and a minimum if and only if they are positive.
+\end{questionbody}
+
+% Do some linear algebra and appeal to the second derivative test.
+% Recall the trace, which is the sum of the diagonal entries, and also the sum of the eigenvalues.
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Using the optimisation methods of calculus, find the global maximum and minimum of \[
+f(x, y) = 2x^2 + 6xy - 26x + 5y^2 - 42y + 93
+\] over ${[0, 4]}^2$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Consider $f L \R^2 \to \R^2$ defined by \[
+f(x, y) = (x^2 - y^2, y - x).
+\] Find all points near which $f$ is locally invertible. Explain why your list is complete.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document}
