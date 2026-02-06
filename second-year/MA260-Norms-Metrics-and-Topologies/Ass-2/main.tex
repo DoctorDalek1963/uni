@@ -4,6 +4,7 @@
 \usepackage[UKenglish]{babel}
 
 \usepackage{preamble}
+\usepackage{ulem}
 
 \renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
 
@@ -22,21 +23,30 @@
 \question{1}
 
 \begin{questionbody}
-Let $(X, d)$ be a metric space and let $x \ne y$ be two elements of $X$. Show that $\exists \varepsilon_1, \varepsilon_2 > 0$ such that $\bb B(y, \varepsilon_1) \cap \bb B(y, \varepsilon_2) = \emptyset$.
+Let $(X, d)$ be a metric space and let $x \ne y$ be two elements of $X$. Show that $\exists \varepsilon_1, \varepsilon_2 > 0$ such that $\bb B(x, \varepsilon_1) \cap \bb B(y, \varepsilon_2) = \emptyset$.
 \end{questionbody}
 
-Answer
+Choose $\varepsilon_1$ and $\varepsilon_2$ such that $\varepsilon_1 + \varepsilon_2 < d(x, y)$ and consider a point $z \in \bb B(x, \varepsilon_1) \cap \bb B(y, \varepsilon_2)$. Then $d(x, z) < \varepsilon_1$ and $d(y, z) < \varepsilon_2$. By the triangle inequality, $d(x, y) \le d(x, z) + d(y, z)$.
+
+But $\varepsilon_1 + \varepsilon_2 < d(x, y)$ and $d(x, z) + d(y, z) < \varepsilon_1 + \varepsilon_2$. Therefore the triangle inequality would require $\varepsilon_1 + \varepsilon_2 < \varepsilon_1 + \varepsilon_2$. This is clearly impossible, and therefore no such $z$ can exist, so $\bb B(x, \varepsilon_1) \cap \bb B(y, \varepsilon_2) = \emptyset$.
+
+\hfill $\square$
 
 % }}}
 
 % {{{ Q2
-\newquestion{2}
+\question{2}
 
 \begin{questionbody}
 Let $(X, d)$ be a metric space and let $Y \subset X$. Show that $U$ is open in $Y$ if and only if $U = Y \cap V$, where $V$ is open in $X$.
 \end{questionbody}
 
-Answer
+For $U$ to be open in $Y$, we require that for all $x \in U$, $x \in Y$ and there exists $\varepsilon > 0$ such that $\bb B(x, \varepsilon) \subset Y$. The first condition implies that $U \subset Y$. If $V = \bigcup_{x \in U} \bb B(x, \varepsilon)$ then $U = Y \cap V$.
+
+% TODO: This isn't a very good explanation
+Conversely, suppose $U = Y \cap V$ for some open set $V$ in $X$. Then for all $x \in U$, there exists $\varepsilon > 0$ such that $\bb B(x, \varepsilon) \subset U$, so $U$ is open in $Y$.
+
+\hfill $\square$
 
 % }}}
 
@@ -56,7 +66,7 @@ d_\mathrm{sf}(x, y) = \begin{cases}
 
 \item By giving an example, show that it is possible for a sequence $(x_n)$ to converge to $x \in \R^2$ with respect to the standard metric but not to converge to $x$ with respect to the sunflower metric.
 
-\item Show that any sequence in $\R^2$ with the property described in part~\textbf{(ii)} does not converge to \underline{any} limit with respect to the sunflower metric.
+\item Show that any sequence in $\R^2$ with the property described in part~\textbf{(ii)} does not converge to \uline{any} limit with respect to the sunflower metric.
 \end{enumerate}
 \end{questionbody}
 
@@ -81,7 +91,15 @@ Answer
 Let $\cal T$ be a topology on $\R$. Suppose that for every pair of real numbers $a$ and $b$ with $a < b$, we have $[a, b] \in \cal T$. Show that $\cal T$ must be the discrete topology.
 \end{questionbody}
 
-Answer
+To show that $\cal T$ is the discrete topology, we want to show that $\cal T = \cal P(\R)$.
+
+Since $\cal T$ is a topology, finite intersections of elements of $\cal T$ are also elements of $\cal T$. Suppose $a < b < c$, then $[a, b] \cap [b, c] = \{b\} \in \cal T$. Using this technique, we know that for any $x \in \R$, $\{x\} \in \cal T$.
+
+Since arbitrary (possibly infinite) unions of elements of $\cal T$ are also elements of $\cal T$, \[
+\bigcup_{a < x < b} \{x\} = (a, b) \in \cal T.
+\] More generally, any $U \subset \cal P(\R)$ can be constructed as a union of singletons. Since $\cal T$ contains all singletons, it contains all such $U$ and therefore $\cal T = \cal P(\R)$ as required.
+
+\hfill $\square$
 
 % }}}
 
