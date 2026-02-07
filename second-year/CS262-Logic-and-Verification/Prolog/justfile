@@ -1,8 +1,18 @@
+alias np := new-prolog
 alias s := swipl
 
 _default:
     @just --list
 
+# create new Prolog file (don't include .pl when calling)
+[group("create")]
+[no-cd]
+new-prolog name:
+    cp {{ justfile_directory() }}/template.pl "{{ name }}.pl"
+    sd -s "NAME" "{{ name }}" "{{ name }}".pl
+
+# open SWI Prolog interpreter with all Prolog files in this directory
 [group("prolog")]
+[no-cd]
 swipl:
-    swipl --pldoc -l *.pl
+    fd -e pl -X swipl --pldoc -l

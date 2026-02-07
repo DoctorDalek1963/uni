@@ -6,6 +6,10 @@
 
 % === Exercise 6.1
 
+%% doubled(+List) is det.
+%
+% True if the first half of List is equal to the second half.
+
 doubled(L) :-
 	length(L, Len),
 	N #= div(Len, 2),
@@ -19,6 +23,11 @@ take([X | Xs], N, [X | Ys]) :-
 
 % === Exercise 6.2
 
+%% palindrome(+List) is det.
+%
+% True if List is a palindrome.
+
+% Doesn't work properly
 % palindrome([]).
 % palindrome([_]).
 % palindrome([X | Xs]) :-
@@ -28,22 +37,38 @@ take([X | Xs], N, [X | Ys]) :-
 % 	take(Xs, LenMinusOne, Middle),
 % 	palindrome(Middle).
 
-% FIXME: Doesn't work backwards
 palindrome(L) :-
 	reverse(L, L).
 
-reverse(List, Rev) :-
-	reverse_acc(List, [], Rev).
+reverse([], []).
+reverse([H | T], R) :-
+	reverse(T, TRev),
+	append(TRev, [H], R).
 
-reverse_acc([H | T], Acc, Rev) :-
-	reverse_acc(T, [H | Acc], Rev).
-reverse_acc([], Acc, Acc).
+% This accummulator solution doesn't allow palindrome to work backwards
+% reverse(List, Rev) :-
+% 	reverse_acc(List, [], Rev).
+
+% reverse_acc([H | T], Acc, Rev) :-
+% 	reverse_acc(T, [H | Acc], Rev).
+% reverse_acc([], Acc, Acc).
 
 % === Exercise 6.3
 
-toptail(_, _).
+%% toptail(+List, -ShortList) is det.
+%
+% True when ShortList is List without the first and last elements.
+
+toptail([_ | T], S) :-
+	length(T, Len),
+	SLen #= Len - 1,
+	take(T, SLen, S).
 
 % === Exercise 6.4
+
+%% last(+List, -Element) is det.
+%
+% True when Element is the last element of List.
 
 last([X], X) :- !.
 last([_ | L], X) :-
@@ -51,7 +76,7 @@ last([_ | L], X) :-
 
 % === Exercise 6.5
 
-%% swapfl(List1, List2)
+%% swapfl(+List1, +List2) is det.
 %
 % True when List2 is the same as List1 but with the first and last elements swapped.
 
@@ -123,9 +148,28 @@ zebra(Nationality) :-
 
 :- begin_tests(ch6).
 
+test(doubled) :- doubled([1, 2, 3, 1, 2, 3]).
+test(doubled, [fail]) :- doubled([1, 2, 3, 1, 2]).
+
+test(palindrome) :- palindrome([]).
+test(palindrome) :- palindrome([1, 2, 2, 1]).
+test(palindrome) :- palindrome([1, 2, 3, 2, 1]).
+
+test(toptail) :- toptail([1, 2, 3, 4], [2, 3]).
+test(toptail) :- toptail([1, 2], []).
+test(toptail, [fail]) :- toptail([1], _).
+test(toptail, [fail]) :- toptail([], _).
+
 test(last) :- last([1, 2, 3, 4], 4).
 test(last, [fail]) :- last([], _).
 
-test(zebra, [nondet]) :- zebra(japanese).
+test(swapfl) :- swapfl([1, 2], [2, 1]).
+test(swapfl) :- swapfl([1, 2, 3, 4], [4, 2, 3, 1]).
+
+% It's okay to be nondet because there are multiple valid street
+% configurations, but all five japanese as the answer
+test(zebra, [nondet]) :-
+	zebra(X),
+	X == japanese.
 
 :- end_tests(ch6).
