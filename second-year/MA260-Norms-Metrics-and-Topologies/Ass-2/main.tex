@@ -72,15 +72,26 @@ d_\mathrm{sf}(x, y) = \begin{cases}
 
 \subsection{~} % 3.i
 
-Answer
+% We should first note that we can rephrase the sunflower metric in terms of the Euclidean metric $d$ and write \[
+% d_\mathrm{sf}(x, y) = \begin{cases}
+% d(x, y) & \text{if $x$ and $y$ lie on the same line through the origin}, \\
+% d(0, x) + d(0, y) & \text{otherwise}.
+% \end{cases}
+% \]
+
+For $(x_n)$ to converge to $x$ in the sunflower metric, we need $d_\mathrm{sf}(x_n, x) \to 0$ as $n \to \infty$. That means either than $x = (0, 0)$ or that $x_n$ converges along the line through $x$ and the origin. In the second case, there is some $N$ such that for all $n > N$, $x_n$ and $x$ are on the same line through the origin.
+
+In both of these cases, we also have $d_2(x_n, x) \to 0$ as $n \to \infty$, so $(x_n)$ also converges to $x$ in the Euclidean metric.
 
 \subsection{~} % 3.ii
 
-Answer
+Let $x_n = \l(1, \f1n\r)$. In the Euclidean metric, $d_2\l( x_n, (1, 0) \r) \to 0$ as $n \to \infty$. But in the sunflower metric, $d_\mathrm{sf}\l( x_n, (1, 0) \r) \to 2$ as $n \to \infty$, so $(x_n)$ converges to $(1, 0)$ in the Euclidean metric but not in the sunflower metric.
 
 \subsection{~} % 3.iii
 
-Answer
+Suppose $(x_n)$ converges to $x$ in the Euclidean metric and $y$ in the sunflower metric. That means that for all $\varepsilon > 0$ there exists $N_1$ such that for all $n > N_1$, $d_\mathrm{sf}(x_n, y) < \varepsilon$.
+
+Since $d_2(a, b) \le d_\mathrm{sf}(a, b)$ for any points $a, b \in \R^2$, there also exists $N_2$ such that for all $n > N_2$, $d_2(x_n, y) < \varepsilon$. Then we choose $N = \max\{N_1, N_2\}$ and see that $x$ must equal $y$. Therefore $(x_n)$ must converge to the same limit in both the Euclidean metric and the sunflower metric so if it does not converge to $x$ in the sunflower metric, then it has no limit there.
 
 % }}}
 
