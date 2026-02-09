@@ -486,7 +486,7 @@ We define addition as \[
 We want $\lambda$-calculus to be confluent because we want one term to always produce the same result, no matter what order its $\beta$-redexes were contracted. $\overline 1 + \overline 1$ should always $\beta$-reduce to $\overline 2$, regardless of the inner workings of the reduction. If $\lambda$-calculus is confluent, it would allow us to ignore these inner workings for much of the theoretical work that we want to do with the system.
 
 \begin{thm}[The Church--Rosser Theorem for $\beta$-reduction]\label{thm:church-rosser-beta-reduction} % chktex 8
-If $P \bred M$ and $P \bred N$, then $\exists T$ such that $M \bred T$ and $N \bred R$. See Figure~\ref{fig:church-rosser-diamond}.
+If $P \bred M$ and $P \bred N$, then $\exists T$ such that $M \bred T$ and $N \bred T$. See Figure~\ref{fig:church-rosser-diamond}.
 \end{thm}
 
 \begin{figure}[htbp]
