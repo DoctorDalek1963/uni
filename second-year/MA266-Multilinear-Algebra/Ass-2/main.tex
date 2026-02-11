@@ -1,5 +1,4 @@
 % vim: set foldmethod=marker foldlevel=0:
-
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
@@ -29,7 +28,27 @@ M = {(V \otimes V)}_- := \bb F \angb{\{ v \otimes w - w \otimes v : v, w \in V \
 \] is a basis for the symmetric square $S^2(V) = (V \otimes V) / M$.
 \end{questionbody}
 
-Answer
+Set $X := \{b_i \otimes b_j + M : 1 \le i \le j \le n\}$. We need to prove that $X$ is linearly independent and that $X$ spans $S^2(V)$.
+
+First, we prove linear independence. Assume $\exists \lambda_{i, j} \in \bb F$ such that \[
+\sum_{1 \le i < j \le n} \lambda_{i, j} (b_i \otimes b_j + M) = 0_{S^2(V)}.
+\] By the distributive laws for tensor products, we have \[
+\sum_{1 \le i < j \le n} \lambda_{i, j} (b_i \otimes b_j) + M = 0_{S^2(V)}.
+\] Equivalently, \[
+\sum_{1 \le i < j \le n} \lambda_{i, j} (b_i \otimes b_j) \in M.
+\]
+
+% TODO
+
+Secondly, we prove that $X$ spans $S^2(V)$. So let $w \in S^2(V) = (V \otimes V) / M$. Then since $\{b_i \otimes b_j : 1 \le i, j \le n\}$ is a basis for $V \otimes V$ and $w \in V \otimes V$, $\exists \lambda_{i, j} \in \bb F$ such that \[
+w = \sum_{1 \le i, j \le n} \lambda_{i, j} (b_i \otimes b_j).
+\]
+% Thus, $$w = \sum_{i < j} \lambda_{i, j} (b_i \otimes b_j) + \sum_{1 \le i \le n} \lambda_{i, i} (b_i \otimes b_i) + \sum_{i < j} \lambda_{i, j} (b_j \otimes b_i).$$
+% Clearly the middle term on the RHS is in $D$. Consider the rightmost term. By [[coset equality for pure tensor cosets]], we have $b_j \otimes b_i + D = -b_i \otimes b_j + D$. Thus, by definition of addition and scalar multiplication in a [[quotient vector space]], we have $$w + D = \sum_{1 \le i < j \le n} (\lambda_{i, j} \mu_{i, j}) (b_i \otimes b_j) + D.$$
+Therefore $X$ spans $V$.
+
+\hfill $\square$
+
 
 % }}}
 
@@ -51,11 +70,25 @@ Let $V$ be an $\bb F$-vector space. Define \[
 
 \subsection{~} % 12.i
 
-Answer
+Let $D := \op{Diag}(V \otimes V)$.
+
+We want to show that every basis element $v \otimes w + w \otimes v$ is in $D$. Every other element of ${(V \otimes V)}_+$ will follow as linear combinations.
+
+Clearly $(v + w) \otimes (v + w)$ is an element of $D$ and we can expand it with the distributive laws to see that \[
+v \otimes v + v \otimes w + w \otimes v + w \otimes w
+\] is an element of $D$. Since the first and last terms of this expression are clearly elements of $D$, the part in the middle, $v \otimes w + w \otimes v$ must also be an element of $D$ by closure.
+
+\hfill $\square$
 
 \subsection{~} % 12.ii
 
-Answer
+Now we want to show that for each basis element $v \otimes w + w \otimes v$, there exists a $u \in V$ such that $v \otimes w + w \otimes v = u \otimes u$.
+
+If $1_{\bb F} \ne -1_{\bb F}$ then $1_{\bb F} + -1_{\bb F} = 0_{\bb F}$. So then \[
+% 0_D = v \otimes (1_{\bb F} + -1_{\bb F}) = v \otimes
+% 0_D = 1 (v \otimes v) + -1 (v \otimes v) =
+2(v \otimes v) = v \otimes v + v \otimes v
+\]
 
 \subsection{~} % 12.iii
 
