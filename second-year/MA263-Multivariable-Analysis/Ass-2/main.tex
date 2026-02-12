@@ -30,7 +30,62 @@
 Compute the second order Taylor polynomial of $f(x, y) = \arctan(x + y)$ at $(0, 0)$.
 \end{questionbody}
 
-Answer
+We want
+\begin{align*}
+T_{\ul 0}^2 f(\ul x) &= f(\ul 0) + \nabla f(\ul 0) \cdot (\ul x - \ul 0) + {(\ul x - \ul 0)}^T \cdot \nabla^2 f(\ul 0) \cdot (\ul x - \ul 0) \\
+&= f(\ul 0) + \nabla f(\ul 0) \cdot \ul x + {\ul x}^T \cdot \nabla^2 f(\ul 0) \cdot \ul x,
+\end{align*}
+where $\ul x = (x, y)$ and $\ul 0 = (0, 0)$.
+
+We first compute the gradient and Hessian.
+\begin{align*}
+\nabla f(x, y) &= \begin{pmatrix}
+\partial_x f \\
+\partial_y f
+\end{pmatrix} \\
+&= \begin{pmatrix}
+\f1{{(x + y)}^2 + 1} \\
+\f1{{(x + y)}^2 + 1}
+\end{pmatrix} \\[1.5ex]
+%
+\nabla^2 f(x, y) &= \begin{pmatrix}
+\partial_x^2 f & \partial_{xy} f \\
+\partial_{yx} f & \partial_y^2 f
+\end{pmatrix} \\
+&= \begin{pmatrix}
+- \f{2 (x + y)}{{( {(x + y)}^2 + 1 )}^2} & - \f{2 (x + y)}{{( {(x + y)}^2 + 1 )}^2} \\
+- \f{2 (x + y)}{{( {(x + y)}^2 + 1 )}^2} & - \f{2 (x + y)}{{( {(x + y)}^2 + 1 )}^2}
+\end{pmatrix}
+\end{align*}
+
+Then we evaluate these at $\ul 0$.
+\begin{align*}
+\nabla f(0, 0) &= \begin{pmatrix}
+\f1{0^2 + 1} \\
+\f1{0^2 + 1}
+\end{pmatrix} \\
+&= \begin{pmatrix}
+1 \\
+1
+\end{pmatrix} \\[1.5ex]
+%
+\nabla^2 f(x, y) &= \begin{pmatrix}
+- \f{2 (0)}{{( 0^2 + 1 )}^2} & - \f{2 (0)}{{( 0^2 + 1 )}^2} \\
+- \f{2 (0)}{{( 0^2 + 1 )}^2} & - \f{2 (0)}{{( 0^2 + 1 )}^2}
+\end{pmatrix} \\
+&= \begin{pmatrix}
+0 & 0 \\
+0 & 0
+\end{pmatrix}
+\end{align*}
+
+And so,
+\begin{align*}
+T_{\ul 0}^2 f(\ul x) &= f(\ul 0) + \nabla f(\ul 0) \cdot \ul x + {\ul x}^T \cdot \nabla^2 f(\ul 0) \cdot \ul x \\
+&= \arctan(0) + \begin{pmatrix} 1 \\ 1 \end{pmatrix} \cdot \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} x & y \end{pmatrix} \cdot \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} \cdot \begin{pmatrix} x \\ y \end{pmatrix} \\
+&= 0 + x + y + 0 \\
+&= x + y.
+\end{align*}
 
 % }}}
 
