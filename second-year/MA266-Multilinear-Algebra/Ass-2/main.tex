@@ -38,17 +38,28 @@ First, we prove linear independence. Assume $\exists \lambda_{i, j} \in \bb F$ s
 \sum_{1 \le i < j \le n} \lambda_{i, j} (b_i \otimes b_j) \in M.
 \]
 
-% TODO
-
-Secondly, we prove that $X$ spans $S^2(V)$. So let $w \in S^2(V) = (V \otimes V) / M$. Then since $\{b_i \otimes b_j : 1 \le i, j \le n\}$ is a basis for $V \otimes V$ and $w \in V \otimes V$, $\exists \lambda_{i, j} \in \bb F$ such that \[
-w = \sum_{1 \le i, j \le n} \lambda_{i, j} (b_i \otimes b_j).
+Thus, by the definition of $M$, $\exists \mu_{i, j}, \alpha_i \in \bb F$ such that \[
+\sum_{i \le i < j \le n} \lambda_{i, j} (b_i \otimes b_j) = \sum_{i=1}^n \alpha_i (b_i \otimes b_i) + \sum_{i \ne j} \mu_{i, j} (b_i \otimes b_j - b_j \otimes b_i).
 \]
-% Thus, $$w = \sum_{i < j} \lambda_{i, j} (b_i \otimes b_j) + \sum_{1 \le i \le n} \lambda_{i, i} (b_i \otimes b_i) + \sum_{i < j} \lambda_{i, j} (b_j \otimes b_i).$$
-% Clearly the middle term on the RHS is in $D$. Consider the rightmost term. By [[coset equality for pure tensor cosets]], we have $b_j \otimes b_i + D = -b_i \otimes b_j + D$. Thus, by definition of addition and scalar multiplication in a [[quotient vector space]], we have $$w + D = \sum_{1 \le i < j \le n} (\lambda_{i, j} \mu_{i, j}) (b_i \otimes b_j) + D.$$
-Therefore $X$ spans $V$.
+
+Hence, \[
+\sum_{1 \le i < j \le n} \lambda_{i, j} \mu_{i, j} (b_i \otimes b_j) + \sum_{1 \le i < j \le n} \mu_{i, j} (b_j \otimes b_i) - \sum_{1 = 1}^n \alpha_i (b_i \otimes b_i) = 0_{V \otimes V}.
+\]
+
+By linear independence of the basis $\{b_i \otimes b_j : 1 \le i, j \le n\}$ in $V \otimes V$, it follows that $\alpha_i = 0_{\bb F}$ for all $i$ and $\mu_{i, j} = 0_{\bb F}$ for all $i > j$, and so $\lambda_{i, j} = 0_{\bb F}$ for all $1 \le i < j \le n$. Thus, $X$ is linearly independent.
+
+% TODO: This is definitely wrong but I barely understand the question, and I definitely don't understand the proof given in the lecture notes for a similar problem
+
+Secondly, we prove that $X$ spans $S^2(V)$. So let $w + M \in S^2(V) = (V \otimes V) / M$. Then since $\{b_i \otimes b_j : 1 \le i, j \le n\}$ is a basis for $V \otimes V$ and $w \in V \otimes V$, $\exists \lambda_{i, j} \in \bb F$ such that \[
+w = \sum_{1 \le i, j \le n} \lambda_{i, j} (b_i \otimes b_j).
+\] Thus, \[
+w = \sum_{i < j} \big( \lambda_{i, j} (b_i \otimes b_j) + \lambda_{i, j} (b_j \otimes b_i) \big) + \sum_{1 \le i \le n} \lambda_{i, i} (b_i \otimes b_i).
+\]
+Clearly the first term on the RHS is in $M$ and the second term is in $\op{Diag}(V \otimes V)$. From lectures, we know $b_j \otimes b_i + D = -b_i \otimes b_j + D$. Thus, by definition of addition and scalar multiplication in a quotient vector space, we have \[
+w + D = \sum_{1 \le i < j \le n} (\lambda_{i, j} \mu_{i, j}) (b_i \otimes b_j) + D.
+\] Therefore $X$ spans $V$.
 
 \hfill $\square$
-
 
 % }}}
 
@@ -72,7 +83,7 @@ Let $V$ be an $\bb F$-vector space. Define \[
 
 Let $D := \op{Diag}(V \otimes V)$.
 
-We want to show that every basis element $v \otimes w + w \otimes v$ is in $D$. Every other element of ${(V \otimes V)}_+$ will follow as linear combinations.
+We want to show that every element $v \otimes w + w \otimes v$ is in $D$. Every other element of ${(V \otimes V)}_+$ will follow as linear combinations.
 
 Clearly $(v + w) \otimes (v + w)$ is an element of $D$ and we can expand it with the distributive laws to see that \[
 v \otimes v + v \otimes w + w \otimes v + w \otimes w
@@ -82,17 +93,23 @@ v \otimes v + v \otimes w + w \otimes v + w \otimes w
 
 \subsection{~} % 12.ii
 
-Now we want to show that for each basis element $v \otimes w + w \otimes v$, there exists a $u \in V$ such that $v \otimes w + w \otimes v = u \otimes u$.
+Now we want to show that $D \subset {(V \otimes V)}_+$, so we want to show that every element $v \otimes v$ is in ${(V \otimes V)}_+$. Every other element of $D$ will follow as linear combinations.
 
-If $1_{\bb F} \ne -1_{\bb F}$ then $1_{\bb F} + -1_{\bb F} = 0_{\bb F}$. So then \[
-% 0_D = v \otimes (1_{\bb F} + -1_{\bb F}) = v \otimes
-% 0_D = 1 (v \otimes v) + -1 (v \otimes v) =
-2(v \otimes v) = v \otimes v + v \otimes v
-\]
+We can choose $v = w$ and see that $v \otimes v + v \otimes v$ is an element of ${(V \otimes V)}_+$. Since we're taking the span, we can just multiply this by $\f12$ and see that $v \otimes v$ is an element of ${(V \otimes V)}_+$ as required.
+
+Note that if $1_{\bb F} = -1_{\bb F}$ then $v \otimes v + v \otimes v = 0_{V \otimes V}$ so this trick wouldn't work.
+
+Since $(V \otimes V) \subset D$ and $D \subset {(V \otimes V)}_+$, we have ${(V \otimes V)}_+ = D$ as required.
+
+\hfill $\square$
 
 \subsection{~} % 12.iii
 
-Answer
+In this $V$, $1_{\bb F_2^2} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$ and $-1_{\bb F_2^2} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$. Thus $1_{\bb F_2^2} = -1_{\bb F_2^2}$ and so we can't do our trick from \textbf{Q12~(ii)}. The logic in \textbf{Q12~(i)} still works, so we still have ${(V \otimes V)}_+ \subset D$.
+
+The only way to get any element of the form $\lambda v \otimes v$ from ${(V \otimes V)}_+$ is to add an element to itself. Since $1_{\bb F_2^2} = -1_{\bb F_2^2}$, adding any element to itself will give zero, and so we cannot make those required elements from ${(V \otimes V)}_+$. Therefore $D \not\subset {(V \otimes V)}_+$ and so ${(V \otimes V)}_+ \ne D$.
+
+\hfill $\square$
 
 % }}}
 
