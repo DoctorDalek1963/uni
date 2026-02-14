@@ -116,7 +116,106 @@ f(x, y) = 2x^2 + 6xy - 26x + 5y^2 - 42y + 93
 \] over ${[0, 4]}^2$.
 \end{questionbody}
 
-Answer
+The gradient is \[
+\nabla f = \begin{pmatrix}
+4x + 6y - 26 \\
+6x + 10y - 42
+\end{pmatrix},
+\] and the Hessian is \[
+\nabla^2 f = \begin{pmatrix}
+4 & 6 \\
+6 & 10
+\end{pmatrix}.
+\]
+
+The eigenvalues are both positive, so any critical point of $f$ will be a minimum.
+
+To find critical points, we set $\nabla f = 0$ and get the simultaneous equations
+\begin{align*}
+4x + 6y &= 26 \\
+6x + 10y &= 42
+\end{align*}
+
+We invert the matrix to find $x$ and $y$:
+\begin{align*}
+\det \begin{pmatrix}
+4 & 6 \\
+6 & 10
+\end{pmatrix} &= 4 \\
+\begin{pmatrix}
+4 & 6 \\
+6 & 10
+\end{pmatrix}^{-1}
+&= \f14 \begin{pmatrix}
+10 & -6 \\
+-6 & 4
+\end{pmatrix} \\
+&= \begin{pmatrix}
+\f52 & -\f32 \\
+-\f32 & 1
+\end{pmatrix} \\
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+&= \begin{pmatrix}
+\f52 & -\f32 \\
+-\f32 & 1
+\end{pmatrix} \begin{pmatrix}
+26 \\
+42
+\end{pmatrix} \\
+&= \begin{pmatrix}
+65 - 63 \\
+-39 + 42
+\end{pmatrix} \\
+&= \begin{pmatrix}
+2 \\
+3
+\end{pmatrix}
+\end{align*}
+And $f(2, 3) = 4$, so $(2, 3, 4)$ is the global minimum of $f$ on all $\R^2$.
+
+The global maximum of $f$ on ${[0, 4]}^2$ must be somewhere on the boundary. To find it, we will evaluate the gradient at each corner and do gradient ascent.
+
+\begin{align*}
+\nabla f(0, 0) &= \begin{pmatrix}
+-26 \\
+-42
+\end{pmatrix} \\
+\nabla f(0, 4) &= \begin{pmatrix}
+24 - 26 \\
+40 - 42
+\end{pmatrix} \\
+&= \begin{pmatrix}
+-2 \\
+-2
+\end{pmatrix} \\
+\nabla f(4, 0) &= \begin{pmatrix}
+16 - 26 \\
+24 - 42
+\end{pmatrix} \\
+&= \begin{pmatrix}
+-10 \\
+-18
+\end{pmatrix} \\
+\nabla f(4, 4) &= \begin{pmatrix}
+16 + 24 - 26 \\
+24 + 40 - 42
+\end{pmatrix} \\
+&= \begin{pmatrix}
+14 \\
+22
+\end{pmatrix}
+\end{align*}
+Since all the gradients point outside the square ${[0, 4]}^2$, the global maximum must be at one of the corners, so we just need to evaluate $f$ at each corner:
+\begin{align*}
+f(0, 0) &= 93 \\
+f(0, 4) &= 5 \\
+f(4, 0) &= 21 \\
+f(4, 4) &= 29
+\end{align*}
+Therefore $(0, 0, 93)$ is the global maximum of $f$ on ${[0, 4]}^2$.
 
 % }}}
 
@@ -124,12 +223,35 @@ Answer
 \newquestion{4}
 
 \begin{questionbody}
-Consider $f L \R^2 \to \R^2$ defined by \[
+Consider $f : \R^2 \to \R^2$ defined by \[
 f(x, y) = (x^2 - y^2, y - x).
 \] Find all points near which $f$ is locally invertible. Explain why your list is complete.
 \end{questionbody}
 
-Answer
+The Fr\'echet derivative is
+\begin{align*}
+D f(x, y) &= \partial f(x, y) \\
+&= \begin{pmatrix}
+\partial_x (x^2 - y^2) & \partial_y (x^2 - y^2) \\
+\partial_x (y - x) & \partial_y (y - x)
+\end{pmatrix} \\
+&= \begin{pmatrix}
+2x & -2y \\
+-1 & 1
+\end{pmatrix}
+\end{align*}
+
+To apply the Inverse Function Theorem at a point $(x, y)$, we require $D f(x, y)$ to be invertible.
+\[
+\det \begin{pmatrix}
+2x & -2y \\
+-1 & 1
+\end{pmatrix} = 2x - 2y,
+\] so we just require $x \ne y$.
+
+We also require $f$ to be $C^k(U, \R^2)$ for some open set $U \subset \R^2$, but $f$ is $C^\infty$ everywhere, so this isn't a problem.
+
+Therefore $f$ is invertible in a small open set $U$ around any point $(x, y)$ with $x \ne y$.
 
 % }}}
 
