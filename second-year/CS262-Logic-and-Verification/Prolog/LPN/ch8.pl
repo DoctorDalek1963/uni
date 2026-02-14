@@ -5,6 +5,7 @@
 s(s(Np, Vp)) --> np(Np, subject, Plur), vp(Vp, Plur).
 
 np(np(Det, N), _Pos, Plur) --> det(Det, Plur), n(N, Plur).
+np(np(N), _Pos, plural) --> n(N, plural).
 np(np(Pro), Pos, Plur) --> pro(Pro, Pos, Plur).
 
 vp(vp(V, NP), Plur) --> v(V, Plur), np(NP, object, _).
@@ -59,11 +60,13 @@ test(dcg_plurals, [nondet]) :- s(_, [the, man, eats], []).
 test(dcg_plurals, [nondet]) :- s(_, [a, woman, shoots, him], []).
 test(dcg_plurals, [nondet]) :- s(_, [they, eat, the, women], []).
 test(dcg_plurals, [nondet]) :- s(_, [it, eats], []).
+test(dcg_plurals, [nondet]) :- s(_, [women, eat, them], []).
 
 test(dcg_plurals, [fail]) :- s(_, [the, man, eat], []).
 test(dcg_plurals, [fail]) :- s(_, [the, men, eats], []).
 test(dcg_plurals, [fail]) :- s(_, [a, women, shoots, him], []).
 test(dcg_plurals, [fail]) :- s(_, [them, eats, the, women], []).
 test(dcg_plurals, [fail]) :- s(_, [it, eat], []).
+test(dcg_plurals, [fail]) :- s(_, [woman, eat, them], []).
 
 :- end_tests(ch8).
