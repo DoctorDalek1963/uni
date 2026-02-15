@@ -32,8 +32,8 @@ Compute the second order Taylor polynomial of $f(x, y) = \arctan(x + y)$ at $(0,
 
 We want
 \begin{align*}
-T_{\ul 0}^2 f(\ul x) &= f(\ul 0) + \nabla f(\ul 0) \cdot (\ul x - \ul 0) + {(\ul x - \ul 0)}^T \cdot \nabla^2 f(\ul 0) \cdot (\ul x - \ul 0) \\
-&= f(\ul 0) + \nabla f(\ul 0) \cdot \ul x + {\ul x}^T \cdot \nabla^2 f(\ul 0) \cdot \ul x,
+T_{\ul 0}^2 f(\ul x) &= f(\ul 0) + \nabla f(\ul 0) \cdot (\ul x - \ul 0) + \f12 {(\ul x - \ul 0)}^T \nabla^2 f(\ul 0) (\ul x - \ul 0) \\
+&= f(\ul 0) + \nabla f(\ul 0) \cdot \ul x + \f12 {\ul x}^T \nabla^2 f(\ul 0) \ul x,
 \end{align*}
 where $\ul x = (x, y)$ and $\ul 0 = (0, 0)$.
 
@@ -81,8 +81,8 @@ Then we evaluate these at $\ul 0$.
 
 And so,
 \begin{align*}
-T_{\ul 0}^2 f(\ul x) &= f(\ul 0) + \nabla f(\ul 0) \cdot \ul x + {\ul x}^T \cdot \nabla^2 f(\ul 0) \cdot \ul x \\
-&= \arctan(0) + \begin{pmatrix} 1 \\ 1 \end{pmatrix} \cdot \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} x & y \end{pmatrix} \cdot \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} \cdot \begin{pmatrix} x \\ y \end{pmatrix} \\
+T_{\ul 0}^2 f(\ul x) &= f(\ul 0) + \nabla f(\ul 0) \cdot \ul x + \f12 {\ul x}^T \nabla^2 f(\ul 0) \ul x \\
+&= \arctan(0) + \begin{pmatrix} 1 \\ 1 \end{pmatrix} \cdot \begin{pmatrix} x \\ y \end{pmatrix} + \f12 \begin{pmatrix} x & y \end{pmatrix} \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\
 &= 0 + x + y + 0 \\
 &= x + y.
 \end{align*}
