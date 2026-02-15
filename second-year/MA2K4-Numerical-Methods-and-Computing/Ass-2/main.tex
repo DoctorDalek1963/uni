@@ -1,0 +1,97 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\fancyhead[L]{MA2K4 Assignment 2}
+\title{MA2K4 Numerical Methods and Computing, Assignment 2}
+\colorlet{questionbodycolor}{green!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Interpolate the function $f(x) = \sqrt x$ by a quadratic polynomial $p_2(x)$ with notes at $x_0 = 1$, $x_1 = 2$, and $x_2 = 3$. Isolate the coefficients in the polynomial. Further, compute the error at $x = 6$ to three significant digits.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+The imaginary error function \[
+\op{erfi}(x) = \f2{\sqrt\pi} \intlim 0x {e^{t^2}} t, \qquad x \in [0, 1],
+\] is to be linearly interpolated at nodes $x_0, x_1 \in [0, 1]$ which are separated by a distance $h = x_1 - x_0$. What node spacing $h$ needs to be chosen to achieve an interpolation error smaller than $10^{-6}$?
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Consider $n + 2$ distinct nodes $x_i \in \R$, $i \in \{0, 1, \dotsc, n+1\}$, and the corresponding data values $y_i \in \R$, $i \in \{0, \dotsc, n+1\}$. Let $q(x)$ be the Lagrange interpolating polynomial of degree $n$ for the nodes and values $\{(x_i, y_i) : i = 0, 1, \dotsc, n\}$ and let $r(x)$ be the Lagrange interpolating polynomial of degree $n$ for the nodes and values $\{(x_i, y_i) : i = 1, 2, \dotsc, n+1\}$.
+
+Define a new polynomial \[
+p(x) = \f{(x - x_0) r(x) - (x - x_{n+1}) q(x)}{x_{n+1} - x_0}.
+\] Show that this $p(x)$ is the Lagrange interpolation polynomial of degree $n+1$ for the nodes and values $\{(x_i, y_i) : i = 0, 1, \dotsc, n+1\}$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Given a function $f : [a, b] \to \R$, we make the following recursive definition:
+\begin{align*}
+f[a] &:= f(a), \\[0.5ex]
+f[a, b] &:= \f{f[b] - f[a]}{b - a}, \\[0.5ex]
+f[a, b, c] &:= \f{f[b, c] - f[a, b]}{c - a}, \\
+& \vdots \\
+f[a_0, \dotsc, a_n] &:= \f{f[a_1, \dotsc, a_n] - f[a_0, \dotsc, a_{n-1}]}{a_n - a_0}.
+\end{align*}
+
+Consider now $m+1$ distinct nodes $x_j \in \R$ for $j \in \{0, \dotsc, m\}$. Define the polynomial
+\begin{align*}
+q_0(x) &:= f(x_0), \\[0.5ex]
+q_{k+1}(x) &:= q_k(x) + f[x_0, \dotsc, x_{k+1}] (x - x_0) (x - x_1) \dotsm (x - x_k).
+\end{align*}
+Show that the Lagrange interpolation polynomial of degree $m$, is in fact given by $p_m(x) = q_m(x)$.
+
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q5
+\newquestion{5}
+
+\begin{questionbody}
+For the Newton--Cotes quadrature formula, using equally spaced points $x_j = a + \df jn (b - a)$, show that \[ % chktex 8
+\alpha_j = \alpha_{n-j},
+\] where $\alpha_j$ is the quadrature weight of the $j$th node.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+\end{document}
