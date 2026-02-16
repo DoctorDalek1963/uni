@@ -1,0 +1,91 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+% \usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+% \renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA260 Assignment 3}
+\title{MA260 Norms Metrics and Topologies, Assignment 3}
+\colorlet{questionbodycolor}{orange!50!violet}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Suppose that $f : (X, \cal T_X) \to (Y, \cal T_Y)$ is continuous. If $x$ is a limit point of the subset $A \subset X$, is it necessarily true that $f(x)$ is a limit point of $f(A)$?
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Let $U \subset (X, \cal T)$. If $U$ is open, is it true that $U = {\l( \ol U \r)}^\circ$? Justify your answer?
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Find the boundary and interior of each of the following subsets of $\R^2$ equipped with the standard topology:
+\begin{enumerate}[1.]
+\item $A = \{x \times y : y = 0\}$,
+
+\item $B = \{x \times y : x > y \text{ and } y \ne 0\}$,
+
+\item $C = A \cup B$.
+\end{enumerate}
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+Show that $X$ is Hausdorff if and only if the \textit{diagonal} $\Delta = \{x \times x : x \in X\}$ is closed in $X \times X$.
+\end{questionbody}
+
+Answer
+% }}}
+
+% {{{ Q5
+\newquestion{5}
+
+\begin{questionbody}
+Let $A \subset X$ and let $f : A \to Y$ be continuous. Suppose $Y$ is Hausdorff. Show that there is at most one continuous function $g : \ol A \to Y$.
+
+\textit{Remark}: Here $g$, if it exists, is an extension of $f$, meaning $g(x) = f(x)$ for all $x \in A$.
+\end{questionbody}
+
+% See problem sheet 5, exercise 5
+
+Answer
+
+% }}}
+
+\end{document}
