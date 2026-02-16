@@ -103,7 +103,29 @@ In the former case, it is a maximum if and only if the diagonal entries of $\nab
 % Do some linear algebra and appeal to the second derivative test.
 % Recall the trace, which is the sum of the diagonal entries, and also the sum of the eigenvalues.
 
-Answer
+The Hessian of $f$ is \[
+\nabla^2 f = \begin{pmatrix}
+\partial_x^2 f & \partial_x \partial_y f \\
+\partial_y \partial_x f & \partial_y^2 f
+\end{pmatrix}.
+\]
+Therefore \[
+\det \nabla^2 f = \l(\partial_x^2 f\r) \l(\partial_y^2 f\r) - (\partial_x \partial_y f) (\partial_y \partial_x f),
+\] which is \[
+\l(\partial_x^2 f\r) \l(\partial_y^2 f\r) - {(\partial_x \partial_y f)}^2
+\] by Clairaut's~theorem.
+
+We know that the determinant of a matrix is the product of its eigenvalues. The second derivative test tells us that if both eigenvalues are positive or both are negative, then $f$ has a strict local extremum at $a$. This is equivalent to the determinant being positive.
+
+The second derivative test also tells us that if one eigenvalue is positive and one is negative then $f$ has a saddle point at $a$. This is equivalent to the derivative being negative. If either eigenvalue is zero, we can't conclude anything.
+
+Considering only the former case, we know that $\det \nabla^2 f > 0$ and so either both eigenvalues are positive or both are negative. We know that the trace of a matrix (the sum of its diagonal entries) is the sum of its eigenvalues.
+
+The second derivative test tells us that if both eigenvalues are negative, and hence the trace is negative, then $f$ has a local maximum at $a$. Likewise, if both eigenvalues are positive, and hence the trace is positive, then $f$ has a local minimum at $a$.
+
+Since we're only consider the case where we already know $\det \nabla^2 f > 0$, we that either both eigenvalues are positive or both are negative, so the logic also works conversely.
+
+\hfill $\square$
 
 % }}}
 
