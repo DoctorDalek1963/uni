@@ -154,7 +154,7 @@ Given a function $f : [a, b] \to \R$, we make the following recursive definition
 f[a] &:= f(a), \\[0.5ex]
 f[a, b] &:= \f{f[b] - f[a]}{b - a}, \\[0.5ex]
 f[a, b, c] &:= \f{f[b, c] - f[a, b]}{c - a}, \\
-& \vdots \\
+&\ \ \vdots \\
 f[a_0, \dotsc, a_n] &:= \f{f[a_1, \dotsc, a_n] - f[a_0, \dotsc, a_{n-1}]}{a_n - a_0}.
 \end{align*}
 
@@ -167,7 +167,15 @@ Show that the Lagrange interpolation polynomial of degree $m$, is in fact given 
 
 \end{questionbody}
 
-Answer
+We will do proof by induction. Clearly $p_0(x) = f(x_0) = q_0(x)$ and
+\begin{align*}
+p_1(x) &= f(x_0) + \f{f(x_1) - f(x_0)}{x_1 - x_0} (x - x_0) \\
+&= q_0(x) + \f{f[x_1] - f[x_0]}{x_1 - x_0} (x - x_0) \\
+&= q_0(x) + f[x_0, x_1] (x - x_0),
+\end{align*}
+so we have our base case.
+
+Assume $p_k(x) = q_k(x)$ for some fixed $k$.
 
 % }}}
 
@@ -187,6 +195,23 @@ L_j(x) = \prod_{i \ne j}^m \f{x - x_i}{x_j - x_i}.
 \]
 We want to show that \[
 \intlim ab {\prod_{i \ne j}^m \f{x - x_i}{x_j - x_i}} x = \intlim ab {\prod_{i \ne n - j}^m \f{x - x_i}{x_{n - j} - x_i}} x.
+\]
+
+Both integrands contain a factor of \[
+\prod_{i \ne j, n - j}^k x - x_i,
+\] which we can cancel, giving us \[
+\l( \prod_{i \ne j}^m \f1{x_j - x_i} \r) \intlim ab {(x - x_{n-j})} x
+    = \l( \prod_{i \ne n - j}^m \f1{x_{n - j} - x_i} \r) \intlim ab {(x - x_j)} x.
+\] Then on the LHS, we get
+\begin{align*}
+\l( \prod_{i \ne j}^m \f1{x_j - x_i} \r) \intlim ab {(x - x_{n-j})} x
+&= \l( \prod_{i \ne j}^m \f1{x_j - x_i} \r) {\l[ \f12 x^2 - x_{n - j} x \r]}_a^b \\[0.5ex]
+&= \l( \prod_{i \ne j}^m \f1{x_j - x_i} \r) \l( \f{b^2}2 - x_{n-j} b - \f{a^2}2 + x_{n-j} a \r) \\[0.5ex]
+&= \l( \prod_{i \ne j}^m \f1{x_j - x_i} \r) \l( \f12 (b^2 - a^2) + x_{n-j} (a - b) \r).
+\end{align*}
+
+Similarly on the RHS, we get \[
+\l( \prod_{i \ne n-j}^m \f1{x_{n-j} - x_i} \r) \l( \f12 (b^2 - a^2) + x_{j} (a - b) \r).
 \]
 
 % TODO: Can we just argue by symmetry and avoid this direct stuff?
