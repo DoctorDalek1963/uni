@@ -5,6 +5,8 @@
 
 \usepackage{preamble}
 
+\def\erfi{\mathop{\rm erfi}\nolimits}
+
 \fancyhead[L]{MA2K4 Assignment 2}
 \title{MA2K4 Numerical Methods and Computing, Assignment 2}
 \colorlet{questionbodycolor}{green!50}
@@ -73,11 +75,47 @@ This computes to be 0.342 to 3 significant digits.
 
 \begin{questionbody}
 The imaginary error function \[
-\op{erfi}(x) = \f2{\sqrt\pi} \intlim 0x {e^{t^2}} t, \qquad x \in [0, 1],
+\erfi(x) = \f2{\sqrt\pi} \intlim 0x {\e^{t^2}} t, \qquad x \in [0, 1],
 \] is to be linearly interpolated at nodes $x_0, x_1 \in [0, 1]$ which are separated by a distance $h = x_1 - x_0$. What node spacing $h$ needs to be chosen to achieve an interpolation error smaller than $10^{-6}$?
 \end{questionbody}
 
-Answer
+We know that the error is bounded by \[
+|e(x)| \le \f{\| \erfi''(x) \|_\infty}{2!} \big| (x - x_0) (x - x_1) \big|
+\] and
+\begin{align*}
+\erfi'(x) &= \e^{x^2}, \\
+\erfi''(x) &= 2x \e^{x^2}.
+\end{align*}
+Since we're only working within $[0, 1]$, we can limit the $\infty$-norm to this interval so \[
+\big\| 2x \e^{x^2} \big\|_\infty = 2 \cdot 1 \cdot \e^{1^2} = 2\e
+\]
+
+Therefore
+\begin{align*}
+|e(x)| &\le \f{2\e}2 \big| (x - x_0) (x - x_1) \big| \\
+&= \e \big| (x - x_0) (x - x_1) \big|.
+\end{align*}
+
+To find the maximum of $(x - x_0) (x - x_1)$, let $\theta \in [0, 1]$ and write
+\begin{align*}
+x &= x_0 + \theta h, \\
+x_1 &= x_0 + h.
+\end{align*}
+Then
+\begin{align*}
+\big| (x - x_0) (x - x_1) \big| &= \big| (x_0 + \theta h - x_0) (x_0 + \theta h - x_0 - h) \big| \\
+&= \big| \theta h (\theta h - h) \big| \\
+&= \big| \theta h^2 (\theta - 1) \big|.
+\end{align*}
+The maximum is obtained when $\theta = \f12$, giving $\f14 h^2$. Therefore \[
+|e(x)| \le \f14 h^2 \e.
+\]
+We want
+\begin{align*}
+\f14 h^2 \e &< 10^{-6} \\
+h &< \sqrt{4 \cdot 10^{-6} \e} \\
+&\approx 0.00329744.
+\end{align*}
 
 % }}}
 
@@ -92,7 +130,18 @@ p(x) = \f{(x - x_0) r(x) - (x - x_{n+1}) q(x)}{x_{n+1} - x_0}.
 \] Show that this $p(x)$ is the Lagrange interpolation polynomial of degree $n+1$ for the nodes and values $\{(x_i, y_i) : i = 0, 1, \dotsc, n+1\}$.
 \end{questionbody}
 
-Answer
+We know
+\begin{align*}
+q(x) &= \sum_{k=0}^{n} \prod_{j \ne k}^{n} \f{x - x_j}{x_k - x_j} y_k \\
+r(x) &= \sum_{k=1}^{n+1} \prod_{j \ne 0, k}^{n+1} \f{x - x_j}{x_k - x_j} y_k \\
+p(x) &= \sum_{k=0}^{n+1} \prod_{j \ne k}^{n+1} \f{x - x_j}{x_k - x_j} y_k
+\end{align*}
+so $q(x)$ is missing the $y_{n+1}$ term
+
+\begin{align*}
+p(x) &= \f{x - x_{n+1}}{x_k - x_{n+1}} q(x) + \prod_{j = 1}^{n} \f{x - x_j}{x_{n+1} - x_j} y_{n+1} \\
+&= \f{x - x_0}{x_k - x_0} r(x) + \prod_{j \ne k}^{n} \f{x - x_j}{x_0 - x_j} y_0 \\
+\end{align*}
 
 % }}}
 
@@ -131,7 +180,16 @@ For the Newton--Cotes quadrature formula, using equally spaced points $x_j = a +
 \] where $\alpha_j$ is the quadrature weight of the $j$th node.
 \end{questionbody}
 
-Answer
+The weights are given by \[
+\alpha_j = \intlim ab {L_j(x)} x,
+\] where $L_j$ is the $j$th Lagrange polynomial \[
+L_j(x) = \prod_{i \ne j}^m \f{x - x_i}{x_j - x_i}.
+\]
+We want to show that \[
+\intlim ab {\prod_{i \ne j}^m \f{x - x_i}{x_j - x_i}} x = \intlim ab {\prod_{i \ne n - j}^m \f{x - x_i}{x_{n - j} - x_i}} x.
+\]
+
+% TODO: Can we just argue by symmetry and avoid this direct stuff?
 
 % }}}
 
