@@ -3,14 +3,7 @@
 \documentclass[a4paper]{article}
 \usepackage[UKenglish]{babel}
 
-% \usepackage[hidelinks]{hyperref}
-
 \usepackage{preamble}
-
-% \usepackage{graphicx}
-% \graphicspath{ {./imgs/} }
-
-% \renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
 
 \fancyhead[L]{MA260 Assignment 3}
 \title{MA260 Norms Metrics and Topologies, Assignment 3}
@@ -30,18 +23,18 @@
 Suppose that $f : (X, \cal T_X) \to (Y, \cal T_Y)$ is continuous. If $x$ is a limit point of the subset $A \subset X$, is it necessarily true that $f(x)$ is a limit point of $f(A)$?
 \end{questionbody}
 
-Answer
+Consider for a counterexample $f(x) = \sin x$ on the open interval $(0, 2) \subset \R$. Then clearly $f : \R \to \R$ is continuous with the usual topologies, and $f((0, 2)) = (0, 1]$. $2$ is a limit point in $(0, 2)$ but $f(2) \approx 0.909$, which is not a limit point of $(0, 1]$. For example, $\bb B_{0.01}(f(2))$ as an open neighbourhood does not intersect $\R \setminus (0, 1]$. % chktex 9
 
 % }}}
 
 % {{{ Q2
-\newquestion{2}
+\question{2}
 
 \begin{questionbody}
-Let $U \subset (X, \cal T)$. If $U$ is open, is it true that $U = {\l( \ol U \r)}^\circ$? Justify your answer?
+Let $U \subset (X, \cal T)$. If $U$ is open, is it true that $U = {\l( \ol U \r)}^\circ$? Justify your answer.
 \end{questionbody}
 
-Answer
+Consider for a counterexample $U = (0, 1) \cup (1, 2)$. Then $1 \notin U$, but ${\l( \ol U \r)}^\circ = (0, 2)$ and $1 \in (0, 2)$.
 
 % }}}
 
@@ -59,7 +52,33 @@ Find the boundary and interior of each of the following subsets of $\R^2$ equipp
 \end{enumerate}
 \end{questionbody}
 
-Answer
+% === If $\times$ means real multiplication
+
+% $A = \{0\}$ so simply $\ol A = \{0\}$ since $[0, 0]$ is a closed set. Then since $\{0\}$ is closed, the only open subset of $A$ is $\emptyset$, so $A^\circ = \emptyset$. Therefore $\partial A = \ol A \setminus A^\circ = \{0\}$
+%
+% $B = \R$ since any $z \in \R$ is a product of some $x, y \in \R$ with $x > y$. So $\ol B = \R$ and $B^\circ = \R$. Therefore $\partial B = \ol B \setminus B^\circ = \emptyset$.
+% % $B = \R \setminus \{0\}$
+% % $B^\circ = \R \setminus \{0\}$
+% % $\partial B = \ol B \setminus B^\circ = \{0\}$
+%
+% $C = \R$ so by the same logic we used for $B$, $C^\circ = \R$ and $\partial C = \emptyset$.
+
+% === If $\times$ means tuple
+
+$A = \{(x, 0) : x \in \R\}$. Since this a straight line in $\R^2$, $\partial A = A$ and $A^\circ = \emptyset$.
+
+% TODO: Justify and nice-ify
+$B = \{(x, y) : x, y \in \R, x > y, y \ne 0\} = \{(x, y) : x, y \in \R, x > y\} \setminus A$.
+
+$\partial B = \{(x, x) : x \in \R\} \cup \{(x, 0) : x \in \R, x > 0\}$.
+
+$B^\circ = B$.
+
+$C = \{(x, y) : x, y \in \R, x > y\} \cup A$.
+
+$\partial C = \{(x, x) : x \in \R\} \cup \{(x, 0) : x \in \R, x < 0\}$.
+
+$C^\circ = \{(x, y) : x, y \in \R, x > y\}$.
 
 % }}}
 
@@ -86,4 +105,4 @@ Answer
 
 % }}}
 
-\end{document}
+\end{document} % chktex 17
