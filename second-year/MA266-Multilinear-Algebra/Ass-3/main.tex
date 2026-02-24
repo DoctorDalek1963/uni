@@ -1,0 +1,81 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA266 Assignment 3}
+\title{MA266 Multilinear Algebra, Assignment 3}
+\colorlet{questionbodycolor}{magenta!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q14
+\question{14}
+
+\begin{questionbody}
+Let $p$ be prime and consider the matrix \[
+M := \begin{pmatrix}
+1 & 1 \\
+0 & 1
+\end{pmatrix} \in \op{GL}\nolimits_2({\bb F}_p).
+\] Show that $M$ is not diagonalisable. You may use (without proof) the fact that a matrix is diagonalisable if and only if it is conjugate to a diagonal matrix.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q15
+\newquestion{15}
+
+\begin{questionbody}
+Let $M, N \in M_n(\bb F)$ be conjugate matrices, and let $\lambda \in {\bb F}^\times$. We write $E_{M, k}(\lambda)$ for the generalised eigenspace of $M$ of index $k$ with respect to $\lambda$.
+\begin{enumerate}[(i)]
+\item Write $V := {\bb F}^n$. For $k \in \N$, show that $E_{M, k}(\lambda) \ne \{0_V\}$ if and only if $\lambda$ is an eigenvalue of $M$.
+
+\item Show that $E_{M, k}(\lambda) \subset E_{M, k+1}(\lambda)$ for all $k \in \N$.
+
+\item For $k \in \N$, a partition $n = \ell + m$ of $n$, and matrices $X \in M_\ell(\bb F)$, $Z \in M_m(\bb F)$, show that \[
+\dim_{\bb F} E_{\op{diag}(X, Z), k}(\lambda) =
+\dim_{\bb F} E_{X, k}(\lambda) + \dim_{\bb F} E_{Z, k}(\lambda).
+\] You may use the fact that if $n = n_1 + \dotsb + n_t$, $M = \op{diag}(M_1, \dotsc, M_t)$, and \[
+v = \begin{pmatrix} \lambda_1 \\ \vdots \\ \vdots \\ \lambda_n \end{pmatrix} \in {\bb F}^n,
+\ v_1 = \begin{pmatrix} \lambda_1 \\ \vdots \\ \lambda_{n_1} \end{pmatrix} \in {\bb F}^{n_1},
+\ v_2 = \begin{pmatrix} \lambda_{n_1 + 1} \\ \vdots \\ \lambda_{n_1 + n_2} \end{pmatrix} \in {\bb F}^{n_2},
+\ \dotsc
+\] then \[
+M v = \begin{pmatrix} M_1 v_1 \\ \vdots \\ \vdots \\ M_t v_t \end{pmatrix}.
+\]
+
+\item Let $\lambda \in \bb F$. Show that $\dim_{\bb F} E_{M, k}(\lambda) = \dim_{\bb F} E_{N, k}(\lambda)$ for all $k \in \N$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 15.i
+
+Answer
+
+\subsection{~} % 15.ii
+
+Answer
+
+\subsection{~} % 15.iii
+
+Answer
+
+\subsection{~} % 15.iv
+
+Answer
+
+% }}}
+
+\end{document}
