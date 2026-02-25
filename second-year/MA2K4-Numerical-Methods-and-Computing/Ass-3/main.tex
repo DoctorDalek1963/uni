@@ -1,0 +1,116 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+% \renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+
+\fancyhead[L]{MA2K4 Assignment 3}
+\title{MA2K4 Numerical Methods and Computing, Assignment 3}
+\colorlet{questionbodycolor}{green!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Show that the Newton--Cotes quadrature rule of order $n > 1$ is exact for all polynomials of degree $n + 1$ if $n$ is even. % chktex 8
+
+\textit{Hint}: For the integration interval $x \in [a, b]$, consider the polynomial \[
+{\l( x - \df12 (a + b) \r)}^{n + 1}.
+\]
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Consider the Newton--Cotes quadrature rule of degree $n = 3$ on the interval $x \in [-1, 1]$, \[ % chktex 8
+I_3(f) = \sum_{k=0}^3 \alpha_k f(x_k)
+\] with $x_k = -1 + \df23 k$. Using the fact that this quadrature rule must be exact for all polynomials of degree 3, or otherwise, find the values of the four weights $\alpha_k$, for $k \in \{0, \dotsc, 3\}$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+For the composite trapezoidal rule $I_{1, n}(f)$ and the composite Cavalieri--Simpson rule $I_{2, n}(f)$, show that \[ % chktex 8
+I_{2, n}(f) = \f43 I_{1, 2n}(f) - \f13 I_{1, n}(f).
+\]
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q4
+\newquestion{4}
+
+\begin{questionbody}
+In this problem, show that it is not true that the Cavalieri--Simpson rule is necessarily more accurate that the trapezoidal rule, by constructing an explicit counterexample. % chktex 8
+
+For this, calculate \[
+\intlim 01 {\l( x^5 - \lambda x^4 \r)} x
+\] and find the range of values of $\lambda \in \R$ for which the trapezoidal rule gives a more accurate estimate than the Cavalieri--Simpson rule. % chktex 8
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q5
+\newquestion{5}
+
+\begin{questionbody}
+Derive the 3-node Gauss quadrature on the interval $[-1, 1]$ by finding the three weights $\alpha_i$ and nodes $x_i$ for $i \in \{0, 1, 2\}$. Then, use the rescaling formula \[
+G_n(f) = \f12 (b - a) \sum_{i=0}^n \alpha_i f\l( \f12 (a + b) + x_i \f12 (b - a) \r)
+\] to write down the 3-node Gauss quadrature on an arbitrary interval $[a, b]$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q6
+\newquestion{6}
+
+\begin{questionbody}
+Consider the initial value problem \[
+y'(t) = {(y(t))}^{1/5}, \quad y(0) = 0.
+\]
+\begin{enumerate}[(a)]
+\item Show that \[
+y(t) = {\l( \f45 t \r)}^{5/4}
+\] is a solution of the above IVP\@.
+
+\item Show that the forward Euler method $u_{n+1} = u_n + h u_n^{1/5}$ with $u_0 = y(0)$ fails to approximate this solution. Give a reason for why this is the case.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 6.a
+
+Answer
+
+\subsection{~} % 6.b
+
+Answer
+
+% }}}
+
+\end{document}
