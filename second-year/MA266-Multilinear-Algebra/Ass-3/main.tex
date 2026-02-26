@@ -30,7 +30,37 @@ M := \begin{pmatrix}
 \] Show that $M$ is not diagonalisable. You may use (without proof) the fact that a matrix is diagonalisable if and only if it is conjugate to a diagonal matrix.
 \end{questionbody}
 
-Answer
+It is sufficient to show that $\forall P \in \op{GL}_2({\bb F}_p)$, $P M P^{-1}$ is not diagonal.
+
+Let \[
+P = \begin{pmatrix} a & b \\ c & d \end{pmatrix},
+\] then \[
+P^{-1} = \f1{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}.
+\]
+
+Then we get
+\begin{align*}
+P M P^{-1} &= \begin{pmatrix} a & b \\ c & d \end{pmatrix}
+    \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}
+    \f1{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix} \\[0.5ex]
+&= \f1{ad - bc} \begin{pmatrix}
+    a & a + b \\
+    c & c + d
+    \end{pmatrix}
+    \begin{pmatrix} d & -b \\ -c & a \end{pmatrix} \\[0.5ex]
+&= \f1{ad - bc} \begin{pmatrix}
+    ad - ac - bc & -ab +a^2 + ab \\
+    cd - c^2 - cd & -bc + ac + ad
+    \end{pmatrix} \\[0.5ex]
+&= \f1{ad - bc} \begin{pmatrix}
+    ad - ac - bc & a^2 \\
+    -c^2 & -bc + ac + ad
+    \end{pmatrix}
+\end{align*}
+
+For this to be diagonal, we would need both $a^2 = 0$ and $c^2 = 0$. This is not possible since we're working in $\bb F_p$. Therefore, no choice of $P$ makes $M$ conjugate to a diagonal matrix, therefore $M$ is not diagonalisable.
+
+\hfill $\square$
 
 % }}}
 
