@@ -1,0 +1,108 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\fancyhead[L]{MA263 Assignment 3}
+\title{MA263 Multivariable Analysis, Assignment 3}
+\colorlet{questionbodycolor}{cyan!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Let $M \subset \R^k$ and $N \subset \R^\ell$ be smooth manifolds of dimensions $m$ and $n$ respectively.
+
+We say that a function $f : M \to N$ is smooth if it is locally the restriction to $M$ of a smooth function. That is, for every $a \in M$, there exists open $U \subset \R^k$ containing $a$ and a smooth function $g : U \to \R^\ell$ with $g(x) = f(x)$ for every $x \in M \cap U$.
+
+\begin{enumerate}[(a)]
+\item Define, for $a \in M$, the derivative $D f(a) : T_a M \to T_{f(a)} N$ by $D f(a) v = D g(a) v$ for $v \in T_a M$, where $g$ is as above.
+
+Show that this is well-define, meaning it is independent of $g$ and maps into $T_{f(a)} N$.
+
+\item We say that $f$ is a diffeomorphism if it is invertible and its inverse is also smooth. In this case we say that $M$ and $N$ are diffeomorphic.
+
+Prove that diffeomorphic smooth manifolds must have the same dimension.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 1.a
+
+Answer
+
+\subsection{~} % 1.b
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Let $U \subset \R^m$ and let $r : U \to \R^n$ be a parametrisation of a manifold $M$.
+
+\begin{enumerate}[(a)]
+\item Show that the vectors $\partial_i r(x)$ form a basis of the tangent space $T_{r(x)} M$.
+
+\item Let $m = n - 1$ and consider the Jacobian $\partial r(x)$, which is an $n \times (n-1)$ matrix with the vectors $\partial_i r(x)$ as its columns.
+
+Define a vector $v = (v_1, \dotsc, v_n) \in \R^n$ by $v_i = {(-1)}^{i+n} M_i$, where $M_i$ is the determinant of the matrix obtained by deleting row $i$ from the Jacobian.
+
+Show that this is a non-zero vector normal to $M$ at $r(x)$.
+
+\textit{Hint}: Using cofactor expansion, you can realise $\angb{v, w}$ as the determinant of the matrix obtained from adjoining $\partial r(x)$ to $w$. Once you have justified this observation, all that's left is some linear algebra.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 2.a
+
+Answer
+
+\subsection{~} % 2.b
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Consider the function \[
+f(x, y, z) = 3x^2 + 2xy + 2y^2 + z^2
+\] restricted to the subset of $\R^3$ determined by \[
+2x + 4y = 5, \quad x - y + 2z = 3.
+\]
+
+\begin{enumerate}[(a)]
+\item Argue that this function indeed attains a minimum on this domain.
+
+\textit{Hint}: First show that $f(x, y, z) \ge \|(x, y, z)\|_2^2$.
+
+\item Find the point at which this minimum is attained, justifying the use of any theorems you apply.
+
+\textit{Note}: During calculations, you will likely get a system of linear equations to solve. State clearly what this system is, but you don't need to submit the calculations for solving the system---just the solution.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 3.a
+
+Answer
+
+\subsection{~} % 3.b
+
+Answer
+
+% }}}
+
+\end{document}
