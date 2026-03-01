@@ -24,12 +24,14 @@
 \begin{questionbody}
 Show that the Newton--Cotes quadrature rule of order $n > 1$ is exact for all polynomials of degree $n + 1$ if $n$ is even. % chktex 8
 
-\textit{Hint}: For the integration interval $x \in [a, b]$, consider the polynomial \[
-{\l( x - \df12 (a + b) \r)}^{n + 1}.
-\]
+% \textit{Hint}: For the integration interval $x \in [a, b]$, consider the polynomial \[
+% {\l( x - \df12 (a + b) \r)}^{n + 1}.
+% \]
 \end{questionbody}
 
-Answer
+Suppose $n > 1$ is even, and consider the integral \[
+\intlim ab {{\l( x - \df12 (a + b) \r)}^{n + 1}} x.
+\]
 
 % }}}
 
@@ -105,11 +107,29 @@ y(t) = {\l( \f45 t \r)}^{5/4}
 
 \subsection{~} % 6.a
 
-Answer
+Clearly $y(0) = 0^{5/4} = 0$ as required, so we just need to check the derivative.
+\begin{align*}
+y'(t) &= \f54 \f45 {\l( \f45 t \r)}^{1/4} \\
+&= {\l( \f45 t \r)}^{1/4} \\
+&= {\l( {\l( \f45 t \r)}^{5/4} \r)}^{1/5} \\
+&= {(y(t))}^{1/5}
+\end{align*}
+as required, so this is a solution to the IVP\@.
 
 \subsection{~} % 6.b
 
-Answer
+The forward Euler method gives
+\begin{align*}
+u_0 &= 0 \\
+u_1 &= 0 + h \cdot 0^{1/5} \\
+&= 0 \\
+u_2 &= 0 + h \cdot 0^{1/5} \\
+&= 0 \\
+&\ \ \vdots
+\end{align*}
+whereas of course $y(t) = {\l(\f45 t\r)}^{5/4}$ is not always 0.
+
+Since this IVP is autonomous and starts at 0, each step of the Euler method stays at 0, so the process can never `escape'.
 
 % }}}
 
