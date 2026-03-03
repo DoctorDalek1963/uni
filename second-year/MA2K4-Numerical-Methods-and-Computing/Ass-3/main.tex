@@ -5,8 +5,6 @@
 
 \usepackage{preamble}
 
-% \renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
-
 \fancyhead[L]{MA2K4 Assignment 3}
 \title{MA2K4 Numerical Methods and Computing, Assignment 3}
 \colorlet{questionbodycolor}{green!50}
@@ -114,7 +112,29 @@ G_n(f) = \f12 (b - a) \sum_{i=0}^n \alpha_i f\l( \f12 (a + b) + x_i \f12 (b - a)
 \] to write down the 3-node Gauss quadrature on an arbitrary interval $[a, b]$.
 \end{questionbody}
 
-Answer
+Our maximal degree of precision is $2n + 1 = 5$, so we need
+\begin{align*}
+G_2(1) &= 2 \\
+G_2(x) &= 0 \\
+G_2(x^2) &= \f23 \\
+G_2(x^3) &= 0 \\
+G_2(x^4) &= \f25 \\
+G_2(x^5) &= 0.
+\end{align*}
+At the same time, \[
+G_2(f) = \alpha_0 f(x_0) + \alpha_1 f(x_1) + \alpha_2 f(x_2).
+\]
+
+This gives
+\begin{align*}
+\alpha_0 + \alpha_1 + \alpha_2 &= 2 \\
+\alpha_0 x_0 + \alpha_1 x_1 + \alpha_2 x_2 &= 0 \\
+\alpha_0 x_0^2 + \alpha_1 x_1^2 + \alpha_2 x_2^2 &= \f23 \\
+\alpha_0 x_0^3 + \alpha_1 x_1^3 + \alpha_2 x_2^3 &= 0 \\
+\alpha_0 x_0^4 + \alpha_1 x_1^4 + \alpha_2 x_2^4 &= \f25 \\
+\alpha_0 x_0^5 + \alpha_1 x_1^5 + \alpha_2 x_2^5 &= 0.
+\end{align*}
+By symmetry, we require $\alpha_0 = \alpha_2$, $x_0 = -x_2$, and $x_1 = 0$.
 
 % }}}
 
