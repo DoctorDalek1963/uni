@@ -57,7 +57,36 @@ I_{2, n}(f) = \f43 I_{1, 2n}(f) - \f13 I_{1, n}(f).
 \]
 \end{questionbody}
 
-Answer
+We know that
+\begin{align*}
+I_{1, n}(f) &= h \l( \f12 f(x_0) + f(x_1) + \dotsb + f(x_{n - 1}) + \f12 f(x_n) \r), \\[0.5ex]
+I_{1, 2n}(f) &= h \l( \f12 f(x_0) + f(x_1) + \dotsb + f(x_{2n - 1}) + \f12 f(x_{2n}) \r), \\[0.5ex]
+I_{2, n}(f) &= \f13 h \bigg( f(x_0) + 4 f(x_1) + 2 f(x_2) + 4 f(x_3) + \cdots \\
+    &\qquad + 4 f(x_{2n - 3}) + 2 f(x_{2n - 2}) + 4 f(x_{2n - 1}) + f(x_{2n}) \bigg),
+\end{align*}
+but these definitions define $h$ differently and use different nodes. To normalise this, we instead use
+\begin{align*}
+I_{1, n}(f) &= h \l( \f12 f(x_0) + f(x_2) + \dotsb + f(x_{2n - 2}) + \f12 f(x_{2n}) \r), \\[0.5ex]
+I_{1, 2n}(f) &= \f12 h \l( \f12 f(x_0) + f(x_1) + \dotsb + f(x_{2n - 1}) + \f12 f(x_{2n}) \r), \\[0.5ex]
+I_{2, n}(f) &= \f16 h \bigg( f(x_0) + 4 f(x_1) + 2 f(x_2) + 4 f(x_3) + \cdots \\
+    &\qquad + 4 f(x_{2n - 3}) + 2 f(x_{2n - 2}) + 4 f(x_{2n - 1}) + f(x_{2n}) \bigg),
+\end{align*}
+where $h = \f{b-a}{n}$.
+
+Therefore
+\begin{align*}
+4 I_{1, 2n}(f) - I_{1, n}(f) &=
+    2 h \l( \f12 f(x_0) + f(x_1) + \dotsb + f(x_{2n - 1}) + \f12 f(x_{2n}) \r) \\
+    &\qquad - h \l( \f12 f(x_0) + f(x_2) + \dotsb + f(x_{2n - 2}) + \f12 f(x_{2n}) \r) \\[0.5ex]
+&= h \bigg( \f12 f(x_0) + 2 f(x_1) + f(x_2) + 2 f(x_3) + \dotsb \\
+    &\qquad + f(x_{2n - 2}) + 2 f(x_{2n - 1}) + \f12 f(x_{2n}) \bigg) \\[0.5ex]
+&= \f12 h \bigg( f(x_0) + 4 f(x_1) + 2 f(x_2) + 4 f(x_3) + \cdots \\
+    &\qquad + 4 f(x_{2n - 3}) + 2 f(x_{2n - 2}) + 4 f(x_{2n - 1}) + f(x_{2n}) \bigg) \\[0.5ex]
+&= 3 I_{2, n}(f).
+\end{align*}
+Therefore $I_{2, n}(f) = \f43 I_{1, 2n}(f) - \f13 I_{1, n}(f)$ as required.
+
+\hfill $\square$
 
 % }}}
 
