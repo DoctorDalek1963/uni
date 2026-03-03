@@ -134,7 +134,42 @@ This gives
 \alpha_0 x_0^4 + \alpha_1 x_1^4 + \alpha_2 x_2^4 &= \f25 \\
 \alpha_0 x_0^5 + \alpha_1 x_1^5 + \alpha_2 x_2^5 &= 0.
 \end{align*}
-By symmetry, we require $\alpha_0 = \alpha_2$, $x_0 = -x_2$, and $x_1 = 0$.
+By symmetry, we require $\alpha_0 = \alpha_2$, $x_0 = -x_2$, and $x_1 = 0$, so we get
+\begin{align*}
+2 \alpha_0 + \alpha_1 &= 2 \\
+0 &= 0 \\
+2 \alpha_0 x_0^2 &= \f23 \\
+0 &= 0 \\
+2 \alpha_0 x_0^4 &= \f25 \\
+0 &= 0
+\end{align*}
+since for odd $k$, $\alpha_0 x_0^k + \alpha_2 x_2^k = 0$.
+
+Then we compute the solution and find
+\begin{align*}
+x_0^2 &= \f35 \\[0.5ex]
+2 \alpha_0 &= \f23 \cdot \f53 \\[0.5ex]
+&= \f{10}9 \\[0.5ex]
+\alpha_0 &= \f59 \\[0.5ex]
+\alpha_1 &= 2 - \f{10}9 \\[0.5ex]
+&= \f89
+\end{align*}
+So we get $x_0 = -\sqrt{\df35}$, $x_1 = 0$, $x_2 = \sqrt{\df35}$, $\alpha_0 = \df59$, $\alpha_1 = \df89$, and $\alpha_2 = \df59$.
+
+Therefore
+\begin{align*}
+G_2(f) &= \f12 (b - a) \sum_{i=0}^2 \alpha_i f\l( \f12 (a + b) + x_i \f12 (b - a) \r) \\[0.5ex]
+&= \f12 (b - a) \Bigg(
+    \f59 f\l( \f12 (a + b) - \f12 \sqrt{\f35} (b - a) \r) \\
+    &\qquad + \f89 f\l( \f12 (a + b) \r)
+    + \f59 f\l( \f12 (a + b) + \f12 \sqrt{\f35} (b - a) \r)
+\Bigg) \\[0.5ex]
+&= \f1{18} (b - a) \Bigg(
+    5 f\l( \f12 (a + b) - \f{\sqrt 3}{2 \sqrt 5} (b - a) \r) \\
+    &\qquad + 8 f\l( \f12 (a + b) \r)
+    + 5 f\l( \f12 (a + b) + \f{\sqrt 3}{2 \sqrt 5} (b - a) \r)
+\Bigg).
+\end{align*}
 
 % }}}
 
