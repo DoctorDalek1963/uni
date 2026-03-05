@@ -17,24 +17,24 @@
 \setlength{\parskip}{1em}
 
 % {{{ Q1
-\question{1}
+% \question{1}
 
-\begin{questionbody}
-Show that the Newton--Cotes quadrature rule of order $n > 1$ is exact for all polynomials of degree $n + 1$ if $n$ is even. % chktex 8
+% \begin{questionbody}
+% Show that the Newton--Cotes quadrature rule of order $n > 1$ is exact for all polynomials of degree $n + 1$ if $n$ is even. % chktex 8
 
-% \textit{Hint}: For the integration interval $x \in [a, b]$, consider the polynomial \[
-% {\l( x - \df12 (a + b) \r)}^{n + 1}.
+% % \textit{Hint}: For the integration interval $x \in [a, b]$, consider the polynomial \[
+% % {\l( x - \df12 (a + b) \r)}^{n + 1}.
+% % \]
+% \end{questionbody}
+
+% Suppose $n > 1$ is even, and consider the integral \[
+% \intlim ab {{\l( x - \df12 (a + b) \r)}^{n + 1}} x.
 % \]
-\end{questionbody}
-
-Suppose $n > 1$ is even, and consider the integral \[
-\intlim ab {{\l( x - \df12 (a + b) \r)}^{n + 1}} x.
-\]
 
 % }}}
 
 % {{{ Q2
-\newquestion{2}
+\question{2}
 
 \begin{questionbody}
 Consider the Newton--Cotes quadrature rule of degree $n = 3$ on the interval $x \in [-1, 1]$, \[ % chktex 8
@@ -42,7 +42,59 @@ I_3(f) = \sum_{k=0}^3 \alpha_k f(x_k)
 \] with $x_k = -1 + \df23 k$. Using the fact that this quadrature rule must be exact for all polynomials of degree 3, or otherwise, find the values of the four weights $\alpha_k$, for $k \in \{0, \dotsc, 3\}$.
 \end{questionbody}
 
-Answer
+Let \[
+f(x) = a x^3 + b x^2 + c x + d.
+\] Then
+\begin{align*}
+I(f) &= \intlim {-1}1 {(a x^3 + b x^2 + c x + d)} x \\[0.5ex]
+&= {\l[ \f a4 x^4 + \f b3 x^3 + \f c2 x^2 + dx \r]}_{-1}^1 \\[0.5ex]
+&= \f a4 + \f b3 + \f c2 + d - \l( \f a4 - \f b3 + \f c2 - d \r) \\[0.5ex]
+&= \f{2b}3 + 2d.
+\end{align*}
+
+The quadrature rule gives
+\begin{align*}
+I_3(f) &= \sum_{k=0}^3 \alpha_k f(x_k) \\[0.5ex]
+&= \alpha_0 f(-1) + \alpha_1 f \l( -\f13 \r) + \alpha_2 f \l( \f13 \r) + \alpha_3 f(1) \\[0.5ex]
+&= \alpha_0 (-a + b - c + d)
+    + \alpha_1 \l( -\f1{27} a + \f19 b - \f13 c + d \r) \\
+    &\qquad + \alpha_2 \l( \f1{27} a + \f19 b + \f13 c + d \r)
+    + \alpha_3 (a + b + c + d) \\[0.5ex]
+&= \l( -\alpha_0 - \f{\alpha_1}{27} + \f{\alpha_2}{27} + \alpha_3 \r) a
+    + \l( \alpha_0 + \f{\alpha_1}9 + \f{\alpha_2}9 + \alpha_3 \r) b \\
+    &\qquad + \l( -\alpha_0 - \f{\alpha_1}3 + \f{\alpha_2}3 + \alpha_3 \r) c
+    + (\alpha_0 + \alpha_1 + \alpha_2 + \alpha_3) d.
+\end{align*}
+
+For these to be equivalent, we require
+\begin{align*}
+-\alpha_0 - \f{\alpha_1}{27} + \f{\alpha_2}{27} + \alpha_3 &= 0 \\
+\alpha_0 + \f{\alpha_1}9 + \f{\alpha_2}9 + \alpha_3 &= \f23 \\
+-\alpha_0 - \f{\alpha_1}3 + \f{\alpha_2}3 + \alpha_3 &= 0 \\
+\alpha_0 + \alpha_1 + \alpha_2 + \alpha_3 &= 2
+\end{align*}
+We can rewrite this as a matrix equation and solve it with a computer. \[
+\begin{pmatrix}
+-1 & -\f1{27} & \f1{27} & 1 \\[0.5ex]
+1 & \f19 & \f19 & 1 \\[0.5ex]
+-1 & -\f13 & \f13 & 1 \\[0.5ex]
+1 & 1 & 1 & 1
+\end{pmatrix}
+\begin{pmatrix}
+\alpha_0 \\[0.5ex]
+\alpha_1 \\[0.5ex]
+\alpha_2 \\[0.5ex]
+\alpha_3
+\end{pmatrix}
+= \begin{pmatrix}
+0 \\[0.5ex]
+\f23 \\[0.5ex]
+0 \\[0.5ex]
+2
+\end{pmatrix}
+\] This yields \[
+\alpha_0 = \f14,\ \alpha_1 = \f34,\ \alpha_2 = \f34,\ \alpha_3 = \f14.
+\]
 
 % }}}
 
@@ -99,7 +151,80 @@ For this, calculate \[
 \] and find the range of values of $\lambda \in \R$ for which the trapezoidal rule gives a more accurate estimate than the Cavalieri--Simpson rule. % chktex 8
 \end{questionbody}
 
-Answer
+The exact value of the integral is
+\begin{align*}
+I(f) &= \intlim 01 {\l( x^5 - \lambda x^4 \r)} x \\[0.5ex]
+&= {\l[ \f16 x^6 - \f\lambda5 x^5 \r]}_0^1 \\[0.5ex]
+&= \f16 - \f\lambda5.
+\end{align*}
+
+The trapezoidal approximation and its error are
+\begin{align*}
+I_1(f) &= \f12 (1 - 0) (f(1) - f(0)) \\[0.5ex]
+&= \f12 (1 - \lambda - 0) \\[0.5ex]
+&= \f{1 - \lambda}2, \\[0.5ex]
+E_1(f) &= \f16 - \f\lambda5 - \f{1 - \lambda}2 \\[0.5ex]
+&= \f5{30} - \f{6 \lambda}{30} - \f{15 - 15 \lambda}{30} \\[0.5ex]
+&= \f{-10 + 9 \lambda}{30}.
+\end{align*}
+
+The Cavalieri--Simpson approximation and its error are % chktex 8
+\begin{align*}
+I_2(f) &= \f{1 - 0}6 \l( f(0) + 4 f\l( \f12 (0 + 1) \r) + f(1) \r) \\[0.5ex]
+&= \f16 \l( 0 + 4 \l( \f1{32} - \f\lambda{16} \r) + 1 - \lambda \r) \\[0.5ex]
+&= \f16 \l( \f18 - \f\lambda4 + 1 - \lambda \r) \\[0.5ex]
+&= \f{1 - 2 \lambda + 8 - 8 \lambda}{48} \\[0.5ex]
+&= \f{9 - 10 \lambda}{48}, \\[0.5ex]
+E_2(f) &= \f16 - \f\lambda5 - \f{9 - 10 \lambda}{48} \\[0.5ex]
+&= \f{40}{240} - \f{48 \lambda}{240} - \f{45 - 50 \lambda}{240} \\[0.5ex]
+&= \f{-5 + 2 \lambda}{240}.
+\end{align*}
+
+We want $|E_1(f)| < |E_2(f)|$, so we will first find where $E_1(f) = 0$ so we can centre our search.
+\begin{align*}
+\f{-10 + 9 \lambda}{30} &= 0 \\
+9 \lambda &= 10 \\
+\lambda &= \f{10}9
+\end{align*}
+so we know that our final range must include $\f{10}9$.
+
+Each of $E_1(f)$ and $E_2(f)$ may be positive or negative, so we have 4 inequalities.
+\begin{align*}
+E_1(f) &< E_2(f) \\
+\f{-10 + 9 \lambda}{30} &< \f{-5 + 2 \lambda}{240} \\
+24(-10 + 9 \lambda) &< 3(-5 + 2 \lambda) \\
+-240 + 216 \lambda &< -15 + 6 \lambda \\
+210 \lambda &< 225 \\
+\lambda &< \f{15}{14}
+\end{align*}
+
+\begin{align*}
+E_1(f) &< -E_2(f) \\
+\f{-10 + 9 \lambda}{30} &< \f{5 - 2 \lambda}{240} \\
+-240 + 216 \lambda &< 15 - 6 \lambda \\
+222 \lambda &< 255 \\
+\lambda &< \f{84}{74}
+\end{align*}
+
+\begin{align*}
+-E_1(f) &< E_2(f) \\
+\f{10 - 9 \lambda}{30} &< \f{-5 + 2 \lambda}{240} \\
+240 - 216 \lambda &< -15 + 6 \lambda \\
+255 &< 222 \lambda \\
+\f{84}{74} &< \lambda
+\end{align*}
+
+\begin{align*}
+-E_1(f) &< -E_2(f) \\
+\f{10 - 9 \lambda}{30} &< \f{5 - 2 \lambda}{240} \\
+240 - 216 \lambda &< 15 - 6 \lambda \\
+225 &< 210 \lambda \\
+\f{15}{14} &< \lambda
+\end{align*}
+
+Since we need $\f{10}9$ to be in the range, we conclude that the desired range is \[
+\f{15}{14} < \lambda < \f{85}{74}.
+\] Testing shows that the trapezoidal rule is in fact better that Cavalieri--Simpson for this integral with $\lambda$ in that range. % chktex 8
 
 % }}}
 
@@ -155,10 +280,16 @@ x_0^2 &= \f35 \\[0.5ex]
 &= \f89
 \end{align*}
 So we get $x_0 = -\sqrt{\df35}$, $x_1 = 0$, $x_2 = \sqrt{\df35}$, $\alpha_0 = \df59$, $\alpha_1 = \df89$, and $\alpha_2 = \df59$.
+% This is correct.
 
 Therefore
 \begin{align*}
 G_2(f) &= \f12 (b - a) \sum_{i=0}^2 \alpha_i f\l( \f12 (a + b) + x_i \f12 (b - a) \r) \\[0.5ex]
+&= \f12 (b - a) \bigg(
+    \alpha_0 f\l( \f12 (a + b) + \f12 x_0 (b - a) \r) \\
+    &\qquad + \alpha_1 f\l( \f12 (a + b) + \f12 x_1 (b - a) \r) \\
+    &\qquad + \alpha_2 f\l( \f12 (a + b) + \f12 x_2 (b - a) \r)
+\bigg) \\[0.5ex]
 &= \f12 (b - a) \Bigg(
     \f59 f\l( \f12 (a + b) - \f12 \sqrt{\f35} (b - a) \r) \\
     &\qquad + \f89 f\l( \f12 (a + b) \r)
