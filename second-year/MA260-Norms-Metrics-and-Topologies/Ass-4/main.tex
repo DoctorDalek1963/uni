@@ -23,18 +23,24 @@
 Let $X$ be a topological space and $A \subset X$. Suppose that for each $x \in A$ there is an open set $U$ containing $x$ such that $U \subset A$. Show that $A$ is open in $X$.
 \end{questionbody}
 
-Answer
+Let $U_x$ be the associated open set for a particular $x$. Then $\cal U = \bigcup \{U_x : x \in A\}$ is an arbitrary union of open sets in a topological space, so is open. But $\cal U$ contains every point in $A$ and no points outside of $A$, since $U_x \subset A$ for all $x$. Therefore $\cal U = A$, so $A$ is open.
+
+\hfill $\square$
 
 % }}}
 
 % {{{ Q2
-\newquestion{2}
+\question{2}
 
 \begin{questionbody}
 Let $f : S^1 \to \R$ be a continuous map. Show that there exists a point $x$ of $S^1$ such that $f(x) = f(-x)$. Here $S^1$ is the unit circle in $\R^2$ and $-x$ is the antipode of $x$.
 \end{questionbody}
 
-Answer
+This is the 1-dimensional case of the Borsak--Ulam theorem. % chktex 8
+
+Let $g : S^1 \to \R$ be defined by $g(x) = f(x) - f(-x)$. Then $g$ is continuous and since $S^1$ is connected, we can apply the intermediate value theorem. Either $g(x) = 0$ for all $x$, in which case we're done, or $g(x) > 0$ for some $x \in S^1$. In this case, $g(-x) = -g(x) < 0$, so $g(-x) < 0 < g(x)$. By the intermediate value theorem, there exists a $y \in S^1$ such that $g(y) = 0$, therefore $f(y) = f(-y)$.
+
+\hfill $\square$
 
 % }}}
 
@@ -51,11 +57,17 @@ Answer
 
 \subsection{~} % 3.a
 
-Answer
+Let $X$ and $Y$ be path connected topological spaces, let $x_1, x_2 \in X$, and let $y_1, y_2 \in Y$. Let $\phi_X : [0, 1] \to X$ be a continuous path in $X$ from $x_1$ to $x_2$ and $\phi_Y : [0, 1] \to Y$ be a continuous path in $Y$ from $y_1$ to $y_2$.
+
+Then the map $\phi_{X \times Y} : [0, 1] \to X \times Y$ defined by $\phi_{X \times Y}(t) = (\phi_X(t), \phi_Y(t))$ is a path from $(x_1, y_1)$ to $(x_2, y_2)$ in $X \times Y$ with the product topology. Since this is true for any $x_1$, $x_2$, $y_1$, and $y_2$, we conclude that $X \times Y$ is path connected.
+
+\hfill $\square$
 
 \subsection{~} % 3.b
 
-Answer
+Let $x_1, x_2 \in X$ and $\phi : [0, 1] \to X$ be a continuous path from $x_1$ to $x_2$. Since $f$ and $\phi$ are both continuous, $f \circ \phi : [0, 1] \to f(X)$ is also continuous and therefore defines a path from $f(x_1)$ to $f(x_2)$. This is true for any $x_1$ and $x_2$, so $f(X)$ is path connected.
+
+\hfill $\square$
 
 % }}}
 
@@ -66,18 +78,23 @@ Answer
 Let $X$ be compact and $Y$ be Hausdorff. Show that if $f : X \to Y$ is continuous then $f$ is a closed map, so the image of every closed set is closed.
 \end{questionbody}
 
-Answer
+Let $A \subset X$ be closed. By Theorem~8.17, a continuous image of a compact set is compact, so $f(A)$ is compact. By Theorem~8.13, any compact subset of a Hausdorff space is closed. Therefore $f(A)$ is closed for any closed $A \subset X$, so $f$ is a closed map.
+
+\hfill $\square$
 
 % }}}
 
 % {{{ Q5
-\newquestion{5}
+\question{5}
 
 \begin{questionbody}
 Show that if $Y$ is compact then the projection $\pi_1 : X \times Y \to X$ is a closed map, so the image of every closed set is closed.
 \end{questionbody}
 
-Answer
+% TODO: This is wrong because we didn't use the compactness of $Y$
+Let $A \subset X \times Y$ be closed, then $A = A_X \times A_Y$. If either of $A_X$ or $A_Y$ were not closed, then $A$ would not be closed, so both $A_X$ and $A_Y$ must be closed. Then $\pi_1(A) = A_X$, which is closed. Therefore $\pi_1$ is a closed map.
+
+\hfill $\square$
 
 % }}}
 
