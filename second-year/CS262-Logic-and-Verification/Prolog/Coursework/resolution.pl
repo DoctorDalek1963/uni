@@ -1,124 +1,189 @@
-% vim :set ft=prolog:
-
 /*
-TODO: Put actual answers here
-1. NO
-2. NO
-3. NO
-4. NO
+1. YES
+2. YES
+3. YES
+4. YES
 5. NO
-6. NO
+6. YES
 7. NO
-8. NO
+8. YES
 9. NO
 10. NO
 */
 
-:- op(140, fy, neg).
-:- op(160, yfx, [and, or, imp, revimp, uparrow, downarrow, notimp, notrevimp]).
-:- op(180, yfx, [equiv, notequiv]). % TODO: Implement
-
-%! conjunctive(+Formula) is det.
+%! conjunctive(+Formula:compound) is det.
 %
 %  True if Formula is an alpha formula.
 
-conjunctive(_ and _).
-conjunctive(neg(_ or _)).
-conjunctive(neg(_ imp _)).
-conjunctive(neg(_ revimp _)).
-conjunctive(neg(_ uparrow _)).
-conjunctive(_ downarrow _).
-conjunctive(_ notimp _).
-conjunctive(_ notrevimp _).
+conjunctive(and(_, _)).
+conjunctive(neg(or(_, _))).
+conjunctive(neg(imp(_, _))).
 
-%! disjunctive(+Formula) is det.
+%! disjunctive(+Formula:compound) is det.
 %
 %  True if Formula is an beta formula.
 
-disjunctive(neg(_ and _)).
-disjunctive(_ or _).
-disjunctive(_ imp _).
-disjunctive(_ revimp _).
-disjunctive(_ uparrow _).
-disjunctive(neg(_ downarrow _)).
-disjunctive(neg(_ notimp _)).
-disjunctive(neg(_ notrevimp _)).
+disjunctive(neg(and(_, _))).
+disjunctive(or(_, _)).
+disjunctive(imp(_, _)).
 
-%! unary(+Formula) is det.
+%! unary(+Formula:compound) is det.
 %
 %  True if Formula is a double negation or negated constant.
 
-unary(neg neg _).
-unary(neg true).
-unary(neg false).
+unary(neg(neg(_))).
+unary(neg(true)).
+unary(neg(false)).
 
-%! components(+Formula, -X, -Y) is det.
+%! components(+Formula:compound, -X:compound, -Y:compound) is det.
 %
 %  True if X and Y are the components of Formula as defined in the alpha and beta formulae tables.
 
-components(X and Y, X, Y).
-components(neg(X and Y), neg X, neg Y).
-components(X or Y, X, Y).
-components(neg(X or Y), neg X, neg Y).
-components(X imp Y, neg X, Y).
-components(neg(X imp Y), X, neg Y).
-components(X revimp Y, X, neg Y).
-components(neg(X revimp Y), neg X, Y).
-components(X uparrow Y, neg X, neg Y).
-components(neg(X uparrow Y), X, Y).
-components(X downarrow Y, neg X, neg Y).
-components(neg(X downarrow Y), X, Y).
-components(X notimp Y, X, neg Y).
-components(neg(X notimp Y), neg X, Y).
-components(X notrevimp Y, neg X, Y).
-components(neg(X notrevimp Y), X, neg Y).
+components(and(X, Y), X, Y).
+components(neg(and(X, Y)), neg(X), neg(Y)).
+components(or(X, Y), X, Y).
+components(neg(or(X, Y)), neg(X), neg(Y)).
+components(imp(X, Y), neg(X), Y).
+components(neg(imp(X, Y)), X, neg(Y)).
 
-%! component(+Formula, -X) is det.
+%! component(+Formula:compound, -X:compound) is det.
 %
 %  True if X is the component of unary Formula.
 
-component(neg neg X, X).
-component(neg true, false).
-component(neg false, true).
+component(neg(neg(X)), X).
+component(neg(true), false).
+component(neg(false), true).
 
-%! clauseform(+Formula, -CNF) is det.
+%! clauseform(+Formula:compound, -CNF:list(list(compound))) is det.
 %
 %  True if CNF is the conjunctive normal form of Formula.
 
 clauseform(Formula, CNF).
 
-%! resolve(+Premises, +Consequence) is nondet.
+%! resolutionstep(+Clauses:list(list(compound)), -NewClauses:list(list(compound))) is multi.
 %
-%  True if Consequence is a direct logical result of the Premises.
+%  True if a single step of a resolution proof applied to Clauses yields NewClauses.
 
-resolve(Prems, Conseq).
+resolutionstep(Clauses, NewClauses).
 
-%! test(+Premises, +Consequence) is nondet.
+%! factor(+Clause:list(compound), -FactoredClause:list(compound)) is det.
 %
-%  Like `resolve/2` but also prints "YES" or "NO" respectively.
+%  True if FactoredClause is the result of unifying two unifiable literals of
+%  Clause and dropping the duplicate.
 
-test(Prems, Conseq) :-
-	resolve(Prems, Conseq).
+factor(Clause, FactoredClause).
+
+%! resolution(+Clauses:list(list(compound)), -Result:boolean) is multi.
+%
+%  Repeatedly applies `resolutionstep/2` and `factor/2` to a list of Clauses
+%  until the empty clause is derived or until no new clauses can be derived.
+%  Result is true or false, meaning whether resolution proof was successful.
+
+resolution(Clauses, Result).
+
+%! silent_test(+Premises:list(compound), +Conclusion:compound) is nondet.
+%
+%  True if Conclusion can be reached from Premises using resolution refutation.
+
+silent_test(Premises, Conclusion).
+
+%! test(+Premises:list(compound), -Conclusion:compound) is nondet.
+%
+%  Exactly the same as `silent_test/2`, but instead prints "YES" or "NO".
+
+test(Premises, Conclusion).
 
 :- begin_tests(resolution).
 
-% test(clauseform) :-
-% 	clauseform(a imp b, Y),
-% 	Y == [[neg a, b]].
-% test(clauseform) :-
-% 	clauseform(neg (a uparrow b), Y),
-% 	Y == [[a], [b]].
+test(clauseform) :-
+	clauseform(forall(X, imp(p(X), q(X))), C),
+	C == [[neg(p(X)), q(X)]].
+
+% NOTE: Do we always want to keep clauses after expansion?
+test(resolutionstep) :-
+	resolutionstep([[neg(p(X)), q(X)], [p(a)]], C),
+	C == [[neg(p(X)), q(X)], [p(a)], [q(a)]].
+
+test(factor) :-
+	factor([p(X), q(Z), p(Y)], C),
+	C == [p(X), q(Z)].
 
 % NOTE: These are assigned test cases. Some of them will fail! I just don't yet know which.
-% test(resolve) :- resolve([x imp y, x], y).
-% test(resolve) :- resolve([neg x imp y], neg (x notimp y) imp y).
-% test(resolve) :- resolve([x imp y, y imp z], neg neg z or neg x).
-% test(resolve) :- resolve([], (x imp (y imp z)) equiv ((x imp y) imp z)).
-% test(resolve) :- resolve([x notequiv y], y notequiv x).
-% test(resolve) :- resolve([], (x notequiv (y notequiv z)) equiv ((x notequiv y) notequiv z)).
-% test(resolve) :- resolve([neg (x uparrow y)], neg x downarrow neg y).
-% test(resolve) :- resolve([(z notrevimp u) or (u uparrow neg v)], neg (neg x revimp neg y)). % NOTE: Prems don't affect conseq. Optimise for this.
-% test(resolve) :- resolve([x or y, neg (neg y notrevimp z)], neg neg (z equiv x) notrevimp y).
-% test(resolve) :- resolve([neg (z notrevimp y) revimp x], (x or w) imp ((y imp z) or w)).
+% TODO: Sometimes the premises don't affect the conclusion. Optimise for this.
+test(silent_test) :- silent_test(
+	[
+		forall(X, imp(human(X), mortal(X))),
+		human(socrates)
+	],
+	mortal(socrates)
+).
+
+test(silent_test) :- silent_test(
+	[
+		forall(X, imp(p(X), q(X))),
+		forall(X, imp(q(X), r(X))),
+		p(a)
+	],
+	r(a)
+).
+
+test(silent_test) :- silent_test(
+	[forall(X, imp(p(X), q(X)))],
+	q(a)
+).
+
+test(silent_test) :- silent_test(
+	[
+		forall(X, forall(Y, imp(parent(X, Y), ancestor(X, Y)))),
+		parent(alice, bob)
+	],
+	ancestor(alice, bob)
+).
+
+test(silent_test, [fail]) :- silent_test(
+	[
+		forall(X, imp(student(X), smart(X))),
+		smart(john)
+	],
+	student(john)
+).
+
+test(silent_test) :- silent_test(
+	[
+		forall(X, imp(and(p(X), q(X)), r(X))),
+		p(a),
+		q(a)
+	],
+	r(a)
+).
+
+test(silent_test, [fail]) :- silent_test(
+	[forall(X, forall(Y, imp(loves(X, Y), knows(X, Y))))],
+	knows(alice, bob)
+).
+
+test(silent_test) :- silent_test(
+	[
+		forall(X, imp(p(X), or(q(X), r(X)))),
+		p(a),
+		neg(q(a))
+	],
+	r(a)
+).
+
+test(silent_test, [fail]) :- silent_test(
+	[forall(X, imp(friend(X, X), trusts(X, X)))],
+	trusts(alice, alice)
+).
+
+test(silent_test, [fail]) :- silent_test(
+	[],
+	% (pa -> (pb -> pc)) -> ((pa -> pb) -> pc)
+	% Associativity of implication
+	imp(
+		imp(p(a), imp(p(b), p(c))),
+		imp(imp(p(a), p(b)), p(c))
+	)
+).
 
 :- end_tests(resolution).
