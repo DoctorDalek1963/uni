@@ -1,0 +1,66 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+\usepackage{preamble}
+
+\fancyhead[L]{MA263 Assignment 4}
+\title{MA263 Multivariable Analysis, Assignment 4}
+\colorlet{questionbodycolor}{cyan!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q1
+\question{1}
+
+\begin{questionbody}
+Let $A \subset {[0, 1]}^2$ and let $f : {[0, 1]}^2 \to \R$ be such that $f(x) = 1$ for $x \in A$ and zero otherwise.
+
+Suppose that $f$ is not integrable. Show that there exists $\varepsilon > 0$ so that whenever $P$ is a partition of ${[0, 1]}^2$, then \[
+\sum_{\substack{S \in RP \\ S \cap \partial A \ne \emptyset}} v(S) \ge \varepsilon,
+\] where $\partial A$ is the topological boundary of $A$.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q2
+\newquestion{2}
+
+\begin{questionbody}
+Consider the function $f : {[0, 1]}^2 \to \R$ defined by \[
+f(x, y) = \begin{cases}
+xy & \text{if } x \ge y, \\
+0 & \text{otherwise}.
+\end{cases}
+\] Show that $f$ is integrable.
+\end{questionbody}
+
+Answer
+
+% }}}
+
+% {{{ Q3
+\newquestion{3}
+
+\begin{questionbody}
+Suppose that $\phi$ is an invertible linear map, $K = R^{a, b}$ is a rectangle, and define $f : \phi(K) \to \R$ by $f(x) = 1$ for $x \in \phi(K)$.
+
+Give a direct proof of the change of variables formula in this case. In your proof, you may assume that all functions involved are integrable.
+
+\textit{Hint}: Reduce to the case where $\phi$ is multiplication by an elementary matrix and use Fubini's Theorem as necessary.
+\end{questionbody}
+
+% TODO: Proof must not be general proof from notes; must be specific to this case
+Answer
+
+% }}}
+
+\end{document}
