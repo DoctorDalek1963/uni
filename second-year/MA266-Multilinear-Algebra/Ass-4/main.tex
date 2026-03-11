@@ -1,0 +1,95 @@
+% vim: set foldmethod=marker foldlevel=0:
+
+\documentclass[a4paper]{article}
+\usepackage[UKenglish]{babel}
+
+% \usepackage[hidelinks]{hyperref}
+
+\usepackage{preamble}
+
+% \usepackage{graphicx}
+% \graphicspath{ {./imgs/} }
+
+\renewcommand{\thesubsection}{Q\arabic{section}~(\roman{subsection})}
+\renewcommand{\thesubsubsection}{(\alph{subsubsection})}
+
+\fancyhead[L]{MA266 Assignment 4}
+\title{MA266 Multilinear Algebra, Assignment 4}
+\colorlet{questionbodycolor}{magenta!50}
+
+\begin{document}
+
+\maketitle
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% {{{ Q14
+\question{14}
+
+\begin{questionbody}
+Let $\tau \in S_n$. Recall that the permutation matrix associated to $\tau$, written $P_\tau$ is defined as \[
+{(P_\tau)}_{i, j} := \begin{cases}
+1_{\bb F} & \text{if } j = \tau(i), \\
+0_{\bb F} & \text{otherwise}.
+\end{cases}
+\] Set $L := L(t) := t I_n - P_\tau$ and write $L_{i, j}$ for the $(i, j)$th entry of $L$. Suppose that $\tau$ is the $n$-cycle $\tau = (1, 2, \dotsc, n)$.
+\begin{enumerate}[(i)]
+\item By using the definition of the determinant from the notes and one of the previous problems on this sheet to compute $\det(L)$, show that $c_{P_\tau}(t) = t^n - 1_{\bb F}$.
+
+\item Suppose that the field $\bb F$ contains an element $\mu \in \bb F$ satisfying $\mu^n = 1_{\bb F}$ and $\mu^m \ne 1_{\bb F}$ for all $1 \le m < n$. This is a primitive $n$th root of unity.
+\begin{enumerate}[(a)]
+\item Prove that $P_\tau$ is diagonalisable.
+
+\item Determine the minimal polynomial $\mu_{P_\tau}(t)$ of $P_\tau$.
+\end{enumerate}
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 14.i
+
+Answer
+
+\subsection{~} % 14.ii
+
+\subsubsection{~} % 14.ii.a
+
+Answer
+
+\subsubsection{~} % 14.ii.b
+
+Answer
+
+% }}}
+
+% {{{ Q15
+\newquestion{15}
+
+\begin{questionbody}
+Let $\bb F := \C$. Consider the matrix \[
+M := \begin{pmatrix}
+7 & 5 & 0 & 0 & 0 \\
+-1 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 & 0
+\end{pmatrix} \in M_n(\C).
+\]
+\begin{enumerate}[(i)]
+\item Determine the characteristic polynomial of $M$.
+
+\item Determine the minimal polynomial of $M$.
+\end{enumerate}
+\end{questionbody}
+
+\subsection{~} % 15.i
+
+Answer
+
+\subsection{~} % 15.ii
+
+Answer
+
+% }}}
+
+\end{document}
