@@ -48,17 +48,41 @@ Let $\tau \in S_n$. Recall that the permutation matrix associated to $\tau$, wri
 
 \subsection{~} % 14.i
 
-Answer
+Since $\tau = (1, 2, \dotsc, n)$, we can write down $P_\tau$ and $L$.
+\begin{align*}
+P_\tau &= \begin{pmatrix}
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+0 & 0 & 0 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+1 & 0 & 0 & \cdots & 0
+\end{pmatrix} \\[1ex]
+L &= \begin{pmatrix}
+t & -1 & 0 & \cdots & 0 \\
+0 & t & -1 & \cdots & 0 \\
+0 & 0 & t & \cdots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & \cdots & -1 \\
+-1 & 0 & 0 & \cdots & t
+\end{pmatrix}
+\end{align*}
+
+% TODO: Explain this
+Then by the definition of the determinant, \[
+\det(L) = \sum_{\sigma \in S_n} \op{sgn}(\sigma) \prod_{i=1}^n L_{i, \sigma(i)}.
+\] The only terms which are not zero are when $\sigma = ()$ or $\sigma = \tau$. Therefore $\det(L) = t^n - 1_{\bb F}$ and since $c_{P_\tau}(t) = \det(L)$, $c_{P_\tau}(t) = t^n - 1_{\bb F}$ as required.
 
 \subsection{~} % 14.ii
 
-\subsubsection{~} % 14.ii.a
+% \subsubsection{~} % 14.ii.a
 
-Answer
+% Answer
+\setcounter{subsubsection}{1}
 
 \subsubsection{~} % 14.ii.b
 
-Answer
+By simple computation, $P_\tau^n = I_n$, so $\mu_{P_\tau}(t) = t^n - 1$.
 
 % }}}
 
@@ -84,11 +108,58 @@ M := \begin{pmatrix}
 
 \subsection{~} % 15.i
 
-Answer
+Let \[
+M_1 := \begin{pmatrix}
+7 & 5 \\
+-1 & 1
+\end{pmatrix}, \qquad
+M_2 := \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0
+\end{pmatrix}.
+\] By \textbf{Q5}, we know that $c_M(t) = c_{M_1}(t) c_{M_2}(t)$, so we simply compute
+\begin{align*}
+c_{M_1}(t) &= \det(t I_2 - M_1) \\
+&= \begin{vmatrix}
+t - 7 & -5 \\
+1 & t - 1
+\end{vmatrix} \\
+&= (t - 7) (t - 1) + 5 \\
+&= t^2 - 8t + 12 \\
+&= (t - 2) (t - 6). \\[1ex]
+c_{M_2}(t) &= \det(t I_3 - M_2) \\
+&= \begin{vmatrix}
+t & -1 & 0 \\
+0 & t & -1 \\
+-1 & 0 & t
+\end{vmatrix} \\
+&= t \begin{vmatrix}
+t & -1 \\
+0 & t
+\end{vmatrix}
++ \begin{vmatrix}
+0 & -1 \\
+-1 & t
+\end{vmatrix}
++ 0 \\
+&= t^3 - 1 \\
+&= (t - 1) \l( t - \e^{2\pi i / 3} \r) \l( t - \e^{4\pi i / 3} \r).
+\end{align*}
+Then
+\begin{align*}
+c_M(t) &= c_{M_1}(t) c_{M_2}(t) \\
+&= (t - 1) (t - 2) (t - 6) \l( t - \e^{2\pi i / 3} \r) \l( t - \e^{4\pi i / 3} \r) \\
+&= t^5 - 8 t^4 + 12 t^3 - t^2 + 8t - 12.
+\end{align*}
 
 \subsection{~} % 15.ii
 
-Answer
+Again by \textbf{Q5}, or indeed by \textbf{Q2}, we know that $\mu_M(t)$ is the least common multiple of $\mu_{M_1}(t)$ and $\mu_{M_2}(t)$. By Theorem~4.1 part 2, we also know that $\mu_{M_i}(t) \mid c_{M_i}(t)$.
+
+Neither $t - 2$ nor $t - 6$ work for $M_1$, so $\mu_{M_1}(t) = c_{M_1}(t) = (t - 2) (t - 6)$. Some more laborious checking also reveals that no factors of $c_{M_2}(t)$ work, so $\mu_{M_2}(t) = c_{M_2}(t) = t^3 - 1$.
+
+Since $\mu_{M_1}(t)$ and $\mu_{M_2}(t)$ share no common factors, their least common multiple is their product, so $\mu_M(t) = c_M(t)$.
 
 % }}}
 
