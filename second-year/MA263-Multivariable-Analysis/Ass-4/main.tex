@@ -6,7 +6,7 @@
 \usepackage{preamble}
 
 \fancyhead[L]{MA263 Assignment 4}
-\title{MA263 Multivariable Analysis, Assignment 4}
+\title{\vspace*{-4ex}MA263 Multivariable Analysis, Assignment 4}
 \colorlet{questionbodycolor}{cyan!50}
 
 \begin{document}
@@ -27,7 +27,25 @@ Suppose that $f$ is not integrable. Show that there exists $\varepsilon > 0$ so 
 \] where $\partial A$ is the topological boundary of $A$.
 \end{questionbody}
 
-Answer
+Since $f$ is not integrable, the Riemann integrability condition does not hold. The condition states: `for all $\varepsilon > 0$, there exists a partition $P$ such that $U(f, P) - L(f, P) < \varepsilon$'. We negate this statement and observe that there exists $\varepsilon > 0$ such that for all partitions $P$, $U(f, P) - L(f, P) \ge \varepsilon$. Now we just have to show that \[
+U(f, P) - L(f, P) \ge \varepsilon \implies \sum_{\substack{S \in RP \\ S \cap \partial A \ne \emptyset}} v(S) \ge \varepsilon.
+\]
+
+The LHS just says \[
+\sum_{S \in RP} v(S) \sup_{x \in S} f(x) - \sum_{S \in RP} v(S) \inf_{x \in S} f(x) \ge \varepsilon,
+\] so \[
+\sum_{S \in RP} v(S) \l( \sup_{x \in S} f(x) - \inf_{x \in S} f(x) \r) \ge \varepsilon.
+\]
+
+Since $f(x) = 1$ when $x \in A$ and $f(x) = 0$ otherwise, $\sup_{x \in S} f(x) = 1$ if and only if $S \cap A \ne \emptyset$, otherwise 0, and $\inf_{x \in S} f(x) = 0$ if and only if $S \cap A^\complement \ne \emptyset$, otherwise 1. Therefore, \[
+\sup_{x \in S} f(x) - \inf_{x \in S} f(x) = \begin{cases}
+1 & \text{if } S \cap \partial A \ne \emptyset, \\
+0 & \text{otherwise}.
+\end{cases}
+\] Therefore, \[
+\sum_{S \in RP} v(S) \l( \sup_{x \in S} f(x) - \inf_{x \in S} f(x) \r) = \sum_{\substack{S \in RP \\ S \cap \partial A \ne \emptyset}} v(S) \ge \varepsilon.
+\]
+\hfill $\square$
 
 % }}}
 
@@ -43,12 +61,18 @@ xy & \text{if } x \ge y, \\
 \] Show that $f$ is integrable.
 \end{questionbody}
 
-Answer
+First, let $K = \l\{(x, y) \in {[0, 1]}^2 : x \ge y\r\}$ and define $g : K \to \R$ to be $g(x, y) = xy$. This is a continuous function on a closed and bounded domain, so $g$ is uniformly continuous. By year 1 analysis, a uniformly continuous function is integrable, so $g$ is integrable on $K$.
+
+Since $f$ is the extension of $g$ to ${[0, 1]}^2$ where $f(x) = 0$ for $x \notin K$, \[
+\int_{{[0, 1]}^2} f = \int_K g,
+\] so $f$ is integrable.
+
+\hfill $\square$
 
 % }}}
 
 % {{{ Q3
-\newquestion{3}
+\question{3}
 
 \begin{questionbody}
 Suppose that $\phi$ is an invertible linear map, $K = R^{a, b}$ is a rectangle, and define $f : \phi(K) \to \R$ by $f(x) = 1$ for $x \in \phi(K)$.
@@ -59,7 +83,9 @@ Give a direct proof of the change of variables formula in this case. In your pro
 \end{questionbody}
 
 % TODO: Proof must not be general proof from notes; must be specific to this case
-Answer
+We want to show that $(f \circ \phi) \, |\det(\partial \phi)|$ is integrable and \[
+\int_{\phi(K)} f = \int_K (f \circ \phi) \, |\det(\partial \phi)|.
+\]
 
 % }}}
 
