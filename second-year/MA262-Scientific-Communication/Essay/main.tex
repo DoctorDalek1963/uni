@@ -1,24 +1,11 @@
 % vim: set foldmethod=marker foldlevel=0:
 
-% TODO: Before submitting:
-% - Fully anonymise essay
-% - Should be approximately 10-12 pages of content (not including contents,
-%   bibliography, etc.)
-% - Maximum of 15 pages
-% - Remove unneeded packages from preamble
-
-% TODO: Distil Church--Rosser proof
-
 % {{{ Preamble
 
 \documentclass[a4paper, 11pt]{article}
 \usepackage[UKenglish]{babel}
 
 \usepackage{amsmath, amssymb, amsgen}
-\usepackage{gensymb}
-\usepackage{mathtools}
-\usepackage{csquotes}
-\usepackage{cancel}
 
 \usepackage{tikz}
 \usetikzlibrary{calc}
@@ -83,9 +70,6 @@
 \newcommand\ered{\mathrel{\twoheadrightarrow_\eta}}
 \newcommand\pred{\mathrel{\rightarrow_\parallel}}
 \newcommand\FV{\operatorname{FV}}
-\newcommand\doublelambda{\lambda\mkern-7.5mu\lambda}
-
-\newcommand\note[1]{{\color{red!80}\textit{Note}: #1}}
 
 \title{The $\lambda$-Calculus}
 \author{}
@@ -96,15 +80,6 @@
 \begin{document}
 
 \maketitle
-
-% \pagenumbering{roman}
-% \tableofcontents
-% \newpage
-% \pagenumbering{arabic}
-
-% TODO: Explain the statement and motivation for the Church--Rosser theorem more carefully.  The intuitive discussion of the proof that you give right after the statement is good, and I would start by trying to expand this informal discussion rather than filling in the technical proof.  Giving the full details seems to risk filling the essay while still losing the typical "MA2-level" reader (and me as well).
-
-% TODO: Explain some interesting consequences, especially anything that connects this stuff to other parts of mathematics or computer science.  Why did Church and colleagues pursue these ideas?  How, more precisely, do they relate to a real-world programming language?
 
 % Plan {{{
 
@@ -162,25 +137,6 @@ Most programming languages are \textit{imperative}, meaning they give the comput
 
 \section{Syntax}\label{sec:syntax}
 
-% In this new lambda calculus, we care primarily about functions, but the common way of writing functions becomes cumbersome for higher-order functions (functions from functions to functions).
-
-% % TODO: Is $S$ actually an operator?
-% % Properly explain this idea of only having functions? Maybe put this in the history section?
-% % Why exactly can't we do it in ZFC? Can we do it in ZFC?
-
-% Let's say we want to define a function $S$ which takes three functions $x, y, z$ as input, and returns the function $(x(z)) (y(z))$. Take a moment to parse that: $x, y, z$ are all functions; $x(z)$ is a function, call it $f$; $y(z)$ is a function, call it $g$, and then $S$ is $f(g)$, another function\footnote{We could write this with composition as $(x \circ z) \circ (y \circ z)$ but we want to stick the $\lambda$-calculus style notation for consistency.}.
-
-% This is called the $\mathbf{S}$ combinator and we will see its uses later.
-
-% To describe $S$ in full generality in the ZFC system is actually impossible because we need to define a domain. We could say \[
-% S : F \times F \times F \to F, \qquad (x, y, z) \mapsto (x(z)) (y(z))
-% \] where $F$ denotes some space of functions $F \to F$. This recursive definition of $F$ is not allowed in ZFC\@. % TODO: Citation needed
-
-% In the lambda calculus, we write this simply as \[
-% \lambda x y z . xz(yz)
-% \]
-
-% More formally,
 \begin{defn}[$\lambda$-term]
 The $\lambda$-calculus consists of \textit{$\lambda$-terms}, defined in the following recursive way \parencite[p.~3]{hindley-seldin-2008-lambda-calculus-and-combinators}:
 \begin{enumerate}[(1)]
@@ -190,7 +146,6 @@ The $\lambda$-calculus consists of \textit{$\lambda$-terms}, defined in the foll
 \end{enumerate}
 \end{defn}
 
-% TODO: Needs reference --- explain role of Church
 The reason that Church choose the symbol $\lambda$ has been lost to time. It is either derived from the notation $\hat x$ used by Whitehead and Russell, which became $\wedge x$ and then $\lambda x$ for ease of printing, or the symbol was chosen basically at random \parencite[p.~6]{cardone-hindley-2006-history-of-lambda-calculus}.
 
 In this essay we will use various sizes of parentheses to ease parsing for the reader, but these different sizes have no affect on the semantics.
@@ -200,8 +155,7 @@ In a $\lambda$-term $\lambda x . M$, the occurrence of $M$ is called the \textit
 \end{defn}
 
 \begin{defn}[Free and bound variables]\label{def:free-and-bound-variables}
-Let $M$ be an arbitrary $\lambda$-term. A variable $x$ \textit{occurs free} in $M$ if $x$ is not in the scope of any $\lambda x$; otherwise, $x$ is \textit{bound} \parencite[p.~24]{barendregt-1981-lambda-calculus}. % TODO: How many times does it occur free?
-If we're considering the $x$ immediately after the $\lambda$ (that is, the first $x$ in $\lambda x . x$), it is called \textit{bound and binding} \parencite[p.~6--7]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+Let $M$ be an arbitrary $\lambda$-term. A variable $x$ \textit{occurs free} in $M$ if $x$ is not in the scope of any $\lambda x$; otherwise, $x$ is \textit{bound} \parencite[p.~24]{barendregt-1981-lambda-calculus}. If we're considering the $x$ immediately after the $\lambda$ (that is, the first $x$ in $\lambda x . x$), it is called \textit{bound and binding} \parencite[p.~6--7]{hindley-seldin-2008-lambda-calculus-and-combinators}.
 
 We define $\FV(M)$ as the set of all free variables in the expression $M$. A $\lambda$-term with no free variables is called \textit{closed}.
 \end{defn}
@@ -211,15 +165,9 @@ We define $\FV(M)$ as the set of all free variables in the expression $M$. A $\l
 \item In $x (\lambda y . xy)$, $x$ occurs free twice, so $x \in \FV(x (\lambda y . xy))$, and $y$ occurs bound twice, one of which is also binding, and $y \notin \FV(x (\lambda y . xy))$. Note that $y$ occurring bound doesn't imply that $y \notin \FV(x (\lambda y . xy))$.
 
 \item In $y (\lambda y . y)$, $y$ occurs free once and bound twice, so $y \in \FV(y (\lambda y . y))$. We will see later when we introduce $\beta$-reduction that this becomes confusing. Generally, we prefer to write expressions such that none of the bound variables occur free.
-% TODO: Refer back to this in conversion example
-
-% TODO: What do any of them "refer to"?
-% This is confusing and discouraged in practice, because the $y$ in the parentheses doesn't refer to the same thing as the $y$ outside, but we allow this syntax to keep the definitions simple.
 \end{enumerate}
 Notice that `$\lambda x$' binds in the same way as `$\forall x$' in familiar predicate logic.
 \end{example}
-
-% TODO: Explain analogy as functions
 
 % }}}
 
@@ -494,8 +442,6 @@ We define addition as \[
 &\acong \lambda fx . f(f(f(f(f(f(f(fx))))))) \\
 &\equiv \overline 8
 \end{align*}
-% TODO: Explain this nicely
-% It's worth pondering on exponentiation for a moment. The number $\overline n$ in $\lambda$-calculus takes a function $f$ and a function $x$ and applies $f$ to $x$ $n$ times. So $\overline 3 \, \overline 2$ is
 \end{example}
 
 % }}}
@@ -694,27 +640,6 @@ If a parallel reduction changes $P$ to a $\lambda$-term $Q$, we say $P \pred Q$.
 \end{defn}
 
 The rest of the proof is tedious and fairly uninteresting. We can show that parallel reductions are preserved by $\alpha$-conversion and by substitution, and that parallel reduction is confluent \parencite[p.~286--289]{hindley-seldin-2008-lambda-calculus-and-combinators}. Then the idea is that every $\alpha$-conversion or $\beta$-contraction is a special case of parallel reduction. Then to prove Theorem~\ref{thm:church-rosser-beta-reduction}, we observe that $P \pred M$ and $P \pred N$ and apply the discussion earlier: since parallel reduction is confluent and $\beta$-reduction is a special case, $\beta$-reduction is also confluent.
-
-% }}}
-
-
-% Notes {{{
-
-% \[ (\doublelambda x . x^2 + 3) 2 \bred 2^2 + 3 \]
-
-% \[ \mathbf{Y} := \lambda f . \big( \lambda x . f (xx) \big) \big( \lambda x . f (xx) \big) \]
-
-% This expression $\lambda x . xx$ is normally called the $\mathbf{M}$ combinator. In \citeauthor*{smullyan-1985-to-mock-a-mockingbird}'s language of birds~\parencite[p.~244]{smullyan-1985-to-mock-a-mockingbird}, this is the mockingbird since it applies its argument to itself, effectively `mocking' the argument~\parencite[p.~73]{smullyan-1985-to-mock-a-mockingbird}.
-% If we apply $\mathbf{M}$ to itself, we have a problem $\beta$-reducing it: \[ \mathbf{MM} \bred \mathbf{MM} \bred \mathbf{MM} \bred \dotsb \]
-% Clearly we can continue this indefinitely, so $\mathbf{MM}$ has no $\beta$-nf.
-
-% See https://cruzgodar.com/applets/lambda-calculus/
-% This is iterative Fibonacci for some number k:
-% \[ \lambda n . n \big( \lambda g a b . g (+ a b) a \big) (\lambda a b . b) \overline 1 \, \overline 0 \]
-% And expanded:
-% \[ \lambda n . n \bigg( \lambda g a b . g \Big( \big( \lambda a b f x . (af) (bfx) \big) ab \Big) a \bigg) (\lambda a b . b) (\lambda f x . fx) (\lambda f x . x) \]
-
-% https://theory.stanford.edu/~blynn/lambda/diamond.html
 
 % }}}
 
