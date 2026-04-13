@@ -7,9 +7,6 @@
 % - Maximum of 15 pages
 % - Remove unneeded packages from preamble
 
-% TODO: Explain Currying better
-% TODO: Motivate with analogy of functions
-% TODO: Motivate choice of Church numerals
 % TODO: Distil Church--Rosser proof
 
 % {{{ Preamble
@@ -84,7 +81,7 @@
 \newcommand\bred{\mathrel{\twoheadrightarrow_\beta}}
 \newcommand\econ{\mathrel{\rightarrow_\eta}}
 \newcommand\ered{\mathrel{\twoheadrightarrow_\eta}}
-\newcommand\pred{\mathrel{\twoheadrightarrow_\parallel}}
+\newcommand\pred{\mathrel{\rightarrow_\parallel}}
 \newcommand\FV{\operatorname{FV}}
 \newcommand\doublelambda{\lambda\mkern-7.5mu\lambda}
 
@@ -107,7 +104,7 @@
 
 % TODO: Explain the statement and motivation for the Church--Rosser theorem more carefully.  The intuitive discussion of the proof that you give right after the statement is good, and I would start by trying to expand this informal discussion rather than filling in the technical proof.  Giving the full details seems to risk filling the essay while still losing the typical "MA2-level" reader (and me as well).
 
-% TODO: Explain some interesting consequences, especially anything that connects this stuff to other parts of mathematics or computer science.  Why did Church and colleagues pursue these ideas?  How, more precisely, do they relate to a real-world programming language?  On the other hand, can you expand Section 4 to explain how these formal definitions cover set theory more broadly, beyond just arithmetic.
+% TODO: Explain some interesting consequences, especially anything that connects this stuff to other parts of mathematics or computer science.  Why did Church and colleagues pursue these ideas?  How, more precisely, do they relate to a real-world programming language?
 
 % Plan {{{
 
@@ -356,7 +353,9 @@ It is important to note that all of the $\bcon$ in these examples could've been 
 $P \bred Q$ does not imply that $Q$ is a $\beta$-nf, nor even that $Q \not\equiv P$, as seen in the case of $\Omega \bred \Omega$.
 \end{example}
 
-% TODO: Define equality
+\begin{defn}[$\beta$-equality]
+We say that $P$ is \textit{$\beta$-equal} to $Q$ and write $P =_\beta Q$ or just $P = Q$ if and only if $Q$ can be obtained from $P$ by a finite (possibly empty) sequence of $\beta$-contractions, reversed $\beta$-contractions, and $\alpha$-conversions \parencite[p.~16]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+\end{defn}
 
 \begin{defn}[Rule $\xi$]\label{def:rule-xi}
 We now introduce a simple premise which is historically given the name \textit{rule $\xi$} \parencites[p.~23]{barendregt-1981-lambda-calculus}[p.~70]{hindley-seldin-2008-lambda-calculus-and-combinators}:
@@ -507,7 +506,9 @@ We define addition as \[
 
 \textit{Confluence}, generally, is a property of rewriting systems in which the order of reductions is unimportant. For example, in normal arithmetic, we could evaluate the expression $(2 + 3) \times (5 + 1)$ by simplifying the left parenthetical and then the right, or right and then left. Either way, we get the same answer.
 
-We want $\lambda$-calculus to be confluent because we want one term to always produce the same result, no matter what order its $\beta$-redexes were contracted. $\overline 1 + \overline 1$ should always $\beta$-reduce to $\overline 2$, regardless of the inner workings of the reduction. If $\lambda$-calculus is confluent, it would allow us to ignore these inner workings for much of the theoretical work that we want to do with the system.
+We want to show $\lambda$-calculus to be confluent because we want one term to always produce the same result, no matter what order its $\beta$-redexes were contracted. $\overline 1 + \overline 1$ should always $\beta$-reduce to $\overline 2$, regardless of the inner workings of the reduction. If $\lambda$-calculus is confluent, it would allow us to ignore these inner workings for much of the theoretical work that we want to do with the system.
+
+Confluence would make it easier to check equality, because we would be able to $\beta$-reduce $P$ and $Q$ to a common term using fairly mindless computation, instead of trying to to convert one to the other.
 
 \begin{thm}[The Church--Rosser Theorem for $\beta$-reduction]\label{thm:church-rosser-beta-reduction} % chktex 8
 If $P \bred M$ and $P \bred N$, then $\exists T$ such that $M \bred T$ and $N \bred T$. See Figure~\ref{fig:church-rosser-diamond}.
@@ -544,7 +545,7 @@ If $P \bred M$ and $P \bred N$, then $\exists T$ such that $M \bred T$ and $N \b
 \end{figure}
 \footnotetext{Reproduced from Fig.~A2:1 in \parencite[p.~282]{hindley-seldin-2008-lambda-calculus-and-combinators}.}
 
-This was first proved by \citeauthor{church-rosser-1936-some-properties-of-conversion} in \citeyear{church-rosser-1936-some-properties-of-conversion} \parencite{church-rosser-1936-some-properties-of-conversion} but the proof we will use is attributed to William Tait and Per Martin-L\"of \parencites[pp.~59--62]{barendregt-1981-lambda-calculus}[\S{}A2A]{hindley-seldin-2008-lambda-calculus-and-combinators}.
+This was first proved by \citeauthor{church-rosser-1936-some-properties-of-conversion} in \citeyear{church-rosser-1936-some-properties-of-conversion} \parencite{church-rosser-1936-some-properties-of-conversion} but the proof we will use is attributed to William Tait and Per Martin-L\"of \parencites[pp.~59--62]{barendregt-1981-lambda-calculus}[\S{}A2A]{hindley-seldin-2008-lambda-calculus-and-combinators}. The following discussion is based heavily on \S A2.3 in \citetitle{hindley-seldin-2008-lambda-calculus-and-combinators} \parencite{hindley-seldin-2008-lambda-calculus-and-combinators}.
 
 \begin{figure}[htbp]
 \centering
@@ -658,7 +659,7 @@ This was first proved by \citeauthor{church-rosser-1936-some-properties-of-conve
 
 Ideally, we want break this down into a series of $\beta$-contractions and do some diagram chasing, as seen in Figure~\ref{fig:beta-contraction-diagram-chasing}. If we could prove that $\beta$-contraction is confluent, that is \[ P \bcon M \text{ and } P \bcon N \implies \exists T \text{ such that } M \bcon T \text{ and } N \bcon T, \] then we could chain steps of single $\beta$-contractions together. We would first prove Theorem~\ref{thm:church-rosser-beta-reduction} in the special case that $P \bcon M$ by induction on the length of the reduction to $N$, as seen on the left of Figure~\ref{fig:beta-contraction-diagram-chasing}. Then we could deduce that general case by induction on the length of the reduction to $M$, as seen on the right side of the diagram.
 
-The problem is that this doesn't work. Consider for example ${P := (\lambda y . uyy) (\mathbf{I} z)}$ where $\mathbf{I} = \lambda x . x$. Then ${P \bcon u (\mathbf{I} z) (\mathbf{I} z)}$ and $P \bcon {(\lambda y . uyy) z} \bcon uzz$. In this case we have ${M := u (\mathbf{I} z) (\mathbf{I} z)}$ but $M$ cannot be reduced to $uzz$ in just one contraction. It can, however, be reduced using two non-overlapping, `parallel' contractions. It turns out that we can define a new relation $\pred$ (parallel reduction) whose transitive closure is the same as that of $\bred$. Then if $\pred$ satisfies the diamond property, then so does $\bred$ and we have proven the Church--Rosser Theorem. % chktex 8
+The problem is that this doesn't work. Consider ${P := (\lambda y . uyy) (\mathbf{I} z)}$ where $\mathbf{I} = \lambda x . x$. Then ${P \bcon u (\mathbf{I} z) (\mathbf{I} z)}$ and $P \bcon {(\lambda y . uyy) z} \bcon uzz$. In this case we have ${M := u (\mathbf{I} z) (\mathbf{I} z)}$ but $M$ cannot be reduced to $uzz$ in just one contraction. It can, however, be reduced using two `parallel' contractions, where the $\beta$-redexes that we choose don't overlap. It turns out that we can define a new relation $\pred$ (parallel reduction) whose transitive closure is the same as that of $\bred$. Then if $\pred$ satisfies the diamond property, then so does $\bred$ and we have proven the Church--Rosser Theorem. % chktex 8
 
 Unfortunately, the obvious definition of $\pred$ as simultaneous non-overlapping contractions doesn't work, but we can define parallel reduction in a more subtle way.
 
@@ -692,7 +693,7 @@ Let $n \ge 0$ and let $R_1, \dotsc, R_n$ be $\beta$-redexes in a $\lambda$-term 
 If a parallel reduction changes $P$ to a $\lambda$-term $Q$, we say $P \pred Q$.
 \end{defn}
 
-The rest of the proof is tedious and fairly uninteresting. The idea is that every $\alpha$-conversion or $\beta$-contraction is a special case of parallel reduction. Then to prove Theorem~\ref{thm:church-rosser-beta-reduction}, we observe that $P \pred M$ and $P \pred N$,
+The rest of the proof is tedious and fairly uninteresting. We can show that parallel reductions are preserved by $\alpha$-conversion and by substitution, and that parallel reduction is confluent \parencite[p.~286--289]{hindley-seldin-2008-lambda-calculus-and-combinators}. Then the idea is that every $\alpha$-conversion or $\beta$-contraction is a special case of parallel reduction. Then to prove Theorem~\ref{thm:church-rosser-beta-reduction}, we observe that $P \pred M$ and $P \pred N$ and apply the discussion earlier: since parallel reduction is confluent and $\beta$-reduction is a special case, $\beta$-reduction is also confluent.
 
 % }}}
 
