@@ -124,20 +124,21 @@ expand_to_cnf(Conjuction, Conjuction).
 %
 %  True if CNF is the conjunctive normal form of Formula.
 
+% TODO: How do we handle forall? (use copy_term/2)
 clauseform(Formula, CNF) :- expand_to_cnf([[Formula]], CNF).
 
 %! resolutionstep(+Clauses:list(list(compound)), -NewClauses:list(list(compound))) is multi.
 %
 %  True if a single step of a resolution proof applied to Clauses yields NewClauses.
 
-resolutionstep(Clauses, NewClauses).
+% resolutionstep(Clauses, NewClauses).
 
 %! factor(+Clause:list(compound), -FactoredClause:list(compound)) is det.
 %
 %  True if FactoredClause is the result of unifying two unifiable literals of
 %  Clause and dropping the duplicate.
 
-factor(Clause, FactoredClause).
+% factor(Clause, FactoredClause).
 
 %! resolution(+Clauses:list(list(compound)), -Result:boolean) is multi.
 %
@@ -145,21 +146,21 @@ factor(Clause, FactoredClause).
 %  until the empty clause is derived or until no new clauses can be derived.
 %  Result is true or false, meaning whether resolution proof was successful.
 
-resolution(Clauses, Result).
+% resolution(Clauses, Result).
 
 %! silent_test(+Premises:list(compound), +Conclusion:compound) is nondet.
 %
 %  True if Conclusion can be reached from Premises using resolution refutation.
 
-silent_test(Premises, Conclusion).
+% silent_test(Premises, Conclusion).
 
 %! test(+Premises:list(compound), -Conclusion:compound) is nondet.
 %
 %  Exactly the same as `silent_test/2`, but instead prints "YES" or "NO".
 
-test(Premises, Conclusion).
+% test(Premises, Conclusion).
 
-:- begin_tests(resolution).
+:- begin_tests(resolution_impl).
 
 test(remove) :-
 	remove(b, [a, b, c], X),
@@ -175,11 +176,11 @@ test(clauseform, [nondet]) :-
 	clauseform(or(a, b), C),
 	C == [[a, b]].
 
-/*
 test(clauseform, [nondet]) :-
 	clauseform(forall(X, imp(p(X), q(X))), C),
 	C == [[neg(p(X)), q(X)]].
 
+/*
 % NOTE: Do we always want to keep clauses after expansion?
 test(resolutionstep) :-
 	resolutionstep([[neg(p(X)), q(X)], [p(a)]], C),
@@ -188,7 +189,13 @@ test(resolutionstep) :-
 test(factor) :-
 	factor([p(X), q(Z), p(Y)], C),
 	C == [p(X), q(Z)].
+*/
 
+:- end_tests(resolution_impl).
+
+:- begin_tests(resolution).
+
+/*
 % TODO: Sometimes the premises don't affect the conclusion. Optimise for this.
 test(silent_test) :- silent_test(
 	[
