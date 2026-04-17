@@ -16,3 +16,9 @@ new-prolog name:
 [no-cd]
 swipl:
     fd -e pl -X swipl --pldoc -l
+
+# run tests for all Prolog files in this directory
+[group("prolog")]
+[no-cd]
+test:
+    fd -e pl -X swipl -g run_tests -t halt
