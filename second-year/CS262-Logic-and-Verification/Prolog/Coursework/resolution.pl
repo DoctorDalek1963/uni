@@ -217,7 +217,7 @@ silent_test(Premises, Conclusion, Result) :-
 
 %! test(+Premises:list(compound), -Conclusion:compound) is det.
 %
-%  Exactly the same as `silent_test/2`, but instead prints "YES" or "NO".
+%  Exactly the same as `silent_test/3`, but instead prints "YES" or "NO".
 
 test(Premises, Conclusion) :-
 	silent_test(Premises, Conclusion, true),
