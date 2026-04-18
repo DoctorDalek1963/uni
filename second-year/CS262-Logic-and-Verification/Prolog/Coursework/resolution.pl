@@ -159,7 +159,18 @@ clauseform(Formula, CNF) :-
 %
 %  True if a single step of a resolution proof applied to Clauses yields NewClauses.
 
-% resolutionstep(Clauses, NewClauses).
+% TODO: This feels inefficient
+resolutionstep(Clauses, NewClauses) :-
+	member(D1, Clauses),
+	member(D2, Clauses),
+	copy_term(D1, D1Copy),
+	copy_term(D2, D2Copy),
+	member(X, D1Copy),
+	member(neg(X), D2Copy),
+	remove(X, D1Copy, NewD1),
+	remove(neg(X), D2Copy, NewD2),
+	append(NewD1, NewD2, NewClause),
+	append(Clauses, [NewClause], NewClauses).
 
 %! factor(+Clause:list(compound), -FactoredClause:list(compound)) is det.
 %
@@ -255,12 +266,39 @@ test(clauseform, [nondet]) :-
 	X2 \== X,
 	Y2 \== Y.
 
-/*
 % NOTE: Do we always want to keep clauses after expansion?
-test(resolutionstep) :-
+test(resolutionstep, [nondet]) :-
 	resolutionstep([[neg(p(X)), q(X)], [p(a)]], C),
 	C == [[neg(p(X)), q(X)], [p(a)], [q(a)]].
-*/
+
+test(resolutionstep, [nondet]) :-
+	resolutionstep([[neg(p(X)), q(Y)], [p(a)]], C),
+	C = [[neg(p(X)), q(Y)], [p(a)], [q(Y2)]],
+	Y2 \== Y.
+
+test(resolutionstep, [nondet]) :-
+	resolutionstep([
+		[neg(human(X)), mortal(X)],
+		[human(socrates)],
+		[neg(mortal(socrates))]
+	], [
+		[neg(human(X)), mortal(X)],
+		[human(socrates)],
+		[neg(mortal(socrates))],
+		[mortal(socrates)]
+	]).
+
+test(resolutionstep, [nondet]) :-
+	resolutionstep([
+		[neg(human(X)), mortal(X)],
+		[human(socrates)],
+		[neg(mortal(socrates))]
+	], [
+		[neg(human(X)), mortal(X)],
+		[human(socrates)],
+		[neg(mortal(socrates))],
+		[neg(human(socrates))]
+	]).
 
 test(factor, [nondet]) :-
 	factor([p(X), q(Z), p(_Y)], C),
@@ -285,6 +323,13 @@ test(factor, [nondet]) :- factor(
 :- begin_tests(resolution).
 
 /*
+test(resolution, [nondet]) :-
+	resolutionstep([
+		[neg(human(X)), mortal(X)],
+		[human(socrates)],
+		[neg(mortal(socrates))]
+	], true).
+
 % TODO: Sometimes the premises don't affect the conclusion. Optimise for this.
 test(silent_test) :- silent_test(
 	[
