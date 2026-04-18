@@ -202,6 +202,14 @@ test(remove) :-
 
 test(remove, [fail]) :- remove(a, [a], [a]).
 
+test(remove) :-
+	remove(p(X), [p(X), q(Z), p(Y)], L),
+	L == [q(Z), p(Y)].
+
+test(remove) :-
+	remove(p(X), [p(X), q(Z), p(X)], L),
+	L == [q(Z)].
+
 test(clauseform, [nondet]) :-
 	clauseform(and(a, b), C),
 	C == [[a], [b]].
