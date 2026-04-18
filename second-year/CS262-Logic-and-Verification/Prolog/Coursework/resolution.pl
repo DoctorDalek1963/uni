@@ -23,16 +23,17 @@ member(X, [_ | Tail]) :- member(X, Tail).
 
 %! remove(+Item, +List:list, -NewList:list) is det.
 %
-%  True if NewList is the result of removing all occurences of Item from List.
+%  True if NewList is the result of removing all exact occurences of Item from List.
 
 remove(_, [], []) :- !.
 
-remove(X, [X | Tail], NewTail) :-
+remove(X, [Head | Tail], NewTail) :-
+	X == Head,
 	remove(X, Tail, NewTail),
 	!.
 
 remove(X, [Head | Tail], [Head | NewTail]) :-
-	X \= Head,
+	X \== Head,
 	remove(X, Tail, NewTail).
 
 %! copy_all(+L1:list, -L2:list) is det.
@@ -165,7 +166,13 @@ clauseform(Formula, CNF) :-
 %  True if FactoredClause is the result of unifying two unifiable literals of
 %  Clause and dropping the duplicate.
 
-% factor(Clause, FactoredClause).
+factor(Clause, FactoredClause) :-
+	member(X, Clause),
+	member(Y, Clause),
+	X \== Y,
+	copy_term(Y, Z),
+	X = Z,
+	remove(Y, Clause, FactoredClause).
 
 %! resolution(+Clauses:list(list(compound)), -Result:boolean) is multi.
 %
@@ -245,11 +252,25 @@ test(clauseform, [nondet]) :-
 test(resolutionstep) :-
 	resolutionstep([[neg(p(X)), q(X)], [p(a)]], C),
 	C == [[neg(p(X)), q(X)], [p(a)], [q(a)]].
+*/
 
-test(factor) :-
+test(factor, [nondet]) :-
 	factor([p(X), q(Z), p(_Y)], C),
 	C == [p(X), q(Z)].
-*/
+
+test(factor, [nondet]) :-
+	factor([neg(p(U)), neg(p(_V))], C),
+	C == [neg(p(U))].
+
+test(factor, [nondet]) :- factor(
+	[p(W), p(_X), neg(p(Y)), neg(p(Z))],
+	[p(W), neg(p(Y)), neg(p(Z))]
+).
+
+test(factor, [nondet]) :- factor(
+	[p(W), p(X), neg(p(Y)), neg(p(_Z))],
+	[p(W), p(X), neg(p(Y))]
+).
 
 :- end_tests(resolution_impl).
 
