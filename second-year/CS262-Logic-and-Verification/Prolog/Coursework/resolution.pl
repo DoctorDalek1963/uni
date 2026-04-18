@@ -14,7 +14,7 @@
 % Large parts of this code were adapted from "First-order logic and automated
 % theorem proving" by Melvin Fitting
 
-%! member(-Item, +List:list) is det.
+%! member(-Item, +List:list) is nondet.
 %
 %  True if Item is a member of List.
 
@@ -45,7 +45,7 @@ copy_all([H | T], [NewH | NewT]) :-
 	copy_term(H, NewH),
 	copy_all(T, NewT).
 
-%! conjunctive(+Formula:compound) is det.
+%! conjunctive(+Formula:compound) is semidet.
 %
 %  True if Formula is an alpha formula.
 
@@ -53,7 +53,7 @@ conjunctive(and(_, _)).
 conjunctive(neg(or(_, _))).
 conjunctive(neg(imp(_, _))).
 
-%! disjunctive(+Formula:compound) is det.
+%! disjunctive(+Formula:compound) is semidet.
 %
 %  True if Formula is a beta formula.
 
@@ -61,7 +61,7 @@ disjunctive(neg(and(_, _))).
 disjunctive(or(_, _)).
 disjunctive(imp(_, _)).
 
-%! unary(+Formula:compound) is det.
+%! unary(+Formula:compound) is semidet.
 %
 %  True if Formula is a double negation or negated constant.
 
@@ -69,7 +69,7 @@ unary(neg(neg(_))).
 unary(neg(true)).
 unary(neg(false)).
 
-%! components(+Formula:compound, -X:compound, -Y:compound) is det.
+%! components(+Formula:compound, -X:compound, -Y:compound) is semidet.
 %
 %  True if X and Y are the components of Formula as defined in the alpha and beta formulae tables.
 
@@ -80,7 +80,7 @@ components(neg(or(X, Y)), neg(X), neg(Y)).
 components(imp(X, Y), neg(X), Y).
 components(neg(imp(X, Y)), X, neg(Y)).
 
-%! component(+Formula:compound, -X:compound) is det.
+%! component(+Formula:compound, -X:compound) is semidet.
 %
 %  True if X is the component of unary Formula.
 
@@ -88,7 +88,7 @@ component(neg(neg(X)), X).
 component(neg(true), false).
 component(neg(false), true).
 
-%! single_step(+Old:list(list(compound)), -New:list(list(compound))) is det.
+%! single_step(+Old:list(list(compound)), -New:list(list(compound))) is nondet.
 %
 %  True if New is the result of applying a single step of the CNF algorithm to Old.
 
@@ -136,7 +136,7 @@ single_step([Disjunction | Rest], New) :-
 single_step([Disjunction | Rest], [Disjunction | NewRest]) :-
 	single_step(Rest, NewRest).
 
-%! expand_to_cnf(+Conjuction:list(list(compound)), -NewConjuction:list(list(compound))) is det.
+%! expand_to_cnf(+Conjuction:list(list(compound)), -NewConjuction:list(list(compound))) is multi.
 %
 %  True if NewConjuction is the result of applying `single_step/2` as many
 %  times as possible, starting with Conjuction.
@@ -147,7 +147,7 @@ expand_to_cnf(Conjuction, NewConjuction) :-
 
 expand_to_cnf(Conjuction, Conjuction).
 
-%! clauseform(+Formula:compound, -CNF:list(list(compound))) is det.
+%! clauseform(+Formula:compound, -CNF:list(list(compound))) is multi.
 %
 %  True if CNF is the conjunctive normal form of Formula.
 
@@ -172,7 +172,7 @@ resolutionstep(Clauses, NewClauses) :-
 	append(NewD1, NewD2, NewClause),
 	append(Clauses, [NewClause], NewClauses).
 
-%! factor(+Clause:list(compound), -FactoredClause:list(compound)) is det.
+%! factor(+Clause:list(compound), -FactoredClause:list(compound)) is multi.
 %
 %  True if FactoredClause is the result of unifying two unifiable literals of
 %  Clause and dropping the duplicate.
@@ -194,7 +194,7 @@ factor(Clause, FactoredClause) :-
 % TODO
 resolution(Clauses, Result).
 
-%! clauseform_all(Formulas:list(compound), -CNF:list(list(compound))) is nondet.
+%! clauseform_all(Formulas:list(compound), -CNF:list(list(compound))) is multi.
 %
 %  Apply clauseform to all of the elements of Formulas and concatenate them into CNF.
 
@@ -204,7 +204,7 @@ clauseform_all([Head | Tail], CNF) :-
 	clauseform_all(Tail, TailCNF),
 	append(HeadCNF, TailCNF, CNF).
 
-%! silent_test(+Premises:list(compound), +Conclusion:compound) is nondet.
+%! silent_test(+Premises:list(compound), +Conclusion:compound) is multi.
 %
 %  Attempt resolution proof with the given Premises and Conclusion. Result is
 %  `true` iff a proof exists, otherwise `false`.
@@ -215,7 +215,7 @@ silent_test(Premises, Conclusion, Result) :-
 	append(PremCNF, ConcCNF, CNF),
 	resolution(CNF, Result).
 
-%! test(+Premises:list(compound), -Conclusion:compound) is nondet.
+%! test(+Premises:list(compound), -Conclusion:compound) is det.
 %
 %  Exactly the same as `silent_test/2`, but instead prints "YES" or "NO".
 
@@ -226,7 +226,8 @@ test(Premises, Conclusion) :-
 
 test(Premises, Conclusion) :-
 	silent_test(Premises, Conclusion, false),
-	print("NO").
+	print("NO"),
+	!.
 
 :- begin_tests(resolution_impl).
 
