@@ -191,19 +191,42 @@ factor(Clause, FactoredClause) :-
 %  until the empty clause is derived or until no new clauses can be derived.
 %  Result is true or false, meaning whether resolution proof was successful.
 
-% resolution(Clauses, Result).
+% TODO
+resolution(Clauses, Result).
+
+%! clauseform_all(Formulas:list(compound), -CNF:list(list(compound))) is nondet.
+%
+%  Apply clauseform to all of the elements of Formulas and concatenate them into CNF.
+
+clauseform_all([], []).
+clauseform_all([Head | Tail], CNF) :-
+	clauseform(Head, HeadCNF),
+	clauseform_all(Tail, TailCNF),
+	append(HeadCNF, TailCNF, CNF).
 
 %! silent_test(+Premises:list(compound), +Conclusion:compound) is nondet.
 %
-%  True if Conclusion can be reached from Premises using resolution refutation.
+%  Attempt resolution proof with the given Premises and Conclusion. Result is
+%  `true` iff a proof exists, otherwise `false`.
 
-% silent_test(Premises, Conclusion).
+silent_test(Premises, Conclusion, Result) :-
+	clauseform_all(Premises, PremCNF),
+	clauseform(neg(Conclusion), ConcCNF),
+	append(PremCNF, ConcCNF, CNF),
+	resolution(CNF, Result).
 
 %! test(+Premises:list(compound), -Conclusion:compound) is nondet.
 %
 %  Exactly the same as `silent_test/2`, but instead prints "YES" or "NO".
 
-% test(Premises, Conclusion).
+test(Premises, Conclusion) :-
+	silent_test(Premises, Conclusion, true),
+	print("YES"),
+	!.
+
+test(Premises, Conclusion) :-
+	silent_test(Premises, Conclusion, false),
+	print("NO").
 
 :- begin_tests(resolution_impl).
 
@@ -336,7 +359,8 @@ test(silent_test) :- silent_test(
 		forall(X, imp(human(X), mortal(X))),
 		human(socrates)
 	],
-	mortal(socrates)
+	mortal(socrates),
+	true
 ).
 
 test(silent_test) :- silent_test(
@@ -345,12 +369,14 @@ test(silent_test) :- silent_test(
 		forall(X, imp(q(X), r(X))),
 		p(a)
 	],
-	r(a)
+	r(a),
+	true
 ).
 
 test(silent_test) :- silent_test(
 	[forall(X, imp(p(X), q(X)))],
-	q(a)
+	q(a),
+	true
 ).
 
 test(silent_test) :- silent_test(
@@ -358,15 +384,17 @@ test(silent_test) :- silent_test(
 		forall(X, forall(Y, imp(parent(X, Y), ancestor(X, Y)))),
 		parent(alice, bob)
 	],
-	ancestor(alice, bob)
+	ancestor(alice, bob),
+	true
 ).
 
-test(silent_test, [fail]) :- silent_test(
+test(silent_test) :- silent_test(
 	[
 		forall(X, imp(student(X), smart(X))),
 		smart(john)
 	],
-	student(john)
+	student(john),
+	false
 ).
 
 test(silent_test) :- silent_test(
@@ -375,12 +403,14 @@ test(silent_test) :- silent_test(
 		p(a),
 		q(a)
 	],
-	r(a)
+	r(a),
+	true
 ).
 
-test(silent_test, [fail]) :- silent_test(
+test(silent_test) :- silent_test(
 	[forall(X, forall(Y, imp(loves(X, Y), knows(X, Y))))],
-	knows(alice, bob)
+	knows(alice, bob),
+	false
 ).
 
 test(silent_test) :- silent_test(
@@ -389,22 +419,25 @@ test(silent_test) :- silent_test(
 		p(a),
 		neg(q(a))
 	],
-	r(a)
+	r(a),
+	true
 ).
 
-test(silent_test, [fail]) :- silent_test(
+test(silent_test) :- silent_test(
 	[forall(X, imp(friend(X, X), trusts(X, X)))],
-	trusts(alice, alice)
+	trusts(alice, alice),
+	false
 ).
 
-test(silent_test, [fail]) :- silent_test(
+test(silent_test) :- silent_test(
 	[],
 	% (pa -> (pb -> pc)) -> ((pa -> pb) -> pc)
 	% Associativity of implication
 	imp(
 		imp(p(a), imp(p(b), p(c))),
 		imp(imp(p(a), p(b)), p(c))
-	)
+	),
+	false
 ).
 */
 
