@@ -25,7 +25,7 @@ member(X, [_ | Tail]) :- member(X, Tail).
 %
 %  True if NewList is the result of removing all occurences of Item from List.
 
-remove(X, [], []) :- !.
+remove(_, [], []) :- !.
 
 remove(X, [X | Tail], NewTail) :-
 	remove(X, Tail, NewTail),
@@ -247,7 +247,7 @@ test(resolutionstep) :-
 	C == [[neg(p(X)), q(X)], [p(a)], [q(a)]].
 
 test(factor) :-
-	factor([p(X), q(Z), p(Y)], C),
+	factor([p(X), q(Z), p(_Y)], C),
 	C == [p(X), q(Z)].
 */
 
