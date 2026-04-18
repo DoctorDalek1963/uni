@@ -35,6 +35,15 @@ remove(X, [Head | Tail], [Head | NewTail]) :-
 	X \= Head,
 	remove(X, Tail, NewTail).
 
+%! copy_all(+L1:list, -L2:list) is det.
+%
+%  Applies `copy_term/2` to all elements of L1 and produces L2.
+
+copy_all([], []).
+copy_all([H | T], [NewH | NewT]) :-
+	copy_term(H, NewH),
+	copy_all(T, NewT).
+
 %! conjunctive(+Formula:compound) is det.
 %
 %  True if Formula is an alpha formula.
@@ -82,9 +91,24 @@ component(neg(false), true).
 %
 %  True if New is the result of applying a single step of the CNF algorithm to Old.
 
+% We use `\+ var(_)` to allow for Prolog variables without them getting unified
+% with anything. Without the `\+ var(_)` line, `single_step([[X]], Y)` would
+% unify X with forall, or a unary term, or a disjunctive term, or a conjuctive
+% term. But we want it to just be a variable, so we have to check that.
+
+% Forall
+single_step([Disjunction | Rest], New) :-
+	member(Formula, Disjunction),
+	\+ var(Formula),
+	forall(Variable, Statement) = Formula,
+	var(Variable), % assertion
+	remove(Formula, Disjunction, Temp),
+	New = [[Statement | Temp] | Rest].
+
 % Unary
 single_step([Disjunction | Rest], New) :-
 	member(Formula, Disjunction),
+	\+ var(Formula),
 	unary(Formula),
 	component(Formula, NewFormula),
 	remove(Formula, Disjunction, Temp),
@@ -93,6 +117,7 @@ single_step([Disjunction | Rest], New) :-
 % Beta formula
 single_step([Disjunction | Rest], New) :-
 	member(Beta, Disjunction),
+	\+ var(Beta),
 	disjunctive(Beta),
 	components(Beta, BetaOne, BetaTwo),
 	remove(Beta, Disjunction, Temp),
@@ -101,6 +126,7 @@ single_step([Disjunction | Rest], New) :-
 % Alpha formula
 single_step([Disjunction | Rest], New) :-
 	member(Alpha, Disjunction),
+	\+ var(Alpha),
 	conjunctive(Alpha),
 	components(Alpha, AlphaOne, AlphaTwo),
 	remove(Alpha, Disjunction, Temp),
@@ -124,8 +150,9 @@ expand_to_cnf(Conjuction, Conjuction).
 %
 %  True if CNF is the conjunctive normal form of Formula.
 
-% TODO: How do we handle forall? (use copy_term/2)
-clauseform(Formula, CNF) :- expand_to_cnf([[Formula]], CNF).
+clauseform(Formula, CNF) :-
+	expand_to_cnf([[Formula]], Temp),
+	copy_all(Temp, CNF).
 
 %! resolutionstep(+Clauses:list(list(compound)), -NewClauses:list(list(compound))) is multi.
 %
@@ -173,12 +200,45 @@ test(clauseform, [nondet]) :-
 	C == [[a], [b]].
 
 test(clauseform, [nondet]) :-
+	clauseform(and(_X, _Y), C),
+	C = [[X2], [Y2]],
+	X2 \== Y2.
+
+test(clauseform, [nondet]) :-
 	clauseform(or(a, b), C),
 	C == [[a, b]].
 
 test(clauseform, [nondet]) :-
+	clauseform(neg(or(a, and(b, or(c, d)))), C),
+	C == [[neg(a)], [neg(c), neg(b)], [neg(d), neg(b)]].
+
+test(clauseform, [nondet]) :-
+	clauseform(forall(X, neg(X)), C),
+	C = [[neg(_)]].
+
+test(clauseform, [nondet]) :-
+	clauseform(forall(X, or(X, a)), C),
+	C = [[_, a]].
+
+test(clauseform, [nondet]) :-
 	clauseform(forall(X, imp(p(X), q(X))), C),
-	C == [[neg(p(X)), q(X)]].
+	C = [[neg(p(Y)), q(Y)]].
+
+test(clauseform, [nondet]) :-
+	clauseform(forall(X, and(p(X), q(X))), C),
+	C = [[p(Y)], [q(Z)]],
+	Y \== Z.
+
+test(clauseform, [nondet]) :-
+	clauseform(forall(X, forall(Y, or(p(X), q(Y)))), C),
+	C = [[p(X2), q(Y2)]],
+	X2 \== Y2.
+
+test(clauseform, [nondet]) :-
+	clauseform(forall(X, forall(Y, and(p(X), q(Y)))), C),
+	C = [[p(X2)], [q(Y2)]],
+	X2 \== X,
+	Y2 \== Y.
 
 /*
 % NOTE: Do we always want to keep clauses after expansion?
