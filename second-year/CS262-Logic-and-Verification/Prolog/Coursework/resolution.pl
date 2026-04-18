@@ -91,15 +91,15 @@ component(neg(false), true).
 %
 %  True if New is the result of applying a single step of the CNF algorithm to Old.
 
-% We use `\+ var(_)` to allow for Prolog variables without them getting unified
-% with anything. Without the `\+ var(_)` line, `single_step([[X]], Y)` would
-% unify X with forall, or a unary term, or a disjunctive term, or a conjuctive
-% term. But we want it to just be a variable, so we have to check that.
+% We use `nonvar(_)` to allow for Prolog variables without them getting unified
+% with anything. Without `nonvar(_)`, `single_step([[X]], Y)` would unify X
+% with forall, or a unary term, or a disjunctive term, or a conjuctive term.
+% But we want it to just be a variable, so we have to check that.
 
 % Forall
 single_step([Disjunction | Rest], New) :-
 	member(Formula, Disjunction),
-	\+ var(Formula),
+	nonvar(Formula),
 	forall(Variable, Statement) = Formula,
 	var(Variable), % assertion
 	remove(Formula, Disjunction, Temp),
@@ -108,7 +108,7 @@ single_step([Disjunction | Rest], New) :-
 % Unary
 single_step([Disjunction | Rest], New) :-
 	member(Formula, Disjunction),
-	\+ var(Formula),
+	nonvar(Formula),
 	unary(Formula),
 	component(Formula, NewFormula),
 	remove(Formula, Disjunction, Temp),
@@ -117,7 +117,7 @@ single_step([Disjunction | Rest], New) :-
 % Beta formula
 single_step([Disjunction | Rest], New) :-
 	member(Beta, Disjunction),
-	\+ var(Beta),
+	nonvar(Beta),
 	disjunctive(Beta),
 	components(Beta, BetaOne, BetaTwo),
 	remove(Beta, Disjunction, Temp),
@@ -126,7 +126,7 @@ single_step([Disjunction | Rest], New) :-
 % Alpha formula
 single_step([Disjunction | Rest], New) :-
 	member(Alpha, Disjunction),
-	\+ var(Alpha),
+	nonvar(Alpha),
 	conjunctive(Alpha),
 	components(Alpha, AlphaOne, AlphaTwo),
 	remove(Alpha, Disjunction, Temp),
