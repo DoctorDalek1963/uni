@@ -171,6 +171,7 @@ resolutionstep(Clauses, NewClauses) :-
 	remove(X, D1Copy, NewD1),
 	remove(neg(X), D2Copy, NewD2),
 	append(NewD1, NewD2, NewClause),
+	\+ member(NewClause, Clauses),
 	append(Clauses, [NewClause], NewClauses).
 
 %! factor(+Clause:list(compound), -FactoredClause:list(compound)) is multi.
@@ -192,8 +193,16 @@ factor(Clause, FactoredClause) :-
 %  until the empty clause is derived or until no new clauses can be derived.
 %  Result is true or false, meaning whether resolution proof was successful.
 
-% TODO
-resolution(Clauses, Result).
+resolution(Clauses, true) :-
+	member([], Clauses),
+	!.
+
+resolution(Clauses, true) :-
+	resolutionstep(Clauses, NewClauses),
+	resolution(NewClauses, true),
+	!.
+
+resolution(_, false).
 
 %! clauseform_all(Formulas:list(compound), -CNF:list(list(compound))) is multi.
 %
@@ -347,9 +356,8 @@ test(factor, [nondet]) :- factor(
 
 :- begin_tests(resolution).
 
-/*
 test(resolution, [nondet]) :-
-	resolutionstep([
+	resolution([
 		[neg(human(X)), mortal(X)],
 		[human(socrates)],
 		[neg(mortal(socrates))]
@@ -441,6 +449,5 @@ test(silent_test) :- silent_test(
 	),
 	false
 ).
-*/
 
 :- end_tests(resolution).
