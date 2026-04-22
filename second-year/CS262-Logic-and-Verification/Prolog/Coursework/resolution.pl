@@ -153,6 +153,7 @@ expand_to_cnf(Conjuction, Conjuction).
 
 clauseform(Formula, CNF) :-
 	expand_to_cnf([[Formula]], Temp),
+	!,
 	copy_all(Temp, CNF).
 
 %! resolutionstep(+Clauses:list(list(compound)), -NewClauses:list(list(compound))) is multi.
