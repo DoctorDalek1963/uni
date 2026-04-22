@@ -1,7 +1,7 @@
 /*
 1. YES
 2. YES
-3. YES
+3. NO
 4. YES
 5. NO
 6. YES
@@ -386,7 +386,7 @@ test(silent_test) :- silent_test(
 test(silent_test) :- silent_test(
 	[forall(X, imp(p(X), q(X)))],
 	q(a),
-	true
+	false
 ).
 
 test(silent_test) :- silent_test(
