@@ -364,6 +364,18 @@ test(resolution, [nondet]) :-
 	], true).
 
 % TODO: Sometimes the premises don't affect the conclusion. Optimise for this.
+
+test(silent_test) :- silent_test(
+	[
+		forall(X, imp(p(X), q(X))),
+		p(a)
+	],
+	q(a),
+	false
+).
+
+% === Begin tests prescribed in coursework document
+
 test(silent_test) :- silent_test(
 	[
 		forall(X, imp(human(X), mortal(X))),
