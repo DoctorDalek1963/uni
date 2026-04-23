@@ -18,8 +18,11 @@
 %
 %  True if Item is a member of List.
 
-member(X, [X | _]).
-member(X, [_ | Tail]) :- member(X, Tail).
+% Implementation taken from SWI-Prolog lists library
+member(X, [H | T]) :- member_(T, X, H).
+
+member_(_, X, X).
+member_([H | T], X, _) :- member_(T, X, H).
 
 %! remove(+Item, +List:list, -NewList:list) is det.
 %
