@@ -187,6 +187,25 @@ factor(Clause, FactoredClause) :-
 	X = Z,
 	remove(Y, Clause, FactoredClause).
 
+% Sometimes nothing can be factored
+factor(Clause, Clause) :-
+	\+ (
+		member(X, Clause),
+		member(Y, Clause),
+		X \== Y,
+		copy_term(Y, Z),
+		X = Z
+	).
+
+%! factor_all(+L1:list, -L2:list) is multi.
+%
+%  Applies `factor/2` to all elements of L1 and produces L2.
+
+factor_all([], []) :- !.
+factor_all([Head | Tail], [NewHead | NewTail]) :-
+	factor(Head, NewHead),
+	factor_all(Tail, NewTail).
+
 %! resolution(+Clauses:list(list(compound)), -Result:boolean) is multi.
 %
 %  Repeatedly applies `resolutionstep/2` and `factor/2` to a list of Clauses
@@ -198,7 +217,8 @@ resolution(Clauses, true) :-
 	!.
 
 resolution(Clauses, true) :-
-	resolutionstep(Clauses, NewClauses),
+	factor_all(Clauses, FactoredClauses),
+	resolutionstep(FactoredClauses, NewClauses),
 	resolution(NewClauses, true),
 	!.
 
@@ -356,11 +376,18 @@ test(factor, [nondet]) :- factor(
 
 :- begin_tests(resolution).
 
-test(resolution, [nondet]) :-
+test(resolution) :-
 	resolution([
 		[neg(human(X)), mortal(X)],
 		[human(socrates)],
 		[neg(mortal(socrates))]
+	], true).
+
+% Needs factoring
+test(resolution) :-
+	resolution([
+		[p(_X), p(_Y)],
+		[neg(p(_U)), neg(p(_V))]
 	], true).
 
 % TODO: Sometimes the premises don't affect the conclusion. Optimise for this.
