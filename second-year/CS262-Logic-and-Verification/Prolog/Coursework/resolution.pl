@@ -321,6 +321,20 @@ test(clauseform) :-
 	X2 \== X,
 	Y2 \== Y.
 
+test(clauseform) :-
+	clauseform(and(
+		forall(X, forall(Y, or(p(X), p(Y)))),
+		forall(U, forall(V, or(neg(p(U)), neg(p(V)))))
+	), C),
+	C = [
+		[p(X2), p(Y2)],
+		[neg(p(U2)), neg(p(V2))]
+	],
+	X2 \== X,
+	Y2 \== Y,
+	U2 \== U,
+	V2 \== V.
+
 % NOTE: Do we always want to keep clauses after expansion?
 test(resolutionstep, [nondet]) :-
 	resolutionstep([[neg(p(X)), q(X)], [p(a)]], C),
