@@ -161,7 +161,7 @@ clauseform(Formula, CNF) :-
 %  True if a single step of a resolution proof applied to Clauses yields NewClauses.
 
 % TODO: This feels inefficient
-resolutionstep(Clauses, NewClauses) :-
+resolutionstep(Clauses, [NewClause | Clauses]) :-
 	member(D1, Clauses),
 	member(D2, Clauses),
 	copy_term(D1, D1Copy),
@@ -171,8 +171,7 @@ resolutionstep(Clauses, NewClauses) :-
 	remove(X, D1Copy, NewD1),
 	remove(neg(X), D2Copy, NewD2),
 	append(NewD1, NewD2, NewClause),
-	\+ member(NewClause, Clauses),
-	append(Clauses, [NewClause], NewClauses).
+	\+ member(NewClause, Clauses).
 
 %! factor(+Clause:list(compound), -FactoredClause:list(compound)) is multi.
 %
@@ -217,9 +216,9 @@ resolution(Clauses, true) :-
 	!.
 
 resolution(Clauses, true) :-
-	factor_all(Clauses, FactoredClauses),
-	resolutionstep(FactoredClauses, NewClauses),
-	resolution(NewClauses, true),
+	resolutionstep(Clauses, [NewClause | OtherNewClauses]),
+	factor(NewClause, FactoredNewClause),
+	resolution([FactoredNewClause | OtherNewClauses], true),
 	!.
 
 resolution(_, false).
@@ -243,7 +242,9 @@ silent_test(Premises, Conclusion, Result) :-
 	clauseform_all(Premises, PremCNF),
 	clauseform(neg(Conclusion), ConcCNF),
 	append(PremCNF, ConcCNF, CNF),
-	resolution(CNF, Result).
+	factor_all(CNF, Clauses),
+	!,
+	resolution(Clauses, Result).
 
 %! test(+Premises:list(compound), -Conclusion:compound) is det.
 %
@@ -323,11 +324,11 @@ test(clauseform, [nondet]) :-
 % NOTE: Do we always want to keep clauses after expansion?
 test(resolutionstep, [nondet]) :-
 	resolutionstep([[neg(p(X)), q(X)], [p(a)]], C),
-	C == [[neg(p(X)), q(X)], [p(a)], [q(a)]].
+	C == [[q(a)], [neg(p(X)), q(X)], [p(a)]].
 
 test(resolutionstep, [nondet]) :-
 	resolutionstep([[neg(p(X)), q(Y)], [p(a)]], C),
-	C = [[neg(p(X)), q(Y)], [p(a)], [q(Y2)]],
+	C = [[q(Y2)], [neg(p(X)), q(Y)], [p(a)]],
 	Y2 \== Y.
 
 test(resolutionstep, [nondet]) :-
@@ -336,10 +337,10 @@ test(resolutionstep, [nondet]) :-
 		[human(socrates)],
 		[neg(mortal(socrates))]
 	], [
+		[mortal(socrates)],
 		[neg(human(X)), mortal(X)],
 		[human(socrates)],
-		[neg(mortal(socrates))],
-		[mortal(socrates)]
+		[neg(mortal(socrates))]
 	]).
 
 test(resolutionstep, [nondet]) :-
@@ -348,10 +349,10 @@ test(resolutionstep, [nondet]) :-
 		[human(socrates)],
 		[neg(mortal(socrates))]
 	], [
+		[neg(human(socrates))],
 		[neg(human(X)), mortal(X)],
 		[human(socrates)],
-		[neg(mortal(socrates))],
-		[neg(human(socrates))]
+		[neg(mortal(socrates))]
 	]).
 
 test(factor, [nondet]) :-
@@ -384,11 +385,16 @@ test(resolution) :-
 	], true).
 
 % Needs factoring
-test(resolution) :-
-	resolution([
-		[p(_X), p(_Y)],
-		[neg(p(_U)), neg(p(_V))]
-	], true).
+test(silent_test) :- silent_test(
+	[
+		and(
+			forall(X, forall(Y, or(p(X), p(Y)))),
+			forall(U, forall(V, or(neg(p(U)), neg(p(V)))))
+		)
+	],
+	q(a),
+	true
+).
 
 % TODO: Sometimes the premises don't affect the conclusion. Optimise for this.
 
