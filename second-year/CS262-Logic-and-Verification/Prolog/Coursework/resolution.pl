@@ -276,46 +276,46 @@ test(remove) :-
 	remove(p(X), [p(X), q(Z), p(X)], L),
 	L == [q(Z)].
 
-test(clauseform, [nondet]) :-
+test(clauseform) :-
 	clauseform(and(a, b), C),
 	C == [[a], [b]].
 
-test(clauseform, [nondet]) :-
+test(clauseform) :-
 	clauseform(and(_X, _Y), C),
 	C = [[X2], [Y2]],
 	X2 \== Y2.
 
-test(clauseform, [nondet]) :-
+test(clauseform) :-
 	clauseform(or(a, b), C),
 	C == [[a, b]].
 
-test(clauseform, [nondet]) :-
+test(clauseform) :-
 	clauseform(neg(or(a, and(b, or(c, d)))), C),
 	C == [[neg(a)], [neg(c), neg(b)], [neg(d), neg(b)]].
 
-test(clauseform, [nondet]) :-
+test(clauseform) :-
 	clauseform(forall(X, neg(X)), C),
 	C = [[neg(_)]].
 
-test(clauseform, [nondet]) :-
+test(clauseform) :-
 	clauseform(forall(X, or(X, a)), C),
 	C = [[_, a]].
 
-test(clauseform, [nondet]) :-
+test(clauseform) :-
 	clauseform(forall(X, imp(p(X), q(X))), C),
 	C = [[neg(p(Y)), q(Y)]].
 
-test(clauseform, [nondet]) :-
+test(clauseform) :-
 	clauseform(forall(X, and(p(X), q(X))), C),
 	C = [[p(Y)], [q(Z)]],
 	Y \== Z.
 
-test(clauseform, [nondet]) :-
+test(clauseform) :-
 	clauseform(forall(X, forall(Y, or(p(X), q(Y)))), C),
 	C = [[p(X2), q(Y2)]],
 	X2 \== Y2.
 
-test(clauseform, [nondet]) :-
+test(clauseform) :-
 	clauseform(forall(X, forall(Y, and(p(X), q(Y)))), C),
 	C = [[p(X2)], [q(Y2)]],
 	X2 \== X,
