@@ -159,6 +159,20 @@ clauseform(Formula, CNF) :-
 	!,
 	copy_all(Temp, CNF).
 
+%! resolve(+D1:list(list(compound)), +D2:list(list(compound)), -R:list(list(compound))) is det.
+%
+%  Resolves disjunctions D1 and D2 into resolvent R.
+
+resolve(D1, D2, R) :-
+	copy_term(D1, D1Copy),
+	copy_term(D2, D2Copy),
+	member(X, D1Copy),
+	member(neg(X), D2Copy),
+	!,
+	remove(X, D1Copy, NewD1),
+	remove(neg(X), D2Copy, NewD2),
+	append(NewD1, NewD2, R).
+
 %! resolutionstep(+Clauses:list(list(compound)), -NewClauses:list(list(compound))) is multi.
 %
 %  True if a single step of a resolution proof applied to Clauses yields NewClauses.
@@ -167,13 +181,7 @@ clauseform(Formula, CNF) :-
 resolutionstep(Clauses, [NewClause | Clauses]) :-
 	member(D1, Clauses),
 	member(D2, Clauses),
-	copy_term(D1, D1Copy),
-	copy_term(D2, D2Copy),
-	member(X, D1Copy),
-	member(neg(X), D2Copy),
-	remove(X, D1Copy, NewD1),
-	remove(neg(X), D2Copy, NewD2),
-	append(NewD1, NewD2, NewClause),
+	resolve(D1, D2, NewClause),
 	\+ member(NewClause, Clauses).
 
 %! factor(+Clause:list(compound), -FactoredClause:list(compound)) is multi.
