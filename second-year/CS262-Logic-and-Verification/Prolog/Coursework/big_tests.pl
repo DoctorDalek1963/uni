@@ -441,6 +441,45 @@ test(silent_test) :- silent_test(
 	true
 ).
 
+% TODO: Trying to prove p0(a) should be almost instant
+test(silent_test) :- silent_test(
+	[
+		forall(X, imp(p0(X), p1(X))),
+		forall(X, imp(p1(X), p2(X))),
+		forall(X, imp(p2(X), p3(X))),
+		forall(X, imp(p3(X), p4(X))),
+		forall(X, imp(p4(X), p5(X))),
+		forall(X, imp(p5(X), p6(X))),
+		forall(X, imp(p6(X), p7(X))),
+		forall(X, imp(p7(X), p8(X))),
+		forall(X, imp(p8(X), p9(X))),
+		forall(X, imp(p9(X), p10(X))),
+		forall(X, imp(p10(X), p11(X))),
+		forall(X, imp(p11(X), p12(X))),
+		forall(X, imp(p12(X), p13(X))),
+		forall(X, imp(p13(X), p14(X))),
+		forall(X, imp(p14(X), p15(X))),
+		forall(X, imp(p15(X), p16(X))),
+		forall(X, imp(p16(X), p17(X))),
+		forall(X, imp(p17(X), p18(X))),
+		forall(X, imp(p18(X), p19(X))),
+		forall(X, imp(p19(X), p20(X))),
+		forall(X, imp(p20(X), p21(X))),
+		forall(X, imp(p21(X), p22(X))),
+		forall(X, imp(p22(X), p23(X))),
+		forall(X, imp(p23(X), p24(X))),
+		forall(X, imp(p24(X), p25(X))),
+		forall(X, imp(p25(X), p26(X))),
+		forall(X, imp(p26(X), p27(X))),
+		forall(X, imp(p27(X), p28(X))),
+		forall(X, imp(p28(X), p29(X))),
+		forall(X, imp(p29(X), p30(X))),
+		p0(a)
+	],
+	p0(a),
+	true
+).
+
 test(silent_test) :-
 	implies_200(L),
 	silent_test(L, p200(a), true).
