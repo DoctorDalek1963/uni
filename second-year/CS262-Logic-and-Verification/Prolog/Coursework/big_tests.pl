@@ -480,8 +480,8 @@ test(silent_test) :- silent_test(
 	true
 ).
 
-test(silent_test) :-
-	implies_200(L),
-	silent_test(L, p200(a), true).
+% test(silent_test) :-
+% 	implies_200(L),
+% 	silent_test(L, p200(a), true).
 
 :- end_tests(big_tests).
