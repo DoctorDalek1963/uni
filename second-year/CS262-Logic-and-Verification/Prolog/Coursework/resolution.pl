@@ -177,12 +177,29 @@ resolve(D1, D2, R) :-
 %
 %  True if a single step of a resolution proof applied to Clauses yields NewClauses.
 
+% Is there a good heuristic like shortest resolvent list?
+% Obviously if we can resolve to [] then we should take it
 % TODO: This feels inefficient
-resolutionstep(Clauses, [NewClause | Clauses]) :-
+% TODO: Get D1 and create a list of resolvable elements. Try to resolve each,
+%       continuing if the resolvent is already in Clauses. If we do all of
+%       them, get rid of D1.
+
+% We choose a D1, fix it, then go through all D2 and try to resolve them. If a
+% D2 fails to resolve or gives a resolvent that we already have, we backtrack
+% and choose a new D2. If we go through all clauses and none of them resolve
+% with D1, then we remove D1.
+resolutionstep(Clauses, NewClauses) :-
 	member(D1, Clauses),
-	member(D2, Clauses),
-	resolve(D1, D2, NewClause),
-	\+ member(NewClause, Clauses).
+	(
+		member(D2, Clauses),
+		D2 \== D1,
+		resolve(D1, D2, NewClause),
+		\+ member(NewClause, Clauses),
+		!,
+		NewClauses = [NewClause | Clauses]
+	;
+		remove(Clauses, D1, NewClauses)
+	).
 
 %! factor(+Clause:list(compound), -FactoredClause:list(compound)) is multi.
 %
@@ -362,7 +379,7 @@ test(resolutionstep, [nondet]) :-
 		[human(socrates)],
 		[neg(mortal(socrates))]
 	], [
-		[mortal(socrates)],
+		[neg(human(socrates))],
 		[neg(human(X)), mortal(X)],
 		[human(socrates)],
 		[neg(mortal(socrates))]
